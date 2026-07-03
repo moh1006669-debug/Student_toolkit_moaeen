@@ -1,0 +1,16 @@
+{
+  "name": "منصة معين التعليمية",
+  "short_name": "معين",
+  "description": "مكتبة أدوات معين — مجموعة متكاملة من الأدوات الذكية",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F5F8F8",
+  "theme_color": "#0E5B57",
+  "icons": [
+    {
+      "src": "./assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
