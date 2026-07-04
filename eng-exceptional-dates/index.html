@@ -83,7 +83,7 @@
         }
 
         /* ============================================================
-           HEADER - الشريط العلوي (معدّل: شعاران متجاوران أفقياً)
+           HEADER - الشريط العلوي (شعاران متجاوران أفقياً)
            ============================================================ */
         .header {
             width: 100%;
@@ -96,7 +96,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: nowrap;
-            gap: 16px;
+            gap: 20px;
             box-shadow: var(--shadow-sm);
             border: 1px solid rgba(14, 91, 87, 0.04);
         }
@@ -109,25 +109,37 @@
         }
 
         .header-logo-moaeen img {
-            height: 64px;
+            height: 60px;
+            /* زاد من 44px */
             width: auto;
+            transition: transform var(--transition);
+        }
+
+        .header-logo-moaeen img:hover {
+            transform: scale(1.04);
         }
 
         .header-seu-box {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             flex-shrink: 0;
         }
 
         .header-seu-box img {
-            height: 50px;
+            height: 52px;
+            /* زاد من 40px */
             width: auto;
+            transition: transform var(--transition);
+        }
+
+        .header-seu-box img:hover {
+            transform: scale(1.04);
         }
 
         .seu-label {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: var(--text-muted);
             letter-spacing: 0.3px;
         }
@@ -316,7 +328,7 @@
         }
 
         .quick-links .row-buttons .btn-link i {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--whatsapp-green);
             transition: color var(--transition);
         }
@@ -329,14 +341,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            padding: 14px 28px;
+            gap: 18px;
+            padding: 16px 32px;
             border-radius: var(--radius-md);
             background: rgba(14, 91, 87, 0.04);
             border: 2px solid var(--primary);
             box-shadow: var(--shadow-sm);
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--primary);
             transition: all var(--transition);
             width: 100%;
@@ -351,13 +363,21 @@
 
         .quick-links .btn-library img {
             width: 44px;
+            /* زاد من 28px */
             height: 44px;
+            /* زاد من 28px */
             object-fit: contain;
+            transition: transform var(--transition);
+        }
+
+        .quick-links .btn-library:hover img {
+            transform: scale(1.08);
+            filter: brightness(0) invert(1);
         }
 
         .quick-links .btn-library .lib-desc {
             font-weight: 400;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
         }
 
@@ -425,15 +445,15 @@
         }
 
         .event-card .card-icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             background: rgba(14, 91, 87, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--primary);
         }
 
@@ -590,7 +610,7 @@
             margin: 0 auto;
             background: var(--primary-dark);
             border-radius: var(--radius-lg);
-            padding: 40px 40px 24px;
+            padding: 44px 44px 28px;
             border-top: 3px solid var(--gold);
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
@@ -600,23 +620,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 32px;
+            gap: 14px;
+            margin-bottom: 36px;
         }
 
         .footer .footer-top .brand-row {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
         .footer .footer-top .brand-row img {
-            height: 48px;
+            height: 68px;
+            /* زاد من 48px */
             width: auto;
+            transition: transform var(--transition);
+        }
+
+        .footer .footer-top .brand-row img:hover {
+            transform: scale(1.05);
         }
 
         .footer .footer-top .brand-row .brand-name {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #fff;
         }
@@ -638,7 +664,7 @@
             justify-content: center;
             align-items: stretch;
             gap: 0;
-            max-width: 700px;
+            max-width: 760px;
             margin: 0 auto;
             position: relative;
             flex-wrap: nowrap;
@@ -646,11 +672,11 @@
 
         .footer .footer-columns .col {
             flex: 1 1 50%;
-            padding: 12px 24px;
+            padding: 16px 28px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             min-width: 0;
         }
 
@@ -666,14 +692,14 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             background: var(--primary-dark);
             padding: 0 4px;
         }
 
         .footer .footer-columns .col h4 {
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 4px;
         }
@@ -689,11 +715,11 @@
 
         .footer .footer-columns .col ul li a {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .footer .footer-columns .col ul li a:hover {
@@ -701,9 +727,10 @@
         }
 
         .footer .footer-columns .col ul li a i {
-            width: 18px;
+            width: 20px;
             text-align: center;
             color: var(--gold);
+            font-size: 1.1rem;
         }
 
         /* QR Code */
@@ -711,16 +738,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .footer .footer-columns .col .qr-wrapper .qr-code {
-            width: 110px;
-            height: 110px;
-            border: 2px solid var(--gold);
+            width: 120px;
+            /* زاد من 80px */
+            height: 120px;
+            /* زاد من 80px */
+            border: 3px solid var(--gold);
             border-radius: var(--radius-sm);
-            padding: 4px;
+            padding: 6px;
             background: #fff;
+            transition: transform var(--transition);
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code:hover {
+            transform: scale(1.04);
         }
 
         .footer .footer-columns .col .qr-wrapper .qr-code img {
@@ -731,19 +765,19 @@
         }
 
         .footer .footer-columns .col .qr-wrapper .qr-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.4);
         }
 
         .footer .footer-columns .col .social-icons {
             display: flex;
-            gap: 12px;
-            margin-top: 4px;
+            gap: 14px;
+            margin-top: 6px;
         }
 
         .footer .footer-columns .col .social-icons a {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -751,7 +785,7 @@
             align-items: center;
             justify-content: center;
             color: rgba(255, 255, 255, 0.4);
-            font-size: 16px;
+            font-size: 20px;
             transition: all var(--transition);
         }
 
@@ -764,8 +798,8 @@
 
         .footer .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 18px;
-            margin-top: 24px;
+            padding-top: 20px;
+            margin-top: 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -804,13 +838,14 @@
         }
 
         .float-wa svg {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             fill: var(--white);
         }
 
         @keyframes float-pulse {
-            0%, 100% {
+            0%,
+            100% {
                 box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
             }
             50% {
@@ -834,6 +869,10 @@
             .hero .timezone-badge {
                 margin: 14px auto 0;
             }
+            .footer .footer-columns .col .qr-wrapper .qr-code {
+                width: 100px;
+                height: 100px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -843,16 +882,18 @@
             .header {
                 padding: 12px 16px;
                 border-radius: var(--radius-md);
-                gap: 8px;
+                gap: 12px;
             }
             .header-logo-moaeen img {
-                height: 34px;
+                height: 44px;
+                /* زاد من 34px */
             }
             .header-seu-box img {
-                height: 30px;
+                height: 38px;
+                /* زاد من 30px */
             }
             .seu-label {
-                font-size: 0.6rem;
+                font-size: 0.65rem;
                 display: none;
             }
             .hero {
@@ -885,37 +926,60 @@
                 padding: 14px 16px;
                 font-size: 0.9rem;
             }
+            .quick-links .btn-library {
+                padding: 14px 20px;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+            .quick-links .btn-library img {
+                width: 36px;
+                height: 36px;
+            }
+            .quick-links .btn-library .lib-desc {
+                font-size: 0.8rem;
+            }
             .footer {
-                padding: 24px 16px 20px;
+                padding: 28px 16px 20px;
+            }
+            .footer .footer-top .brand-row img {
+                height: 52px;
+                /* زاد من 40px */
+            }
+            .footer .footer-top .brand-row .brand-name {
+                font-size: 1.2rem;
             }
             /* إبقاء العمودين متجاورين في الجوال */
             .footer .footer-columns {
                 flex-wrap: nowrap;
                 gap: 8px;
+                max-width: 100%;
             }
             .footer .footer-columns .col {
-                padding: 8px 12px;
+                padding: 10px 14px;
                 flex: 1 1 50%;
             }
             .footer .footer-columns .col h4 {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
             .footer .footer-columns .col ul li a {
-                font-size: 0.8rem;
+                font-size: 0.82rem;
             }
             .footer .footer-columns .col .qr-wrapper .qr-code {
-                width: 60px;
-                height: 60px;
+                width: 90px;
+                height: 90px;
+                padding: 5px;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-label {
+                font-size: 0.75rem;
             }
             .footer .footer-columns .col-right::after {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 left: -10px;
             }
-            .footer .footer-top .brand-row img {
-                height: 40px;
-            }
-            .footer .footer-top .brand-row .brand-name {
-                font-size: 1.1rem;
+            .footer .footer-columns .col .social-icons a {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
             }
             .footer .footer-bottom {
                 flex-direction: column;
@@ -928,21 +992,23 @@
                 font-size: 14px;
             }
             .float-wa svg {
-                width: 24px;
-                height: 24px;
+                width: 26px;
+                height: 26px;
             }
         }
 
         @media (max-width: 480px) {
             .header {
                 padding: 8px 12px;
-                gap: 6px;
+                gap: 8px;
             }
             .header-logo-moaeen img {
-                height: 28px;
+                height: 34px;
+                /* زاد من 28px */
             }
             .header-seu-box img {
-                height: 24px;
+                height: 30px;
+                /* زاد من 24px */
             }
             .hero {
                 padding: 20px 16px;
@@ -968,27 +1034,34 @@
             .quick-links .btn-library {
                 flex-wrap: wrap;
                 padding: 12px 16px;
+                gap: 10px;
+            }
+            .quick-links .btn-library img {
+                width: 30px;
+                height: 30px;
             }
             .quick-links .btn-library .lib-desc {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
             /* الجوال الصغير: تظل الأعمدة متجاورة مع تصغير إضافي */
             .footer .footer-columns .col {
-                padding: 8px 6px;
+                padding: 8px 8px;
             }
             .footer .footer-columns .col ul li a {
-                font-size: 0.7rem;
-                gap: 4px;
+                font-size: 0.72rem;
+                gap: 6px;
             }
             .footer .footer-columns .col .qr-wrapper .qr-code {
-                width: 50px;
-                height: 50px;
+                width: 70px;
+                height: 70px;
+                padding: 4px;
+                border-width: 2px;
             }
             .footer .footer-columns .col .qr-wrapper .qr-label {
                 font-size: 0.65rem;
             }
             .footer .footer-columns .col-right::after {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
                 left: -8px;
             }
             .footer .footer-columns .col .social-icons a {
@@ -996,12 +1069,22 @@
                 height: 32px;
                 font-size: 14px;
             }
+            .footer .footer-top .brand-row img {
+                height: 42px;
+            }
+            .footer .footer-top .brand-row .brand-name {
+                font-size: 1rem;
+            }
             .float-wa span {
                 display: none;
             }
             .float-wa {
                 padding: 16px;
                 border-radius: 50%;
+            }
+            .float-wa svg {
+                width: 28px;
+                height: 28px;
             }
         }
 
@@ -1038,10 +1121,10 @@
     ============================================================ -->
     <header class="header">
         <div class="header-logo-moaeen">
-            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
         </div>
         <div class="header-seu-box">
-            <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
+            <img src="./assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
             <span class="seu-label">SEU</span>
         </div>
     </header>
@@ -1098,7 +1181,7 @@
             </a>
         </div>
         <a href="https://moh1006669-debug.github.io/Student_toolkit_moaeen/Eng_Level_2_books/" target="_blank" class="btn-library">
-            <img src="../assets/images/icon-books.png" alt="كتب" />
+            <img src="./assets/images/icon-books.png" alt="كتب" />
             <span>مكتبة الإستثنائي</span>
             <span class="lib-desc">كتب + حلول الكتب + تجميعات &amp; مراجعات Eng_Level 2️⃣</span>
         </a>
@@ -1123,7 +1206,7 @@
     <footer class="footer">
         <div class="footer-top">
             <div class="brand-row">
-                <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين" />
+                <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين" />
                 <span class="brand-name">منصة <span>مُعين</span> التعليمية</span>
             </div>
             <div class="footer-description">
@@ -1145,7 +1228,7 @@
                 <h4>تواصل معنا</h4>
                 <div class="qr-wrapper">
                     <div class="qr-code">
-                        <img src="../assets/images/qr-code.png" alt="رمز QR للتواصل" />
+                        <img src="./assets/images/qr-code.png" alt="رمز QR للتواصل" />
                     </div>
                     <span class="qr-label">امسح للتواصل عبر واتساب</span>
                 </div>
@@ -1255,51 +1338,52 @@
                     const statusMap = { 'upcoming': 'قادم', 'active': 'جاري', 'passed': 'انتهى' };
                     const statusClass = status;
 
-                    const dateStr = `${start.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })} — ${end.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                    const dateStr =
+                        `${start.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })} — ${end.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
 
                     const iconClass = ev.type === 'quiz' ? 'quiz' : ev.type === 'mid' ? 'mid' : 'final';
 
                     return `
-                        <div class="event-card" data-id="${ev.id}">
-                            <div class="card-top">
-                                <div class="card-icon ${iconClass}">
-                                    <i class="fas ${ev.icon}"></i>
+                            <div class="event-card" data-id="${ev.id}">
+                                <div class="card-top">
+                                    <div class="card-icon ${iconClass}">
+                                        <i class="fas ${ev.icon}"></i>
+                                    </div>
+                                    <div class="card-title-area">
+                                        <div class="event-name">${ev.name}</div>
+                                        <div class="event-sub">${ev.range || ''}</div>
+                                    </div>
                                 </div>
-                                <div class="card-title-area">
-                                    <div class="event-name">${ev.name}</div>
-                                    <div class="event-sub">${ev.range || ''}</div>
+                                <div class="card-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>${dateStr}</span>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="status-badge ${statusClass}">${statusMap[status]}</span>
+                                    <button class="toggle-details" data-target="details-${ev.id}">
+                                        تفاصيل أكثر <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                </div>
+                                <div class="details-panel" id="details-${ev.id}">
+                                    <div class="detail-row">
+                                        <span class="label">الدرجة</span>
+                                        <span class="value">${ev.weight}%</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">المدة</span>
+                                        <span class="value">${ev.duration}</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">النطاق</span>
+                                        <span class="value">${ev.range || '—'}</span>
+                                    </div>
+                                    <div class="detail-row" style="border-bottom:none;">
+                                        <span class="label">ملاحظات</span>
+                                        <span class="value" style="font-weight:400;color:var(--text-light);">${ev.details || '—'}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-date">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>${dateStr}</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="status-badge ${statusClass}">${statusMap[status]}</span>
-                                <button class="toggle-details" data-target="details-${ev.id}">
-                                    تفاصيل أكثر <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="details-panel" id="details-${ev.id}">
-                                <div class="detail-row">
-                                    <span class="label">الدرجة</span>
-                                    <span class="value">${ev.weight}%</span>
-                                </div>
-                                <div class="detail-row">
-                                    <span class="label">المدة</span>
-                                    <span class="value">${ev.duration}</span>
-                                </div>
-                                <div class="detail-row">
-                                    <span class="label">النطاق</span>
-                                    <span class="value">${ev.range || '—'}</span>
-                                </div>
-                                <div class="detail-row" style="border-bottom:none;">
-                                    <span class="label">ملاحظات</span>
-                                    <span class="value" style="font-weight:400;color:var(--text-light);">${ev.details || '—'}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                        `;
                 }).join('');
 
                 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -1311,7 +1395,8 @@
                         document.querySelectorAll('.details-panel.open').forEach(p => {
                             if (p.id !== targetId) {
                                 p.classList.remove('open');
-                                p.previousElementSibling?.querySelector('.toggle-details')?.classList.remove('open');
+                                p.previousElementSibling?.querySelector('.toggle-details')?.classList
+                                    .remove('open');
                             }
                         });
                         panel.classList.toggle('open');
@@ -1366,7 +1451,8 @@
                     return;
                 }
 
-                nextEventNameEl.textContent = `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                nextEventNameEl.textContent =
+                    `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
 
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 diff -= days * (1000 * 60 * 60 * 24);
