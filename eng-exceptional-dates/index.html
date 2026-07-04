@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مرجع المواعيد — مقرر English (إستثنائي)</title>
+    <meta name="description" content="مرجع متابعة مواعيد الكويزات والميد والفاينل لمقرر English (إستثنائي) — منصة معين التعليمية." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
+        :root {
+            --primary: #0E5B57;
+            --primary-dark: #0A4542;
+            --primary-light: #1A7A75;
+            --gold: #D8A63B;
+            --gold-light: #E8C46A;
+            --gold-dark: #B8892E;
+            --bg: #F5F8F8;
+            --bg-white: #FFFFFF;
+            --text: #173534;
+            --text-light: #4A6B68;
+            --text-muted: #7A9A97;
+            --shadow-sm: 0 2px 12px rgba(14, 91, 87, 0.06);
+            --shadow-md: 0 8px 32px rgba(14, 91, 87, 0.10);
+            --shadow-lg: 0 16px 56px rgba(14, 91, 87, 0.14);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            --font: 'Cairo', sans-serif;
+            --header-height: 72px;
+            --max-width: 1200px;
+            --whatsapp-green: #25D366;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ============================================================
+           HEADER - الشريط العلوي (معدّل: شعاران متجاوران أفقياً)
+           ============================================================ */
+        .header {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto 24px;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(14, 91, 87, 0.04);
+        }
+
+        .header-logo-moaeen {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-logo-moaeen img {
+            height: 44px;
+            width: auto;
+        }
+
+        .header-seu-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .header-seu-box img {
+            height: 40px;
+            width: auto;
+        }
+
+        .seu-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: var(--radius-lg);
+            padding: 40px 48px;
+            color: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(216, 166, 59, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(216, 166, 59, 0.15);
+            border: 1px solid rgba(216, 166, 59, 0.25);
+            border-radius: 60px;
+            padding: 4px 18px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+        }
+
+        .hero .subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 480px;
+            line-height: 1.8;
+        }
+
+        .hero .timezone-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 60px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero .timezone-badge i {
+            color: var(--gold);
+        }
+
+        /* Hero Right — Countdown */
+        .hero-countdown {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 28px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            text-align: center;
+        }
+
+        .hero-countdown .next-event-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+        }
+
+        .hero-countdown .next-event-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .hero-countdown .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-countdown .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            min-width: 60px;
+        }
+
+        .hero-countdown .countdown-item .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .hero-countdown .countdown-item .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================================
+           QUICK LINKS BUTTONS (تحت الهيرو)
+           ============================================================ */
+        .quick-links {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .quick-links .row-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .quick-links .row-buttons .btn-link {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
+            background: var(--bg-white);
+            border: 2px solid var(--whatsapp-green);
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all var(--transition);
+            text-align: center;
+        }
+
+        .quick-links .row-buttons .btn-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            background: var(--whatsapp-green);
+            color: #fff;
+        }
+
+        .quick-links .row-buttons .btn-link i {
+            font-size: 1.2rem;
+            color: var(--whatsapp-green);
+            transition: color var(--transition);
+        }
+
+        .quick-links .row-buttons .btn-link:hover i {
+            color: #fff;
+        }
+
+        .quick-links .btn-library {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            background: rgba(14, 91, 87, 0.04);
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: all var(--transition);
+            width: 100%;
+        }
+
+        .quick-links .btn-library:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-links .btn-library img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .quick-links .btn-library .lib-desc {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .quick-links .btn-library:hover .lib-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ============================================================
+           EVENTS GRID
+           ============================================================ */
+        .events-section {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto 40px;
+        }
+
+        .events-section .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .events-section .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .events-section .section-header h2 span {
+            color: var(--gold);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* ===== EVENT CARD ===== */
+        .event-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 24px 24px 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(14, 91, 87, 0.04);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(216, 166, 59, 0.10);
+        }
+
+        .event-card .card-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .event-card .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(14, 91, 87, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .event-card .card-icon.quiz {
+            background: rgba(216, 166, 59, 0.10);
+            color: var(--gold-dark);
+        }
+
+        .event-card .card-icon.mid {
+            background: rgba(14, 91, 87, 0.10);
+            color: var(--primary);
+        }
+
+        .event-card .card-icon.final {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+        }
+
+        .event-card .card-title-area {
+            flex: 1;
+        }
+
+        .event-card .card-title-area .event-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .event-card .card-title-area .event-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .event-card .card-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .event-card .card-date i {
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .event-card .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(14, 91, 87, 0.04);
+        }
+
+        .event-card .card-footer .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 60px;
+            background: rgba(14, 91, 87, 0.06);
+            color: var(--text-muted);
+        }
+
+        .event-card .card-footer .status-badge.upcoming {
+            background: rgba(216, 166, 59, 0.10);
+            color: var(--gold-dark);
+        }
+
+        .event-card .card-footer .status-badge.active {
+            background: rgba(14, 91, 87, 0.10);
+            color: var(--primary);
+        }
+
+        .event-card .card-footer .status-badge.passed {
+            background: rgba(122, 154, 151, 0.10);
+            color: var(--text-muted);
+        }
+
+        .toggle-details {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font);
+            transition: color var(--transition);
+            padding: 4px 0;
+        }
+
+        .toggle-details:hover {
+            color: var(--gold);
+        }
+
+        .toggle-details i {
+            transition: transform var(--transition);
+            font-size: 0.75rem;
+        }
+
+        .toggle-details.open i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== DETAILS PANEL ===== */
+        .details-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            padding: 0 0 0 0;
+        }
+
+        .details-panel.open {
+            max-height: 400px;
+            opacity: 1;
+            padding: 14px 0 4px 0;
+        }
+
+        .details-panel .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(14, 91, 87, 0.04);
+            font-size: 0.9rem;
+        }
+
+        .details-panel .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .details-panel .detail-row .label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .details-panel .detail-row .value {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           FOOTER - مطابق للصورة المرجعية (عمودين ثابتين)
+           ============================================================ */
+        .footer {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--primary-dark);
+            border-radius: var(--radius-lg);
+            padding: 40px 40px 24px;
+            border-top: 3px solid var(--gold);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        .footer .footer-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .footer .footer-top .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer .footer-top .brand-row img {
+            height: 48px;
+            width: auto;
+        }
+
+        .footer .footer-top .brand-row .brand-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .footer .footer-top .brand-row .brand-name span {
+            color: var(--gold);
+        }
+
+        .footer .footer-top .footer-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* العمودان المتجاوران - يظلان صفاً واحداً في كل الأحوال */
+        .footer .footer-columns {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 0;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            flex-wrap: nowrap;
+        }
+
+        .footer .footer-columns .col {
+            flex: 1 1 50%;
+            padding: 12px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .footer .footer-columns .col-right {
+            border-left: 2px dashed var(--gold);
+            position: relative;
+        }
+
+        .footer .footer-columns .col-right::after {
+            content: '⬅';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.2rem;
+            background: var(--primary-dark);
+            padding: 0 4px;
+        }
+
+        .footer .footer-columns .col h4 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .footer .footer-columns .col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .footer .footer-columns .col ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .footer-columns .col ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer .footer-columns .col ul li a i {
+            width: 18px;
+            text-align: center;
+            color: var(--gold);
+        }
+
+        /* QR Code */
+        .footer .footer-columns .col .qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            background: #fff;
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer .footer-columns .col .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .footer .footer-columns .col .social-icons a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+            transition: all var(--transition);
+        }
+
+        .footer .footer-columns .col .social-icons a:hover {
+            background: rgba(216, 166, 59, 0.10);
+            border-color: rgba(216, 166, 59, 0.20);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 18px;
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============================================================
+           FLOATING WHATSAPP BUTTON
+           ============================================================ */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 14px 24px 14px 18px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: float-pulse 2s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.05);
+            background: #1DA851;
+            animation: none;
+        }
+
+        .float-wa svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        @keyframes float-pulse {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 32px 28px;
+                text-align: center;
+            }
+            .hero .subtitle {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            .hero .timezone-badge {
+                margin: 14px auto 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            .header {
+                padding: 12px 16px;
+                border-radius: var(--radius-md);
+                gap: 8px;
+            }
+            .header-logo-moaeen img {
+                height: 34px;
+            }
+            .header-seu-box img {
+                height: 30px;
+            }
+            .seu-label {
+                font-size: 0.6rem;
+                display: none;
+            }
+            .hero {
+                padding: 24px 20px;
+                border-radius: var(--radius-md);
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero-countdown .countdown-grid {
+                gap: 10px;
+            }
+            .hero-countdown .countdown-item {
+                min-width: 50px;
+                padding: 6px 10px;
+            }
+            .hero-countdown .countdown-item .number {
+                font-size: 1.5rem;
+            }
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            .quick-links .row-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .quick-links .row-buttons .btn-link {
+                flex: 1 1 calc(50% - 8px);
+                min-width: unset;
+                padding: 14px 16px;
+                font-size: 0.9rem;
+            }
+            .footer {
+                padding: 24px 16px 20px;
+            }
+            /* إبقاء العمودين متجاورين في الجوال */
+            .footer .footer-columns {
+                flex-wrap: nowrap;
+                gap: 8px;
+            }
+            .footer .footer-columns .col {
+                padding: 8px 12px;
+                flex: 1 1 50%;
+            }
+            .footer .footer-columns .col h4 {
+                font-size: 0.85rem;
+            }
+            .footer .footer-columns .col ul li a {
+                font-size: 0.8rem;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-code {
+                width: 60px;
+                height: 60px;
+            }
+            .footer .footer-columns .col-right::after {
+                font-size: 0.9rem;
+                left: -10px;
+            }
+            .footer .footer-top .brand-row img {
+                height: 40px;
+            }
+            .footer .footer-top .brand-row .brand-name {
+                font-size: 1.1rem;
+            }
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .float-wa {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px 12px 16px;
+                font-size: 14px;
+            }
+            .float-wa svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 12px;
+                gap: 6px;
+            }
+            .header-logo-moaeen img {
+                height: 28px;
+            }
+            .header-seu-box img {
+                height: 24px;
+            }
+            .hero {
+                padding: 20px 16px;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+            .event-card {
+                padding: 18px 16px;
+            }
+            .quick-links .row-buttons {
+                flex-direction: column;
+            }
+            .quick-links .row-buttons .btn-link {
+                flex: 1 1 100%;
+                padding: 14px 16px;
+                font-size: 0.9rem;
+                justify-content: center;
+            }
+            .quick-links .btn-library {
+                flex-wrap: wrap;
+                padding: 12px 16px;
+            }
+            .quick-links .btn-library .lib-desc {
+                font-size: 0.8rem;
+            }
+            /* الجوال الصغير: تظل الأعمدة متجاورة مع تصغير إضافي */
+            .footer .footer-columns .col {
+                padding: 8px 6px;
+            }
+            .footer .footer-columns .col ul li a {
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-code {
+                width: 50px;
+                height: 50px;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-label {
+                font-size: 0.65rem;
+            }
+            .footer .footer-columns .col-right::after {
+                font-size: 0.7rem;
+                left: -8px;
+            }
+            .footer .footer-columns .col .social-icons a {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            .float-wa span {
+                display: none;
+            }
+            .float-wa {
+                padding: 16px;
+                border-radius: 50%;
+            }
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ============================================================
+           FOCUS
+           ============================================================ */
+        :focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER (شعاران متجاوران أفقياً)
+    ============================================================ -->
+    <header class="header">
+        <div class="header-logo-moaeen">
+            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
+        </div>
+        <div class="header-seu-box">
+            <img src="./assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
+            <span class="seu-label">SEU</span>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-calendar-alt" style="margin-left:6px;"></i> مرجع المواعيد</div>
+            <h1>مقرر <span class="highlight">English</span> <br />[ إستثنائي ]</h1>
+            <p class="subtitle">المرجع مخصص لمتابعة مواعيد الكويزات والميد والفاينل. جميع الأوقات حسب توقيت السعودية <strong>UTC+3</strong></p>
+            <div class="timezone-badge">
+                <i class="fas fa-clock"></i>
+                <span>جميع الأوقات بتوقيت السعودية (UTC+3)</span>
+            </div>
+        </div>
+        <div class="hero-countdown" id="countdownPanel">
+            <div class="next-event-label">الحدث الأقرب</div>
+            <div class="next-event-name" id="nextEventName">—</div>
+            <div class="countdown-grid" id="countdownGrid">
+                <div class="countdown-item">
+                    <span class="number" id="days">00</span>
+                    <span class="label">أيام</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">ساعات</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">دقائق</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">ثواني</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    QUICK LINKS
+    ============================================================ -->
+    <section class="quick-links">
+        <div class="row-buttons">
+            <a href="https://whatsapp.com/channel/0029VakYpEgJf05cOelgFv3t" target="_blank" class="btn-link">
+                <i class="fab fa-whatsapp wa-icon"></i>
+                <span>قناة الأخبار العامة SEU l</span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbC18ul7DAX7ICgQzn11" target="_blank" class="btn-link">
+                <i class="fab fa-whatsapp wa-icon"></i>
+                <span>الترم الاستثنائي (صيفي د 25)</span>
+            </a>
+        </div>
+        <a href="https://moh1006669-debug.github.io/Student_toolkit_moaeen/Eng_Level_2_books/" target="_blank" class="btn-library">
+            <img src="./assets/images/icon-books.png" alt="كتب" />
+            <span>مكتبة الإستثنائي</span>
+            <span class="lib-desc">كتب + حلول الكتب + تجميعات &amp; مراجعات Eng_Level 2️⃣</span>
+        </a>
+    </section>
+
+    <!-- ============================================================
+    EVENTS GRID
+    ============================================================ -->
+    <section class="events-section">
+        <div class="section-header">
+            <h2>📋 جدول <span>المواعيد</span></h2>
+            <span style="font-size:0.9rem;color:var(--text-muted);"><i class="fas fa-chevron-left"></i> اضغط على "تفاصيل أكثر" لعرض المعلومات الكاملة</span>
+        </div>
+        <div class="events-grid" id="eventsGrid">
+            <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="brand-row">
+                <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين" />
+                <span class="brand-name">منصة <span>مُعين</span> التعليمية</span>
+            </div>
+            <div class="footer-description">
+                مرجع مواعيد الكويزات والميد والفاينل — مقرر English (إستثنائي)
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="col col-right">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> المقررات</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>تواصل معنا</h4>
+                <div class="qr-wrapper">
+                    <div class="qr-code">
+                        <img src="./assets/images/qr-code.png" alt="رمز QR للتواصل" />
+                    </div>
+                    <span class="qr-label">امسح للتواصل عبر واتساب</span>
+                </div>
+                <div class="social-icons">
+                    <a href="https://wa.me/966536004199" target="_blank" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" aria-label="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" target="_blank" aria-label="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 منصة معين التعليمية — جميع الحقوق محفوظة</span>
+            <span>الإصدار 1.0</span>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    FLOATING WHATSAPP BUTTON
+    ============================================================ -->
+    <a href="https://wa.me/966536004199" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+    </a>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            const eventsData = [{
+                id: 1,
+                type: 'quiz',
+                name: 'Quiz 1',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-07-11T12:00:00+03:00',
+                endDate: '2026-07-13T11:58:00+03:00',
+                weight: 20,
+                range: 'المحاضرات 1–3',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 13/07 الساعة 11:58 صباحاً.'
+            }, {
+                id: 2,
+                type: 'quiz',
+                name: 'Quiz 2',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-07-18T12:00:00+03:00',
+                endDate: '2026-07-20T11:58:00+03:00',
+                weight: 45,
+                range: 'المحاضرات 4–6',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 20/07 الساعة 11:58 صباحاً.'
+            }, {
+                id: 3,
+                type: 'quiz',
+                name: 'Quiz 3',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-08-01T12:00:00+03:00',
+                endDate: '2026-08-03T11:59:00+03:00',
+                weight: 45,
+                range: 'المحاضرات 7–9',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 03/08 الساعة 11:59 صباحاً.'
+            }, {
+                id: 4,
+                type: 'mid',
+                name: 'الميدterm',
+                icon: 'fa-book-open',
+                startDate: '2026-07-25T12:00:00+03:00',
+                endDate: '2026-07-27T11:59:00+03:00',
+                weight: 30,
+                range: 'المحاضرات 1–6',
+                duration: 'ساعتان',
+                details: 'الموعد النهائي لتسليم الميد يوم 27/07 الساعة 11:59 صباحاً.'
+            }, {
+                id: 5,
+                type: 'final',
+                name: 'الفاينل',
+                icon: 'fa-graduation-cap',
+                startDate: '2026-08-10T12:00:00+03:00',
+                endDate: '2026-08-12T11:59:00+03:00',
+                weight: 40,
+                range: 'المحاضرات 1–9 (شامل)',
+                duration: 'ساعتان',
+                details: 'الموعد النهائي لتسليم الفاينل يوم 12/08 الساعة 11:59 صباحاً.'
+            }];
+
+            const grid = document.getElementById('eventsGrid');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const nextEventNameEl = document.getElementById('nextEventName');
+
+            function renderEvents() {
+                grid.innerHTML = eventsData.map(ev => {
+                    const now = new Date();
+                    const start = new Date(ev.startDate);
+                    const end = new Date(ev.endDate);
+                    let status = 'upcoming';
+                    if (now > end) status = 'passed';
+                    else if (now >= start && now <= end) status = 'active';
+
+                    const statusMap = { 'upcoming': 'قادم', 'active': 'جاري', 'passed': 'انتهى' };
+                    const statusClass = status;
+
+                    const dateStr = `${start.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })} — ${end.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+
+                    const iconClass = ev.type === 'quiz' ? 'quiz' : ev.type === 'mid' ? 'mid' : 'final';
+
+                    return `
+                        <div class="event-card" data-id="${ev.id}">
+                            <div class="card-top">
+                                <div class="card-icon ${iconClass}">
+                                    <i class="fas ${ev.icon}"></i>
+                                </div>
+                                <div class="card-title-area">
+                                    <div class="event-name">${ev.name}</div>
+                                    <div class="event-sub">${ev.range || ''}</div>
+                                </div>
+                            </div>
+                            <div class="card-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${dateStr}</span>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge ${statusClass}">${statusMap[status]}</span>
+                                <button class="toggle-details" data-target="details-${ev.id}">
+                                    تفاصيل أكثر <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="details-panel" id="details-${ev.id}">
+                                <div class="detail-row">
+                                    <span class="label">الدرجة</span>
+                                    <span class="value">${ev.weight}%</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">المدة</span>
+                                    <span class="value">${ev.duration}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">النطاق</span>
+                                    <span class="value">${ev.range || '—'}</span>
+                                </div>
+                                <div class="detail-row" style="border-bottom:none;">
+                                    <span class="label">ملاحظات</span>
+                                    <span class="value" style="font-weight:400;color:var(--text-light);">${ev.details || '—'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.querySelectorAll('.toggle-details').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const targetId = this.dataset.target;
+                        const panel = document.getElementById(targetId);
+                        if (!panel) return;
+                        document.querySelectorAll('.details-panel.open').forEach(p => {
+                            if (p.id !== targetId) {
+                                p.classList.remove('open');
+                                p.previousElementSibling?.querySelector('.toggle-details')?.classList.remove('open');
+                            }
+                        });
+                        panel.classList.toggle('open');
+                        this.classList.toggle('open');
+                    });
+                });
+            }
+
+            function getNextEvent() {
+                const now = new Date();
+                let next = null;
+                let minDiff = Infinity;
+                for (const ev of eventsData) {
+                    const start = new Date(ev.startDate);
+                    const diff = start.getTime() - now.getTime();
+                    if (diff > 0 && diff < minDiff) {
+                        minDiff = diff;
+                        next = ev;
+                    }
+                }
+                if (!next && eventsData.length > 0) {
+                    let last = eventsData[0];
+                    for (const ev of eventsData) {
+                        if (new Date(ev.startDate) > new Date(last.startDate)) last = ev;
+                    }
+                    next = last;
+                }
+                return next;
+            }
+
+            function updateCountdown() {
+                const now = new Date();
+                const next = getNextEvent();
+                if (!next) {
+                    nextEventNameEl.textContent = 'لا توجد أحداث';
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const target = new Date(next.startDate);
+                let diff = target.getTime() - now.getTime();
+
+                if (diff < 0) {
+                    nextEventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                nextEventNameEl.textContent = `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff -= days * (1000 * 60 * 60 * 24);
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff -= hours * (1000 * 60 * 60);
+                const minutes = Math.floor(diff / (1000 * 60));
+                diff -= minutes * (1000 * 60);
+                const seconds = Math.floor(diff / 1000);
+
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            renderEvents();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+        })();
+    </script>
+
+</body>
+</html>
