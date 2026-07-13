@@ -1,1157 +1,1060 @@
-"use client";
-
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  CalendarRange,
-  Plus,
-  Trash2,
-  Printer,
-  Clock,
-  BookOpen,
-  AlertTriangle,
-  Pencil,
-  ChevronDown,
-  ChevronUp,
-  User,
-  MapPin,
-  LayoutGrid,
-  X,
-  Info,
-} from "lucide-react";
-
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
-
-interface Lecture {
-  id: string;
-  courseName: string;
-  instructorName: string;
-  hall: string;
-  day: number; // 0 = الأحد, 6 = السبت
-  startSlot: number; // slot index from 7:00 AM
-  endSlot: number;
-  color: string;
-  creditHours: number;
-}
-
-const DAYS = [
-  "الأحد",
-  "الإثنين",
-  "الثلاثاء",
-  "الأربعاء",
-  "الخميس",
-  "الجمعة",
-  "السبت",
-] as const;
-
-const PRESET_COLORS = [
-  { name: "أخضر زمردي", value: "#059669", bg: "bg-emerald-600", text: "text-white" },
-  { name: "أزرق سماوي", value: "#0891b2", bg: "bg-cyan-600", text: "text-white" },
-  { name: "أزرق", value: "#2563eb", bg: "bg-blue-600", text: "text-white" },
-  { name: "بنفسجي", value: "#7c3aed", bg: "bg-violet-600", text: "text-white" },
-  { name: "وردي", value: "#db2777", bg: "bg-pink-600", text: "text-white" },
-  { name: "برتقالي", value: "#ea580c", bg: "bg-orange-600", text: "text-white" },
-  { name: "كهرماني", value: "#d97706", bg: "bg-amber-600", text: "text-white" },
-  { name: "أحمر", value: "#dc2626", bg: "bg-red-600", text: "text-white" },
-] as const;
-
-const FIRST_HOUR = 7; // 7:00 AM
-const LAST_HOUR = 22; // 10:00 PM
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function generateTimeSlots(halfHour: boolean): string[] {
-  const slots: string[] = [];
-  for (let h = FIRST_HOUR; h < LAST_HOUR; h++) {
-    slots.push(formatTime(h, "AM"));
-    if (halfHour) {
-      slots.push(formatTime(h, 0.5, "AM"));
-    }
-  }
-  slots.push(formatTime(LAST_HOUR, "PM"));
-  return slots;
-}
-
-function formatTime(
-  hour: number,
-  minute: number | string = 0,
-  ampm?: string
-): string {
-  let h = hour;
-  let m = typeof minute === "string" ? 0 : minute;
-  let ampmVal = ampm;
-
-  if (!ampmVal) {
-    if (typeof minute === "string") {
-      ampmVal = minute;
-    } else {
-      ampmVal = hour >= 12 ? "م" : "ص";
-      h = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-    }
-  } else {
-    h = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-  }
-
-  const hStr = h === 0 ? 12 : h;
-  const mStr = m === 0 ? "00" : String(m * 60).padStart(2, "0");
-
-  // Convert numbers to Arabic
-  const arabicNums = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
-  const toAr = (n: number) =>
-    String(n).replace(/[0-9]/g, (d) => arabicNums[parseInt(d)]);
-
-  return `${toAr(hStr)}:${toAr(parseInt(mStr))} ${ampmVal}`;
-}
-
-function getSlotIndex(hour: number, minute: number = 0, halfHour: boolean): number {
-  const base = hour - FIRST_HOUR;
-  return halfHour ? base * 2 + (minute >= 30 ? 1 : 0) : base;
-}
-
-function slotToTime(slotIndex: number, halfHour: boolean): { hour: number; minute: number } {
-  if (halfHour) {
-    const totalMinutes = (FIRST_HOUR * 60) + slotIndex * 30;
-    return { hour: Math.floor(totalMinutes / 60), minute: totalMinutes % 60 };
-  }
-  return { hour: FIRST_HOUR + slotIndex, minute: 0 };
-}
-
-function timeToArabicDisplay(slotIndex: number, halfHour: boolean): string {
-  const { hour, minute } = slotToTime(slotIndex, halfHour);
-  const ampm = hour >= 12 ? "م" : "ص";
-  const h12 = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-  const arabicNums = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
-  const toAr = (n: number) =>
-    String(n).replace(/[0-9]/g, (d) => arabicNums[parseInt(d)]);
-  const mStr = minute === 0 ? "٠٠" : toAr(minute);
-  return `${toAr(h12)}:${mStr} ${ampm}`;
-}
-
-function detectConflicts(lectures: Lecture[], excludeId?: string): Lecture[] {
-  const conflicts: Lecture[] = [];
-  for (let i = 0; i < lectures.length; i++) {
-    for (let j = i + 1; j < lectures.length; j++) {
-      const a = lectures[i];
-      const b = lectures[j];
-      if (excludeId && (a.id === excludeId || b.id === excludeId)) continue;
-      if (a.day !== b.day) continue;
-      if (a.startSlot < b.endSlot && b.startSlot < a.endSlot) {
-        conflicts.push(a);
-        conflicts.push(b);
-      }
-    }
-  }
-  return [...new Set(conflicts.map((c) => c.id))].map(
-    (id) => lectures.find((l) => l.id === id)!
-  );
-}
-
-function getColorClasses(color: string) {
-  const preset = PRESET_COLORS.find((p) => p.value === color);
-  if (preset) return preset;
-  return { name: "مخصص", value: color, bg: "", text: "text-white" };
-}
-
-/* ------------------------------------------------------------------ */
-/*  Animation Variants                                                 */
-/* ------------------------------------------------------------------ */
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.03 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-};
-
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
-
-export function LectureScheduleBuilder() {
-  /* ---- State ---- */
-  const [lectures, setLectures] = useState<Lecture[]>([]);
-  const [showHalfHour, setShowHalfHour] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingLecture, setEditingLecture] = useState<Lecture | null>(null);
-  const [selectedDay, setSelectedDay] = useState<number>(0);
-  const [selectedStartSlot, setSelectedStartSlot] = useState<number>(0);
-
-  // Form fields
-  const [formCourse, setFormCourse] = useState("");
-  const [formInstructor, setFormInstructor] = useState("");
-  const [formHall, setFormHall] = useState("");
-  const [formStartSlot, setFormStartSlot] = useState<number>(0);
-  const [formEndSlot, setFormEndSlot] = useState<number>(1);
-  const [formColor, setFormColor] = useState<string>(PRESET_COLORS[0].value);
-  const [formCreditHours, setFormCreditHours] = useState(3);
-  const [formDay, setFormDay] = useState<number>(0);
-
-  const gridRef = useRef<HTMLDivElement>(null);
-
-  /* ---- localStorage ---- */
-  useEffect(() => {
-    const stored = localStorage.getItem("lecture-schedule-data");
-    if (stored) {
-      try {
-        setLectures(JSON.parse(stored));
-      } catch {
-        /* ignore corrupt data */
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("lecture-schedule-data", JSON.stringify(lectures));
-  }, [lectures]);
-
-  /* ---- Derived ---- */
-  const totalSlots = showHalfHour
-    ? (LAST_HOUR - FIRST_HOUR) * 2
-    : LAST_HOUR - FIRST_HOUR;
-
-  const totalCreditHours = useMemo(
-    () =>
-      [...new Set(lectures.map((l) => l.courseName))].reduce((sum, name) => {
-        const lecture = lectures.find((l) => l.courseName === name);
-        return sum + (lecture?.creditHours || 0);
-      }, 0),
-    [lectures]
-  );
-
-  const uniqueCourses = useMemo(
-    () => [...new Set(lectures.map((l) => l.courseName))].length,
-    [lectures]
-  );
-
-  const conflicts = useMemo(
-    () => detectConflicts(lectures),
-    [lectures]
-  );
-
-  /* ---- Actions ---- */
-  const resetForm = useCallback(() => {
-    setFormCourse("");
-    setFormInstructor("");
-    setFormHall("");
-    setFormStartSlot(0);
-    setFormEndSlot(1);
-    setFormColor(PRESET_COLORS[0].value);
-    setFormCreditHours(3);
-    setFormDay(0);
-    setEditingLecture(null);
-  }, []);
-
-  const openAddDialog = useCallback(
-    (day: number, slot: number) => {
-      resetForm();
-      setFormDay(day);
-      setFormStartSlot(slot);
-      setFormEndSlot(Math.min(slot + 1, totalSlots));
-      setSelectedDay(day);
-      setSelectedStartSlot(slot);
-      setDialogOpen(true);
-    },
-    [totalSlots, resetForm]
-  );
-
-  const openEditDialog = useCallback((lecture: Lecture) => {
-    resetForm();
-    setEditingLecture(lecture);
-    setFormCourse(lecture.courseName);
-    setFormInstructor(lecture.instructorName);
-    setFormHall(lecture.hall);
-    setFormDay(lecture.day);
-    setFormStartSlot(lecture.startSlot);
-    setFormEndSlot(lecture.endSlot);
-    setFormColor(lecture.color);
-    setFormCreditHours(lecture.creditHours);
-    setDialogOpen(true);
-  }, [resetForm]);
-
-  const saveLecture = useCallback(() => {
-    if (!formCourse.trim()) return;
-    if (formEndSlot <= formStartSlot) return;
-
-    if (editingLecture) {
-      setLectures((prev) =>
-        prev.map((l) =>
-          l.id === editingLecture.id
-            ? {
-                ...l,
-                courseName: formCourse.trim(),
-                instructorName: formInstructor.trim(),
-                hall: formHall.trim(),
-                day: formDay,
-                startSlot: formStartSlot,
-                endSlot: formEndSlot,
-                color: formColor,
-                creditHours: formCreditHours,
-              }
-            : l
-        )
-      );
-    } else {
-      const newLecture: Lecture = {
-        id: Date.now().toString() + Math.random().toString(36).slice(2),
-        courseName: formCourse.trim(),
-        instructorName: formInstructor.trim(),
-        hall: formHall.trim(),
-        day: formDay,
-        startSlot: formStartSlot,
-        endSlot: formEndSlot,
-        color: formColor,
-        creditHours: formCreditHours,
-      };
-      setLectures((prev) => [...prev, newLecture]);
-    }
-
-    setDialogOpen(false);
-    resetForm();
-  }, [
-    editingLecture,
-    formCourse,
-    formInstructor,
-    formHall,
-    formDay,
-    formStartSlot,
-    formEndSlot,
-    formColor,
-    formCreditHours,
-    resetForm,
-  ]);
-
-  const deleteLecture = useCallback((id: string) => {
-    setLectures((prev) => prev.filter((l) => l.id !== id));
-  }, []);
-
-  const clearAll = useCallback(() => {
-    setLectures([]);
-  }, []);
-
-  const handlePrint = useCallback(() => {
-    window.print();
-  }, []);
-
-  const downloadAsHtml = useCallback(() => {
-    const daysHeader = DAYS.map((d) => `<th>${d}</th>`).join("");
-
-    const rows: string[] = [];
-    for (let slot = 0; slot < totalSlots; slot++) {
-      const timeLabel = timeToArabicDisplay(slot, showHalfHour);
-      const cells: string[] = [];
-      for (let day = 0; day < 7; day++) {
-        const lecture = lectures.find(
-          (l) => l.day === day && l.startSlot <= slot && l.endSlot > slot
-        );
-        if (lecture && lecture.startSlot === slot) {
-          cells.push(
-            `<td rowspan="${lecture.endSlot - lecture.startSlot}" style="background:${lecture.color}22; border:1px solid ${lecture.color}44; padding:8px; font-size:12px; text-align:center; color:#111; vertical-align:top;"><strong>${lecture.courseName}</strong><br/><span style="font-size:10px; color:#666;">${lecture.instructorName}</span><br/><span style="font-size:10px; color:#666;">${lecture.hall}</span><br/><span style="font-size:10px; color:#888;">${timeToArabicDisplay(lecture.startSlot, showHalfHour)} - ${timeToArabicDisplay(lecture.endSlot, showHalfHour)}</span></td>`
-          );
-        } else if (lecture && lecture.startSlot < slot) {
-          // Skip — covered by rowspan
-        } else {
-          cells.push(`<td style="border:1px solid #e5e7eb; min-height:36px;"></td>`);
-        }
-      }
-      rows.push(`<tr><th style="background:#f3f4f6; font-size:11px; padding:4px 6px; border:1px solid #e5e7eb; white-space:nowrap;">${timeLabel}</th>${cells.join("")}</tr>`);
-    }
-
-    const html = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جدول المحاضرات</title>
+<title>المحولات والحاسبات | منصة معين التعليمية</title>
+<meta name="description" content="مجموعة أدوات تفاعلية: حاسبة المعدل الفصلي والتراكمي، محول التاريخ الهجري والميلادي، حاسبة الفرق بين تاريخين، حاسبة الوقت المتبقي للتسليم - منصة معين التعليمية">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 1.5rem; direction: rtl; background: #fff; color: #111; }
-  h1 { text-align: center; margin-bottom: .3rem; }
-  p.sub { text-align: center; color: #666; margin-bottom: 1rem; font-size: .85rem; }
-  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  th { background: #f3f4f6; padding: 6px 8px; border: 1px solid #e5e7eb; font-weight: 700; text-align: center; font-size: 12px; }
-  td { border: 1px solid #e5e7eb; text-align: center; }
-  tr:nth-child(even) td { background: #f9fafb; }
-  .footer { text-align: center; margin-top: 1rem; color: #999; font-size: .75rem; }
-  .summary { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-  .summary span { font-size: .85rem; color: #555; }
+:root {
+  --bg-card: #FFFFFF;
+  --bg-dark: #012727;
+  --bg-dark-2: #0A2C2C;
+  --bg-section: #F2F7F8;
+  --btn-bg: #074842;
+  --btn-bg-hover: #053631;
+  --desc-color: #5F6C70;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-glow: #E5C158;
+  --gold-text: #be9632;
+  --gray-light: #E2E8F0;
+  --icon-circle-bg: #EBF4F0;
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --title-color: #0B3B3C;
+  --transition: 0.3s ease;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  background: var(--bg-section);
+  color: var(--title-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  display: flex; flex-direction: column; align-items: center;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.page-wrapper { width: 100%; max-width: 1280px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+
+/* HEADER */
+.header {
+  width: 100%; background: var(--bg-dark);
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%);
+  border-radius: 24px; padding: 18px 24px;
+  display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.header-logo-moaeen img:hover { transform: scale(1.05); }
+.header-pill {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px;
+  padding: 12px 28px;
+  box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+}
+.pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-star { color: var(--gold); font-size: 18px; }
+.header-seu-box { display: flex; align-items: center; justify-content: center; }
+.seu-rect { display: flex; align-items: center; gap: 12px; }
+.seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+
+@media (max-width: 768px) {
+  .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; }
+  .header-pill { display: none; }
+  .header-logo-moaeen img { width: 70px; }
+  .seu-rect img { width: 38px; height: 38px; }
+}
+.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+.mobile-pill .pill-text { font-size: 12px; }
+@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
+
+/* BACK BAR */
+.back-bar {
+  width: 100%; background: var(--white); border-radius: 16px;
+  padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--btn-bg); color: var(--white); padding: 8px 18px;
+  border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition);
+}
+.back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.back-btn i { font-size: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+.breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+.breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+.breadcrumb i { font-size: 10px; }
+
+/* TOOL TITLE */
+.tool-title-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.tool-title-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tool-title-icon i { font-size: 24px; color: var(--btn-bg); }
+.tool-title-text h1 { font-size: 20px; font-weight: 800; color: var(--title-color); }
+.tool-title-text p { font-size: 13px; color: var(--desc-color); }
+
+/* TABS */
+.tabs-strip { width: 100%; background: var(--bg-dark); border-radius: 16px; padding: 10px; display: flex; gap: 8px; overflow-x: auto; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.tab-btn { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 12px; background: rgba(1,32,32,0.6); color: #d1d5db; transition: var(--transition); flex-shrink: 0; border: 1px solid transparent; }
+.tab-btn:hover { background: var(--bg-dark-2); color: var(--white); }
+.tab-btn.active { border-color: var(--gold); background: var(--btn-bg); color: var(--gold-glow); box-shadow: 0 0 12px rgba(212,175,55,0.18); }
+.tab-btn i { font-size: 18px; flex-shrink: 0; }
+.tab-btn.active i { color: var(--gold-glow); }
+.tab-btn:not(.active) i { color: #9ca3af; }
+.tab-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+.tab-label { font-size: 13px; font-weight: 700; }
+.tab-desc { font-size: 10px; opacity: 0.7; }
+
+/* PANELS */
+.tool-panel { display: none; width: 100%; }
+.tool-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.tools-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 1024px) { .tools-grid { grid-template-columns: 1fr 1fr; } }
+
+/* TOOL CARD */
+.tool-card { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
+.tool-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.tool-card-header i { color: var(--btn-bg); font-size: 18px; }
+.tool-card-header h3 { font-size: 16px; font-weight: 700; color: var(--title-color); }
+
+/* FORM SECTIONS */
+.form-section { border: 1.5px solid var(--gray-light); border-radius: 14px; padding: 16px; background: var(--bg-section); }
+.form-section + .form-section { margin-top: 12px; }
+.form-section-title { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed var(--gold); }
+.form-section-title i { color: var(--gold); font-size: 14px; }
+
+/* FIELDS */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-label { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: #374151; }
+.field-label i { font-size: 13px; }
+.field-label .req { color: #dc2626; }
+.field-hint { font-size: 11px; color: #9ca3af; font-weight: 500; }
+
+.input { width: 100%; padding: 10px 14px; border-radius: 10px; border: 1.5px solid var(--gray-light); background: var(--white); font-size: 13px; color: #1e293b; transition: border-color 0.2s, box-shadow 0.2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.04); }
+.input:hover { border-color: var(--gold); }
+.input:focus { outline: none; border-color: var(--btn-bg); box-shadow: 0 0 0 4px rgba(7,72,66,0.1); background: #fff; }
+.input::placeholder { color: #9ca3af; }
+select.input { appearance: none; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23074842' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; background-size: 14px; padding-left: 36px; cursor: pointer; }
+input[type="date"].input { cursor: pointer; }
+input[type="number"].input { text-align: center; }
+
+.grid-row { display: grid; gap: 12px; }
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; transition: var(--transition); white-space: nowrap; }
+.btn i { font-size: 13px; }
+.btn-primary { background: var(--btn-bg); color: var(--white); }
+.btn-primary:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.btn-outline { background: var(--white); color: var(--btn-bg); border: 1px solid var(--gold); }
+.btn-outline:hover { background: #fffbeb; }
+.btn-danger { background: var(--white); color: #dc2626; border: 1px solid #fca5a5; }
+.btn-danger:hover { background: #fef2f2; }
+.btn-ghost { background: transparent; color: var(--desc-color); }
+.btn-ghost:hover { background: var(--bg-section); color: var(--btn-bg); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-icon { padding: 8px; width: 36px; height: 36px; justify-content: center; }
+.btn-block { width: 100%; justify-content: center; }
+.btn-dashed { border: 1.5px dashed var(--gray-light); background: transparent; color: var(--btn-bg); }
+.btn-dashed:hover { border-color: var(--gold); background: rgba(212,175,55,0.05); }
+
+/* Toggle buttons (mode) */
+.mode-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode-btn { padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 700; border: 1.5px solid var(--gray-light); background: var(--white); color: var(--desc-color); transition: var(--transition); }
+.mode-btn:hover { border-color: var(--gold); }
+.mode-btn.active { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); }
+
+/* RESULT BOXES */
+.result-box { border-radius: 14px; padding: 16px; text-align: center; }
+.result-primary { background: rgba(7,72,66,0.1); border: 1px solid rgba(7,72,66,0.2); }
+.result-secondary { background: rgba(7,72,66,0.04); border: 1px solid var(--gray-light); }
+.result-label { font-size: 11px; color: var(--desc-color); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.result-label i { font-size: 13px; color: var(--btn-bg); }
+.result-value { font-size: 28px; font-weight: 900; color: var(--btn-bg); font-family: 'Cairo', sans-serif; }
+.result-value-sm { font-size: 20px; font-weight: 800; color: var(--title-color); }
+.result-sub { font-size: 10px; color: var(--desc-color); margin-top: 2px; }
+
+/* GPA color helpers */
+.gpa-excellent { color: #047857; }
+.gpa-good { color: #b45309; }
+.gpa-weak { color: #c2410c; }
+.gpa-fail { color: #b91c1c; }
+
+/* Course row */
+.course-row { display: flex; align-items: center; gap: 8px; }
+.course-row .input { height: 36px; }
+.course-name-input { flex: 1; min-width: 0; }
+.grade-select { width: 110px; flex-shrink: 0; }
+.hours-input { width: 70px; flex-shrink: 0; }
+
+/* Saved semester chips */
+.saved-sem { display: flex; align-items: center; justify-content: space-between; background: rgba(236,253,245,0.5); border: 1px solid rgba(167,243,208,0.5); border-radius: 10px; padding: 8px 12px; }
+.saved-sem-info { display: flex; align-items: center; gap: 8px; }
+.saved-sem-info i { color: #047857; font-size: 13px; }
+.saved-sem-name { font-size: 12px; font-weight: 700; color: var(--title-color); }
+.saved-sem-right { display: flex; align-items: center; gap: 12px; }
+.saved-sem-gpa { font-size: 14px; font-weight: 900; }
+.saved-sem-credits { font-size: 10px; color: var(--desc-color); }
+
+/* Grade scale */
+.grade-scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+@media (min-width: 640px) { .grade-scale { grid-template-columns: repeat(6, 1fr); } }
+.grade-chip { text-align: center; border-radius: 6px; padding: 4px 6px; font-size: 10px; font-weight: 700; }
+.grade-chip.high { background: #d1fae5; color: #047857; }
+.grade-chip.mid { background: #fef3c7; color: #b45309; }
+.grade-chip.low { background: #ffedd5; color: #c2410c; }
+.grade-chip.fail { background: #fee2e2; color: #b91c1c; }
+
+/* Deadline cards */
+.deadline-list { display: flex; flex-direction: column; gap: 12px; max-height: 480px; overflow-y: auto; }
+.deadline-card { border-radius: 12px; padding: 14px; border: 1.5px solid; transition: var(--transition); }
+.deadline-card.expired { background: #f3f4f6; border-color: #d1d5db; }
+.deadline-card.urgent-vhigh { background: #fef2f2; border-color: #fecaca; }
+.deadline-card.urgent-high { background: #fff7ed; border-color: #fed7aa; }
+.deadline-card.urgent-mid { background: #fffbeb; border-color: #fde68a; }
+.deadline-card.urgent-low { background: #f0fdf4; border-color: #bbf7d0; }
+.deadline-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+.deadline-title { font-size: 14px; font-weight: 700; color: var(--title-color); }
+.deadline-date { font-size: 11px; color: var(--desc-color); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
+.deadline-date i { font-size: 11px; }
+.deadline-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.urgency-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid; display: inline-flex; align-items: center; gap: 4px; }
+.urgency-badge i { font-size: 10px; }
+.urgency-badge.expired { color: #6b7280; background: #f3f4f6; border-color: #d1d5db; }
+.urgency-badge.vhigh { color: #b91c1c; background: #fee2e2; border-color: #fecaca; }
+.urgency-badge.high { color: #c2410c; background: #ffedd5; border-color: #fed7aa; }
+.urgency-badge.mid { color: #b45309; background: #fef3c7; border-color: #fde68a; }
+.urgency-badge.low { color: #047857; background: #d1fae5; border-color: #bbf7d0; }
+.time-boxes { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 4px 0; }
+.time-box { display: flex; flex-direction: column; align-items: center; }
+.time-box-val { background: var(--white); border-radius: 8px; padding: 8px 12px; border: 1px solid var(--gray-light); box-shadow: 0 1px 2px rgba(0,0,0,0.05); min-width: 56px; font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--title-color); }
+.time-box-label { font-size: 10px; color: var(--desc-color); margin-top: 4px; }
+.time-sep { font-size: 20px; font-weight: 700; color: var(--desc-color); margin-bottom: 16px; }
+.expired-msg { text-align: center; padding: 8px; color: #dc2626; font-weight: 700; font-size: 14px; }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 40px 20px; color: var(--desc-color); }
+.empty-state i { font-size: 40px; opacity: 0.3; margin-bottom: 8px; }
+.empty-state p { font-size: 13px; }
+
+/* Stats bar */
+.stats-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--gray-light); margin-top: 12px; font-size: 12px; color: var(--desc-color); }
+
+/* Helper note */
+.helper-note { display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,251,235,0.6); border-radius: var(--radius-card); padding: 16px; }
+.helper-note .star { font-size: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.helper-note .note-title { font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 4px; }
+.helper-note .note-text { font-size: 12px; line-height: 1.6; color: rgba(7,72,66,0.8); }
+
+/* Toast */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--btn-bg); color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; box-shadow: 0 10px 15px -3px rgba(7,72,66,0.2); z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Scrollbar */
+.deadline-list::-webkit-scrollbar, .tabs-strip::-webkit-scrollbar { width: 6px; height: 6px; }
+.deadline-list::-webkit-scrollbar-thumb, .tabs-strip::-webkit-scrollbar-thumb { background: rgba(7,72,66,0.2); border-radius: 20px; }
+
+/* FOOTER */
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
+.footer-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-brand-name { font-size: 16px; font-weight: 700; color: var(--gold); }
+.footer-brand-sub { font-size: 11px; color: rgba(255,255,255,0.8); }
+.footer-whatsapp { display: flex; align-items: center; gap: 8px; background: #25D366; color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; transition: var(--transition); }
+.footer-whatsapp:hover { background: #1fae54; transform: translateY(-2px); }
+.footer-whatsapp i { font-size: 16px; }
+.footer-social { display: flex; align-items: center; gap: 12px; }
+.footer-social-icons { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); color: var(--white); }
+.social-link:hover { transform: scale(1.1); }
+.social-link.snapchat { background: #FFFC00; color: #000; }
+.social-link.telegram { background: #0088CC; }
+.social-link.x { background: #000; }
+.social-link i { font-size: 16px; }
+.footer-phone { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gold); direction: ltr; }
+.footer-phone i { font-size: 14px; }
+.footer-divider { height: 1px; width: 100%; background: rgba(212,175,55,0.3); margin: 20px 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.footer-copy { color: rgba(255,255,255,0.7); }
+.footer-slogan { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); }
+.footer-slogan .star { color: var(--gold); }
+.footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
+.footer-made .heart { color: #10b981; }
 </style>
 </head>
 <body>
-  <h1>📅 جدول المحاضرات</h1>
-  <p class="sub">حقيبة الطالب — تاريخ التصدير: ${new Date().toLocaleDateString("ar-SA")}</p>
-  <div class="summary">
-    <span>📚 عدد المقررات: ${uniqueCourses}</span>
-    <span>🎓 إجمالي الساعات المعتمدة: ${totalCreditHours}</span>
-    <span>📖 عدد المحاضرات: ${lectures.length}</span>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
   </div>
-  <table>
-    <thead>
-      <tr><th style="width:70px;">الوقت</th>${daysHeader}</tr>
-    </thead>
-    <tbody>
-${rows.join("\n")}
-    </tbody>
-  </table>
-  <p class="footer">تم التصدير من حقيبة الطالب</p>
-</body>
-</html>`;
 
-    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `lecture-schedule-${new Date().toISOString().slice(0, 10)}.html`;
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [lectures, totalSlots, showHalfHour, uniqueCourses, totalCreditHours]);
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current" id="crumbCurrent">حاسبات المعدل</span>
+    </div>
+  </div>
 
-  /* ---- Get lectures for a cell ---- */
-  const getLecturesForCell = useCallback(
-    (day: number, slot: number) =>
-      lectures.filter((l) => l.day === day && l.startSlot <= slot && l.endSlot > slot),
-    [lectures]
-  );
+  <!-- TOOL TITLE -->
+  <div class="tool-title-bar">
+    <span class="tool-title-icon"><i class="fas fa-calculator" id="toolTitleIcon"></i></span>
+    <div class="tool-title-text">
+      <h1 id="toolTitleText">المحولات والحاسبات</h1>
+      <p id="toolTitleDesc">مجموعة أدوات لحساب المعدل وتحويل التواريخ وحساب الوقت المتبقي</p>
+    </div>
+  </div>
 
-  const isConflictLecture = useCallback(
-    (id: string) => conflicts.some((c) => c.id === id),
-    [conflicts]
-  );
+  <!-- TABS -->
+  <nav class="tabs-strip">
+    <button class="tab-btn active" data-tab="gpa">
+      <i class="fas fa-graduation-cap"></i>
+      <span class="tab-text"><span class="tab-label">حاسبات المعدل</span><span class="tab-desc">فصلي وتراكمي</span></span>
+    </button>
+    <button class="tab-btn" data-tab="dates">
+      <i class="fas fa-calendar-days"></i>
+      <span class="tab-text"><span class="tab-label">أدوات التاريخ</span><span class="tab-desc">تحويل وفرق</span></span>
+    </button>
+    <button class="tab-btn" data-tab="deadline">
+      <i class="fas fa-clock"></i>
+      <span class="tab-text"><span class="tab-label">الوقت المتبقي</span><span class="tab-desc">عدّاد التسليم</span></span>
+    </button>
+  </nav>
 
-  /* ---- Render ---- */
-  return (
-    <>
-      {/* Print-only styles */}
-      <style>{`
-        @media print {
-          body * { visibility: hidden; }
-          #lecture-schedule-capture, #lecture-schedule-capture * { visibility: visible; }
-          #lecture-schedule-capture {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            background: #fff !important;
-            color: #000 !important;
-            padding: 1rem;
-          }
-          #lecture-schedule-capture button,
-          #lecture-schedule-capture .no-print,
-          #lecture-schedule-capture .print-actions,
-          #lecture-schedule-capture .alert-dialog-root { display: none !important; }
-          #lecture-schedule-capture .print-header {
-            display: block !important;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #000;
-          }
-          #lecture-schedule-capture .lecture-block {
-            break-inside: avoid;
-          }
-        }
-      `}</style>
+  <!-- ===== TAB 1: GPA CALCULATORS ===== -->
+  <section class="tool-panel active" id="panel-gpa">
+    <div class="tools-grid">
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        id="lecture-schedule-capture"
-      >
-        <Card
-          className="border border-border/40 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden"
-          dir="rtl"
-        >
-          <CardContent className="p-5 space-y-4">
-            {/* ---- Header ---- */}
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-1">
-              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                <CalendarRange className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-bold font-cairo text-base text-foreground">
-                  أداة إعداد جدول المحاضرات
-                </h4>
-                <p className="text-[11px] text-muted-foreground font-tajawal">
-                  أنشئ جدولك الأسبوعي للمحاضرات بسهولة
-                </p>
-              </div>
-            </motion.div>
+      <!-- Tool 1a: Semester GPA -->
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-calculator"></i><h3>حاسبة المعدل الفصلي</h3></div>
 
-            {/* Hidden print header */}
-            <div className="print-header hidden">
-              📅 جدول المحاضرات — حقيبة الطالب
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-list"></i> مقررات الفصل</div>
+          <div id="sgCourses" style="display:flex;flex-direction:column;gap:8px;"></div>
+          <button class="btn btn-dashed btn-block btn-sm" id="sgAddBtn" style="margin-top:12px;"><i class="fas fa-plus"></i> إضافة مقرر</button>
+        </div>
+
+        <div id="sgResult" style="margin-top:16px;display:none;">
+          <div class="grid-row grid-2">
+            <div class="result-box result-primary">
+              <div class="result-label"><i class="fas fa-award"></i> المعدل الفصلي</div>
+              <p class="result-value" id="sgGpa">0.00</p>
+              <p class="result-sub">من 4.00</p>
             </div>
-
-            {/* ---- Summary Bar ---- */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-muted/30 border border-border/30"
-            >
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <BookOpen className="w-3.5 h-3.5 text-primary" />
-                <span>
-                  المقررات: <strong className="text-foreground">{uniqueCourses}</strong>
-                </span>
-              </div>
-              <div className="w-px h-4 bg-border/40" />
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <LayoutGrid className="w-3.5 h-3.5 text-amber-500" />
-                <span>
-                  الساعات: <strong className="text-foreground">{totalCreditHours}</strong>
-                </span>
-              </div>
-              <div className="w-px h-4 bg-border/40" />
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Clock className="w-3.5 h-3.5 text-blue-500" />
-                <span>
-                  المحاضرات: <strong className="text-foreground">{lectures.length}</strong>
-                </span>
-              </div>
-
-              {/* Conflict warning */}
-              {conflicts.length > 0 && (
-                <div className="flex items-center gap-1.5 text-xs text-red-500 mr-auto">
-                  <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />
-                  <span className="font-bold">
-                    {conflicts.length > 2
-                      ? `${Math.ceil(conflicts.length / 2)} تعارض`
-                      : "تعارض في الجدول"}
-                  </span>
-                </div>
-              )}
-            </motion.div>
-
-            {/* ---- Action Bar ---- */}
-            <motion.div
-              variants={itemVariants}
-              className="print-actions flex flex-wrap items-center gap-2"
-            >
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs font-bold gap-1.5 h-8"
-                onClick={() => setShowHalfHour((prev) => !prev)}
-              >
-                {showHalfHour ? (
-                  <ChevronUp className="w-3.5 h-3.5" />
-                ) : (
-                  <ChevronDown className="w-3.5 h-3.5" />
-                )}
-                {showHalfHour ? "عرض ساعي" : "عرض نصف ساعة"}
-              </Button>
-
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="text-xs font-bold gap-1.5 h-8 text-destructive hover:text-destructive"
-                    disabled={lectures.length === 0}
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    مسح الكل
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent className="sm:max-w-sm">
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className="font-cairo">
-                      تأكيد مسح الجدول
-                    </AlertDialogTitle>
-                    <AlertDialogDescription className="font-tajawal">
-                      هل أنت متأكد من مسح جميع المحاضرات؟ لا يمكن التراجع عن هذا الإجراء.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel className="text-xs">إلغاء</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={clearAll}
-                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs"
-                    >
-                      مسح الكل
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-
-              <div className="flex-1" />
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs font-bold gap-1.5 h-8"
-                onClick={downloadAsHtml}
-                disabled={lectures.length === 0}
-              >
-                <Printer className="w-3.5 h-3.5" />
-                تصدير HTML
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs font-bold gap-1.5 h-8"
-                onClick={handlePrint}
-                disabled={lectures.length === 0}
-              >
-                <Printer className="w-3.5 h-3.5" />
-                طباعة
-              </Button>
-            </motion.div>
-
-            {/* ---- Conflict Legend ---- */}
-            <AnimatePresence>
-              {conflicts.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="flex items-start gap-2 p-3 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/40 text-xs text-red-700 dark:text-red-400"
-                >
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="font-cairo">تنبيه تعارض!</strong>
-                    <span className="font-tajawal">
-                      {" "}
-                      يوجد تعارض في أوقات المحاضرات. يرجى مراجعة المحاضرات المميزة باللون الأحمر
-                      وتعديل أوقاتها.
-                    </span>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* ---- Schedule Grid ---- */}
-            <motion.div variants={itemVariants} ref={gridRef} className="space-y-0">
-              <div className="overflow-x-auto custom-scrollbar rounded-xl border border-border/40">
-                <table className="w-full min-w-[640px] border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="sticky top-0 z-10 bg-card/90 backdrop-blur-sm border-b border-border/40 px-2 py-2 text-center text-[11px] font-bold font-cairo text-muted-foreground w-[64px] min-w-[64px]">
-                        الوقت
-                      </th>
-                      {DAYS.map((day) => (
-                        <th
-                          key={day}
-                          className="sticky top-0 z-10 bg-card/90 backdrop-blur-sm border-b border-border/40 px-2 py-2 text-center text-[11px] font-bold font-cairo text-muted-foreground"
-                        >
-                          {day}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Array.from({ length: totalSlots }).map((_, slotIndex) => {
-                      // Check if this slot is the start of a lecture block
-                      // We need to handle rowspan correctly
-                      const timeLabel = timeToArabicDisplay(slotIndex, showHalfHour);
-                      const isHalfHourSlot = showHalfHour && slotIndex % 2 === 1;
-
-                      return (
-                        <tr
-                          key={slotIndex}
-                          className={`group ${
-                            isHalfHourSlot ? "bg-muted/10" : ""
-                          }`}
-                        >
-                          {/* Time column */}
-                          <td className="border-b border-border/20 px-2 py-1 text-center text-[10px] text-muted-foreground font-tajawal whitespace-nowrap align-top sticky right-0 bg-card/90 backdrop-blur-sm z-[5]">
-                            {isHalfHourSlot ? (
-                              <span className="opacity-50">
-                                {timeToArabicDisplay(slotIndex, showHalfHour)}
-                              </span>
-                            ) : (
-                              <span className="font-medium">{timeLabel}</span>
-                            )}
-                          </td>
-
-                          {/* Day columns */}
-                          {DAYS.map((day, dayIndex) => {
-                            const cellLectures = getLecturesForCell(dayIndex, slotIndex);
-
-                            // If there's a lecture starting at a previous slot that spans this one, skip it
-                            const spanningLecture = lectures.find(
-                              (l) =>
-                                l.day === dayIndex &&
-                                l.startSlot < slotIndex &&
-                                l.endSlot > slotIndex
-                            );
-
-                            if (spanningLecture) {
-                              return null; // Handled by rowspan
-                            }
-
-                            // If there's a lecture starting exactly here
-                            const startLecture = lectures.find(
-                              (l) => l.day === dayIndex && l.startSlot === slotIndex
-                            );
-
-                            if (startLecture) {
-                              const span = startLecture.endSlot - startLecture.startSlot;
-                              const colorInfo = getColorClasses(startLecture.color);
-                              const hasConflict = isConflictLecture(startLecture.id);
-
-                              return (
-                                <td
-                                  key={`${dayIndex}-${slotIndex}`}
-                                  rowSpan={span}
-                                  className="border-b border-border/20 p-0.5 align-top relative"
-                                >
-                                  <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className={`lecture-block rounded-lg p-1.5 cursor-pointer transition-all hover:shadow-md hover:scale-[1.02] h-full min-h-[44px] flex flex-col justify-center ${
-                                      hasConflict
-                                        ? "ring-2 ring-red-400 ring-offset-1 ring-offset-background"
-                                        : ""
-                                    }`}
-                                    style={{
-                                      backgroundColor: `${startLecture.color}18`,
-                                      borderRight: `3px solid ${startLecture.color}`,
-                                      borderBottom: `1px solid ${startLecture.color}30`,
-                                    }}
-                                    onClick={() => openEditDialog(startLecture)}
-                                    title="اضغط للتعديل"
-                                  >
-                                    <div className="flex items-start justify-between gap-1">
-                                      <span
-                                        className="text-[10px] font-bold font-cairo leading-tight truncate flex-1"
-                                        style={{ color: startLecture.color }}
-                                      >
-                                        {startLecture.courseName}
-                                      </span>
-                                      {hasConflict && (
-                                        <AlertTriangle className="w-3 h-3 text-red-500 shrink-0" />
-                                      )}
-                                    </div>
-                                    <div className="flex items-center gap-1 mt-0.5 text-[9px] text-muted-foreground font-tajawal truncate">
-                                      <User className="w-2.5 h-2.5 shrink-0" />
-                                      <span className="truncate">{startLecture.instructorName}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1 text-[9px] text-muted-foreground font-tajawal truncate">
-                                      <MapPin className="w-2.5 h-2.5 shrink-0" />
-                                      <span className="truncate">{startLecture.hall}</span>
-                                    </div>
-                                    {span > 1 && (
-                                      <div className="flex items-center gap-1 text-[9px] text-muted-foreground/60 font-tajawal mt-0.5">
-                                        <Clock className="w-2.5 h-2.5 shrink-0" />
-                                        <span>
-                                          {timeToArabicDisplay(startLecture.startSlot, showHalfHour)}{" "}
-                                          -{" "}
-                                          {timeToArabicDisplay(startLecture.endSlot, showHalfHour)}
-                                        </span>
-                                      </div>
-                                    )}
-                                  </motion.div>
-                                </td>
-                              );
-                            }
-
-                            // Empty cell
-                            return (
-                              <td
-                                key={`${dayIndex}-${slotIndex}`}
-                                className={`border-b border-border/20 p-0 align-top cursor-pointer transition-colors hover:bg-primary/5 ${
-                                  isHalfHourSlot ? "min-h-[24px]" : "min-h-[44px]"
-                                }`}
-                                onClick={() => openAddDialog(dayIndex, slotIndex)}
-                                title="اضغط لإضافة محاضرة"
-                              >
-                                <div className="w-full h-full min-h-[inherit] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                  <Plus className="w-3 h-3 text-primary/40" />
-                                </div>
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </motion.div>
-
-            {/* ---- Empty State ---- */}
-            {lectures.length === 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex flex-col items-center justify-center py-8 text-muted-foreground gap-3"
-              >
-                <div className="relative">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent flex items-center justify-center">
-                    <CalendarRange className="w-8 h-8 text-primary/50 animate-gentle-float" />
-                  </div>
-                </div>
-                <p className="text-sm font-tajawal font-medium">
-                  الجدول فارغ
-                </p>
-                <p className="text-xs font-tajawal text-muted-foreground/70 max-w-[280px] text-center">
-                  اضغط على أي خلية في الجدول لإضافة محاضرة جديدة. يمكنك إضافة اسم المقرر،
-                  اسم المحاضر، رقم القاعة، والوقت.
-                </p>
-                <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50">
-                  <Info className="w-3 h-3" />
-                  <span className="font-tajawal">
-                    البيانات تُحفظ تلقائياً في المتصفح
-                  </span>
-                </div>
-              </motion.div>
-            )}
-
-            {/* ---- Color Legend ---- */}
-            {lectures.length > 0 && (
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/30"
-              >
-                <span className="text-[10px] text-muted-foreground font-tajawal">
-                  دليل الألوان:
-                </span>
-                {[...new Set(lectures.map((l) => l.courseName))].map((name) => {
-                  const lecture = lectures.find((l) => l.courseName === name);
-                  if (!lecture) return null;
-                  return (
-                    <div
-                      key={name}
-                      className="flex items-center gap-1.5 text-[10px] font-tajawal"
-                    >
-                      <div
-                        className="w-2.5 h-2.5 rounded-full shrink-0"
-                        style={{ backgroundColor: lecture.color }}
-                      />
-                      <span className="truncate max-w-[100px]">{name}</span>
-                    </div>
-                  );
-                })}
-              </motion.div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  Add / Edit Lecture Dialog                                     */}
-        {/* ═══════════════════════════════════════════════════════════ */}
-        <Dialog open={dialogOpen} onOpenChange={(open) => {
-          setDialogOpen(open);
-          if (!open) resetForm();
-        }}>
-          <DialogContent className="sm:max-w-md" dir="rtl">
-            <DialogHeader>
-              <DialogTitle className="font-cairo text-base flex items-center gap-2">
-                {editingLecture ? (
-                  <>
-                    <Pencil className="w-4 h-4 text-primary" />
-                    تعديل المحاضرة
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-4 h-4 text-primary" />
-                    إضافة محاضرة جديدة
-                  </>
-                )}
-              </DialogTitle>
-              <DialogDescription className="font-tajawal text-xs">
-                {editingLecture
-                  ? "قم بتعديل بيانات المحاضرة وحفظ التغييرات"
-                  : "أدخل بيانات المحاضرة لإضافتها إلى الجدول"}
-              </DialogDescription>
-            </DialogHeader>
-
-            <div className="space-y-3 mt-2">
-              {/* Course Name */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5 text-primary" />
-                  اسم المقرر *
-                </label>
-                <Input
-                  placeholder="مثال: مقدمة في الحاسب"
-                  value={formCourse}
-                  onChange={(e) => setFormCourse(e.target.value)}
-                  className="text-xs h-9 font-tajawal"
-                  autoFocus
-                />
-              </div>
-
-              {/* Instructor Name */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-primary" />
-                  اسم المحاضر
-                </label>
-                <Input
-                  placeholder="مثال: د. أحمد محمد"
-                  value={formInstructor}
-                  onChange={(e) => setFormInstructor(e.target.value)}
-                  className="text-xs h-9 font-tajawal"
-                />
-              </div>
-
-              {/* Hall + Credit Hours */}
-              <div className="flex gap-2">
-                <div className="flex-1 space-y-1.5">
-                  <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-primary" />
-                    رقم القاعة
-                  </label>
-                  <Input
-                    placeholder="مثال: أ٢٠١"
-                    value={formHall}
-                    onChange={(e) => setFormHall(e.target.value)}
-                    className="text-xs h-9 font-tajawal"
-                  />
-                </div>
-                <div className="w-[110px] space-y-1.5">
-                  <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                    <LayoutGrid className="w-3.5 h-3.5 text-primary" />
-                    الساعات
-                  </label>
-                  <Select
-                    value={String(formCreditHours)}
-                    onValueChange={(v) => setFormCreditHours(parseInt(v))}
-                  >
-                    <SelectTrigger className="h-9 text-xs font-tajawal">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {[1, 2, 3, 4, 5].map((h) => (
-                        <SelectItem key={h} value={String(h)} className="text-xs font-tajawal">
-                          {h} ساعة
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              {/* Day */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                  <CalendarRange className="w-3.5 h-3.5 text-primary" />
-                  اليوم *
-                </label>
-                <Select
-                  value={String(formDay)}
-                  onValueChange={(v) => setFormDay(parseInt(v))}
-                >
-                  <SelectTrigger className="h-9 text-xs font-tajawal">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {DAYS.map((day, idx) => (
-                      <SelectItem key={day} value={String(idx)} className="text-xs font-tajawal">
-                        {day}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Time (Start - End) */}
-              <div className="flex gap-2">
-                <div className="flex-1 space-y-1.5">
-                  <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-primary" />
-                    من *
-                  </label>
-                  <Select
-                    value={String(formStartSlot)}
-                    onValueChange={(v) => {
-                      const newStart = parseInt(v);
-                      setFormStartSlot(newStart);
-                      if (newStart >= formEndSlot) {
-                        setFormEndSlot(Math.min(newStart + 1, totalSlots));
-                      }
-                    }}
-                  >
-                    <SelectTrigger className="h-9 text-xs font-tajawal">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60">
-                      {Array.from({ length: totalSlots }).map((_, i) => (
-                        <SelectItem key={i} value={String(i)} className="text-xs font-tajawal">
-                          {timeToArabicDisplay(i, showHalfHour)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex-1 space-y-1.5">
-                  <label className="text-xs font-bold font-cairo text-foreground flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-primary" />
-                    إلى *
-                  </label>
-                  <Select
-                    value={String(formEndSlot)}
-                    onValueChange={(v) => setFormEndSlot(parseInt(v))}
-                  >
-                    <SelectTrigger className="h-9 text-xs font-tajawal">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60">
-                      {Array.from({ length: totalSlots }).map((_, i) => {
-                        if (i <= formStartSlot) return null;
-                        return (
-                          <SelectItem key={i} value={String(i)} className="text-xs font-tajawal">
-                            {timeToArabicDisplay(i, showHalfHour)}
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              {/* Color Picker */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold font-cairo text-foreground">
-                  لون المقرر
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {PRESET_COLORS.map((color) => (
-                    <button
-                      key={color.value}
-                      type="button"
-                      className={`w-7 h-7 rounded-full transition-all ${
-                        formColor === color.value
-                          ? "ring-2 ring-offset-2 ring-offset-background ring-primary scale-110"
-                          : "hover:scale-110"
-                      }`}
-                      style={{ backgroundColor: color.value }}
-                      title={color.name}
-                      onClick={() => setFormColor(color.value)}
-                      aria-label={`اللون: ${color.name}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Conflict Warning in Dialog */}
-              {(() => {
-                const tempLecture: Lecture = {
-                  id: editingLecture?.id || "temp",
-                  courseName: formCourse || "temp",
-                  instructorName: formInstructor,
-                  hall: formHall,
-                  day: formDay,
-                  startSlot: formStartSlot,
-                  endSlot: formEndSlot,
-                  color: formColor,
-                  creditHours: formCreditHours,
-                };
-                const tempLectures = editingLecture
-                  ? lectures.map((l) => (l.id === editingLecture.id ? tempLecture : l))
-                  : [...lectures, tempLecture];
-                const dialogConflicts = detectConflicts(tempLectures, editingLecture?.id);
-
-                if (dialogConflicts.length > 0 && formCourse.trim() && formEndSlot > formStartSlot) {
-                  return (
-                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/40 text-xs text-red-600 dark:text-red-400">
-                      <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                      <span className="font-tajawal">
-                        يتعارض هذا الوقت مع محاضرة أخرى في نفس اليوم!
-                      </span>
-                    </div>
-                  );
-                }
-                return null;
-              })()}
+            <div class="result-box result-secondary">
+              <div class="result-label"><i class="fas fa-book"></i> إجمالي الساعات</div>
+              <p class="result-value-sm" id="sgCredits">0</p>
+              <p class="result-sub">ساعة معتمدة</p>
             </div>
+          </div>
+        </div>
 
-            <DialogFooter className="gap-2 sm:gap-2 mt-2">
-              {editingLecture && (
-                <Button
-                  type="button"
-                  variant="destructive"
-                  size="sm"
-                  className="text-xs font-bold gap-1.5 h-8"
-                  onClick={() => {
-                    deleteLecture(editingLecture.id);
-                    setDialogOpen(false);
-                    resetForm();
-                  }}
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  حذف
-                </Button>
-              )}
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                className="text-xs font-bold h-8"
-                onClick={() => {
-                  setDialogOpen(false);
-                  resetForm();
-                }}
-              >
-                <X className="w-3.5 h-3.5 ml-1" />
-                إلغاء
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                className="text-xs font-bold h-8"
-                disabled={
-                  !formCourse.trim() || formEndSlot <= formStartSlot
-                }
-                onClick={saveLecture}
-              >
-                {editingLecture ? (
-                  <>
-                    <Pencil className="w-3.5 h-3.5 ml-1" />
-                    حفظ التعديلات
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-3.5 h-3.5 ml-1" />
-                    إضافة
-                  </>
-                )}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </motion.div>
-    </>
-  );
+        <!-- Grade scale -->
+        <div style="margin-top:16px;background:var(--bg-section);border-radius:10px;padding:12px;border:1px solid var(--gray-light);">
+          <p style="font-size:11px;font-weight:700;color:var(--desc-color);margin-bottom:8px;">مقياس التقديرات</p>
+          <div class="grade-scale" id="sgGradeScale"></div>
+        </div>
+      </div>
+
+      <!-- Tool 1b: Cumulative GPA -->
+      <div class="tool-card">
+        <div class="tool-card-header" style="justify-content:space-between;width:100%;">
+          <div style="display:flex;align-items:center;gap:8px;"><i class="fas fa-chart-line"></i><h3>حاسبة المعدل التراكمي</h3></div>
+          <button class="btn btn-ghost btn-sm" id="cgResetBtn"><i class="fas fa-rotate-left"></i> إعادة تعيين</button>
+        </div>
+
+        <!-- Previous GPA -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-history"></i> المعدل التراكمي السابق (اختياري)</div>
+          <div class="grid-row grid-2">
+            <div class="field"><label class="field-label">المعدل السابق</label><input type="number" step="0.01" id="cgPrevGpa" placeholder="0.00" class="input" dir="ltr"></div>
+            <div class="field"><label class="field-label">الساعات السابقة</label><input type="number" id="cgPrevCredits" placeholder="0" class="input" dir="ltr"></div>
+          </div>
+        </div>
+
+        <!-- Saved semesters -->
+        <div id="cgSavedWrap" style="display:none;margin-bottom:12px;">
+          <p style="font-size:11px;font-weight:700;color:var(--desc-color);margin-bottom:8px;">الفصول المحفوظة (<span id="cgSavedCount">0</span>)</p>
+          <div id="cgSavedList" style="display:flex;flex-direction:column;gap:6px;"></div>
+        </div>
+
+        <!-- Current semester -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-book"></i> الفصل الحالي</div>
+          <div style="margin-bottom:10px;"><input type="text" id="cgSemName" class="input" placeholder="اسم الترم" value="الترم الأول"></div>
+          <div id="cgCourses" style="display:flex;flex-direction:column;gap:8px;"></div>
+          <button class="btn btn-dashed btn-block btn-sm" id="cgAddCourseBtn" style="margin-top:10px;"><i class="fas fa-plus"></i> إضافة مقرر</button>
+        </div>
+
+        <!-- Current semester GPA -->
+        <div id="cgCurrentResult" style="margin-top:12px;display:none;background:rgba(7,72,66,0.05);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:12px;color:var(--desc-color);">معدل هذا الترم</span>
+          <span class="result-value-sm" id="cgSemGpa" style="font-size:18px;">0.00</span>
+        </div>
+
+        <button class="btn btn-primary btn-block btn-sm" id="cgSaveSemBtn" style="margin-top:12px;"><i class="fas fa-save"></i> حفظ الترم وإضافة ترم جديد</button>
+
+        <!-- Cumulative result -->
+        <div id="cgResult" style="margin-top:16px;display:none;">
+          <div class="grid-row grid-3">
+            <div class="result-box result-primary">
+              <div class="result-label"><i class="fas fa-award"></i> المعدل التراكمي</div>
+              <p class="result-value" id="cgGpa">0.00</p>
+              <p class="result-sub">من 4.00</p>
+            </div>
+            <div class="result-box result-secondary">
+              <div class="result-label"><i class="fas fa-book"></i> الساعات</div>
+              <p class="result-value-sm" id="cgAllCredits">0</p>
+              <p class="result-sub">ساعة</p>
+            </div>
+            <div class="result-box result-secondary">
+              <div class="result-label"><i class="fas fa-arrow-trend-up"></i> النقاط</div>
+              <p class="result-value-sm" id="cgAllPoints">0.0</p>
+              <p class="result-sub">نقطة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TAB 2: DATE TOOLS ===== -->
+  <section class="tool-panel" id="panel-dates">
+    <div class="tools-grid">
+
+      <!-- Tool 2a: Date Converter -->
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-calendar-day"></i><h3>محول التاريخ: الهجري ↔ الميلادي</h3></div>
+
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-arrows-left-right"></i> اتجاه التحويل</div>
+          <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="g2h">ميلادي → هجري</button>
+            <button class="mode-btn" data-mode="h2g">هجري → ميلادي</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-keyboard"></i> إدخال التاريخ</div>
+          <div class="field">
+            <label class="field-label" id="dcInputLabel">التاريخ الميلادي</label>
+            <input type="text" id="dcInput" class="input" dir="ltr" placeholder="مثال: 2025-01-15">
+            <span class="field-hint" id="dcHint">الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)</span>
+          </div>
+          <button class="btn btn-primary btn-block btn-sm" id="dcConvertBtn" style="margin-top:12px;"><i class="fas fa-arrows-left-right"></i> تحويل</button>
+        </div>
+
+        <div id="dcError" style="display:none;font-size:12px;color:#dc2626;margin-top:8px;"></div>
+
+        <div id="dcResult" style="display:none;margin-top:16px;">
+          <div class="result-box result-primary">
+            <div class="result-label" id="dcResultLabel">التاريخ الهجري</div>
+            <p class="result-value" id="dcResultValue" style="font-size:22px;"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 2b: Date Difference -->
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-calendar-week"></i><h3>حاسبة الفرق بين تاريخين</h3></div>
+
+        <div class="form-section">
+          <div class="form-section-title"><i class="fas fa-calendar"></i> التواريخ</div>
+          <div class="grid-row grid-2">
+            <div class="field">
+              <label class="field-label">التاريخ الأول</label>
+              <input type="date" id="ddStart" class="input" dir="ltr">
+              <span class="field-hint" id="ddStartInfo"></span>
+            </div>
+            <div class="field">
+              <label class="field-label">التاريخ الثاني</label>
+              <input type="date" id="ddEnd" class="input" dir="ltr">
+              <span class="field-hint" id="ddEndInfo"></span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;">
+            <button class="btn btn-outline btn-sm" id="ddSwapBtn"><i class="fas fa-arrows-rotate"></i> تبديل</button>
+            <button class="btn btn-ghost btn-sm dd-quick" data-range="week">أسبوع</button>
+            <button class="btn btn-ghost btn-sm dd-quick" data-range="month">شهر</button>
+            <button class="btn btn-ghost btn-sm dd-quick" data-range="semester">فصل دراسي</button>
+            <button class="btn btn-ghost btn-sm dd-quick" data-range="year">سنة</button>
+          </div>
+        </div>
+
+        <div id="ddResult" style="margin-top:16px;display:none;">
+          <div class="result-box result-primary" style="margin-bottom:12px;">
+            <div class="result-label"><i class="fas fa-clock"></i> إجمالي الفرق</div>
+            <p class="result-value" id="ddTotalDays">0</p>
+            <p class="result-sub">يوم</p>
+          </div>
+          <div class="grid-row grid-2">
+            <div class="result-box result-secondary">
+              <div class="result-label">سنوات وأشهر</div>
+              <p class="result-value-sm" id="ddYearsMonths">0</p>
+              <p class="result-sub" id="ddYearsMonthsExtra"></p>
+            </div>
+            <div class="result-box result-secondary">
+              <div class="result-label">أسابيع وأيام</div>
+              <p class="result-value-sm" id="ddWeeks">0</p>
+              <p class="result-sub" id="ddWeeksExtra"></p>
+            </div>
+            <div class="result-box" style="background:#ecfdf5;border:1px solid #a7f3d0;">
+              <div class="result-label">أيام العمل</div>
+              <p class="result-value-sm" style="color:#047857;" id="ddWeekdays">0</p>
+              <p class="result-sub">الأحد-الخميس</p>
+            </div>
+            <div class="result-box" style="background:#fffbeb;border:1px solid #fde68a;">
+              <div class="result-label">أيام العطلة</div>
+              <p class="result-value-sm" style="color:#b45309;" id="ddWeekends">0</p>
+              <p class="result-sub">الجمعة-السبت</p>
+            </div>
+            <div class="result-box result-secondary">
+              <div class="result-label">إجمالي الساعات</div>
+              <p class="result-value-sm" id="ddHours">0</p>
+              <p class="result-sub">ساعة</p>
+            </div>
+            <div class="result-box result-secondary">
+              <div class="result-label">إجمالي الدقائق</div>
+              <p class="result-value-sm" id="ddMinutes">0</p>
+              <p class="result-sub">دقيقة</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="ddEmpty" class="empty-state" style="margin-top:16px;">
+          <i class="fas fa-calendar-week"></i>
+          <p>اختر تاريخين لحساب الفرق بينهما</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TAB 3: DEADLINE COUNTER ===== -->
+  <section class="tool-panel" id="panel-deadline">
+    <div class="tool-card" style="max-width:720px;margin:0 auto;width:100%;">
+      <div class="tool-card-header"><i class="fas fa-clock"></i><h3>حاسبة الوقت المتبقي للتسليم</h3></div>
+
+      <!-- Add form -->
+      <div class="form-section">
+        <div class="form-section-title"><i class="fas fa-plus"></i> إضافة موعد تسليم جديد</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="text" id="dlTitle" class="input" placeholder="اسم المهمة..." style="flex:1;min-width:160px;">
+          <input type="date" id="dlDate" class="input" style="width:160px;flex-shrink:0;">
+          <button class="btn btn-primary btn-icon" id="dlAddBtn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+
+      <!-- List -->
+      <div id="dlList" class="deadline-list" style="margin-top:16px;"></div>
+
+      <div id="dlEmpty" class="empty-state">
+        <i class="fas fa-calendar-days"></i>
+        <p>لا توجد مواعيد نهائية</p>
+        <p style="font-size:11px;">أضف موعد تسليم جديد للبدء</p>
+      </div>
+
+      <div id="dlStats" class="stats-bar" style="display:none;">
+        <span>إجمالي المواعيد: <strong id="dlTotal">0</strong></span>
+        <span>المتبقي: <strong id="dlRemaining">0</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Helper note -->
+  <div class="helper-note">
+    <span class="star">⭐</span>
+    <div>
+      <p class="note-title">ملاحظة عن الأدوات</p>
+      <p class="note-text">جميع البيانات تُحفظ تلقائياً في متصفحك. حاسبة المعدل التراكمي تدعم حفظ فصول متعددة. محول التاريخ يستخدم خوارزمية فلكية دقيقة. حاسبة الفرق بين تاريخين تحسب أيام العمل والعطلة حسب التقويم السعودي (الجمعة والسبت).</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+function showToast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
+function esc(str){var d=document.createElement('div');d.appendChild(document.createTextNode(str||''));return d.innerHTML;}
+function pad(n){return String(n).padStart(2,'0');}
+$('#copyYear').textContent=new Date().getFullYear();
+
+/* ===== TABS ===== */
+var TAB_INFO={
+  gpa:{label:'حاسبات المعدل',icon:'fa-graduation-cap',title:'حاسبات المعدل',desc:'حاسبة المعدل الفصلي والتراكمي'},
+  dates:{label:'أدوات التاريخ',icon:'fa-calendar-days',title:'أدوات التاريخ',desc:'محول التاريخ وحاسبة الفرق بين تاريخين'},
+  deadline:{label:'الوقت المتبقي',icon:'fa-clock',title:'حاسبة الوقت المتبقي للتسليم',desc:'عدّاد تنازلي لمواعيد التسليم'}
+};
+$$('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    $$('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    var tab=btn.getAttribute('data-tab');
+    $$('.tool-panel').forEach(function(p){p.classList.remove('active');});
+    $('#panel-'+tab).classList.add('active');
+    var info=TAB_INFO[tab];
+    $('#crumbCurrent').textContent=info.label;
+    $('#toolTitleIcon').className='fas '+info.icon;
+    $('#toolTitleText').textContent=info.title;
+    $('#toolTitleDesc').textContent=info.desc;
+  });
+});
+
+/* ===== GRADE DATA (SEU scale) ===== */
+var GRADES={"A+":4.0,"A":4.0,"A-":3.75,"B+":3.5,"B":3.0,"B-":2.75,"C+":2.5,"C":2.0,"C-":1.75,"D+":1.5,"D":1.0,"F":0};
+var GRADE_LABELS={"A+":"ممتاز","A":"ممتاز","A-":"ممتاز جداً","B+":"جيد جداً","B":"جيد","B-":"جيد","C+":"مقبول","C":"مقبول","C-":"مقبول ضعيف","D+":"ضعيف","D":"ضعيف جداً","F":"راسب"};
+function gpaColorClass(g){if(g>=3.5)return 'gpa-excellent';if(g>=2.5)return 'gpa-good';if(g>=1.5)return 'gpa-weak';return 'gpa-fail';}
+
+/* ===== TOOL 1a: SEMESTER GPA ===== */
+var SG_KEY='semester-gpa-courses';
+var sgCourses=[];
+try{sgCourses=JSON.parse(localStorage.getItem(SG_KEY))||[];}catch(e){}
+if(sgCourses.length===0)sgCourses=[{id:1,name:'',grade:'',hours:''}];
+
+function sgSave(){localStorage.setItem(SG_KEY,JSON.stringify(sgCourses));}
+function sgRender(){
+  var wrap=$('#sgCourses');wrap.innerHTML='';
+  sgCourses.forEach(function(c,i){
+    var row=document.createElement('div');
+    row.className='course-row';
+    row.innerHTML='<input type="text" class="input course-name-input" placeholder="اسم المقرر" value="'+esc(c.name)+'" data-idx="'+i+'" data-field="name">'+
+      '<select class="input grade-select" data-idx="'+i+'" data-field="grade"><option value="">التقدير</option>'+
+      Object.keys(GRADES).map(function(g){return '<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+g+'</option>';}).join('')+
+      '</select>'+
+      '<input type="number" class="input hours-input" placeholder="ساعات" min="0" max="10" value="'+esc(c.hours)+'" data-idx="'+i+'" data-field="hours">'+
+      '<button class="btn btn-ghost btn-icon sg-del" data-idx="'+i+'"'+(sgCourses.length<=1?' disabled':'')+'><i class="fas fa-trash"></i></button>';
+    wrap.appendChild(row);
+  });
+  $$('#sgCourses input, #sgCourses select').forEach(function(el){
+    el.addEventListener('input',function(){
+      var idx=parseInt(this.getAttribute('data-idx')),field=this.getAttribute('data-field');
+      sgCourses[idx][field]=this.value;sgSave();sgCalc();
+    });
+  });
+  $$('#sgCourses .sg-del').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(sgCourses.length<=1)return;
+      var idx=parseInt(this.getAttribute('data-idx'));
+      sgCourses.splice(idx,1);sgSave();sgRender();sgCalc();
+    });
+  });
+  sgCalc();
 }
+function sgCalc(){
+  var tp=0,tc=0;
+  sgCourses.forEach(function(c){
+    var g=GRADES[c.grade],h=parseFloat(c.hours);
+    if(g!==undefined&&h>0){tp+=g*h;tc+=h;}
+  });
+  if(tc>0){
+    var gpa=tp/tc;
+    $('#sgGpa').textContent=gpa.toFixed(2);
+    $('#sgGpa').className='result-value '+gpaColorClass(gpa);
+    $('#sgCredits').textContent=tc;
+    $('#sgResult').style.display='block';
+  }else{
+    $('#sgResult').style.display='none';
+  }
+}
+$('#sgAddBtn').addEventListener('click',function(){
+  sgCourses.push({id:Date.now(),name:'',grade:'',hours:''});
+  sgSave();sgRender();
+});
+// Grade scale
+(function(){var wrap=$('#sgGradeScale');Object.keys(GRADES).forEach(function(g){var p=GRADES[g];var cls=p>=3.5?'high':p>=2.5?'mid':p>=1.0?'low':'fail';var div=document.createElement('div');div.className='grade-chip '+cls;div.textContent=g+' = '+p.toFixed(1);wrap.appendChild(div);});})();
+sgRender();
+
+/* ===== TOOL 1b: CUMULATIVE GPA ===== */
+var CG_KEY='cumulative-gpa-data';
+var cgData={previousGpa:'',previousCredits:'',savedSemesters:[],currentCourses:[{id:1,name:'',grade:'',hours:''}],semName:'الترم الأول'};
+try{var saved=JSON.parse(localStorage.getItem(CG_KEY));if(saved)cgData=Object.assign(cgData,saved);}catch(e){}
+function cgSave(){localStorage.setItem(CG_KEY,JSON.stringify(cgData));}
+function cgCalcSem(courses){var tp=0,tc=0;courses.forEach(function(c){var g=GRADES[c.grade],h=parseFloat(c.hours);if(g!==undefined&&h>0){tp+=g*h;tc+=h;}});return {gpa:tc>0?tp/tc:0,credits:tc,points:tp};}
+function cgRender(){
+  // Previous
+  $('#cgPrevGpa').value=cgData.previousGpa;
+  $('#cgPrevCredits').value=cgData.previousCredits;
+  $('#cgSemName').value=cgData.semName;
+  // Saved
+  if(cgData.savedSemesters.length>0){
+    $('#cgSavedWrap').style.display='block';
+    $('#cgSavedCount').textContent=cgData.savedSemesters.length;
+    var list=$('#cgSavedList');list.innerHTML='';
+    cgData.savedSemesters.forEach(function(s,i){
+      var div=document.createElement('div');
+      div.className='saved-sem';
+      div.innerHTML='<div class="saved-sem-info"><i class="fas fa-book"></i><span class="saved-sem-name">'+esc(s.name)+'</span></div>'+
+        '<div class="saved-sem-right"><span class="saved-sem-gpa '+gpaColorClass(s.gpa)+'">'+s.gpa.toFixed(2)+'</span><span class="saved-sem-credits">'+s.credits+' ساعة</span><button class="btn btn-ghost btn-icon cg-del-saved" data-idx="'+i+'"><i class="fas fa-trash" style="font-size:11px;"></i></button></div>';
+      list.appendChild(div);
+    });
+    $$('.cg-del-saved').forEach(function(b){b.addEventListener('click',function(){cgData.savedSemesters.splice(parseInt(this.getAttribute('data-idx')),1);cgSave();cgRender();cgCalc();showToast('تم حذف الترم');});});
+  }else{$('#cgSavedWrap').style.display='none';}
+  // Current courses
+  var wrap=$('#cgCourses');wrap.innerHTML='';
+  cgData.currentCourses.forEach(function(c,i){
+    var row=document.createElement('div');
+    row.className='course-row';
+    row.innerHTML='<input type="text" class="input course-name-input" placeholder="اسم المقرر" value="'+esc(c.name)+'" data-idx="'+i+'" data-field="name">'+
+      '<select class="input grade-select" data-idx="'+i+'" data-field="grade"><option value="">التقدير</option>'+
+      Object.keys(GRADES).map(function(g){return '<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+g+' — '+GRADE_LABELS[g]+'</option>';}).join('')+
+      '</select>'+
+      '<input type="number" class="input hours-input" placeholder="ساعات" min="0" max="10" value="'+esc(c.hours)+'" data-idx="'+i+'" data-field="hours">'+
+      '<button class="btn btn-ghost btn-icon cg-del-course" data-idx="'+i+'"'+(cgData.currentCourses.length<=1?' disabled':'')+'><i class="fas fa-trash" style="font-size:12px;"></i></button>';
+    wrap.appendChild(row);
+  });
+  $$('#cgCourses input, #cgCourses select').forEach(function(el){
+    el.addEventListener('input',function(){var idx=parseInt(this.getAttribute('data-idx')),field=this.getAttribute('data-field');cgData.currentCourses[idx][field]=this.value;cgSave();cgCalc();});
+  });
+  $$('.cg-del-course').forEach(function(b){b.addEventListener('click',function(){if(cgData.currentCourses.length<=1)return;cgData.currentCourses.splice(parseInt(this.getAttribute('data-idx')),1);cgSave();cgRender();cgCalc();});});
+  cgCalc();
+}
+function cgCalc(){
+  var cur=cgCalcSem(cgData.currentCourses);
+  if(cur.credits>0){$('#cgCurrentResult').style.display='flex';$('#cgSemGpa').textContent=cur.gpa.toFixed(2);$('#cgSemGpa').className='result-value-sm '+gpaColorClass(cur.gpa);$('#cgSemGpa').style.fontSize='18px';}
+  else{$('#cgCurrentResult').style.display='none';}
+  var savedCr=cgData.savedSemesters.reduce(function(s,x){return s+x.credits;},0);
+  var savedPt=cgData.savedSemesters.reduce(function(s,x){return s+x.points;},0);
+  var prevG=parseFloat(cgData.previousGpa)||0,prevC=parseFloat(cgData.previousCredits)||0;
+  var prevPt=prevG*prevC;
+  var allCr=prevC+savedCr+cur.credits,allPt=prevPt+savedPt+cur.points;
+  if(allCr>0){
+    var cg=allPt/allCr;
+    $('#cgGpa').textContent=cg.toFixed(2);
+    $('#cgGpa').className='result-value '+gpaColorClass(cg);
+    $('#cgAllCredits').textContent=allCr;
+    $('#cgAllPoints').textContent=allPt.toFixed(1);
+    $('#cgResult').style.display='block';
+    $('#cgSaveSemBtn').disabled=false;
+  }else{$('#cgResult').style.display='none';$('#cgSaveSemBtn').disabled=true;}
+}
+$('#cgPrevGpa').addEventListener('input',function(){cgData.previousGpa=this.value;cgSave();cgCalc();});
+$('#cgPrevCredits').addEventListener('input',function(){cgData.previousCredits=this.value;cgSave();cgCalc();});
+$('#cgSemName').addEventListener('input',function(){cgData.semName=this.value;cgSave();});
+$('#cgAddCourseBtn').addEventListener('click',function(){cgData.currentCourses.push({id:Date.now(),name:'',grade:'',hours:''});cgSave();cgRender();});
+$('#cgSaveSemBtn').addEventListener('click',function(){
+  var cur=cgCalcSem(cgData.currentCourses);
+  if(cur.credits===0){showToast('أضف مقررات بدرجات وساعات أولاً');return;}
+  cgData.savedSemesters.push({name:cgData.semName,gpa:cur.gpa,credits:cur.credits,points:cur.points});
+  cgData.currentCourses=[{id:1,name:'',grade:'',hours:''}];
+  cgData.semName='الترم '+(cgData.savedSemesters.length+1);
+  cgSave();cgRender();showToast('تم حفظ بيانات الترم ✓');
+});
+$('#cgResetBtn').addEventListener('click',function(){
+  if(!confirm('هل أنت متأكد من إعادة تعيين جميع البيانات؟'))return;
+  cgData={previousGpa:'',previousCredits:'',savedSemesters:[],currentCourses:[{id:1,name:'',grade:'',hours:''}],semName:'الترم الأول'};
+  cgSave();cgRender();showToast('تم إعادة التعيين');
+});
+cgRender();
+
+/* ===== TOOL 2a: DATE CONVERTER ===== */
+var dcMode='g2h';
+var HIJRI_MONTHS=["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"];
+var GREG_MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+
+function gregorianToHijri(gDate){
+  var gY=gDate.getFullYear(),gM=gDate.getMonth()+1,gD=gDate.getDate();
+  var jd=Math.floor(365.25*(gY+4716))+Math.floor(30.6001*(gM+1))+gD-1524.5;
+  var adj=jd-1948439.5;
+  var hY=Math.floor((30*adj+10646)/10631);
+  var rem=adj-Math.floor((10631*hY-10617)/30);
+  var hM=Math.min(12,Math.ceil((rem-29)/29.5)+1);
+  var hD=Math.floor(rem-Math.floor(29.5*(hM-1)+0.99));
+  return {day:Math.max(1,hD),month:HIJRI_MONTHS[Math.min(hM-1,11)],year:hY};
+}
+function hijriToGregorian(hD,hM,hY){
+  var jd=Math.floor((11*hY+3)/30)+354*hY+30*hM-Math.floor((hM-1)/2)+hD+1948439.5-385;
+  var z=Math.floor(jd+0.5);
+  var a=z-1867216.25;
+  var alpha=Math.floor(a/36524.25);
+  a=a+1+alpha-Math.floor(alpha/4);
+  var b=a+1524;
+  var c=Math.floor((b-122.1)/365.25);
+  var d=Math.floor(365.25*c);
+  var e=Math.floor((b-d)/30.6001);
+  var gD=b-d-Math.floor(30.6001*e);
+  var gM=e<14?e-1:e-13;
+  var gY=gM>2?c-4716:c-4715;
+  return {day:gD,month:GREG_MONTHS[gM-1],year:gY};
+}
+$$('.mode-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('.mode-btn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    dcMode=b.getAttribute('data-mode');
+    $('#dcInput').value='';
+    $('#dcResult').style.display='none';
+    $('#dcError').style.display='none';
+    if(dcMode==='g2h'){
+      $('#dcInputLabel').textContent='التاريخ الميلادي';
+      $('#dcInput').placeholder='مثال: 2025-01-15';
+      $('#dcHint').textContent='الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)';
+      $('#dcResultLabel').textContent='التاريخ الهجري';
+    }else{
+      $('#dcInputLabel').textContent='التاريخ الهجري';
+      $('#dcInput').placeholder='مثال: 1446-07-15';
+      $('#dcHint').textContent='الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)';
+      $('#dcResultLabel').textContent='التاريخ الميلادي';
+    }
+  });
+});
+$('#dcConvertBtn').addEventListener('click',function(){
+  var input=$('#dcInput').value.trim();
+  $('#dcError').style.display='none';
+  $('#dcResult').style.display='none';
+  if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(input)){
+    $('#dcError').textContent='يرجى إدخال التاريخ بصيغة YYYY-MM-DD';
+    $('#dcError').style.display='block';
+    return;
+  }
+  var parts=input.split('-').map(Number);
+  if(dcMode==='g2h'){
+    var gDate=new Date(parts[0],parts[1]-1,parts[2]);
+    if(isNaN(gDate.getTime())){$('#dcError').textContent='تاريخ غير صالح';$('#dcError').style.display='block';return;}
+    var h=gregorianToHijri(gDate);
+    $('#dcResultValue').textContent=h.day+' '+h.month+' '+h.year+' هـ';
+  }else{
+    if(parts[1]<1||parts[1]>12||parts[2]<1||parts[2]>30){$('#dcError').textContent='تاريخ هجري غير صالح';$('#dcError').style.display='block';return;}
+    var g=hijriToGregorian(parts[2],parts[1],parts[0]);
+    $('#dcResultValue').textContent=g.day+' '+g.month+' '+g.year+' م';
+  }
+  $('#dcResult').style.display='block';
+});
+
+/* ===== TOOL 2b: DATE DIFFERENCE ===== */
+function parseDate(s){if(!s)return null;var d=new Date(s);if(isNaN(d.getTime()))return null;return d;}
+var DD_GREG_MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+var DD_DAY_NAMES=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+function formatDateAr(date){return date.getDate()+' '+DD_GREG_MONTHS[date.getMonth()]+' '+date.getFullYear();}
+function getDayName(date){return DD_DAY_NAMES[date.getDay()];}
+function calcDiff(start,end){
+  if(start>end){var tmp=start;start=end;end=tmp;}
+  var msPerDay=86400000;
+  var totalDays=Math.floor((end.getTime()-start.getTime())/msPerDay);
+  var weeks=Math.floor(totalDays/7),remDays=totalDays%7;
+  var years=end.getFullYear()-start.getFullYear();
+  var months=end.getMonth()-start.getMonth();
+  var remDaysInMonth=end.getDate()-start.getDate();
+  if(remDaysInMonth<0){months--;var prevMonth=new Date(end.getFullYear(),end.getMonth(),0);remDaysInMonth+=prevMonth.getDate();}
+  if(months<0){years--;months+=12;}
+  var weekdays=0,weekends=0;
+  var temp=new Date(start);
+  for(var i=0;i<=totalDays;i++){var day=temp.getDay();if(day===5||day===6)weekends++;else weekdays++;temp.setDate(temp.getDate()+1);}
+  return {totalDays:totalDays,weeks:weeks,remDays:remDays,months:years*12+months,remDaysInMonth:remDaysInMonth,years:years,remMonths:months,weekdays:weekdays,weekends:weekends,hours:totalDays*24,minutes:totalDays*24*60};
+}
+function ddUpdateInfo(){
+  var s=parseDate($('#ddStart').value),e=parseDate($('#ddEnd').value);
+  $('#ddStartInfo').textContent=s?(formatDateAr(s)+' — '+getDayName(s)):'';
+  $('#ddEndInfo').textContent=e?(formatDateAr(e)+' — '+getDayName(e)):'';
+  if(s&&e){
+    var d=calcDiff(s,e);
+    $('#ddTotalDays').textContent=d.totalDays.toLocaleString('en-US');
+    var ym='';
+    if(d.years>0)ym+=d.years+' سنة ';
+    if(d.remMonths>0)ym+=d.remMonths+' شهر';
+    if(ym==='')ym='0';
+    $('#ddYearsMonths').textContent=ym;
+    $('#ddYearsMonthsExtra').textContent=d.remDaysInMonth>0?('و '+d.remDaysInMonth+' يوم'):'';
+    $('#ddWeeks').textContent=d.weeks+' أسبوع';
+    $('#ddWeeksExtra').textContent=d.remDays>0?('و '+d.remDays+' يوم'):'';
+    $('#ddWeekdays').textContent=d.weekdays;
+    $('#ddWeekends').textContent=d.weekends;
+    $('#ddHours').textContent=d.hours.toLocaleString('en-US');
+    $('#ddMinutes').textContent=d.minutes.toLocaleString('en-US');
+    $('#ddResult').style.display='block';
+    $('#ddEmpty').style.display='none';
+  }else{
+    $('#ddResult').style.display='none';
+    $('#ddEmpty').style.display='block';
+  }
+}
+$('#ddStart').addEventListener('change',ddUpdateInfo);
+$('#ddEnd').addEventListener('change',ddUpdateInfo);
+$('#ddSwapBtn').addEventListener('click',function(){var a=$('#ddStart').value;$('#ddStart').value=$('#ddEnd').value;$('#ddEnd').value=a;ddUpdateInfo();});
+$$('.dd-quick').forEach(function(b){b.addEventListener('click',function(){
+  var now=new Date(),past=new Date();
+  var range=b.getAttribute('data-range');
+  if(range==='week')past.setDate(past.getDate()-7);
+  else if(range==='month')past.setMonth(past.getMonth()-1);
+  else if(range==='semester')past.setMonth(past.getMonth()-4);
+  else if(range==='year')past.setFullYear(past.getFullYear()-1);
+  $('#ddStart').value=past.toISOString().split('T')[0];
+  $('#ddEnd').value=now.toISOString().split('T')[0];
+  ddUpdateInfo();
+});});
+
+/* ===== TOOL 3: DEADLINE COUNTER ===== */
+var DL_KEY='toolkit-deadlines';
+var dlDeadlines=[];
+try{dlDeadlines=JSON.parse(localStorage.getItem(DL_KEY))||[];}catch(e){}
+function dlSave(){localStorage.setItem(DL_KEY,JSON.stringify(dlDeadlines));}
+function dlGetTimeRemaining(targetDate){
+  var total=new Date(targetDate).getTime()-Date.now();
+  if(total<=0)return {days:0,hours:0,minutes:0,seconds:0,total:0,expired:true};
+  return {
+    seconds:Math.floor((total/1000)%60),
+    minutes:Math.floor((total/1000/60)%60),
+    hours:Math.floor((total/3600000)%24),
+    days:Math.floor(total/86400000),
+    total:total,expired:false
+  };
+}
+function dlGetUrgency(total){
+  var days=total/86400000;
+  if(days<=0)return {cls:'expired',badge:'expired',label:'انتهى'};
+  if(days<=1)return {cls:'urgent-vhigh',badge:'vhigh',label:'عاجل جداً'};
+  if(days<=3)return {cls:'urgent-high',badge:'high',label:'عاجل'};
+  if(days<=7)return {cls:'urgent-mid',badge:'mid',label:'متوسط'};
+  return {cls:'urgent-low',badge:'low',label:'متاح'};
+}
+function dlRender(){
+  var list=$('#dlList');list.innerHTML='';
+  var sorted=dlDeadlines.slice().sort(function(a,b){return new Date(a.date).getTime()-new Date(b.date).getTime();});
+  if(sorted.length===0){
+    $('#dlEmpty').style.display='block';
+    $('#dlStats').style.display='none';
+    list.style.display='none';
+  }else{
+    $('#dlEmpty').style.display='none';
+    list.style.display='flex';
+    $('#dlStats').style.display='flex';
+    var remaining=dlDeadlines.filter(function(d){return new Date(d.date).getTime()>Date.now();}).length;
+    $('#dlTotal').textContent=dlDeadlines.length;
+    $('#dlRemaining').textContent=remaining;
+    sorted.forEach(function(dl){
+      var r=dlGetTimeRemaining(dl.date),u=dlGetUrgency(r.total);
+      var card=document.createElement('div');
+      card.className='deadline-card '+u.cls;
+      card.setAttribute('data-id',dl.id);
+      var dateObj=new Date(dl.date);
+      var dateStr=dateObj.toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'});
+      var timeBoxes='';
+      if(r.expired){
+        timeBoxes='<div class="expired-msg">انتهى الموعد النهائي! ⚠️</div>';
+      }else{
+        timeBoxes='<div class="time-boxes">'+
+          '<div class="time-box"><div class="time-box-val">'+pad(r.days)+'</div><span class="time-box-label">يوم</span></div>'+
+          '<span class="time-sep">:</span>'+
+          '<div class="time-box"><div class="time-box-val">'+pad(r.hours)+'</div><span class="time-box-label">ساعة</span></div>'+
+          '<span class="time-sep">:</span>'+
+          '<div class="time-box"><div class="time-box-val">'+pad(r.minutes)+'</div><span class="time-box-label">دقيقة</span></div>'+
+          '<span class="time-sep">:</span>'+
+          '<div class="time-box"><div class="time-box-val">'+pad(r.seconds)+'</div><span class="time-box-label">ثانية</span></div>'+
+        '</div>';
+      }
+      card.innerHTML='<div class="deadline-top">'+
+        '<div><div class="deadline-title">'+esc(dl.title)+'</div><div class="deadline-date"><i class="fas fa-calendar-days"></i> '+dateStr+'</div></div>'+
+        '<div class="deadline-right"><span class="urgency-badge '+u.badge+'">'+(r.expired?'<i class="fas fa-triangle-exclamation"></i>':'')+u.label+'</span><button class="btn btn-ghost btn-icon dl-del"><i class="fas fa-trash" style="font-size:12px;"></i></button></div>'+
+      '</div>'+timeBoxes;
+      list.appendChild(card);
+    });
+    $$('.dl-del').forEach(function(b){b.addEventListener('click',function(){
+      var card=this.closest('.deadline-card');
+      var id=card.getAttribute('data-id');
+      dlDeadlines=dlDeadlines.filter(function(d){return d.id!==id;});
+      dlSave();dlRender();showToast('تم حذف الموعد');
+    });});
+  }
+}
+$('#dlAddBtn').addEventListener('click',function(){
+  var title=$('#dlTitle').value.trim(),date=$('#dlDate').value;
+  if(!title||!date){showToast('يرجى إدخال اسم المهمة والتاريخ');return;}
+  dlDeadlines.unshift({id:Date.now().toString(),title:title,date:date,createdAt:Date.now()});
+  dlSave();dlRender();
+  $('#dlTitle').value='';$('#dlDate').value='';
+  showToast('تمت إضافة الموعد ✓');
+});
+dlRender();
+// Update countdown every second
+setInterval(function(){
+  if($('#panel-deadline').classList.contains('active'))dlRender();
+},1000);
+</script>
+</body>
+</html>
