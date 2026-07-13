@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل النزاهة والأمان الأكاديمي | منصة مُعين التعليمية</title>
+<meta name="description" content="دليل الطالب الذكي لاستخدام أدوات البحث العلمي والذكاء الاصطناعي بأمان وأخلاقية. تعرّف على القواعد الذهبية وخريطة الطريق لبحث جامعي نزيهر خالٍ من الانتحال.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --bg-card: #FFFFFF;
+  --bg-dark: #012727;
+  --bg-dark-2: #0A2C2C;
+  --bg-section: #F2F7F8;
+  --btn-bg: #074842;
+  --btn-bg-hover: #053631;
+  --desc-color: #5F6C70;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-glow: #E5C158;
+  --gold-text: #be9632;
+  --gray-light: #E2E8F0;
+  --icon-circle-bg: #EBF4F0;
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --title-color: #0B3B3C;
+  --transition: 0.3s ease;
+  --white: #FFFFFF;
+  --danger: #dc2626;
+  --warn: #d97706;
+  --success: #047857;
+  --info: #2563eb;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.page-wrapper { width: 100%; max-width: 1100px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+
+/* HEADER */
+.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.header-logo-moaeen img:hover { transform: scale(1.05); }
+.header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+.pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-star { color: var(--gold); font-size: 18px; }
+.header-seu-box { display: flex; align-items: center; justify-content: center; }
+.seu-rect { display: flex; align-items: center; gap: 12px; }
+.seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
+.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+.mobile-pill .pill-text { font-size: 12px; }
+@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
+
+/* BACK BAR */
+.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
+.back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.back-btn i { font-size: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+.breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+.breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+.breadcrumb i { font-size: 10px; }
+
+/* ===== HERO BANNER ===== */
+.hero-banner { width: 100%; background: linear-gradient(135deg, #012727 0%, #0A4542 50%, #074842 100%); border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+.hero-banner::before { content: ''; position: absolute; top: -30%; left: -10%; width: 60%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.12), transparent 70%); pointer-events: none; }
+.hero-banner::after { content: ''; position: absolute; bottom: -30%; right: -10%; width: 60%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 8px 18px; font-size: 12px; font-weight: 700; color: var(--gold-glow); position: relative; z-index: 1; }
+.hero-badge i { font-size: 12px; }
+.hero-icon-big { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(212,175,55,0.05)); border: 2px solid rgba(212,175,55,0.4); display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; box-shadow: 0 0 30px rgba(212,175,55,0.25); }
+.hero-icon-big i { font-size: 38px; color: var(--gold); }
+.hero-banner h1 { font-size: 28px; font-weight: 900; color: var(--white); line-height: 1.3; max-width: 700px; position: relative; z-index: 1; }
+.hero-banner h1 .gold { color: var(--gold); }
+.hero-banner p { font-size: 15px; color: rgba(255,255,255,0.88); max-width: 720px; line-height: 1.8; position: relative; z-index: 1; }
+@media (min-width: 768px) { .hero-banner { padding: 48px 40px; } .hero-banner h1 { font-size: 32px; } }
+@media (max-width: 640px) { .hero-banner h1 { font-size: 22px; } .hero-banner p { font-size: 13px; } }
+
+/* ===== SECTION TITLE ===== */
+.section-title-bar { display: flex; align-items: center; gap: 12px; padding: 0 4px; margin-top: 8px; }
+.section-title-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.section-title-icon i { font-size: 20px; color: var(--btn-bg); }
+.section-title-text h2 { font-size: 18px; font-weight: 800; color: var(--title-color); }
+.section-title-text p { font-size: 12px; color: var(--desc-color); }
+
+/* ===== QUICK NAV TABS (sticky) ===== */
+.cat-tabs-bar { width: 100%; background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; position: sticky; top: 12px; z-index: 50; border: 1px solid var(--gray-light); }
+.cat-tabs-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 10px; scrollbar-width: thin; }
+.cat-tabs-scroll::-webkit-scrollbar { height: 4px; }
+.cat-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(7,72,66,0.2); border-radius: 20px; }
+.cat-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--gray-light); background: var(--white); color: var(--desc-color); font-size: 12px; font-weight: 700; transition: var(--transition); white-space: nowrap; flex-shrink: 0; }
+.cat-tab:hover { border-color: var(--gold); color: var(--btn-bg); background: #fffbeb; }
+.cat-tab.active { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); box-shadow: 0 2px 8px rgba(7,72,66,0.25); }
+.cat-tab i { font-size: 12px; }
+
+/* ===== GOLDEN RULES CARDS ===== */
+.rules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) { .rules-grid { grid-template-columns: 1fr 1fr; } }
+
+.rule-card { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; border: 1px solid transparent; }
+.rule-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); border-color: var(--gold); }
+.rule-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--gold-dark)); }
+.rule-num { position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-section); color: var(--gold-dark); font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold); }
+.rule-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rule-icon i { font-size: 26px; }
+.rule-icon.blue { background: #dbeafe; } .rule-icon.blue i { color: #2563eb; }
+.rule-icon.amber { background: #fef3c7; } .rule-icon.amber i { color: #b45309; }
+.rule-icon.green { background: #d1fae5; } .rule-icon.green i { color: #047857; }
+.rule-icon.purple { background: #ede9fe; } .rule-icon.purple i { color: #7c3aed; }
+.rule-title { font-size: 16px; font-weight: 800; color: var(--title-color); line-height: 1.5; padding-left: 48px; }
+.rule-text { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
+.rule-text .tool { display: inline-flex; align-items: center; gap: 3px; background: rgba(212,175,55,0.12); color: var(--gold-dark); font-weight: 700; padding: 1px 8px; border-radius: 6px; font-size: 12px; }
+
+/* ===== WORKFLOW STEPS ===== */
+.workflow-wrap { background: var(--white); border-radius: var(--radius-card); padding: 32px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: relative; }
+.workflow-steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+.workflow-step { display: flex; gap: 16px; padding: 16px 0; position: relative; }
+.workflow-step:not(:last-child)::before { content: ''; position: absolute; top: 56px; right: 27px; bottom: -16px; width: 2px; background: linear-gradient(180deg, var(--gold), rgba(212,175,55,0.2)); }
+.step-num { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--btn-bg), var(--bg-dark-2)); color: var(--gold-glow); font-size: 22px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(7,72,66,0.3); border: 3px solid var(--white); position: relative; z-index: 1; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-label { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--gold-dark); background: rgba(212,175,55,0.12); padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.step-label i { font-size: 10px; }
+.step-title { font-size: 16px; font-weight: 800; color: var(--title-color); margin-bottom: 6px; }
+.step-desc { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
+.step-desc .tool { display: inline-flex; align-items: center; gap: 3px; background: rgba(7,72,66,0.08); color: var(--btn-bg); font-weight: 700; padding: 2px 8px; border-radius: 6px; font-size: 12px; }
+.step-desc .tool i { font-size: 10px; }
+
+/* ===== WARNING BOX ===== */
+.warning-box { background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%); border: 1.5px solid #fecaca; border-radius: var(--radius-card); padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.warning-icon { width: 52px; height: 52px; border-radius: 14px; background: #fee2e2; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.warning-icon i { font-size: 24px; color: var(--danger); }
+.warning-content h3 { font-size: 16px; font-weight: 800; color: #b91c1c; margin-bottom: 8px; }
+.warning-content p { font-size: 13px; color: #7f1d1d; line-height: 1.8; }
+.warning-content ul { margin-top: 8px; padding-right: 18px; }
+.warning-content li { font-size: 13px; color: #7f1d1d; line-height: 1.8; margin-bottom: 4px; }
+
+/* ===== INFO STATS ===== */
+.stats-row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 640px) { .stats-row { grid-template-columns: 1fr 1fr 1fr; } }
+.stat-pill { background: var(--white); border-radius: 16px; padding: 20px 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
+.stat-pill-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+.stat-pill-icon i { font-size: 20px; }
+.stat-pill-icon.green { background: #d1fae5; } .stat-pill-icon.green i { color: var(--success); }
+.stat-pill-icon.amber { background: #fef3c7; } .stat-pill-icon.amber i { color: var(--warn); }
+.stat-pill-icon.blue { background: #dbeafe; } .stat-pill-icon.blue i { color: var(--info); }
+.stat-pill-num { font-size: 24px; font-weight: 900; color: var(--title-color); }
+.stat-pill-label { font-size: 11px; color: var(--desc-color); margin-top: 2px; }
+
+/* ===== BOTTOM CTA ===== */
+.cta-footer-card { width: 100%; background: linear-gradient(135deg, #012727 0%, #0A4542 100%); border-radius: var(--radius-card); padding: 32px 28px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; box-shadow: 0 10px 40px rgba(0,0,0,0.25); border: 1px solid rgba(212,175,55,0.3); position: relative; overflow: hidden; }
+.cta-footer-card::before { content: ''; position: absolute; top: -50%; left: -10%; width: 50%; height: 200%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
+.cta-footer-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cta-footer-icon i { font-size: 30px; color: var(--gold); }
+.cta-footer-content { flex: 1; min-width: 240px; }
+.cta-footer-content h3 { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.cta-footer-content p { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+.cta-footer-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--bg-dark); padding: 12px 24px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 800; transition: var(--transition); flex-shrink: 0; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+.cta-footer-btn:hover { background: var(--gold-glow); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+.cta-footer-btn i { font-size: 12px; }
+@media (max-width: 640px) { .cta-footer-card { flex-direction: column; text-align: center; } .cta-footer-content { text-align: center; } }
+
+/* Helper note */
+.helper-note { display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,251,235,0.6); border-radius: var(--radius-card); padding: 16px; }
+.helper-note .star { font-size: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.helper-note .note-title { font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 4px; }
+.helper-note .note-text { font-size: 12px; line-height: 1.6; color: rgba(7,72,66,0.8); }
+
+/* FOOTER */
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
+.footer-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-brand-name { font-size: 16px; font-weight: 700; color: var(--gold); }
+.footer-brand-sub { font-size: 11px; color: rgba(255,255,255,0.8); }
+.footer-whatsapp { display: flex; align-items: center; gap: 8px; background: #25D366; color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; transition: var(--transition); }
+.footer-whatsapp:hover { background: #1fae54; transform: translateY(-2px); }
+.footer-whatsapp i { font-size: 16px; }
+.footer-social { display: flex; align-items: center; gap: 12px; }
+.footer-social-icons { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); color: var(--white); }
+.social-link:hover { transform: scale(1.1); }
+.social-link.snapchat { background: #FFFC00; color: #000; }
+.social-link.telegram { background: #0088CC; }
+.social-link.x { background: #000; }
+.social-link i { font-size: 16px; }
+.footer-phone { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gold); direction: ltr; }
+.footer-phone i { font-size: 14px; }
+.footer-divider { height: 1px; width: 100%; background: rgba(212,175,55,0.3); margin: 20px 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.footer-copy { color: rgba(255,255,255,0.7); }
+.footer-slogan { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); }
+.footer-slogan .star { color: var(--gold); }
+.footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
+.footer-made .heart { color: #10b981; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
+  </div>
+
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current">دليل النزاهة والأمان الأكاديمي</span>
+    </div>
+  </div>
+
+  <!-- ===== HERO BANNER ===== -->
+  <section class="hero-banner">
+    <div class="hero-badge"><i class="fas fa-shield-halved"></i> دليل النزاهة والأمان الأكاديمي</div>
+    <div class="hero-icon-big"><i class="fas fa-lightbulb"></i></div>
+    <h1>استخدام الأدوات بذكاء.. <span class="gold">وأمان!</span></h1>
+    <p>التكنولوجيا وُجدت لتُساند فكرك لا البديل عنه. تعرّف على كيفية دمج أدوات الذكاء الاصطناعي والكتابة في أبحاثك الجامعية بأسلوب أخلاقي يضمن قبول بحثك وتفوقك الدراسي دون الوقوع في فخ الانتحال العلمي.</p>
+  </section>
+
+  <!-- ===== QUICK NAV TABS (sticky) ===== -->
+  <nav class="cat-tabs-bar" id="catTabsBar">
+    <div class="cat-tabs-scroll" id="catTabsScroll">
+      <button class="cat-tab active" data-target="rules-section"><i class="fas fa-star"></i> القواعد الذهبية</button>
+      <button class="cat-tab" data-target="workflow-section"><i class="fas fa-route"></i> خطوات البحث الآمن</button>
+      <button class="cat-tab" data-target="warning-section"><i class="fas fa-triangle-exclamation"></i> محاذير وتنبيهات</button>
+    </div>
+  </nav>
+
+  <!-- ===== SECTION 1: GOLDEN RULES ===== -->
+  <div id="rules-section" style="scroll-margin-top:130px;">
+    <div class="section-title-bar">
+      <span class="section-title-icon"><i class="fas fa-star"></i></span>
+      <div class="section-title-text">
+        <h2>القواعد الذهبية للطالب</h2>
+        <p>أربع قواعد أساسية لاستخدام أدوات البحث بأمان وأخلاقية</p>
+      </div>
+    </div>
+
+    <div class="rules-grid" style="margin-top:16px;">
+
+      <!-- Rule 1 -->
+      <div class="rule-card">
+        <span class="rule-num">1</span>
+        <div class="rule-icon blue"><i class="fas fa-robot"></i></div>
+        <h3 class="rule-title">💡 الذكاء الاصطناعي "مُسودّة أولى" وليس النسخة النهائية</h3>
+        <p class="rule-text">لا تنسخ المخرجات الآلية مباشرة؛ استخدم أدوات مثل <span class="tool"><i class="fas fa-pen-fancy"></i> Jenni AI</span> أو <span class="tool"><i class="fas fa-comments"></i> Perplexity</span> لجمع الأفكار والعثور على روابط المصادر فقط، ثم أعِد صياغة الفقرات بنفسك وبأسلوبك الأكاديمي الخاص لتضع بصمتك الشخصية في البحث.</p>
+      </div>
+
+      <!-- Rule 2 -->
+      <div class="rule-card">
+        <span class="rule-num">2</span>
+        <div class="rule-icon amber"><i class="fas fa-magnifying-glass"></i></div>
+        <h3 class="rule-title">🔍 افحص بحثك مرتين قبل أستاذ المادة</h3>
+        <p class="rule-text">حتى وإن كتبت البحث بنفسك، قد تتشابه بعض الجمل بريئاً مع أبحاث أخرى. استخدم أدوات فحص الاقتباس مثل <span class="tool"><i class="fas fa-robot"></i> ZeroGPT</span> و <span class="tool"><i class="fas fa-copy"></i> DupliChecker</span> للتأكد من سلامة نصوصك ونظافتها قبل التسليم النهائي للجامعة.</p>
+      </div>
+
+      <!-- Rule 3 -->
+      <div class="rule-card">
+        <span class="rule-num">3</span>
+        <div class="rule-icon green"><i class="fas fa-quote-right"></i></div>
+        <h3 class="rule-title">📝 التوثيق الفوري هو سر النزاهة</h3>
+        <p class="rule-text">أي فكرة، جدول، أو معلومة تأخذها من مرجع خارجي يجب توثيقها فوراً. اعتمد على مولدات المراجع مثل <span class="tool"><i class="fas fa-quote-right"></i> QuillBot Citation</span> أو <span class="tool"><i class="fas fa-folder-tree"></i> Zotero</span> لبناء قائمة المصادر أولاً بأول، وتجنب تأجيل التوثيق لنهاية كتابة البحث حتى لا تفقد الروابط.</p>
+      </div>
+
+      <!-- Rule 4 -->
+      <div class="rule-card">
+        <span class="rule-num">4</span>
+        <div class="rule-icon purple"><i class="fas fa-pen-nib"></i></div>
+        <h3 class="rule-title">🧠 أدوات الصياغة (Paraphrasers) لتحسين الأسلوب فقط</h3>
+        <p class="rule-text">استخدام أدوات إعادة الصياغة مثل <span class="tool"><i class="fas fa-arrows-rotate"></i> QuillBot</span> يهدف إلى جعل جملك الركيكة أكثر فصاحة وتماسكاً، وليس لسرقة مجهود الآخرين وتغيير كلماتهم؛ الأمانة الأكاديمية تبدأ من احترام فكرة الكاتب الأصلي.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: WORKFLOW ===== -->
+  <div id="workflow-section" style="scroll-margin-top:130px;">
+    <div class="section-title-bar">
+      <span class="section-title-icon"><i class="fas fa-route"></i></span>
+      <div class="section-title-text">
+        <h2>خطوات البحث الآمن</h2>
+        <p>خريطة طريق تفاعلية لدمج الأدوات في رحلة كتابة بحثك</p>
+      </div>
+    </div>
+
+    <div class="workflow-wrap" style="margin-top:16px;">
+      <div class="workflow-steps">
+
+        <!-- Step 1 -->
+        <div class="workflow-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <span class="step-label"><i class="fas fa-brain"></i> مرحلة العصف الذهني</span>
+            <h4 class="step-title">تخطيط أفكار البحث وهيكله العام</h4>
+            <p class="step-desc">ابدأ برسم وتخطيط أفكار بحثك وهيكله العام باستخدام <span class="tool"><i class="fas fa-diagram-project"></i> Miro</span> أو <span class="tool"><i class="fas fa-table-cells-large"></i> Notion</span> لتنظيم الأفكار قبل البدء بالكتابة.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="workflow-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <span class="step-label"><i class="fas fa-magnifying-glass"></i> مرحلة البحث عن المصادر</span>
+            <h4 class="step-title">جمع الأوراق العلمية الموثوقة</h4>
+            <p class="step-desc">استعن بـ <span class="tool"><i class="fas fa-graduation-cap"></i> Google Scholar</span> و <span class="tool"><i class="fas fa-microscope"></i> Consensus</span> لجمع الأوراق العلمية الموثوقة التي تدعم فكرتك البحثية.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="workflow-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <span class="step-label"><i class="fas fa-pen-fancy"></i> مرحلة الصياغة والكتابة</span>
+            <h4 class="step-title">كتابة المسودة وتصحيح الأخطاء</h4>
+            <p class="step-desc">اكتب مسودتك على <span class="tool"><i class="fas fa-table-cells-large"></i> Notion</span> أو <span class="tool"><i class="fas fa-square-root-variable"></i> Overleaf</span>، واستعن بـ <span class="tool"><i class="fas fa-language"></i> LanguageTool</span> أو <span class="tool"><i class="fas fa-spell-check"></i> Grammarly</span> لتصحيح الأخطاء أولاً بأول.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="workflow-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <span class="step-label"><i class="fas fa-quote-right"></i> مرحلة التوثيق</span>
+            <h4 class="step-title">توليد الاقتباسات فور اقتباسها</h4>
+            <p class="step-desc">استخدم <span class="tool"><i class="fas fa-quote-right"></i> QuillBot Citation Generator</span> لتوليد الاقتباس لكل مرجع بدقة فور اقتباسه، ولا تؤجل التوثيق لنهاية البحث.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="workflow-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <span class="step-label"><i class="fas fa-shield-halved"></i> مرحلة المراجعة والفحص</span>
+            <h4 class="step-title">فحص النزاهة الأكاديمية قبل الإرسال</h4>
+            <p class="step-desc">قبل الضغط على زر الإرسال لجامعتك، مرر نصك عبر <span class="tool"><i class="fas fa-shield-halved"></i> GPTZero</span> و <span class="tool"><i class="fas fa-magnifying-glass"></i> CopyLeaks</span> للتأكد من مطابقة بحثك لمعايير النزاهة الأكاديمية بنسبة 100%.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STATS ROW ===== -->
+  <div class="stats-row">
+    <div class="stat-pill">
+      <div class="stat-pill-icon green"><i class="fas fa-check-double"></i></div>
+      <div class="stat-pill-num">100%</div>
+      <div class="stat-pill-label">نزاهة أكاديمية مضمونة</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-icon amber"><i class="fas fa-clock"></i></div>
+      <div class="stat-pill-num">5</div>
+      <div class="stat-pill-label">مراحل بحثية منظمة</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-pill-icon blue"><i class="fas fa-tools"></i></div>
+      <div class="stat-pill-num">12+</div>
+      <div class="stat-pill-label">أداة موصى بها للدمج</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: WARNING ===== -->
+  <div id="warning-section" style="scroll-margin-top:130px;">
+    <div class="section-title-bar">
+      <span class="section-title-icon"><i class="fas fa-triangle-exclamation"></i></span>
+      <div class="section-title-text">
+        <h2>محاذير وتنبيهات</h2>
+        <p>أخطاء شائعة قد تُعرّض بحثك للرفض</p>
+      </div>
+    </div>
+
+    <div class="warning-box" style="margin-top:16px;">
+      <div class="warning-icon"><i class="fas fa-triangle-exclamation"></i></div>
+      <div class="warning-content">
+        <h3>⚠️ تجنّب هذه الممارسات الخاطئة</h3>
+        <p>هناك ممارسات قد توقع الطالب في فخ الانتحال العلمي دون قصد، احذر منها:</p>
+        <ul>
+          <li><strong>النسخ واللصق المباشر</strong> من مخرجات الذكاء الاصطناعي دون إعادة صياغة أو توثيق.</li>
+          <li><strong>تأجيل التوثيق</strong> لنهاية البحث، مما يسبب فقدان روابط المصادر واختلاط الأفكار.</li>
+          <li><strong>استخدام أدوات الصياغة</strong> لتغيير كلمات نصوص الآخرين بدلاً من تحسين أسلوبك الخاص.</li>
+          <li><strong>عدم فحص البحث</strong> بأدوات كشف الانتحال قبل التسليم، حتى لو كنت متأكداً من كتابته بنفسك.</li>
+          <li><strong>الاعتماد الكلي</strong> على مساعدات AI دون التحقق من دقة المعلومات ومصادرها الأصلية.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <a href="../research_tools/" class="cta-footer-card">
+    <span class="cta-footer-icon"><i class="fas fa-microscope"></i></span>
+    <div class="cta-footer-content">
+      <h3>🔬 استكشف مكتبة أدوات البحث العلمي</h3>
+      <p>اطّلع على مجموعتنا الكاملة من أدوات البحث العلمي الموثوقة — محركات البحث، مساعدات AI، مولدات المراجع، وأدوات فحص الانتحال.</p>
+    </div>
+    <span class="cta-footer-btn">تصفح الأدوات الآن <i class="fas fa-arrow-left"></i></span>
+  </a>
+
+  <!-- Helper note -->
+  <div class="helper-note">
+    <span class="star">⭐</span>
+    <div>
+      <p class="note-title">تذكير مهم</p>
+      <p class="note-text">الأمانة الأكاديمية ليست خياراً بل التزاماً أخلاقياً وعلمياً. استخدامك الذكي للأدوات مع الحفاظ على نزاهتك يضمن تفوقك الحقيقي ويحمي سمعتك الأكاديمية طوال رحلتك الجامعية. عندما تشك في أي معلومة، وثّقها — وعندما تشك في أي نص، افحصه.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+$('#copyYear').textContent=new Date().getFullYear();
+
+/* ===== QUICK NAV TABS — click to scroll + scroll spy ===== */
+var catTabs=$$('.cat-tab');
+var catSections=['rules-section','workflow-section','warning-section'].map(function(id){return $('#'+id);});
+
+catTabs.forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var targetId=tab.getAttribute('data-target');
+    var target=$('#'+targetId);
+    if(!target)return;
+    var tabsBar=$('#catTabsBar');
+    var offset=target.getBoundingClientRect().top+window.pageYOffset-(tabsBar.offsetHeight+20);
+    window.scrollTo({top:offset,behavior:'smooth'});
+  });
+});
+
+function updateActiveTab(){
+  var tabsBar=$('#catTabsBar');
+  var tabsBottom=tabsBar.getBoundingClientRect().bottom;
+  var currentIdx=-1;
+  for(var i=0;i<catSections.length;i++){
+    if(!catSections[i])continue;
+    var rect=catSections[i].getBoundingClientRect();
+    if(rect.top<=tabsBottom+80){currentIdx=i;}
+    else break;
+  }
+  catTabs.forEach(function(t,i){t.classList.toggle('active',i===currentIdx);});
+  if(currentIdx>=0){
+    var activeTab=catTabs[currentIdx];
+    var scrollWrap=$('#catTabsScroll');
+    var tabRect=activeTab.getBoundingClientRect();
+    var wrapRect=scrollWrap.getBoundingClientRect();
+    if(tabRect.left<wrapRect.left||tabRect.right>wrapRect.right){
+      activeTab.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+    }
+  }
+}
+var scrollTimer=null;
+window.addEventListener('scroll',function(){
+  if(scrollTimer)return;
+  scrollTimer=setTimeout(function(){updateActiveTab();scrollTimer=null;},60);
+},{passive:true});
+updateActiveTab();
+</script>
+</body>
+</html>
