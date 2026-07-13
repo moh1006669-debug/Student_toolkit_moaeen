@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محركات البحث العلمي وأدوات الباحث الأكاديمي الذكية | منصة مُعين التعليمية</title>
+<meta name="description" content="دليلك الشامل لأفضل أدوات البحث العلمي للطلاب والباحثين. تصفح قواعد البيانات الأكاديمية، استخدم مساعدات AI الموثوقة، ولد المراجع تلقائياً، وافحص الانتحال والنزاهة الأكاديمية.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --bg-card: #FFFFFF;
+  --bg-dark: #012727;
+  --bg-dark-2: #0A2C2C;
+  --bg-section: #F2F7F8;
+  --btn-bg: #074842;
+  --btn-bg-hover: #053631;
+  --desc-color: #5F6C70;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-glow: #E5C158;
+  --gold-text: #be9632;
+  --gray-light: #E2E8F0;
+  --icon-circle-bg: #EBF4F0;
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --title-color: #0B3B3C;
+  --transition: 0.3s ease;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.page-wrapper { width: 100%; max-width: 1280px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+
+/* HEADER */
+.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.header-logo-moaeen img:hover { transform: scale(1.05); }
+.header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+.pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-star { color: var(--gold); font-size: 18px; }
+.header-seu-box { display: flex; align-items: center; justify-content: center; }
+.seu-rect { display: flex; align-items: center; gap: 12px; }
+.seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
+.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+.mobile-pill .pill-text { font-size: 12px; }
+@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
+
+/* BACK BAR */
+.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
+.back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.back-btn i { font-size: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+.breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+.breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+.breadcrumb i { font-size: 10px; }
+
+/* HERO */
+.hero { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.92) 0%, rgba(10,44,44,0.88) 100%); border-radius: 24px; padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); }
+.hero-badge i { font-size: 12px; }
+.hero h1 { font-size: 24px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 850px; }
+.hero h1 .gold { color: var(--gold); }
+.hero p { font-size: 14px; color: rgba(255,255,255,0.85); max-width: 750px; line-height: 1.7; }
+@media (min-width: 768px) { .hero h1 { font-size: 28px; } .hero p { font-size: 15px; } }
+
+/* ===== TOP CTA BANNER ===== */
+.cta-banner { width: 100%; background: #eff6ff; border: 1px solid #dbeafe; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 2px 12px rgba(59,130,246,0.08); transition: var(--transition); }
+.cta-banner:hover { box-shadow: 0 4px 16px rgba(59,130,246,0.15); transform: translateY(-1px); }
+.cta-banner-icon { width: 44px; height: 44px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cta-banner-icon i { font-size: 20px; color: #2563eb; }
+.cta-banner-text { flex: 1; min-width: 200px; font-size: 13px; color: #1e3a8a; font-weight: 600; line-height: 1.6; }
+.cta-banner-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--white); color: var(--btn-bg); padding: 8px 16px; border-radius: var(--radius-btn); font-size: 13px; font-weight: 700; transition: var(--transition); border: 1px solid var(--btn-bg); flex-shrink: 0; }
+.cta-banner-btn:hover { background: var(--btn-bg); color: var(--white); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(7,72,66,0.2); }
+.cta-banner-btn i { font-size: 11px; }
+
+/* SECTION TITLE */
+.section-title-bar { display: flex; align-items: center; gap: 12px; padding: 0 4px; }
+.section-title-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.section-title-icon i { font-size: 20px; color: var(--btn-bg); }
+.section-title-text h2 { font-size: 18px; font-weight: 800; color: var(--title-color); }
+.section-title-text p { font-size: 12px; color: var(--desc-color); }
+.section-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-right: auto; }
+.section-badge.recommended { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.section-badge i { font-size: 10px; }
+
+/* FILTER BAR */
+.filter-bar { width: 100%; background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; }
+.filter-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; cursor: pointer; transition: background 0.2s; }
+.filter-header:hover { background: var(--bg-section); }
+.filter-header-left { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--title-color); }
+.filter-header-left i { color: var(--gold); }
+.filter-toggle { font-size: 12px; color: var(--desc-color); display: flex; align-items: center; gap: 6px; }
+.filter-toggle i { transition: transform 0.3s; }
+.filter-bar.open .filter-toggle i { transform: rotate(180deg); }
+.filter-body { display: none; padding: 0 20px 16px; border-top: 1px solid var(--gray-light); }
+.filter-bar.open .filter-body { display: block; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 14px; }
+.filter-chip { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--gray-light); background: var(--white); color: var(--desc-color); font-size: 12px; font-weight: 600; transition: var(--transition); cursor: pointer; }
+.filter-chip:hover { border-color: var(--gold); color: var(--btn-bg); }
+.filter-chip.active { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); }
+.filter-chip i { font-size: 11px; }
+
+/* CATEGORY */
+.category-section { margin-bottom: 24px; scroll-margin-top: 130px; }
+.category-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 0 4px; }
+.category-header i { font-size: 18px; color: var(--gold); }
+.category-header h3 { font-size: 16px; font-weight: 800; color: var(--title-color); }
+.category-header .cat-count { font-size: 11px; color: var(--desc-color); font-weight: 600; background: var(--bg-section); padding: 3px 10px; border-radius: 20px; }
+
+/* ===== QUICK CATEGORY TABS (sticky) ===== */
+.cat-tabs-bar { width: 100%; background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; position: sticky; top: 12px; z-index: 50; border: 1px solid var(--gray-light); }
+.cat-tabs-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 10px; scrollbar-width: thin; }
+.cat-tabs-scroll::-webkit-scrollbar { height: 4px; }
+.cat-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(7,72,66,0.2); border-radius: 20px; }
+.cat-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--gray-light); background: var(--white); color: var(--desc-color); font-size: 12px; font-weight: 700; transition: var(--transition); white-space: nowrap; flex-shrink: 0; }
+.cat-tab:hover { border-color: var(--gold); color: var(--btn-bg); background: #fffbeb; }
+.cat-tab.active { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); box-shadow: 0 2px 8px rgba(7,72,66,0.25); }
+.cat-tab i { font-size: 12px; }
+.cat-tab .tab-num { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 10px; font-size: 10px; font-weight: 800; background: rgba(255,255,255,0.2); }
+.cat-tab:not(.active) .tab-num { background: var(--bg-section); color: var(--desc-color); }
+
+/* CARDS GRID */
+.cards-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .cards-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+/* EXT CARD */
+.ext-card { background: var(--white); border-radius: var(--radius-card); padding: 24px 20px 20px; position: relative; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; }
+.ext-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+.ext-card.hidden { display: none; }
+.ext-ribbon { position: absolute; top: 0; left: 16px; width: 32px; height: 44px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%); display: flex; align-items: flex-start; justify-content: center; padding-top: 7px; box-shadow: 0 2px 8px rgba(212,175,55,0.3); z-index: 2; }
+.ext-ribbon i { color: var(--white); font-size: 13px; }
+.ai-badge { position: absolute; top: 12px; right: 16px; display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: var(--white); font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; box-shadow: 0 2px 6px rgba(99,102,241,0.3); z-index: 2; }
+.ai-badge i { font-size: 9px; }
+.ext-icon-circle { width: 72px; height: 72px; border-radius: 50%; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; transition: var(--transition); }
+.ext-card:hover .ext-icon-circle { transform: scale(1.05); background: #DDEDE7; }
+.ext-icon-circle i { font-size: 30px; color: var(--btn-bg); }
+.ext-title { font-size: 17px; font-weight: 800; color: var(--title-color); text-align: center; margin-bottom: 4px; }
+.ext-subtitle { font-size: 11px; color: var(--desc-color); text-align: center; margin-bottom: 12px; font-weight: 500; }
+.ext-tags { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-bottom: 14px; }
+.ext-tag { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; border: 1px solid; }
+.ext-tag i { font-size: 9px; }
+.ext-tag.free { background: #d1fae5; color: #047857; border-color: #a7f3d0; }
+.ext-tag.paid { background: #fef3c7; color: #b45309; border-color: #fde68a; }
+.ext-tag.ar { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+.ext-tag.en { background: #e0e7ff; color: #4338ca; border-color: #c7d2fe; }
+.ext-tag.browser { background: #f3e8ff; color: #7c3aed; border-color: #ddd6fe; }
+.ext-tag.website { background: var(--bg-section); color: var(--desc-color); border-color: var(--gray-light); }
+.ext-tag.ai { background: linear-gradient(135deg, #eef2ff, #f5f3ff); color: #6366f1; border-color: #c7d2fe; }
+.ext-tag.desktop { background: #fce7f3; color: #be185d; border-color: #fbcfe8; }
+.ext-tag.guide { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+.ext-tag.phrasebank { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+.ext-tag.visual { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
+.ext-tag.db { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.ext-tag.checker { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+.ext-tag.humanizer { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
+.ext-desc { font-size: 12px; color: var(--desc-color); line-height: 1.7; text-align: center; margin-bottom: 16px; flex: 1; }
+.ext-btn { width: 100%; background: var(--btn-bg); color: var(--white); padding: 12px 16px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); margin-top: auto; position: relative; overflow: hidden; }
+.ext-btn::before { content: ''; position: absolute; top: 0; right: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transition: 0.5s; }
+.ext-btn:hover::before { right: 100%; }
+.ext-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(7,72,66,0.3); }
+.ext-btn i { font-size: 12px; }
+
+/* No results */
+.no-results { text-align: center; padding: 40px 20px; color: var(--desc-color); display: none; }
+.no-results.show { display: block; }
+.no-results i { font-size: 48px; opacity: 0.3; margin-bottom: 12px; }
+.no-results p { font-size: 14px; }
+
+/* ===== BOTTOM CTA CARD ===== */
+.cta-footer-card { width: 100%; background: linear-gradient(135deg, #012727 0%, #0A4542 100%); border-radius: var(--radius-card); padding: 32px 28px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; box-shadow: 0 10px 40px rgba(0,0,0,0.25); border: 1px solid rgba(212,175,55,0.3); position: relative; overflow: hidden; }
+.cta-footer-card::before { content: ''; position: absolute; top: -50%; left: -10%; width: 50%; height: 200%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
+.cta-footer-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cta-footer-icon i { font-size: 30px; color: var(--gold); }
+.cta-footer-content { flex: 1; min-width: 240px; }
+.cta-footer-content h3 { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.cta-footer-content p { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+.cta-footer-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--bg-dark); padding: 12px 24px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 800; transition: var(--transition); flex-shrink: 0; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+.cta-footer-btn:hover { background: var(--gold-glow); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+.cta-footer-btn i { font-size: 12px; }
+@media (max-width: 640px) { .cta-footer-card { flex-direction: column; text-align: center; } .cta-footer-content { text-align: center; } }
+
+/* Helper note */
+.helper-note { display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,251,235,0.6); border-radius: var(--radius-card); padding: 16px; }
+.helper-note .star { font-size: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.helper-note .note-title { font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 4px; }
+.helper-note .note-text { font-size: 12px; line-height: 1.6; color: rgba(7,72,66,0.8); }
+
+/* FOOTER */
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
+.footer-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-brand-name { font-size: 16px; font-weight: 700; color: var(--gold); }
+.footer-brand-sub { font-size: 11px; color: rgba(255,255,255,0.8); }
+.footer-whatsapp { display: flex; align-items: center; gap: 8px; background: #25D366; color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; transition: var(--transition); }
+.footer-whatsapp:hover { background: #1fae54; transform: translateY(-2px); }
+.footer-whatsapp i { font-size: 16px; }
+.footer-social { display: flex; align-items: center; gap: 12px; }
+.footer-social-icons { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); color: var(--white); }
+.social-link:hover { transform: scale(1.1); }
+.social-link.snapchat { background: #FFFC00; color: #000; }
+.social-link.telegram { background: #0088CC; }
+.social-link.x { background: #000; }
+.social-link i { font-size: 16px; }
+.footer-phone { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gold); direction: ltr; }
+.footer-phone i { font-size: 14px; }
+.footer-divider { height: 1px; width: 100%; background: rgba(212,175,55,0.3); margin: 20px 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.footer-copy { color: rgba(255,255,255,0.7); }
+.footer-slogan { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); }
+.footer-slogan .star { color: var(--gold); }
+.footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
+.footer-made .heart { color: #10b981; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
+  </div>
+
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current">أدوات البحث العلمي</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-microscope"></i> أدوات البحث العلمي - مُعين</div>
+    <h1>محركات البحث العلمي وأدوات الباحث <span class="gold">الأكاديمي الذكية</span></h1>
+    <p>رفيقك الرقمي من الفكرة إلى النشر؛ ابحث في قواعد البيانات العالمية، لخص الدراسات السابقة بالذكاء الاصطناعي، وثق مراجعك بدقة، وافحص بحثك قبل التسليم.</p>
+  </section>
+
+  <!-- ===== TOP CTA BANNER ===== -->
+  <a href="./Acad-guide/" class="cta-banner">
+    <span class="cta-banner-icon"><i class="fas fa-lightbulb"></i></span>
+    <span class="cta-banner-text">💡 هل تريد استخدام هذه الأدوات بأمان؟ تعرّف على كيفية الدمج بين الذكاء الاصطناعي والنزاهة الأكاديمية لضمان قبول بحثك الجامعي.</span>
+    <span class="cta-banner-btn">اقرأ دليل الأمان الأكاديمي <i class="fas fa-arrow-left"></i></span>
+  </a>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-header" id="filterHeader">
+      <div class="filter-header-left"><i class="fas fa-filter"></i> فلترة الأدوات</div>
+      <div class="filter-toggle"><span id="filterCount">الكل</span> <i class="fas fa-chevron-down"></i></div>
+    </div>
+    <div class="filter-body">
+      <div class="filter-chips" id="filterChips">
+        <button class="filter-chip active" data-filter="all"><i class="fas fa-list"></i> الكل</button>
+        <button class="filter-chip" data-filter="free"><i class="fas fa-gift"></i> مجاني</button>
+        <button class="filter-chip" data-filter="paid"><i class="fas fa-coins"></i> مدفوع</button>
+        <button class="filter-chip" data-filter="ai"><i class="fas fa-robot"></i> ذكاء اصطناعي</button>
+        <button class="filter-chip" data-filter="browser"><i class="fas fa-puzzle-piece"></i> إضافة متصفح</button>
+        <button class="filter-chip" data-filter="desktop"><i class="fas fa-desktop"></i> برنامج مكتب</button>
+        <button class="filter-chip" data-filter="website"><i class="fas fa-globe"></i> موقع ويب</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUICK CATEGORY TABS (sticky) ===== -->
+  <nav class="cat-tabs-bar" id="catTabsBar">
+    <div class="cat-tabs-scroll" id="catTabsScroll">
+      <button class="cat-tab active" data-target="cat1-section"><i class="fas fa-book-open-reader"></i> دليل الباحث <span class="tab-num">2</span></button>
+      <button class="cat-tab" data-target="cat2-section"><i class="fas fa-magnifying-glass-chart"></i> قواعد البحوث <span class="tab-num">2</span></button>
+      <button class="cat-tab" data-target="cat3-section"><i class="fas fa-robot"></i> مساعدات AI <span class="tab-num">6</span></button>
+      <button class="cat-tab" data-target="cat4-section"><i class="fas fa-quote-right"></i> مولدات المراجع <span class="tab-num">4</span></button>
+      <button class="cat-tab" data-target="cat5-section"><i class="fas fa-shield-halved"></i> فحص الاقتباس <span class="tab-num">7</span></button>
+      <button class="cat-tab" data-target="cat6-section"><i class="fas fa-pen-nib"></i> صياغة النص <span class="tab-num">1</span></button>
+    </div>
+  </nav>
+
+  <!-- ===== CATEGORY 1: دليل الباحث ===== -->
+  <div class="category-section" id="cat1-section">
+    <div class="category-header">
+      <i class="fas fa-book-open-reader"></i>
+      <h3>دليل الباحث (End-to-End Guides)</h3>
+      <span class="cat-count">2 أدوات</span>
+    </div>
+    <div class="cards-grid" id="cat1"></div>
+  </div>
+
+  <!-- ===== CATEGORY 2: قواعد البحوث ===== -->
+  <div class="category-section" id="cat2-section">
+    <div class="category-header">
+      <i class="fas fa-magnifying-glass-chart"></i>
+      <h3>قواعد البحوث والمحركات الأكاديمية</h3>
+      <span class="cat-count">2 أدوات</span>
+    </div>
+    <div class="cards-grid" id="cat2"></div>
+  </div>
+
+  <!-- ===== CATEGORY 3: مساعدات AI ===== -->
+  <div class="category-section" id="cat3-section">
+    <div class="category-header">
+      <i class="fas fa-robot"></i>
+      <h3>مساعدات الذكاء الاصطناعي للبحث</h3>
+      <span class="cat-count">6 أدوات</span>
+    </div>
+    <div class="cards-grid" id="cat3"></div>
+  </div>
+
+  <!-- ===== CATEGORY 4: مولدات المراجع ===== -->
+  <div class="category-section" id="cat4-section">
+    <div class="category-header">
+      <i class="fas fa-quote-right"></i>
+      <h3>مولدات المراجع (Citation Generators)</h3>
+      <span class="cat-count">4 أدوات</span>
+    </div>
+    <div class="cards-grid" id="cat4"></div>
+  </div>
+
+  <!-- ===== CATEGORY 5: فحص الاقتباس والـ AI ===== -->
+  <div class="category-section" id="cat5-section">
+    <div class="category-header">
+      <i class="fas fa-shield-halved"></i>
+      <h3>أدوات فحص الاقتباس والذكاء الاصطناعي</h3>
+      <span class="cat-count">7 أدوات</span>
+    </div>
+    <div class="cards-grid" id="cat5"></div>
+  </div>
+
+  <!-- ===== CATEGORY 6: صياغة النص ===== -->
+  <div class="category-section" id="cat6-section">
+    <div class="category-header">
+      <i class="fas fa-pen-nib"></i>
+      <h3>أدوات صياغة النص وإضفاء الطابع البشري</h3>
+      <span class="cat-count">1 أداة</span>
+    </div>
+    <div class="cards-grid" id="cat6"></div>
+  </div>
+
+  <!-- No results -->
+  <div class="no-results" id="noResults">
+    <i class="fas fa-magnifying-glass"></i>
+    <p>لا توجد أدوات مطابقة للفلتر المحدد</p>
+  </div>
+
+  <!-- ===== BOTTOM CTA CARD ===== -->
+  <a href="./Acad-guide/" class="cta-footer-card">
+    <span class="cta-footer-icon"><i class="fas fa-graduation-cap"></i></span>
+    <div class="cta-footer-content">
+      <h3>🎓 لا تسلّم بحثك قبل فصحه!</h3>
+      <p>تعرّف على خريطة الطريق المضمونة لخطوات البحث العلمي الآمن خطوة بخطوة، وضمان نزاهة بحثك الجامعي قبل التقديم.</p>
+    </div>
+    <span class="cta-footer-btn">تصفح دليل الطالب الكامل <i class="fas fa-arrow-left"></i></span>
+  </a>
+
+  <!-- Helper note -->
+  <div class="helper-note">
+    <span class="star">⭐</span>
+    <div>
+      <p class="note-title">نصيحة للباحث الأكاديمي</p>
+      <p class="note-text">استخدم الفلترة للعثور على الأدوات المناسبة لاحتياجك. الأدوات المميزة بشارة "ذكاء اصطناعي" تعتمد على نماذج AI متقدمة — تأكد من مراجعة دليل الأمان الأكاديمي قبل استخدامها في أبحاثك الجامعية لضمان النزاهة الأكاديمية.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+function esc(str){var d=document.createElement('div');d.appendChild(document.createTextNode(str||''));return d.innerHTML;}
+$('#copyYear').textContent=new Date().getFullYear();
+
+/* ===== EXTERNAL TOOLS DATA ===== */
+var EXT_TOOLS=[
+  // Category 1: Guides
+  {cat:1,name:'Purdue OWL',subtitle:'Online Writing Lab',url:'https://owl.purdue.edu',icon:'fa-book-open',tags:['free','guide','website'],desc:'المختبر الرقمي الأشهر عالمياً من جامعة بوردو. يقدم دليلاً شاملاً لكيفية صياغة الأوراق البحثية خطوة بخطوة، والتعرف على شروط الكتابة الأكاديمية ونماذج التوثيق المختلفة.'},
+  {cat:1,name:'Academic Phrasebank',subtitle:'جامعة مانشستر',url:'https://phrasebank.manchester.ac.uk',icon:'fa-quote-left',tags:['free','phrasebank','website'],desc:'كنز من جامعة مانشستر يمنحك مئات العبارات والقوالب اللغوية الجاهزة لتعرف بدقة كيف تصيغ مقدمة بحثك، كيف تنقد الدراسات السابقة، أو كيف تعرض نتائجك بأسلوب أكاديمي احترافي.'},
+  // Category 2: Research Databases
+  {cat:2,name:'Google Scholar',subtitle:'الباحث العلمي',url:'https://scholar.google.com',icon:'fa-graduation-cap',tags:['free','db','website'],desc:'البوابة الأساسية لكل طالب وباحث حول العالم للوصول مجاناً إلى ملايين الأوراق العلمية الموثوقة، الرسائل الجامعية، الكتب، والملخصات في شتى المجالات والتخصصات.'},
+  {cat:2,name:'Elsevier',subtitle:'قاعدة بيانات أكاديمية',url:'https://www.elsevier.com',icon:'fa-database',tags:['paid','db','website'],desc:'إحدى أضخم وأعرق دور النشر الأكاديمية عالمياً، تتيح للطلاب عبر حساباتهم الجامعية الوصول إلى أبحاث ومجلات علمية محكمة ذات معامل تأثير عالٍ جداً.'},
+  // Category 3: AI Research Assistants
+  {cat:3,name:'Connected Papers',subtitle:'خرائط الأبحاث',url:'https://www.connectedpapers.com',icon:'fa-diagram-project',tags:['paid','visual','ai','website'],desc:'أداة بصرية مذهلة تختصر وقت جمع الدراسات السابقة؛ ما عليك سوى إدخال ورقة علمية واحدة لتقوم الأداة برسم خريطة تفاعلية تربط لك كافة الأبحاث ذات الصلة بها.'},
+  {cat:3,name:'Perplexity AI',subtitle:'بحث بمصادر موثقة',url:'https://www.perplexity.ai',icon:'fa-comments',tags:['paid','ai','website'],desc:'محرك إجابات ذكي يمنحك ردوداً دقيقة ومباشرة على أسئلتك البحثية المعقدة مع ميزة إدراج روابط المصادر الأكاديمية المباشرة التي اقتبس منها لدعم مصداقية المعلومات.'},
+  {cat:3,name:'Consensus',subtitle:'خلاصة الأبحاث العلمية',url:'https://consensus.app',icon:'fa-microscope',tags:['paid','ai','website'],desc:'محرك بحث يعتمد على الذكاء الاصطناعي لاستخراج الأدلة العلمية؛ يسأله الطالب سؤالاً مباشراً ليقوم بالبحث في ملايين الأوراق المحكمة واستخراج خلاصة رأي العلماء والإحصاءات حولها.'},
+  {cat:3,name:'AskYourPDF',subtitle:'محادثة المستندات',url:'https://askyourpdf.com',icon:'fa-file-pdf',tags:['paid','ai','website'],desc:'يحول ملفات الـ PDF البحثية الطويلة والمعقدة إلى محادثة تفاعلية؛ ارفع كتابك أو ورقتك العلمية واطلب من المساعد تلخيصها أو استخراج جداول وبيانات محددة منها بثوانٍ.'},
+  {cat:3,name:'SciSpace (Typeset)',subtitle:'شرح المقالات العلمية',url:'https://typeset.io',icon:'fa-book-bookmark',tags:['paid','ai','website'],desc:'باحث علمي متكامل مدعوم بالذكاء الاصطناعي يقوم بشرح المقالات العلمية الصعبة، تلخيص الفقرات المعقدة، وتوضيح المعادلات الرياضية والجداول الإحصائية أثناء قراءتك للبحث.'},
+  {cat:3,name:'Jenni AI',subtitle:'كتابة أكاديمية ذكية',url:'https://jenni.ai',icon:'fa-pen-fancy',tags:['paid','ai','website'],desc:'مساعد ذكي متخصص في الكتابة الأكاديمية للطلاب؛ يساعدك على تجاوز عقبات الكتابة واقتراح الأفكار والجمل التالية لبحثك مع ميزة الاستشهاد الفوري بمصادر حقيقية.'},
+  // Category 4: Citation Generators
+  {cat:4,name:'QuillBot Citation Generator',subtitle:'مولد اقتباسات مجاني',url:'https://quillbot.com/citation-generator',icon:'fa-quote-right',tags:['free','website'],desc:'أداة مجانية بالكامل وممتازة لتوليد الاقتباسات والاستشهادات الفردية فوراً لأي كتاب، مقال، أو موقع إلكتروني وفقاً لأحدث التنسيقات الأكاديمية المطلوبة (APA, MLA, Harvard).'},
+  {cat:4,name:'Scribbr Citation Generator',subtitle:'توثيق سريع ودقيق',url:'https://www.scribbr.com/citation-generator/',icon:'fa-bookmark',tags:['free','website'],desc:'مولد مراجع سريع وسلس للغاية؛ أدخل رابط المقال أو الرقم المعياري للكتاب (ISBN)، واحصل فوراً على التوثيق الصحيح كاملاً لنسخه ولصقه مباشرة في قائمة المصادر.'},
+  {cat:4,name:'Zotero',subtitle:'إدارة مراجع متكاملة',url:'https://zotero.org',icon:'fa-folder-tree',tags:['free','desktop','browser'],desc:'رفيق الباحث الأقوى لجمع وإدارة مصادر أبحاث التخرج؛ يتيح لك بنقرة واحدة حفظ المراجع من المتصفح، تنظيمها داخل مجلدات، وتوليد قائمة الاستشهادات تلقائياً في ملف Word.'},
+  {cat:4,name:'Mendeley',subtitle:'منظم مراجع احترافي',url:'https://www.mendeley.com',icon:'fa-books',tags:['free','desktop','website'],desc:'أداة احترافية رائدة لتنظيم ملفات الـ PDF البحثية وتوليد المراجع، كما تتيح للطلاب التعاون ومشاركة المصادر في مجموعات عمل دراسية مشتركة بسهولة وبشكل منظم.'},
+  // Category 5: Plagiarism & AI Detectors
+  {cat:5,name:'ZeroGPT',subtitle:'فحص AI مجاني',url:'https://zerogpt.com',icon:'fa-robot',tags:['free','checker','website'],desc:'أداة مجانية تماماً وسريعة الاستخدام للكشف عن النصوص المكتوبة بالذكاء الاصطناعي (مثل ChatGPT)؛ تمنحك تقريراً فورياً يوضح بدقة النسبة المئوية للمحتوى المولد آلياً.'},
+  {cat:5,name:'DupliChecker',subtitle:'فحص انتحال أونلاين',url:'https://duplichecker.com',icon:'fa-copy',tags:['paid','checker','website'],desc:'أداة عملية تتيح للطلاب فحص التقارير والواجبات اليومية بسرعة للتأكد من نسبة الاقتباس والسرقة الأدبية عبر مقارنة النص بملايين صفحات الويب قبل تقديمه للدكتور.'},
+  {cat:5,name:'GPTZero',subtitle:'فحص AI معتمد أكاديمياً',url:'https://gptzero.me',icon:'fa-shield-halved',tags:['paid','checker','ai','website'],desc:'الأداة الأشهر والمفضلة لدى المؤسسات الأكاديمية لفحص النصوص وتحديد ما إذا كان البحث قد تمت كتابته بواسطة الطالب نفسه أو بواسطة نماذج الذكاء الاصطناعي التوليدي.'},
+  {cat:5,name:'CopyLeaks',subtitle:'فحص AI وانتحال شامل',url:'https://copyleaks.com',icon:'fa-magnifying-glass',tags:['paid','checker','ai','website'],desc:'منصة متطورة تفحص المحتوى بدقة متناهية؛ حيث تكشف في آنٍ واحد نسب الاقتباس والنصوص المنسوخة من الإنترنت، إلى جانب الفحص الذكي للنصوص المستخرجة عبر الـ AI.'},
+  {cat:5,name:'Plagiarism Checker X',subtitle:'برنامج مكتب سريع',url:'https://plagiarismcheckerx.com',icon:'fa-desktop',tags:['paid','checker','desktop'],desc:'برنامج لسطح المكتب يتميز بالسرعة والأمان لفحص النصوص الكبيرة؛ يمنح الطالب تقارير ملونة ومفصلة تبين مواضع الاقتباس ونسبتها لتسهيل عملية التعديل عليها.'},
+  {cat:5,name:'Originality AI',subtitle:'كشف ذكاء اصطناعي احترافي',url:'https://originality.ai',icon:'fa-fingerprint',tags:['paid','checker','ai','website'],desc:'أداة احترافية فائقة الدقة مصممة لفحص الأوراق البحثية والتقارير المتقدمة؛ تتميز بقدرتها العالية على رصد المحتوى المولد بأحدث نماذج الذكاء الاصطناعي ومكافحة الانتحال.'},
+  {cat:5,name:'Turnitin',subtitle:'المعيار الذهبي الجامعي',url:'https://turnitin.com',icon:'fa-award',tags:['paid','checker','website'],desc:'المعيار الذهبي العالمي الأول في النزاهة الأكاديمية؛ وهو البرنامج الرسمي المعتمد لدى كبرى الجامعات للتأكد من أصالة أبحاث التخرج ورسائل الماجستير والدكتوراه وخلوها من الانتحال.'},
+  // Category 6: Humanizer
+  {cat:6,name:'QuillBot Paraphraser',subtitle:'إعادة صياغة ذكية',url:'https://quillbot.com',icon:'fa-arrows-rotate',tags:['paid','humanizer','website'],desc:'الأداة الأفضل على الإطلاق لإعادة صياغة النصوص الإنجليزية وتحسين أسلوبها. تساعد الطالب على التعبير عن الأفكار ذاتها بكلمات وتراكيب جديدة تناسب الأسلوب البشري الأكاديمي الرصين وتمنع التكرار.'}
+];
+
+var TAG_INFO={
+  free:{cls:'free',icon:'fa-gift',label:'مجاني بالكامل'},
+  paid:{cls:'paid',icon:'fa-coins',label:'مجاني/مدفوع'},
+  ai:{cls:'ai',icon:'fa-robot',label:'ذكاء اصطناعي'},
+  browser:{cls:'browser',icon:'fa-puzzle-piece',label:'إضافة متصفح'},
+  website:{cls:'website',icon:'fa-globe',label:'موقع ويب'},
+  desktop:{cls:'desktop',icon:'fa-desktop',label:'برنامج مكتب'},
+  guide:{cls:'guide',icon:'fa-book-open',label:'دليل إرشادي'},
+  phrasebank:{cls:'phrasebank',icon:'fa-quote-left',label:'بنك عبارات'},
+  visual:{cls:'visual',icon:'fa-diagram-project',label:'أداة بصرية'},
+  db:{cls:'db',icon:'fa-database',label:'قاعدة بيانات'},
+  checker:{cls:'checker',icon:'fa-shield-halved',label:'فحص وانتحال'},
+  humanizer:{cls:'humanizer',icon:'fa-pen-nib',label:'إعادة صياغة'}
+};
+
+function renderToolCard(tool){
+  var card=document.createElement('div');
+  card.className='ext-card';
+  tool.tags.forEach(function(t){card.setAttribute('data-'+t,'1');});
+  var tagsHtml=tool.tags.map(function(t){
+    var info=TAG_INFO[t]||{cls:'website',icon:'fa-globe',label:t};
+    return '<span class="ext-tag '+info.cls+'"><i class="fas '+info.icon+'"></i> '+info.label+'</span>';
+  }).join('');
+  var aiBadge=tool.tags.indexOf('ai')!==-1?'<span class="ai-badge"><i class="fas fa-robot"></i> AI</span>':'';
+  card.innerHTML=
+    '<div class="ext-ribbon"><i class="fas fa-star"></i></div>'+
+    aiBadge+
+    '<div class="ext-icon-circle"><i class="fas '+tool.icon+'"></i></div>'+
+    '<h4 class="ext-title">'+esc(tool.name)+'</h4>'+
+    '<p class="ext-subtitle">'+esc(tool.subtitle)+'</p>'+
+    '<div class="ext-tags">'+tagsHtml+'</div>'+
+    '<p class="ext-desc">'+esc(tool.desc)+'</p>'+
+    '<a href="'+tool.url+'" target="_blank" rel="noopener" class="ext-btn"><i class="fas fa-arrow-left"></i> <span>انتقل إلى الأداة</span></a>';
+  return card;
+}
+
+EXT_TOOLS.forEach(function(t){
+  var wrap=$('#cat'+t.cat);
+  if(wrap)wrap.appendChild(renderToolCard(t));
+});
+
+/* ===== FILTER ===== */
+var filterBar=$('#filterBar');
+$('#filterHeader').addEventListener('click',function(){filterBar.classList.toggle('open');});
+
+var activeFilter='all';
+$$('#filterChips .filter-chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    $$('#filterChips .filter-chip').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active');
+    activeFilter=c.getAttribute('data-filter');
+    applyFilter();
+  });
+});
+
+function applyFilter(){
+  var visible=0;
+  $$('.ext-card').forEach(function(card){
+    if(activeFilter==='all'){card.classList.remove('hidden');visible++;}
+    else if(card.getAttribute('data-'+activeFilter)){card.classList.remove('hidden');visible++;}
+    else{card.classList.add('hidden');}
+  });
+  [1,2,3,4,5,6].forEach(function(c){
+    var cat=$('#cat'+c);
+    if(cat){
+      var visibleInCat=cat.querySelectorAll('.ext-card:not(.hidden)').length;
+      cat.parentElement.style.display=visibleInCat>0?'block':'none';
+    }
+  });
+  $('#noResults').classList.toggle('show',visible===0);
+  var labels={all:'الكل',free:'مجاني',paid:'مدفوع',ai:'ذكاء اصطناعي',browser:'إضافة متصفح',desktop:'برنامج مكتب',website:'موقع ويب'};
+  $('#filterCount').textContent=labels[activeFilter]||'الكل';
+  // Reset category tabs active state when a non-"all" filter is applied
+  if(activeFilter!=='all'){
+    catTabs.forEach(function(t){t.classList.remove('active');});
+  }else{
+    updateActiveTab();
+  }
+}
+
+/* ===== QUICK CATEGORY TABS — click to scroll + scroll spy ===== */
+var catTabs=$$('.cat-tab');
+var catSections=['cat1-section','cat2-section','cat3-section','cat4-section','cat5-section','cat6-section'].map(function(id){return $('#'+id);});
+
+// Click → smooth scroll to the section
+catTabs.forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var targetId=tab.getAttribute('data-target');
+    var target=$('#'+targetId);
+    if(!target)return;
+    // Account for sticky tabs bar height
+    var tabsBar=$('#catTabsBar');
+    var offset=target.getBoundingClientRect().top+window.pageYOffset-(tabsBar.offsetHeight+20);
+    window.scrollTo({top:offset,behavior:'smooth'});
+  });
+});
+
+// Scroll spy — highlight active tab based on scroll position
+function updateActiveTab(){
+  // If a filter is active and hides categories, skip scroll spy
+  if(activeFilter!=='all')return;
+  var tabsBar=$('#catTabsBar');
+  var tabsBottom=tabsBar.getBoundingClientRect().bottom;
+  var currentIdx=-1;
+  for(var i=0;i<catSections.length;i++){
+    if(!catSections[i])continue;
+    // skip hidden (filtered-out) sections
+    if(catSections[i].style.display==='none')continue;
+    var rect=catSections[i].getBoundingClientRect();
+    if(rect.top<=tabsBottom+80){currentIdx=i;}
+    else break;
+  }
+  catTabs.forEach(function(t,i){t.classList.toggle('active',i===currentIdx);});
+  // Auto-scroll the active tab into view in the horizontal scroller
+  if(currentIdx>=0){
+    var activeTab=catTabs[currentIdx];
+    var scrollWrap=$('#catTabsScroll');
+    var tabRect=activeTab.getBoundingClientRect();
+    var wrapRect=scrollWrap.getBoundingClientRect();
+    if(tabRect.left<wrapRect.left||tabRect.right>wrapRect.right){
+      activeTab.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+    }
+  }
+}
+// Throttle scroll listener
+var scrollTimer=null;
+window.addEventListener('scroll',function(){
+  if(scrollTimer)return;
+  scrollTimer=setTimeout(function(){updateActiveTab();scrollTimer=null;},60);
+},{passive:true});
+updateActiveTab();
+</script>
+</body>
+</html>
