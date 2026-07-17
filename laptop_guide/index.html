@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل اختيار اللابتوب للطالب الجامعي | منصة مُعين التعليمية</title>
+<meta name="description" content="دليلك الشامل لاختيار لابتوب الجامعة: المواصفات التقنية، التوصيات حسب التخصص، الأجهزة المقترحة بميزانيات مختلفة، ومتطلبات الاختبارات الإلكترونية الحضورية للجامعة السعودية الإلكترونية SEU.">
+
+<link rel="icon" href="assets/images/footer_logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --bg-card: #FFFFFF;
+  --bg-dark: #012727;
+  --bg-dark-2: #0A2C2C;
+  --bg-section: #F2F7F8;
+  --btn-bg: #074842;
+  --btn-bg-hover: #053631;
+  --desc-color: #5F6C70;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-glow: #E5C158;
+  --gold-text: #be9632;
+  --gray-light: #E2E8F0;
+  --icon-circle-bg: #EBF4F0;
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --title-color: #0B3B3C;
+  --transition: 0.3s ease;
+  --white: #FFFFFF;
+
+  --warning-red: #e63946;
+  --warning-red-dark: #c53030;
+  --info-blue: #2b6cb0;
+  --success-green: #059669;
+  --orange: #ea580c;
+  --cs-dark: #1a202c;
+  --magenta: #b83280;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.page-wrapper { width: 100%; max-width: 1280px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+
+/* ===== HEADER ===== */
+.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.header-logo-moaeen img:hover { transform: scale(1.05); }
+.header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+.pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-star { color: var(--gold); font-size: 18px; }
+.header-seu-box { display: flex; align-items: center; justify-content: center; }
+.seu-rect { display: flex; align-items: center; gap: 12px; }
+.seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
+.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+.mobile-pill .pill-text { font-size: 12px; }
+@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
+
+/* ===== BACK BAR ===== */
+.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
+.back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.back-btn i { font-size: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+.breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+.breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+.breadcrumb i { font-size: 10px; }
+
+/* ===== HERO ===== */
+.hero { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.92) 0%, rgba(10,44,44,0.88) 100%); border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -40%; left: -10%; width: 50%; height: 200%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); z-index: 1; }
+.hero-badge i { font-size: 12px; }
+.hero h1 { font-size: 26px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 880px; z-index: 1; }
+.hero h1 .gold { color: var(--gold); }
+.hero p { font-size: 14px; color: rgba(255,255,255,0.85); max-width: 780px; line-height: 1.8; z-index: 1; }
+@media (min-width: 768px) { .hero h1 { font-size: 30px; } .hero p { font-size: 15px; } }
+
+/* ===== SHARE BAR ===== */
+.share-bar { width: 100%; display: flex; align-items: center; justify-content: flex-start; gap: 12px; flex-wrap: wrap; position: relative; }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
+.share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
+.share-btn .share-ico { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
+.share-current-hash { font-size: 12px; color: var(--desc-color); background: var(--white); padding: 6px 14px; border-radius: 50px; border: 1px dashed var(--gray-light); display: inline-flex; align-items: center; gap: 6px; }
+.share-current-hash i { color: var(--gold); font-size: 11px; }
+.share-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); padding: 10px; display: none; flex-direction: column; gap: 6px; min-width: 220px; z-index: 60; border: 1px solid var(--gray-light); }
+.share-dropdown.open { display: flex; animation: dropIn 0.2s ease; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.share-dropdown-title { font-size: 11px; font-weight: 700; color: var(--desc-color); padding: 4px 10px; }
+.share-option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; transition: var(--transition); }
+.share-option:hover { transform: translateX(-3px); }
+.share-option i { font-size: 18px; width: 24px; text-align: center; }
+.share-option.whatsapp { background: #f0fdf4; color: #047857; }
+.share-option.whatsapp:hover { background: #dcfce7; }
+.share-option.telegram { background: #eff6ff; color: #1d4ed8; }
+.share-option.telegram:hover { background: #dbeafe; }
+
+/* ===== TAB NAVIGATION ===== */
+.tabs-nav { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: sticky; top: 12px; z-index: 50; }
+.tab-card { background: var(--white); border-radius: 16px; padding: 16px 14px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; cursor: pointer; transition: var(--transition); border: 2px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+.tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.tab-card.active { background: linear-gradient(135deg, var(--btn-bg) 0%, var(--bg-dark-2) 100%); border-color: var(--gold); color: var(--white); box-shadow: 0 8px 24px rgba(7,72,66,0.3); }
+.tab-card.active .tab-icon { background: rgba(212,175,55,0.2); }
+.tab-card.active .tab-icon i { color: var(--gold-glow); }
+.tab-card.active .tab-title { color: var(--white); }
+.tab-card.active .tab-desc { color: rgba(255,255,255,0.8); }
+.tab-card.active .tab-num { background: var(--gold); color: var(--bg-dark); }
+.tab-num { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg-section); color: var(--desc-color); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.tab-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.tab-icon i { font-size: 24px; color: var(--btn-bg); transition: var(--transition); }
+.tab-title { font-size: 14px; font-weight: 800; color: var(--title-color); line-height: 1.3; }
+.tab-desc { font-size: 11px; color: var(--desc-color); line-height: 1.5; }
+@media (max-width: 768px) {
+  .tabs-nav { grid-template-columns: 1fr; position: static; }
+  .tab-card { flex-direction: row; text-align: right; padding: 12px 16px; gap: 14px; }
+  .tab-card .tab-icon { width: 44px; height: 44px; flex-shrink: 0; }
+  .tab-card .tab-icon i { font-size: 20px; }
+  .tab-card .tab-text-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; flex: 1; }
+  .tab-card .tab-title { font-size: 14px; }
+  .tab-card .tab-desc { font-size: 11px; }
+  .tab-card .tab-num { top: 50%; right: auto; left: 12px; transform: translateY(-50%); }
+}
+
+/* ===== TAB PANELS ===== */
+.tab-panel { width: 100%; display: none; flex-direction: column; gap: 18px; animation: fadeUp 0.4s ease; }
+.tab-panel.active { display: flex; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== SECTION TITLES ===== */
+.section-head { background: var(--white); border-radius: var(--radius-card); padding: 22px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 8px; }
+.section-head h2 { font-size: 20px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.section-head h2 i { color: var(--gold); font-size: 22px; }
+.section-head .head-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.section-head .head-badge.important { background: #fef2f2; color: var(--warning-red-dark); border-color: #fecaca; }
+.section-head .head-note { font-size: 12px; color: var(--desc-color); font-weight: 600; }
+.section-head h3 { font-size: 16px; font-weight: 800; color: var(--title-color); }
+.section-head p { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
+
+/* ===== WARNING / NOTICE BOXES ===== */
+.notice-box { width: 100%; border-radius: var(--radius-card); padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+.notice-box.warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #fde68a; }
+.notice-box.critical { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #fecaca; }
+.notice-box.info { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #bae6fd; }
+.notice-icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+.notice-box.warning .notice-icon { color: #d97706; }
+.notice-box.critical .notice-icon { color: var(--warning-red); animation: shake 1.5s infinite; }
+@keyframes shake { 0%, 100% { transform: rotate(0); } 20%, 60% { transform: rotate(-8deg); } 40%, 80% { transform: rotate(8deg); } }
+.notice-body { flex: 1; }
+.notice-body .notice-title { font-size: 15px; font-weight: 800; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.notice-box.critical .notice-body .notice-title { color: var(--warning-red-dark); }
+.notice-body .notice-text { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
+.notice-body .notice-text strong { color: var(--title-color); font-weight: 800; }
+.notice-examples { margin-top: 10px; background: rgba(255,255,255,0.6); padding: 8px 14px; border-radius: 8px; display: inline-block; font-size: 12px; font-weight: 700; color: var(--warning-red-dark); border: 1px dashed #fca5a5; }
+
+/* ===== CAPSULE BUTTONS ===== */
+.capsule-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); cursor: pointer; text-align: center; }
+.capsule-btn.gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); box-shadow: 0 4px 14px rgba(212,175,55,0.3); }
+.capsule-btn.gold:hover { background: var(--gold-glow); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+.capsule-btn.teal { background: var(--btn-bg); color: var(--white); box-shadow: 0 4px 14px rgba(7,72,66,0.25); }
+.capsule-btn.teal:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(7,72,66,0.35); }
+.capsule-btn.red { background: var(--warning-red); color: var(--white); box-shadow: 0 4px 14px rgba(230,57,70,0.3); }
+.capsule-btn.red:hover { background: var(--warning-red-dark); transform: translateY(-2px); }
+.capsule-btn i { font-size: 13px; }
+.capsule-wrap { display: flex; justify-content: center; padding: 4px; }
+
+/* ===== SPEC SECTIONS (Tab 1) ===== */
+.specs-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .specs-grid { grid-template-columns: 1fr 1fr; } }
+.spec-card { background: var(--white); border-radius: var(--radius-card); padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: var(--transition); border: 1px solid var(--gray-light); }
+.spec-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.1); }
+.spec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-light); }
+.spec-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.spec-icon i { font-size: 22px; color: var(--btn-bg); }
+.spec-title { font-size: 16px; font-weight: 800; color: var(--title-color); }
+.spec-rows { display: flex; flex-direction: column; gap: 8px; }
+.spec-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; font-size: 13px; flex-wrap: wrap; }
+.spec-row.recommended { background: #f0fdfa; border-right: 3px solid var(--success-green); }
+.spec-row.minimum { background: #f8fafc; border-right: 3px solid var(--info-blue); }
+.spec-row.reject { background: #fef2f2; border-right: 3px solid var(--warning-red); color: var(--warning-red-dark); }
+.spec-row .row-label { font-weight: 700; color: var(--title-color); }
+.spec-row.reject .row-label { color: var(--warning-red-dark); }
+.spec-row .row-val { color: var(--desc-color); font-weight: 600; }
+.spec-row .tag { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; margin-right: auto; }
+.tag.rec { background: #d1fae5; color: #047857; }
+.tag.min { background: #dbeafe; color: #1e40af; }
+.tag.no { background: #fecaca; color: #b91c1c; }
+.spec-row i.check { color: var(--success-green); }
+.spec-row i.cross { color: var(--warning-red); }
+
+/* ===== BRAND CARDS (Tab 1) ===== */
+.brand-section { background: var(--white); border-radius: var(--radius-card); padding: 20px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.brand-section-title { font-size: 16px; font-weight: 800; color: var(--title-color); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.brand-section-title .medal { font-size: 20px; }
+.brands-list { display: flex; flex-direction: column; gap: 10px; }
+.brand-row { background: var(--bg-section); border-radius: 14px; overflow: hidden; border: 1px solid var(--gray-light); transition: var(--transition); }
+.brand-row:hover { border-color: var(--gold); }
+.brand-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; }
+.brand-rank { width: 30px; height: 30px; border-radius: 50%; background: var(--btn-bg); color: var(--white); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.brand-name { font-size: 16px; font-weight: 800; color: var(--title-color); flex: 1; }
+.brand-stars { color: var(--gold); font-size: 13px; letter-spacing: 1px; }
+.brand-toggle { display: flex; align-items: center; gap: 8px; }
+.brand-toggle .info-i { color: var(--info-blue); font-size: 16px; cursor: help; }
+.brand-toggle .arrow-i { color: var(--desc-color); font-size: 14px; transition: transform 0.3s; }
+.brand-row.open .brand-toggle .arrow-i { transform: rotate(180deg); }
+.brand-details { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.brand-row.open .brand-details { max-height: 400px; }
+.brand-details-inner { padding: 0 16px 16px; font-size: 13px; color: var(--desc-color); line-height: 1.8; border-top: 1px dashed var(--gray-light); padding-top: 12px; }
+.brand-details-inner strong { color: var(--title-color); }
+
+/* ===== EXAM NOTICE BOX (Tab 1) ===== */
+.exam-notice { background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%); border: 2px solid #fecaca; border-radius: var(--radius-card); padding: 22px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; box-shadow: 0 4px 18px rgba(230,57,70,0.08); }
+.exam-notice-title { font-size: 16px; font-weight: 800; color: var(--warning-red-dark); display: flex; align-items: center; gap: 8px; }
+.exam-notice-note { font-size: 13px; color: var(--desc-color); line-height: 1.8; max-width: 700px; }
+.exam-notice-note .tag { font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 10px; background: var(--warning-red); color: var(--white); margin-right: 6px; }
+
+/* ===== SUMMARY CARD (Tab 1) ===== */
+.summary-card { background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 8px 28px rgba(0,0,0,0.2); border: 1px solid rgba(212,175,55,0.3); }
+.summary-title { font-size: 17px; font-weight: 800; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.summary-list { display: flex; flex-direction: column; gap: 10px; }
+.summary-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.92); line-height: 1.7; }
+.summary-item .check { color: #34d399; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+.summary-item strong { color: var(--gold-glow); }
+
+/* ===== SPECIALTY CARDS (Tab 2) ===== */
+.specialty-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 900px) { .specialty-grid { grid-template-columns: 1fr 1fr; } }
+.specialty-card { background: var(--white); border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); transition: var(--transition); display: flex; flex-direction: column; }
+.specialty-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+.specialty-header { padding: 18px 20px; color: var(--white); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.specialty-header-text h3 { font-size: 16px; font-weight: 800; margin-bottom: 3px; }
+.specialty-header-text p { font-size: 11px; opacity: 0.88; font-weight: 500; }
+.specialty-header-icon { font-size: 28px; opacity: 0.9; }
+.specialty-card.theory .specialty-header { background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%); }
+.specialty-card.admin .specialty-header { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+.specialty-card.health .specialty-header { background: linear-gradient(135deg, #ed8936 0%, #f6ad55 100%); }
+.specialty-card.cs .specialty-header { background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); }
+.specialty-card.lang .specialty-header { background: linear-gradient(135deg, #d53f8c 0%, #ed64a6 100%); }
+.specialty-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1; }
+.spec-sub { font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.spec-sub i { font-size: 13px; }
+.specialty-card.theory .spec-sub i { color: var(--info-blue); }
+.specialty-card.admin .spec-sub i { color: var(--success-green); }
+.specialty-card.health .spec-sub i { color: var(--orange); }
+.specialty-card.cs .spec-sub i { color: var(--cs-dark); }
+.specialty-card.lang .spec-sub i { color: var(--magenta); }
+.spec-text { font-size: 12.5px; color: var(--desc-color); line-height: 1.8; text-align: justify; }
+.rec-box { border: 1px solid var(--gray-light); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 13px; gap: 8px; }
+.specialty-card.theory .rec-box { background: #ebf8ff; border-color: #bee3f8; color: var(--info-blue); }
+.specialty-card.admin .rec-box { background: #e6fffa; border-color: #b2f5ea; color: var(--success-green); }
+.specialty-card.health .rec-box { background: #fff7ed; border-color: #fed7aa; color: var(--orange); }
+.specialty-card.cs .rec-box { background: #edf2f7; border-color: #e2e8f0; color: var(--cs-dark); }
+.specialty-card.lang .rec-box { background: #fff5f7; border-color: #fed7e2; color: var(--magenta); }
+.rec-box i { color: var(--success-green); }
+.specs-table { background: var(--bg-section); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+.spec-table-row { display: flex; justify-content: space-between; font-size: 12px; padding-bottom: 5px; border-bottom: 1px dashed var(--gray-light); gap: 8px; }
+.spec-table-row:last-child { border-bottom: none; padding-bottom: 0; }
+.spec-table-row .stl { color: var(--desc-color); font-weight: 600; }
+.spec-table-row .stv { color: var(--title-color); font-weight: 700; text-align: left; }
+.tip-box { border-radius: 10px; padding: 12px 14px; font-size: 12px; line-height: 1.7; border-right: 4px solid; }
+.specialty-card.theory .tip-box { background: #fffaf0; border-right-color: #dd6b20; color: #7b341e; }
+.specialty-card.admin .tip-box { background: #f0fff4; border-right-color: #38a169; color: #22543d; }
+.specialty-card.health .tip-box { background: #fff7ed; border-right-color: #ea580c; color: #7c2d12; }
+.specialty-card.cs .tip-box { background: #ebf8ff; border-right-color: #3182ce; color: #2a4365; }
+.specialty-card.lang .tip-box { background: #fff5f7; border-right-color: #d53f8c; color: #702459; }
+.tip-box strong { display: block; margin-bottom: 4px; font-weight: 800; }
+
+/* ===== IT/CS ADVICE CARD (Tab 2) ===== */
+.it-advice-card { background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%); border-radius: var(--radius-card); padding: 26px; box-shadow: 0 8px 28px rgba(0,0,0,0.2); border: 1px solid rgba(212,175,55,0.3); }
+.it-advice-title { font-size: 18px; font-weight: 800; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.it-advice-title i { font-size: 22px; }
+.it-advice-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 768px) { .it-advice-grid { grid-template-columns: 1fr 1fr; } }
+.it-advice-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 10px; }
+.it-advice-item i { color: var(--gold); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.it-advice-item .iai-text { font-size: 12.5px; color: rgba(255,255,255,0.9); line-height: 1.7; }
+.it-advice-item .iai-text strong { color: var(--gold-glow); }
+.it-advice-avoid { background: rgba(230,57,70,0.12); border: 1px solid rgba(230,57,70,0.35); border-radius: 12px; padding: 14px 16px; margin-top: 14px; display: flex; align-items: flex-start; gap: 10px; }
+.it-advice-avoid i { color: #fca5a5; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.it-advice-avoid .iai-text { font-size: 12.5px; color: #fecaca; line-height: 1.7; }
+.it-advice-avoid .iai-text strong { color: #fee2e2; }
+
+/* ===== FILTER BAR (Tab 3) ===== */
+.laptop-filter { width: 100%; background: var(--white); border-radius: 16px; padding: 16px 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 12px; }
+.laptop-filter-title { font-size: 14px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 8px; }
+.laptop-filter-title i { color: var(--gold); }
+.laptop-filter-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.lf-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px; border: 1.5px solid var(--gray-light); background: var(--white); color: var(--desc-color); font-size: 12px; font-weight: 700; transition: var(--transition); cursor: pointer; }
+.lf-btn:hover { border-color: var(--gold); color: var(--btn-bg); }
+.lf-btn.active { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); box-shadow: 0 2px 8px rgba(7,72,66,0.25); }
+.lf-btn i { font-size: 11px; }
+
+/* ===== LAPTOP CARDS (Tab 3) ===== */
+.laptop-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .laptop-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .laptop-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.laptop-card { background: var(--white); border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); transition: var(--transition); display: flex; flex-direction: column; }
+.laptop-card:hover { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(0,0,0,0.13); }
+.laptop-card.hidden { display: none; }
+.laptop-header { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 18px; border-bottom: 1px solid var(--gray-light); position: relative; }
+.laptop-badge { position: absolute; top: 14px; left: 14px; padding: 4px 11px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+.laptop-badge.budget { background: #d1fae5; color: #047857; }
+.laptop-badge.medium { background: #dbeafe; color: #1e40af; }
+.laptop-badge.pro { background: #f3e8ff; color: #7c3aed; }
+.laptop-brand { font-size: 11px; color: var(--btn-bg); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.laptop-name { font-size: 17px; font-weight: 800; color: var(--title-color); line-height: 1.3; }
+.laptop-body { padding: 16px 18px; flex-grow: 1; }
+.laptop-specs { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.laptop-specs li { display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; color: var(--title-color); line-height: 1.5; }
+.laptop-specs li i { color: var(--btn-bg); width: 16px; text-align: center; flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+.laptop-price { display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid var(--gray-light); padding: 14px 18px; background: #fcfcfd; gap: 8px; }
+.price-label { font-size: 11px; color: var(--desc-color); }
+.price-value { font-size: 18px; font-weight: 800; color: var(--title-color); }
+.laptop-footer { padding: 12px 18px; background: #f8fafc; border-top: 1px solid var(--gray-light); }
+.buy-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px; background: #ff9900; color: #111; border-radius: var(--radius-btn); font-weight: 800; font-size: 13px; transition: var(--transition); }
+.buy-btn:hover { background: #e68a00; transform: translateY(-1px); }
+.buy-btn i { font-size: 15px; }
+.no-results { text-align: center; padding: 40px 20px; color: var(--desc-color); display: none; background: var(--white); border-radius: var(--radius-card); }
+.no-results.show { display: block; }
+.no-results i { font-size: 44px; opacity: 0.3; margin-bottom: 12px; }
+.no-results p { font-size: 14px; }
+
+/* ===== OFFICIAL SOURCE CAPSULE (Tab 4) ===== */
+.official-source { background: var(--white); border-radius: var(--radius-card); padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
+.official-source-text { flex: 1; min-width: 220px; font-size: 13px; color: var(--desc-color); font-weight: 600; }
+.official-source-text strong { color: var(--title-color); }
+
+/* ===== EXAM REQUIREMENT CARDS (Tab 4) ===== */
+.req-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .req-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.req-card { background: var(--white); border-radius: var(--radius-card); border: 1px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 22px; transition: var(--transition); display: flex; flex-direction: column; gap: 14px; }
+.req-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,0.1); }
+.req-card-icon { font-size: 32px; color: var(--btn-bg); }
+.req-card-icon.red { color: var(--warning-red); }
+.req-card h3 { font-size: 15px; color: var(--title-color); font-weight: 800; }
+.req-card .req-desc { font-size: 12px; color: var(--desc-color); }
+.req-spec-box { background: var(--bg-section); border-radius: 10px; padding: 10px 14px; border-right: 4px solid var(--info-blue); }
+.req-spec-box.recommended { border-right-color: var(--success-green); background: #f0fdfa; }
+.req-spec-box.red { border-right-color: var(--warning-red); background: #fef2f2; }
+.req-spec-box span { display: block; font-size: 11px; color: var(--desc-color); font-weight: 700; margin-bottom: 2px; }
+.req-spec-box p { font-size: 13px; font-weight: 800; color: var(--title-color); }
+
+/* ===== CHECKLIST (Tab 4) ===== */
+.checklist-card { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
+.checklist-title { font-size: 17px; font-weight: 800; color: var(--title-color); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.checklist-title i { color: var(--success-green); }
+.checklist-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .checklist-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.checklist-item { background: var(--bg-section); padding: 16px; border-radius: 12px; border-right: 4px solid var(--btn-bg); }
+.checklist-item.warn { border-right-color: var(--warning-red); }
+.checklist-item.info { border-right-color: var(--info-blue); }
+.checklist-item h4 { font-size: 13.5px; font-weight: 800; color: var(--title-color); margin-bottom: 7px; display: flex; align-items: center; gap: 8px; }
+.checklist-item h4 .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--btn-bg); color: var(--white); font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.checklist-item p { font-size: 12px; color: var(--desc-color); line-height: 1.7; }
+
+/* ===== EXAM IMAGE ===== */
+.exam-image-wrap { width: 100%; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.1); background: var(--white); }
+.exam-image-wrap img { width: 100%; height: auto; display: block; }
+.exam-image-caption { padding: 12px 16px; font-size: 12px; color: var(--desc-color); text-align: center; background: var(--bg-section); font-weight: 600; }
+
+/* ===== CONTACT CAPSULE (Tab 4) ===== */
+.contact-capsule { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border-radius: var(--radius-card); padding: 20px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
+.contact-capsule .cc-text { font-size: 15px; font-weight: 800; color: var(--white); }
+.contact-capsule .cc-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: #075E54; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); }
+.contact-capsule .cc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+.contact-capsule .cc-btn i { font-size: 16px; }
+
+/* ===== FOOTER ===== */
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
+.footer-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-brand-name { font-size: 16px; font-weight: 700; color: var(--gold); }
+.footer-brand-sub { font-size: 11px; color: rgba(255,255,255,0.8); }
+.footer-whatsapp { display: flex; align-items: center; gap: 8px; background: #25D366; color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; transition: var(--transition); }
+.footer-whatsapp:hover { background: #1fae54; transform: translateY(-2px); }
+.footer-whatsapp i { font-size: 16px; }
+.footer-social { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.footer-social-icons { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); color: var(--white); }
+.social-link:hover { transform: scale(1.1); }
+.social-link.snapchat { background: #FFFC00; color: #000; }
+.social-link.telegram { background: #0088CC; }
+.social-link.x { background: #000; }
+.social-link i { font-size: 16px; }
+.footer-phone { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gold); direction: ltr; }
+.footer-phone i { font-size: 14px; }
+.footer-divider { height: 1px; width: 100%; background: rgba(212,175,55,0.3); margin: 20px 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.footer-copy { color: rgba(255,255,255,0.7); }
+.footer-slogan { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); }
+.footer-slogan .star { color: var(--gold); }
+.footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
+.footer-made .heart { color: #10b981; }
+@media (max-width: 640px) { .footer-top { flex-direction: column; align-items: stretch; text-align: center; } .footer-brand { justify-content: center; } .footer-social { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
+  </div>
+
+  <!-- ===== BACK BAR ===== -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current">دليل اختيار اللابتوب</span>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-laptop"></i> دليل اختيار اللابتوب - مُعين</div>
+    <h1>دليلك الشامل لاختيار <span class="gold">لابتوب الجامعة</span></h1>
+    <p>المواصفات التقنية، التوصيات حسب التخصص، الأجهزة المقترحة، ومتطلبات الاختبارات الإلكترونية — كل ما تحتاجه في مكان واحد.</p>
+  </section>
+
+  <!-- ===== SHARE BAR ===== -->
+  <div class="share-bar">
+    <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
+      <svg class="share-ico" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
+      <span>مشاركة الصفحة</span>
+    </button>
+    <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">#tab1 — المواصفات العامة</span></span>
+    <div class="share-dropdown" id="shareDropdown" role="menu">
+      <div class="share-dropdown-title">شارك عبر:</div>
+      <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
+        <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+      </a>
+      <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
+        <i class="fab fa-telegram"></i> <span>تيليجرام</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== TAB NAVIGATION ===== -->
+  <nav class="tabs-nav" id="tabsNav" aria-label="تبويبات دليل اللابتوب">
+    <button class="tab-card active" data-tab="tab1" role="tab" aria-selected="true">
+      <span class="tab-num">1</span>
+      <span class="tab-icon"><i class="fas fa-list-check"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">المواصفات والمتطلبات العامة</span><span class="tab-desc">الحد الأدنى لأي طالب جامعي</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab2" role="tab" aria-selected="false">
+      <span class="tab-num">2</span>
+      <span class="tab-icon"><i class="fas fa-graduation-cap"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">توصيات مخصصة حسب التخصص</span><span class="tab-desc">هام لطلاب IT و CS والجرافيك</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab3" role="tab" aria-selected="false">
+      <span class="tab-num">3</span>
+      <span class="tab-icon"><i class="fas fa-laptop"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">قائمة الأجهزة المقترحة والميزانيات</span><span class="tab-desc">أجهزة متاحة في السوق السعودي</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab4" role="tab" aria-selected="false">
+      <span class="tab-num">4</span>
+      <span class="tab-icon"><i class="fas fa-shield-halved"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">شروط ومتطلبات أجهزة الاختبارات</span><span class="tab-desc">هام الإطلاع قبل الاختبارات</span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ==================== TAB 1: GENERAL SPECS ================== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel active" id="tab1" role="tabpanel">
+
+    <!-- Warning notice -->
+    <div class="notice-box warning">
+      <div class="notice-icon"><i class="fas fa-circle-exclamation"></i></div>
+      <div class="notice-body">
+        <div class="notice-title">⛔️ تنويه هام ⚠️</div>
+        <p class="notice-text">طلاب التخصصات التقنية (حاسب آلي - تقنية معلومات - برمجة...) والجرافيكس: متطلبات الأجهزة التي تحتاجونها <strong>عالية</strong>، المتطلبات العامة لا تعنيكم....</p>
+      </div>
+    </div>
+
+    <div class="capsule-wrap">
+      <button class="capsule-btn gold" onclick="switchTab('tab2')">
+        <i class="fas fa-location-dot"></i> مواصفات عالية موصى بها للتخصصات التقنية & جرافيك <i class="fas fa-location-dot"></i>
+      </button>
+    </div>
+
+    <!-- Section title -->
+    <div class="section-head">
+      <h2><i class="fas fa-list-check"></i> المواصفات والمتطلبات العامة <span class="head-badge"><i class="fas fa-circle-check"></i> الحد الأدنى</span></h2>
+      <span class="head-note">لا تشمل طلاب التخصصات التقنية IT - CS & .. etc & جرافيك</span>
+    </div>
+
+    <!-- Specs grid -->
+    <div class="specs-grid">
+
+      <!-- CPU -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fas fa-microchip"></i></div>
+          <div class="spec-title">المعالج (CPU)</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">i7 / i5 — جيل G [10] أو [11] (موصى)</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">i5</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+          <div class="spec-row reject">
+            <i class="fas fa-times cross"></i>
+            <span class="row-label">غير مقبول:</span><span class="row-val">أقل من i5</span>
+            <span class="tag no">مرفوض</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAM -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fas fa-memory"></i></div>
+          <div class="spec-title">الذاكرة العشوائية (RAM)</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">4GB / 8GB فما فوق (موصى)</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">4GB</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+          <div class="spec-row reject">
+            <i class="fas fa-times cross"></i>
+            <span class="row-label">غير مقبول:</span><span class="row-val">أقل من 4GB</span>
+            <span class="tag no">مرفوض</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Storage -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fas fa-hard-drive"></i></div>
+          <div class="spec-title">التخزين (Storage)</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">السعة: 256GB فما فوق</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row recommended">
+            <i class="fas fa-check check"></i>
+            <span class="row-label">النوع: SSD</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row reject">
+            <i class="fas fa-times cross"></i>
+            <span class="row-label">HDD</span><span class="row-val">(بطيء جداً)</span>
+            <span class="tag no">مرفوض</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">SSD 256GB</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fas fa-display"></i></div>
+          <div class="spec-title">الشاشة (Screen)</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">الحجم: 13.5" - 15"</span><span class="row-val">(يُفضل 14")</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row recommended">
+            <span class="row-label">الدقة: 1366×768 أو أعلى</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">1280×720</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OS -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fas fa-desktop"></i></div>
+          <div class="spec-title">نظام التشغيل (OS) — Windows</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">Windows 10 أو 11</span><span class="row-val">(مفضل)</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">Windows 10</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+          <div class="spec-row reject">
+            <i class="fas fa-times cross"></i>
+            <span class="row-label">غير مقبول:</span><span class="row-val">أقل من 10 و Win 10 S غير مدعوم</span>
+            <span class="tag no">مرفوض</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OS Mac -->
+      <div class="spec-card">
+        <div class="spec-head">
+          <div class="spec-icon"><i class="fab fa-apple"></i></div>
+          <div class="spec-title">نظام التشغيل — Mac</div>
+        </div>
+        <div class="spec-rows">
+          <div class="spec-row recommended">
+            <span class="row-label">macOS 11.5.2 Big Sur</span>
+            <span class="tag rec">موصى</span>
+          </div>
+          <div class="spec-row minimum">
+            <span class="row-label">الحد الأدنى:</span><span class="row-val">macOS 10.15 Catalina</span>
+            <span class="tag min">الحد الأدنى</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Brand recommendations -->
+    <div class="brand-section">
+      <div class="brand-section-title"><span class="medal">🥇</span> الفئة الممتازة</div>
+      <div class="brands-list">
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">1</span>
+            <span class="brand-name">HP</span>
+            <span class="brand-stars">⭐⭐⭐⭐⭐</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              انتشار واسع في السعودية. صيانة وقطع غيار متوفرة. متين. سعر مناسب. <strong>أفضل سلاسل:</strong> HP Pavilion, HP ProBook, HP EliteBook (مستعمل نظيف)
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">2</span>
+            <span class="brand-name">Dell</span>
+            <span class="brand-stars">⭐⭐⭐⭐⭐</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              من أقل الشركات تعرضاً للأعطال. جودة تصنيع ممتازة. قطع غيار متوفرة. أداء مستقر لسنوات. مناسب لجميع التخصصات.
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">3</span>
+            <span class="brand-name">Lenovo</span>
+            <span class="brand-stars">⭐⭐⭐⭐⭐</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              من أكثر الأجهزة تحملاً. لوحة مفاتيح ممتازة. مناسب للدراسة الطويلة. <strong>أفضل السلاسل:</strong> ThinkPad (أفضل متانة), IdeaPad (أفضل قيمة)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-section-title"><span class="medal">🥈</span> الفئة الممتازة مقابل السعر</div>
+      <div class="brands-list">
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">4</span>
+            <span class="brand-name">ASUS</span>
+            <span class="brand-stars">⭐⭐⭐⭐☆</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              قيمة ممتازة مقابل السعر. مواصفات قوية. تصميم جميل. <strong>أفضل سلاسل:</strong> Vivobook, Zenbook
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">5</span>
+            <span class="brand-name">Huawei</span>
+            <span class="brand-stars">⭐⭐⭐⭐☆</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              جودة تصنيع عالية. شاشة ممتازة. بطارية قوية. خفيف الوزن. <strong>أفضل سلاسل:</strong> MateBook D14, MateBook D16
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-section-title"><span class="medal">🥉</span> الفئة المتخصصة</div>
+      <div class="brands-list">
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">6</span>
+            <span class="brand-name">MSI</span>
+            <span class="brand-stars">⭐⭐⭐⭐☆</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              ممتاز للحاسب والبرمجة والألعاب. تبريد جيد. سعر أعلى قليلاً. <strong>خيار التخصصات التقنية والبرمجة:</strong> ليس الخيار الأول لتخصصات الإدارة أو القانون.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-section-title"><span class="medal">💰</span> الفئة الاقتصادية</div>
+      <div class="brands-list">
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">7</span>
+            <span class="brand-name">Acer</span>
+            <span class="brand-stars">⭐⭐⭐⭐</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              سعر منافس. مناسب للميزانيات المحدودة. جودة جيدة في الفئات المتوسطة. <strong>أفضل سلاسل:</strong> Aspire Lite, Aspire 5
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <div class="brand-head" onclick="toggleBrand(this)">
+            <span class="brand-rank">8</span>
+            <span class="brand-name">Microsoft Surface</span>
+            <span class="brand-stars">⭐⭐⭐⭐☆</span>
+            <span class="brand-toggle"><i class="fas fa-circle-info info-i" title="معلومات"></i><i class="fas fa-chevron-down arrow-i"></i></span>
+          </div>
+          <div class="brand-details">
+            <div class="brand-details-inner">
+              تصميم فاخر. شاشة ممتازة. خفيف جداً. <strong>لكن:</strong> مرتفع السعر. صيانته وترقيته أصعب. بعض موديلاته ليست الخيار الأفضل للاختبارات إذا كانت من فئة الأجهزة اللوحية أو القابلة للفصل.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Exam requirements notice -->
+    <div class="exam-notice">
+      <div class="exam-notice-title"><i class="fas fa-shield-halved"></i> شروط ومتطلبات الأجهزة لأداء الاختبارات الإلكترونية</div>
+      <p class="exam-notice-note"><span class="tag">هام</span> المتطلبات التقنية لأجهزة الكمبيوتر المستخدمة في الاختبارات الإلكترونية + قائمة فحص اللابتوب قبل يوم الاختبار الحضوري + نصائح وتعليمات الاختبارات والتعامل مع المشاكل التقنية <span class="tag" style="background:var(--btn-bg);">اطلع على</span></p>
+      <button class="capsule-btn red" onclick="switchTab('tab4')">
+        <i class="fas fa-arrow-left"></i> انتقل لتبويب متطلبات الاختبارات <i class="fas fa-shield-halved"></i>
+      </button>
+    </div>
+
+    <!-- Quick summary -->
+    <div class="summary-card">
+      <div class="summary-title"><i class="fas fa-clipboard-check"></i> خلاصة سريعة</div>
+      <div class="summary-list">
+        <div class="summary-item"><i class="fas fa-check check"></i><span><strong>معالج:</strong> i5 أو i7 (جيل 10 أو 11) – لا i3 ولا Pentium ولا Celeron ولا AMD</span></div>
+        <div class="summary-item"><i class="fas fa-check check"></i><span><strong>رام:</strong> 4 جيجابايت حد أدنى، 8 أو 16 أفضل</span></div>
+        <div class="summary-item"><i class="fas fa-check check"></i><span><strong>تخزين:</strong> SSD فقط – 256GB فما فوق (HDD بطيء جداً)</span></div>
+        <div class="summary-item"><i class="fas fa-check check"></i><span><strong>شاشة:</strong> 14 بوصة هي الأفضل</span></div>
+        <div class="summary-item"><i class="fas fa-check check"></i><span><strong>نظام التشغيل:</strong> Windows 10 أو 11</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- =================== TAB 2: SPECIALTIES ===================== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab2" role="tabpanel">
+
+    <div class="section-head">
+      <h2><i class="fas fa-graduation-cap"></i> توصيات مخصصة حسب التخصص</h2>
+      <div class="capsule-wrap" style="justify-content:flex-start;">
+        <span class="head-badge" style="background:#fef3c7;color:#b45309;"><i class="fas fa-circle-info"></i> هام لطلاب IT - CS & .. etc & جرافيك</span>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h3 style="font-size:18px;"><i class="fas fa-sliders" style="color:var(--gold);"></i> دليل ومواصفات الأجهزة الموصى بها حسب التخصصات الأكاديمية</h3>
+      <p>مواصفات وتوصيات مخصصة لكل تخصص جامعي مبنية على المتطلبات والاحتياجات الدراسية تراعي الأداء المطلوب، والاعتمادية، والقيمة مقابل السعر لضمان تجربة دراسية سلسة وموثوقة.</p>
+    </div>
+
+    <div class="specialty-grid">
+
+      <!-- 1. Theory / Law / Media -->
+      <div class="specialty-card theory">
+        <div class="specialty-header">
+          <div class="specialty-header-text">
+            <h3>العلوم النظرية، القانون، الإعلام</h3>
+            <p>دراسات نظرية، مراجعة مكثفة، وتصفح مستمر</p>
+          </div>
+          <div class="specialty-header-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        </div>
+        <div class="specialty-body">
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-briefcase"></i> المتطلبات والبرامج</div>
+            <p class="spec-text">برامج مكتبية (Office)، تصفح الإنترنت والأبحاث، عرض المحاضرات الرقمية، كتابة التقارير، وبرامج تحرير فيديو وصوت بسيطة.</p>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-laptop"></i> الفئة المقترحة والموصى بها</div>
+            <div class="rec-box"><span>HP Pavilion 15 أو Dell Inspiron 15</span><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-sliders"></i> المواصفات الفنية المطلوبة</div>
+            <div class="specs-table">
+              <div class="spec-table-row"><span class="stl">المعالج:</span><span class="stv">Intel i7 / AMD Ryzen 5</span></div>
+              <div class="spec-table-row"><span class="stl">الذاكرة (RAM):</span><span class="stv">8 جيجابايت</span></div>
+              <div class="spec-table-row"><span class="stl">التخزين (SSD):</span><span class="stv">512 جيجابايت</span></div>
+            </div>
+          </div>
+          <div class="tip-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> نصيحة مخصصة للطلاب:</strong>
+            اختر جهازاً متيناً وخفيف الوزن، شاشة مريحة للقراءة الطويلة.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Admin -->
+      <div class="specialty-card admin">
+        <div class="specialty-header">
+          <div class="specialty-header-text">
+            <h3>العلوم الإدارية</h3>
+            <p>تحليل إحصائي، بيانات مالية وإدارة مشاريع</p>
+          </div>
+          <div class="specialty-header-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        </div>
+        <div class="specialty-body">
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-briefcase"></i> المتطلبات والبرامج</div>
+            <p class="spec-text">Excel المتقدمة، SPSS، برامج المحاكاة الإدارية، ورش العمل الافتراضية.</p>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-laptop"></i> الفئة المقترحة والموصى بها</div>
+            <div class="rec-box"><span>HP Envy 15 أو Dell XPS 13/15</span><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-sliders"></i> المواصفات الفنية المطلوبة</div>
+            <div class="specs-table">
+              <div class="spec-table-row"><span class="stl">المعالج:</span><span class="stv">Intel i7 / AMD Ryzen 7</span></div>
+              <div class="spec-table-row"><span class="stl">الذاكرة (RAM):</span><span class="stv">16 جيجابايت</span></div>
+              <div class="spec-table-row"><span class="stl">التخزين (SSD):</span><span class="stv">512 جيجابايت</span></div>
+            </div>
+          </div>
+          <div class="tip-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> نصيحة مخصصة للطلاب:</strong>
+            ركز على البطارية الطويلة (+8 ساعات) والوزن الخفيف.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Health -->
+      <div class="specialty-card health">
+        <div class="specialty-header">
+          <div class="specialty-header-text">
+            <h3>المعلوماتية والصحة العامة</h3>
+            <p>تحليل البيانات الصحية، النمذجة والمحاكاة</p>
+          </div>
+          <div class="specialty-header-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        </div>
+        <div class="specialty-body">
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-briefcase"></i> المتطلبات والبرامج</div>
+            <p class="spec-text">برامج تحليل البيانات الصحية، المحاكاة والنمذجة الطبية، قواعد البيانات.</p>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-laptop"></i> الفئة المقترحة والموصى بها</div>
+            <div class="rec-box"><span>MacBook Pro 14 أو Dell XPS 15</span><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-sliders"></i> المواصفات الفنية المطلوبة</div>
+            <div class="specs-table">
+              <div class="spec-table-row"><span class="stl">المعالج:</span><span class="stv">Intel i7 أو Apple M2 Pro</span></div>
+              <div class="spec-table-row"><span class="stl">الذاكرة (RAM):</span><span class="stv">16 جيجابايت</span></div>
+              <div class="spec-table-row"><span class="stl">التخزين (SSD):</span><span class="stv">512 جيجابايت+</span></div>
+            </div>
+          </div>
+          <div class="tip-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> نصيحة مخصصة للطلاب:</strong>
+            يفضل كرت شاشة منفصل أو معالجات M المتطورة.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. CS / IT -->
+      <div class="specialty-card cs">
+        <div class="specialty-header">
+          <div class="specialty-header-text">
+            <h3>علوم الحاسب، IT، علوم البيانات</h3>
+            <p>البرمجة المتقدمة، الذكاء الاصطناعي، والشبكات</p>
+          </div>
+          <div class="specialty-header-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        </div>
+        <div class="specialty-body">
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-briefcase"></i> المتطلبات والبرامج</div>
+            <p class="spec-text">VS Code, IntelliJ, PyCharm، محاكاة الشبكات، Docker، Virtual Machines، AI.</p>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-laptop"></i> الفئة المقترحة والموصى بها</div>
+            <div class="rec-box"><span>MacBook Pro 14/16 أو Dell XPS 15</span><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-sliders"></i> المواصفات الفنية المطلوبة</div>
+            <div class="specs-table">
+              <div class="spec-table-row"><span class="stl">المعالج:</span><span class="stv">Intel i7/i9 أو Apple M2 Pro/Max</span></div>
+              <div class="spec-table-row"><span class="stl">الذاكرة (RAM):</span><span class="stv">16 - 32 جيجابايت</span></div>
+              <div class="spec-table-row"><span class="stl">التخزين (SSD):</span><span class="stv">512 جيجابايت - 1 تيرابايت</span></div>
+            </div>
+          </div>
+          <div class="tip-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> نصيحة مخصصة للطلاب:</strong>
+            أولوية قصوى لقوة المعالج وحجم الرام (16GB كحد أدنى).
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Language -->
+      <div class="specialty-card lang">
+        <div class="specialty-header">
+          <div class="specialty-header-text">
+            <h3>اللغة والترجمة</h3>
+            <p>صناعة المحتوى، الترجمة الفورية واللغويات</p>
+          </div>
+          <div class="specialty-header-icon"><i class="fa-solid fa-language"></i></div>
+        </div>
+        <div class="specialty-body">
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-briefcase"></i> المتطلبات والبرامج</div>
+            <p class="spec-text">MS Word، CAT Tools، المعاجم الرقمية.</p>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-laptop"></i> الفئة المقترحة والموصى بها</div>
+            <div class="rec-box"><span>MacBook Air M2 أو HP Pavilion 15</span><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div>
+            <div class="spec-sub"><i class="fa-solid fa-sliders"></i> المواصفات الفنية المطلوبة</div>
+            <div class="specs-table">
+              <div class="spec-table-row"><span class="stl">المعالج:</span><span class="stv">Intel i5 أو Apple M2</span></div>
+              <div class="spec-table-row"><span class="stl">الذاكرة (RAM):</span><span class="stv">8 جيجابايت</span></div>
+              <div class="spec-table-row"><span class="stl">التخزين (SSD):</span><span class="stv">256 جيجابايت+</span></div>
+            </div>
+          </div>
+          <div class="tip-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> نصيحة مخصصة للطلاب:</strong>
+            جهاز خفيف ونحيف، شاشة عالية الدقة.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Capsule + button to Tab 3 -->
+    <div class="section-head" style="align-items:center;">
+      <div class="capsule-wrap" style="justify-content:flex-start;">
+        <span class="head-badge" style="background:#f0fdfa;color:#047857;border-color:#a7f3d0;"><i class="fas fa-circle-info"></i> اطلع على بعض الأجهزة المقترحة والميزانيات</span>
+      </div>
+      <button class="capsule-btn teal" onclick="switchTab('tab3')" style="align-self:flex-start;">
+        <i class="fas fa-laptop"></i> قائمة الأجهزة المقترحة والميزانيات (اضغط هنا) <i class="fas fa-arrow-left"></i>
+      </button>
+    </div>
+
+    <!-- IT/CS Advice Card -->
+    <div class="it-advice-card">
+      <div class="it-advice-title"><i class="fas fa-triangle-exclamation"></i> توصيات هامة جداً لطلاب تقنية المعلومات IT / علوم الحاسب CS</div>
+      <div class="it-advice-grid">
+        <div class="it-advice-item">
+          <i class="fas fa-microchip"></i>
+          <span class="iai-text"><strong>أولوية المعالج متعدد الأنوية:</strong> اختر i7 أو i9 أو Apple M2 Pro/Max لتشغيل أدوات التطوير وبيئات المحاكاة بسلاسة.</span>
+        </div>
+        <div class="it-advice-item">
+          <i class="fas fa-memory"></i>
+          <span class="iai-text"><strong>الذاكرة 16GB كحد أدنى:</strong> يُفضل 32GB لطلاب الهندسة البرمجية وتشغيل الأجهزة الافتراضية (VMs).</span>
+        </div>
+        <div class="it-advice-item">
+          <i class="fas fa-hard-drive"></i>
+          <span class="iai-text"><strong>تخزين SSD سعة 512GB - 1TB:</strong> مساحة كافية لمشاريع البرمجة وبيئات Docker والأجهزة الافتراضية.</span>
+        </div>
+        <div class="it-advice-item">
+          <i class="fas fa-cubes"></i>
+          <span class="iai-text"><strong>دعم Docker والأجهزة الافتراضية:</strong> تأكد من دعم المعالج لتقنيات المحاكاة (Virtualization).</span>
+        </div>
+        <div class="it-advice-item">
+          <i class="fas fa-video"></i>
+          <span class="iai-text"><strong>كرت شاشة منفصل:</strong> اختياري لكن مفيد لطلاب تعلم الآلة (ML) والذكاء الاصطناعي (AI).</span>
+        </div>
+        <div class="it-advice-item">
+          <i class="fas fa-thumbs-up"></i>
+          <span class="iai-text"><strong>الأجهزة الموصى بها:</strong> MacBook Pro 14/16، Dell XPS 15، أو Lenovo ThinkPad.</span>
+        </div>
+      </div>
+      <div class="it-advice-avoid">
+        <i class="fas fa-ban"></i>
+        <span class="iai-text"><strong>تجنب تماماً:</strong> معالجات i3، Pentium، Celeron، والأجهزة بذاكرة 8GB فقط — فهي لن تواكب متطلبات تخصصات الحاسب.</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- =============== TAB 3: LAPTOP LIST & BUDGETS =============== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab3" role="tabpanel">
+
+    <div class="section-head">
+      <h2><i class="fas fa-laptop"></i> قائمة الأجهزة المقترحة والميزانيات</h2>
+      <h3 style="font-size:16px;margin-top:4px;"><i class="fas fa-tag" style="color:var(--gold);font-size:14px;"></i> قائمة مبسطة كدليل للأجهزة المرشحة والمتاحة في السوق السعودي لعام 2026</h3>
+      <p>نستعرض مجموعة من أجهزة اللابتوب المرشحة للطالب الجامعي SEU، مع خيارات تناسب مختلف التخصصات والميزانيات. قارن بين المواصفات والأسعار واختر الجهاز الذي يناسب تخصصك ويوفر أفضل أداء وقيمة مقابل السعر.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="laptop-filter">
+      <div class="laptop-filter-title"><i class="fas fa-sliders"></i> تصفية وترشيح الأجهزة بناءً على ميزانيتك:</div>
+      <div class="laptop-filter-btns">
+        <button class="lf-btn active" data-cat="all"><i class="fas fa-list"></i> كل الخيارات المتاحة</button>
+        <button class="lf-btn" data-cat="budget"><i class="fas fa-coins"></i> خيارات اقتصادية (أقل من 2500 ر.س)</button>
+        <button class="lf-btn" data-cat="medium"><i class="fas fa-scale-balanced"></i> أداء متوازن ودراسي (2500 - 3500 ر.س)</button>
+        <button class="lf-btn" data-cat="pro"><i class="fas fa-bolt"></i> أداء فائق وعالي لطلاب التقنية والحاسب</button>
+      </div>
+    </div>
+
+    <!-- Laptop grid -->
+    <div class="laptop-grid" id="laptopGrid">
+
+      <!-- 1. Huawei MateBook D 14 -->
+      <div class="laptop-card" data-category="medium">
+        <div class="laptop-header">
+          <span class="laptop-badge medium">متوسط متوازن</span>
+          <div class="laptop-brand">Huawei</div>
+          <div class="laptop-name">Huawei MateBook D 14</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 (الجيل 11 أو 12)</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت DDR4</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 14 بوصة FHD — وزن خفيف مثالي للتنقل</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">2,299 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=Huawei+MateBook+D+14+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Huawei MateBook D 16 -->
+      <div class="laptop-card" data-category="medium">
+        <div class="laptop-header">
+          <span class="laptop-badge medium">شاشة كبيرة ومتوسط</span>
+          <div class="laptop-brand">Huawei</div>
+          <div class="laptop-name">Huawei MateBook D 16</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 / i7 الجيل 12</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 16 جيجابايت</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت NVMe SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 16 بوصة IPS مريحة للعين</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">2,799 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=Huawei+MateBook+D+16+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. ASUS Vivobook 15 -->
+      <div class="laptop-card" data-category="budget">
+        <div class="laptop-header">
+          <span class="laptop-badge budget">اقتصادي مميز</span>
+          <div class="laptop-brand">ASUS</div>
+          <div class="laptop-name">ASUS Vivobook 15</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 (الجيل 11 أو 12)</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت DDR4 (قابلة للزيادة)</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 15.6 بوصة FHD مضادة للتوهج</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">1,999 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=ASUS+Vivobook+15+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. ASUS Vivobook 16 -->
+      <div class="laptop-card" data-category="medium">
+        <div class="laptop-header">
+          <span class="laptop-badge medium">متوسط متميز</span>
+          <div class="laptop-brand">ASUS</div>
+          <div class="laptop-name">ASUS Vivobook 16</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 / i7 الجيل 13</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 16 جيجابايت DDR4</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت PCIe SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 16 بوصة أبعاد 16:10 ممتازة للمذاكرة</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">2,899 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=ASUS+Vivobook+16+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Lenovo IdeaPad Slim 3 -->
+      <div class="laptop-card" data-category="budget">
+        <div class="laptop-header">
+          <span class="laptop-badge budget">اقتصادي عملي</span>
+          <div class="laptop-brand">Lenovo</div>
+          <div class="laptop-name">Lenovo IdeaPad Slim 3</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 (الجيل 12)</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت LPDDR5</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 15.6 بوصة FHD مريحة جداً</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">1,899 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=Lenovo+IdeaPad+Slim+3+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. MSI Modern 14/15 -->
+      <div class="laptop-card" data-category="budget">
+        <div class="laptop-header">
+          <span class="laptop-badge budget">اقتصادي نحيف</span>
+          <div class="laptop-brand">MSI</div>
+          <div class="laptop-name">MSI Modern 14 / 15</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 الجيل 11 أو 12</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت DDR4</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت NVMe SSD</span></li>
+            <li><i class="fas fa-feather-pointed"></i> <span>الهيكل: نحيف جداً وخفيف للغاية (1.4 كجم)</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">1,949 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=MSI+Modern+14+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. HP Laptop 15 -->
+      <div class="laptop-card" data-category="budget">
+        <div class="laptop-header">
+          <span class="laptop-badge budget">اقتصادي معتمد</span>
+          <div class="laptop-brand">HP</div>
+          <div class="laptop-name">HP Laptop 15</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 الجيل 12</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت DDR4</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت NVMe SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 15.6 بوصة FHD متكاملة</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">2,149 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=HP+15+Laptop+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. Acer Aspire Lite 16 -->
+      <div class="laptop-card" data-category="budget">
+        <div class="laptop-header">
+          <span class="laptop-badge budget">اقتصادي بشاشة كبيرة</span>
+          <div class="laptop-brand">Acer</div>
+          <div class="laptop-name">Acer Aspire Lite 16</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i5 الجيل 12</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 8 جيجابايت DDR4</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت SSD</span></li>
+            <li><i class="fas fa-display"></i> <span>الشاشة: 16 بوصة WUXGA دقة ممتازة جداً</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">1,799 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=Acer+Aspire+Lite+16+i5" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+      <!-- 9. MSI Cyborg 15 Gaming -->
+      <div class="laptop-card" data-category="pro">
+        <div class="laptop-header">
+          <span class="laptop-badge pro">قوة جبارة / تخصصات الحاسب</span>
+          <div class="laptop-brand">MSI</div>
+          <div class="laptop-name">MSI Cyborg 15 Gaming</div>
+        </div>
+        <div class="laptop-body">
+          <ul class="laptop-specs">
+            <li><i class="fas fa-microchip"></i> <span>المعالج: Intel Core i7 (الجيل 12 أو 13)</span></li>
+            <li><i class="fas fa-memory"></i> <span>الرام: 16 جيجابايت DDR5 (أسرع رامات بالسوق)</span></li>
+            <li><i class="fas fa-hard-drive"></i> <span>التخزين: 512 جيجابايت SSD NVMe PCIe 4.0</span></li>
+            <li><i class="fas fa-square-poll-vertical"></i> <span>كرت الشاشة: NVIDIA RTX 4050 (منفصل 6GB)</span></li>
+          </ul>
+        </div>
+        <div class="laptop-price">
+          <span class="price-label">السعر التقريبي:</span>
+          <span class="price-value">3,699 ر.س</span>
+        </div>
+        <div class="laptop-footer">
+          <a href="https://www.amazon.sa/s?k=MSI+Cyborg+15+i7" target="_blank" rel="noopener" class="buy-btn">
+            <i class="fab fa-amazon"></i> ابحث واشترِ من أمازون السعودية
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No results -->
+    <div class="no-results" id="noResults">
+      <i class="fas fa-magnifying-glass"></i>
+      <p>لا توجد أجهزة مطابقة للفلتر المحدد</p>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ============== TAB 4: EXAM REQUIREMENTS ==================== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab4" role="tabpanel">
+
+    <div class="section-head">
+      <h2><i class="fas fa-shield-halved"></i> شروط ومتطلبات الأجهزة لأداء الاختبارات</h2>
+      <h3 style="font-size:16px;margin-top:4px;"><i class="fas fa-clipboard-list" style="color:var(--gold);font-size:14px;"></i> المتطلبات التقنية الرسمية للأجهزة في الاختبارات الحضورية + نصائح وإرشادات</h3>
+      <p>تعرّف على المتطلبات التقنية الرسمية المعتمدة لأجهزة اللابتوب المستخدمة في الاختبارات الإلكترونية الحضورية. تأكد من توافق جهازك مع الحد الأدنى للمواصفات لضمان أداء مستقر وتجربة اختبار دون مشكلات.</p>
+    </div>
+
+    <!-- Critical security notice -->
+    <div class="notice-box critical">
+      <div class="notice-icon"><i class="fas fa-circle-exclamation"></i></div>
+      <div class="notice-body">
+        <div class="notice-title"><i class="fas fa-triangle-exclamation"></i> تنبيه أمني هام جداً من عمادة القبول والتسجيل!</div>
+        <p class="notice-text">يُمنع منعاً باتاً استخدام <strong>الأجهزة اللوحية (Tablets)</strong> أو الهواتف الذكية لأداء الاختبارات الإلكترونية الحضورية بالجامعة، حتى وإن كانت تعمل بنظام التشغيل Windows وتقبل تركيب لوحة مفاتيح خارجية.</p>
+        <div class="notice-examples"><i class="fas fa-ban"></i> أمثلة لأجهزة لوحية ممنوعة بالاختبار: (HUAWEI MateBook E) و (HP Spectre x2) وكل طرازات iPad و Android Tablets</div>
+      </div>
+    </div>
+
+    <!-- Official source link -->
+    <div class="official-source">
+      <div class="official-source-text"><i class="fas fa-link" style="color:var(--btn-bg);"></i> <strong>المصدر الرسمي للمتطلبات</strong> — صفحة الجامعة SEU على منصة X (تويتر سابقاً).</div>
+      <a href="https://x.com/i/status/1527529561281421314" target="_blank" rel="noopener" class="capsule-btn teal">
+        <i class="fab fa-x-twitter"></i> المصدر الرسمي للمتطلبات - صفحة الجامعة SEU <i class="fas fa-up-right-from-square" style="font-size:11px;"></i>
+      </a>
+    </div>
+
+    <!-- 6 requirement cards -->
+    <div class="req-grid">
+
+      <!-- 1. OS -->
+      <div class="req-card">
+        <div class="req-card-icon"><i class="fa-brands fa-windows"></i></div>
+        <div>
+          <h3>نظام التشغيل (OS)</h3>
+          <p class="req-desc">الأنظمة والنسخ المدعومة تقنياً لتثبيت متصفح الاختبارات الآمن.</p>
+        </div>
+        <div class="req-spec-box">
+          <span>لمستخدمي ويندوز:</span>
+          <p>Windows 10 / 11 (نسخة 10 S غير مدعومة)</p>
+        </div>
+        <div class="req-spec-box recommended">
+          <span>لمستخدمي ماك (MacOS):</span>
+          <p>الحد الأدنى Catalina 10.15 | الموصى به Big Sur 11.5.2</p>
+        </div>
+      </div>
+
+      <!-- 2. RAM -->
+      <div class="req-card">
+        <div class="req-card-icon"><i class="fa-solid fa-memory"></i></div>
+        <div>
+          <h3>الذاكرة العشوائية (RAM)</h3>
+          <p class="req-desc">الذاكرة اللازمة لتشغيل تطبيق الاختبارات بثبات تام.</p>
+        </div>
+        <div class="req-spec-box">
+          <span>الحد الأدنى:</span>
+          <p>4 جيجابايت (4 GB)</p>
+        </div>
+        <div class="req-spec-box recommended">
+          <span>الموصى به:</span>
+          <p>8 جيجابايت أو أعلى</p>
+        </div>
+      </div>
+
+      <!-- 3. Screen resolution -->
+      <div class="req-card">
+        <div class="req-card-icon"><i class="fa-solid fa-expand"></i></div>
+        <div>
+          <h3>دقة الشاشة</h3>
+          <p class="req-desc">الدقة المناسبة لعرض أزرار وخيارات ونصوص الأسئلة دون مشاكل اختفاء.</p>
+        </div>
+        <div class="req-spec-box">
+          <span>الحد الأدنى:</span>
+          <p>1280 × 720 بكسل</p>
+        </div>
+        <div class="req-spec-box recommended">
+          <span>الموصى به:</span>
+          <p>1366 × 768 أو أعلى (FHD)</p>
+        </div>
+      </div>
+
+      <!-- 4. Storage -->
+      <div class="req-card">
+        <div class="req-card-icon"><i class="fa-solid fa-hard-drive"></i></div>
+        <div>
+          <h3>المساحة التخزينية</h3>
+          <p class="req-desc">المساحة الفارغة المطلوبة لتخزين وتنزيل بيانات وملفات نماذج الاختبارات.</p>
+        </div>
+        <div class="req-spec-box">
+          <span>الحد الأدنى:</span>
+          <p>200 ميغابايت (200 MB)</p>
+        </div>
+        <div class="req-spec-box recommended">
+          <span>الموصى به:</span>
+          <p>1 جيجابايت (1 GB) فما فوق</p>
+        </div>
+      </div>
+
+      <!-- 5. Battery -->
+      <div class="req-card">
+        <div class="req-card-icon red"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <h3>شحن البطارية</h3>
+          <p class="req-desc">ضوابط الحفاظ على استمرارية تشغيل اللابتوب طوال فترة جلسة الاختبار.</p>
+        </div>
+        <div class="req-spec-box red">
+          <span>متطلب إجباري للاختبار:</span>
+          <p>شحن الجهاز بالكامل 100% وإحضار الشاحن الأصلي</p>
+        </div>
+      </div>
+
+      <!-- 6. Internet -->
+      <div class="req-card">
+        <div class="req-card-icon"><i class="fa-solid fa-wifi"></i></div>
+        <div>
+          <h3>اتصال الإنترنت</h3>
+          <p class="req-desc">ضرورة وجود اتصال مستقر لرفع الإجابات لقاعدة البيانات دون انقطاع.</p>
+        </div>
+        <div class="req-spec-box red">
+          <span>متطلب إجباري للاختبار:</span>
+          <p>اتصال إنترنت مستقر</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pre-exam checklist -->
+    <div class="checklist-card">
+      <div class="checklist-title"><i class="fas fa-circle-check"></i> قائمة فحص اللابتوب قبل يوم الاختبار الحضوري</div>
+      <div class="checklist-grid">
+        <div class="checklist-item warn">
+          <h4><span class="step-num">1</span> تثبيت وتحديث متصفح الإختبارات LockDown</h4>
+          <p>تأكد من تنزيل برنامج الإختبارات Respondus LockDown Browser؛ وتحديثه لآخر إصدار حيث تبنى عليه منصة الاختبارات بشكل أساسي لضمان الاستقرار الكلي.</p>
+        </div>
+        <div class="checklist-item">
+          <h4><span class="step-num">2</span> فحص اتصال الشبكة اللاسلكية</h4>
+          <p>تأكد من كفاءة كارت الواي فاي الداخلي باللابتوب وسرعة اتصاله، لعدم مواجهة أي فصل مفاجئ أثناء تقديم الإجابات.</p>
+        </div>
+        <div class="checklist-item info">
+          <h4><span class="step-num">3</span> تنظيف القرص والرام</h4>
+          <p>أعد تشغيل لابتوبك قبل الدخول لقاعة الاختبار بـ 30 دقيقة لإغلاق التطبيقات الخلفية الثقيلة التي تستهلك طاقة الرام دون حاجة.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam requirements image -->
+    <div class="exam-image-wrap">
+      <img src="assets/images/exam_requirments.jpg" alt="المتطلبات التقنية الرسمية لأجهزة الاختبارات الإلكترونية الحضورية" onerror="this.parentNode.style.display='none';">
+      <div class="exam-image-caption"><i class="fas fa-image"></i> المتطلبات التقنية الرسمية المعتمدة لأجهزة الاختبارات الإلكترونية الحضورية — الجامعة السعودية الإلكترونية SEU</div>
+    </div>
+
+    <!-- Contact capsule -->
+    <div class="contact-capsule">
+      <span class="cc-text"><i class="fas fa-headset"></i> للاستفسارات وخدمات المساعدة تواصل معنا:</span>
+      <a href="https://wa.me/+966536004199" target="_blank" rel="noopener" class="cc-btn">
+        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== TAB META (for share labels) ===== */
+  var TAB_META = {
+    tab1: { label: '#tab1 — المواصفات العامة' },
+    tab2: { label: '#tab2 — توصيات التخصصات' },
+    tab3: { label: '#tab3 — الأجهزة المقترحة' },
+    tab4: { label: '#tab4 — متطلبات الاختبارات' }
+  };
+
+  var tabCards = document.querySelectorAll('.tab-card');
+  var tabPanels = document.querySelectorAll('.tab-panel');
+  var shareDropdown = document.getElementById('shareDropdown');
+  var shareBtn = document.getElementById('shareBtn');
+  var hashLabel = document.getElementById('currentHashLabel');
+  var shareWhatsApp = document.getElementById('shareWhatsApp');
+  var shareTelegram = document.getElementById('shareTelegram');
+
+  /* ===== SWITCH TAB ===== */
+  window.switchTab = function(tabId){
+    if (!TAB_META[tabId]) tabId = 'tab1';
+
+    tabCards.forEach(function(card){
+      var active = card.getAttribute('data-tab') === tabId;
+      card.classList.toggle('active', active);
+      card.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    tabPanels.forEach(function(panel){
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+
+    /* Update URL hash without extra scroll jump */
+    if (window.location.hash !== '#' + tabId) {
+      history.replaceState(null, '', '#' + tabId);
+    }
+
+    updateShareLinks(tabId);
+    hashLabel.textContent = TAB_META[tabId].label;
+
+    /* Scroll to top of content (just below tabs) */
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /* ===== UPDATE SHARE LINKS ===== */
+  function updateShareLinks(tabId){
+    var baseUrl = window.location.origin + window.location.pathname;
+    var shareUrl = baseUrl + '#' + tabId;
+    var shareTitle = document.title;
+
+    var waText = encodeURIComponent(shareTitle + ' ' + shareUrl);
+    shareWhatsApp.setAttribute('href', 'https://wa.me/?text=' + waText);
+
+    var tgUrl = encodeURIComponent(shareUrl);
+    var tgText = encodeURIComponent(shareTitle);
+    shareTelegram.setAttribute('href', 'https://t.me/share/url?url=' + tgUrl + '&text=' + tgText);
+  }
+
+  /* ===== TAB CARD CLICK HANDLERS ===== */
+  tabCards.forEach(function(card){
+    card.addEventListener('click', function(){
+      switchTab(card.getAttribute('data-tab'));
+    });
+  });
+
+  /* ===== SHARE BUTTON TOGGLE ===== */
+  shareBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var isOpen = shareDropdown.classList.toggle('open');
+    shareBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  /* Close dropdown when clicking outside */
+  document.addEventListener('click', function(e){
+    if (!shareDropdown.contains(e.target) && !shareBtn.contains(e.target)) {
+      shareDropdown.classList.remove('open');
+      shareBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ===== EXPANDABLE BRAND DETAILS (Tab 1) ===== */
+  window.toggleBrand = function(headEl){
+    var row = headEl.parentNode;
+    row.classList.toggle('open');
+  };
+
+  /* ===== LAPTOP FILTER (Tab 3) ===== */
+  var lfBtns = document.querySelectorAll('.lf-btn');
+  var laptopCards = document.querySelectorAll('.laptop-card');
+  var noResults = document.getElementById('noResults');
+
+  lfBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      lfBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var cat = btn.getAttribute('data-cat');
+      var visibleCount = 0;
+
+      laptopCards.forEach(function(card){
+        var cardCat = card.getAttribute('data-category');
+        var show = (cat === 'all') || (cardCat === cat);
+        card.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+      });
+
+      noResults.classList.toggle('show', visibleCount === 0);
+    });
+  });
+
+  /* ===== INIT FROM URL HASH ===== */
+  function initFromHash(){
+    var hash = window.location.hash.replace('#', '');
+    if (hash && TAB_META[hash]) {
+      switchTab(hash);
+    } else {
+      switchTab('tab1');
+    }
+  }
+
+  /* ===== YEAR ===== */
+  document.getElementById('copyYear').textContent = new Date().getFullYear();
+
+  /* ===== HANDLE BACK/FORWARD NAVIGATION ===== */
+  window.addEventListener('hashchange', function(){
+    var hash = window.location.hash.replace('#', '');
+    if (hash && TAB_META[hash]) {
+      switchTab(hash);
+    }
+  });
+
+  /* ===== INIT ===== */
+  initFromHash();
+
+})();
+</script>
+
+</body>
+</html>
