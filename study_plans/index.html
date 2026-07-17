@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الخطط الدراسية للتخصصات | منصة مُعين التعليمية</title>
+<meta name="description" content="استعرض الخطط الدراسية لجميع تخصصات الجامعة السعودية الإلكترونية مرتبة حسب الكليات. اختر كليتك وتخصصك لعرض الخطة الكاملة بالمستويات والمواد والمتطلبات السابقة.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
+  </div>
+
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current">الخطط الدراسية</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-graduation-cap"></i> الخطط الدراسية - مُعين</div>
+    <h1>الخطط الدراسية <span class="gold">للتخصصات</span></h1>
+    <p>استعرض الخطط الدراسية الكاملة لجميع تخصصات الجامعة السعودية الإلكترونية، مرتبة حسب الكليات. اختر كليتك وتخصصك لعرض المستويات، المواد، الساعات المعتمدة، والمتطلبات السابقة.</p>
+  </section>
+
+  <!-- COLLEGES GRID -->
+  <div class="colleges-grid" id="collegesGrid"></div>
+
+  <!-- Helper note -->
+  <div class="helper-note">
+    <span class="star">⭐</span>
+    <div>
+      <p class="note-title">ملاحظة عن الخطط الدراسية</p>
+      <p class="note-text">الخطط المعروضة هنا هي الخطط الرسمية المعتمدة. التخصصات المؤطرة بـ"قريباً" سيتم إضافة خططها تباعاً. إذا لم تجد تخصصك، تواصل معنا عبر الواتساب وسنضيفه في أقرب وقت.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="curriculum-data.js"></script>
+<script>
+var $=function(s,c){return (c||document).querySelector(s);};
+document.getElementById('copyYear').textContent=new Date().getFullYear();
+
+function esc(str){var d=document.createElement('div');d.appendChild(document.createTextNode(str||''));return d.innerHTML;}
+
+function renderColleges(){
+  var grid=$('#collegesGrid');
+  grid.innerHTML='';
+  COLLEGES.forEach(function(college){
+    var card=document.createElement('div');
+    card.className='college-card';
+    var specsHtml=college.specs.map(function(spec){
+      var hasPlan = Object.keys(spec.levels).length > 0;
+      if(hasPlan){
+        return '<a href="curriculum.html?spec='+encodeURIComponent(spec.id)+'" class="spec-link">'+
+          '<span class="spec-link-icon"><i class="fas '+spec.icon+'"></i></span>'+
+          '<div class="spec-link-text"><div class="spec-link-name">'+esc(spec.name)+'</div><div class="spec-link-name-en">'+esc(spec.nameEn)+'</div></div>'+
+          '<i class="fas fa-arrow-left spec-link-arrow"></i></a>';
+      } else {
+        return '<div class="spec-link coming">'+
+          '<span class="spec-link-icon"><i class="fas '+spec.icon+'"></i></span>'+
+          '<div class="spec-link-text"><div class="spec-link-name">'+esc(spec.name)+'</div><div class="spec-link-name-en">'+esc(spec.nameEn)+'</div></div>'+
+          '<span class="coming-badge">قريباً</span></div>';
+      }
+    }).join('');
+    card.innerHTML=
+      '<div class="college-header">'+
+        '<span class="college-icon"><i class="fas '+college.icon+'"></i></span>'+
+        '<div class="college-title-wrap">'+
+          '<div class="college-title">'+esc(college.name)+'</div>'+
+          '<div class="college-title-en">'+esc(college.nameEn)+'</div>'+
+        '</div>'+
+        '<span class="college-count">'+college.specs.length+' تخصصات</span>'+
+      '</div>'+
+      '<div class="college-body">'+specsHtml+'</div>';
+    grid.appendChild(card);
+  });
+}
+
+renderColleges();
+</script>
+</body>
+</html>
