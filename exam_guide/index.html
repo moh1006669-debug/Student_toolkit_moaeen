@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل الاختبارات الإلكترونية المحوسبة | منصة مُعين التعليمية</title>
+<meta name="description" content="دليل شامل للاختبارات الإلكترونية المحوسبة (حضوري / Online) لطلاب الجامعة السعودية الإلكترونية. متطلبات تقنية، تعليمات تثبيت برنامج LockDown Browser، نصائح وإرشادات.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --bg-card: #FFFFFF;
+  --bg-dark: #012727;
+  --bg-dark-2: #0A2C2C;
+  --bg-section: #F2F7F8;
+  --btn-bg: #074842;
+  --btn-bg-hover: #053631;
+  --desc-color: #5F6C70;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-glow: #E5C158;
+  --gold-text: #be9632;
+  --gray-light: #E2E8F0;
+  --icon-circle-bg: #EBF4F0;
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --title-color: #0B3B3C;
+  --transition: 0.3s ease;
+  --white: #FFFFFF;
+  --warning-red: #e63946;
+  --warning-red-dark: #c53030;
+  --success-green: #10b981;
+  --info-blue: #2563eb;
+  --orange: #ea580c;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+.page-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+
+/* HEADER */
+.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.header-logo-moaeen img:hover { transform: scale(1.05); }
+.header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+.pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-star { color: var(--gold); font-size: 18px; }
+.header-seu-box { display: flex; align-items: center; justify-content: center; }
+.seu-rect { display: flex; align-items: center; gap: 12px; }
+.seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
+.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+.mobile-pill .pill-text { font-size: 12px; }
+@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
+
+/* BACK BAR */
+.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
+.back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+.back-btn i { font-size: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+.breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+.breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+.breadcrumb i { font-size: 10px; }
+
+/* HERO */
+.hero { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.92) 0%, rgba(10,44,44,0.88) 100%); border-radius: 24px; padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -30%; left: -10%; width: 60%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.1), transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); position: relative; z-index: 1; }
+.hero-badge i { font-size: 12px; }
+.hero h1 { font-size: 24px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 800px; position: relative; z-index: 1; }
+.hero h1 .gold { color: var(--gold); }
+.hero p { font-size: 14px; color: rgba(255,255,255,0.85); max-width: 700px; line-height: 1.7; position: relative; z-index: 1; }
+@media (min-width: 768px) { .hero h1 { font-size: 28px; } .hero p { font-size: 15px; } }
+
+/* SHARE BAR */
+.share-bar { width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; position: relative; }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
+.share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
+.share-btn svg { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
+.share-current-hash { font-size: 12px; color: var(--desc-color); background: var(--white); padding: 6px 14px; border-radius: 50px; border: 1px dashed var(--gray-light); display: inline-flex; align-items: center; gap: 6px; }
+.share-current-hash i { color: var(--gold); font-size: 11px; }
+.share-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); padding: 10px; display: none; flex-direction: column; gap: 6px; min-width: 220px; z-index: 60; border: 1px solid var(--gray-light); }
+.share-dropdown.open { display: flex; animation: dropIn 0.2s ease; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.share-dropdown-title { font-size: 11px; font-weight: 700; color: var(--desc-color); padding: 4px 10px; }
+.share-option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; transition: var(--transition); }
+.share-option:hover { transform: translateX(-3px); }
+.share-option i { font-size: 18px; width: 24px; text-align: center; }
+.share-option.whatsapp { background: #f0fdf4; color: #047857; }
+.share-option.whatsapp:hover { background: #dcfce7; }
+.share-option.telegram { background: #eff6ff; color: #1d4ed8; }
+.share-option.telegram:hover { background: #dbeafe; }
+
+/* TABS NAV */
+.tabs-nav { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: sticky; top: 12px; z-index: 50; }
+.tab-card { background: var(--white); border-radius: 16px; padding: 16px 14px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; cursor: pointer; transition: var(--transition); border: 2px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+.tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.tab-card.active { background: linear-gradient(135deg, var(--btn-bg) 0%, var(--bg-dark-2) 100%); border-color: var(--gold); color: var(--white); box-shadow: 0 8px 24px rgba(7,72,66,0.3); }
+.tab-card.active .tab-icon { background: rgba(212,175,55,0.2); }
+.tab-card.active .tab-icon i { color: var(--gold-glow); }
+.tab-card.active .tab-title { color: var(--white); }
+.tab-card.active .tab-desc { color: rgba(255,255,255,0.8); }
+.tab-card.active .tab-num { background: var(--gold); color: var(--bg-dark); }
+.tab-num { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg-section); color: var(--desc-color); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.tab-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.tab-icon i { font-size: 24px; color: var(--btn-bg); transition: var(--transition); }
+.tab-text-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.tab-title { font-size: 14px; font-weight: 800; color: var(--title-color); line-height: 1.3; }
+.tab-desc { font-size: 11px; color: var(--desc-color); line-height: 1.7; }
+@media (max-width: 768px) {
+  .tabs-nav { grid-template-columns: 1fr; position: static; }
+  .tab-card { flex-direction: row; text-align: right; padding: 12px 16px; gap: 14px; }
+  .tab-card .tab-icon { width: 44px; height: 44px; flex-shrink: 0; }
+  .tab-card .tab-icon i { font-size: 20px; }
+  .tab-card .tab-text-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex: 1; }
+  .tab-card .tab-title { font-size: 14px; }
+  .tab-card .tab-desc { font-size: 11px; }
+  .tab-card .tab-num { top: 50%; right: auto; left: 12px; transform: translateY(-50%); }
+}
+
+/* TAB PANELS */
+.tab-panel { width: 100%; display: none; flex-direction: column; gap: 18px; animation: fadeUp 0.4s ease; }
+.tab-panel.active { display: flex; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* SECTION HEAD */
+.section-head { background: var(--white); border-radius: var(--radius-card); padding: 22px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 8px; }
+.section-head h2 { font-size: 20px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.section-head h2 i { color: var(--gold); font-size: 22px; }
+.section-head .head-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.section-head .head-badge.important { background: #fef2f2; color: var(--warning-red-dark); border-color: #fecaca; }
+.section-head .head-note { font-size: 12px; color: var(--desc-color); font-weight: 600; }
+.section-head h3 { font-size: 16px; font-weight: 800; color: var(--title-color); }
+.section-head p { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
+
+/* NOTICE BOXES */
+.notice-box { width: 100%; border-radius: var(--radius-card); padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+.notice-box.warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #fde68a; }
+.notice-box.critical { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #fecaca; }
+.notice-box.info { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #bae6fd; }
+.notice-icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+.notice-box.warning .notice-icon { color: #d97706; }
+.notice-box.critical .notice-icon { color: var(--warning-red); animation: shake 1.5s infinite; }
+@keyframes shake { 0%, 100% { transform: rotate(0); } 20%, 60% { transform: rotate(-8deg); } 40%, 80% { transform: rotate(8deg); } }
+.notice-body { flex: 1; }
+.notice-body .notice-title { font-size: 17px; font-weight: 800; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.notice-box.critical .notice-body .notice-title { color: var(--warning-red-dark); }
+.notice-body .notice-text { font-size: 14.5px; color: var(--desc-color); line-height: 2; }
+.notice-body .notice-text strong { color: var(--title-color); font-weight: 800; }
+.notice-examples { margin-top: 10px; background: rgba(255,255,255,0.6); padding: 8px 14px; border-radius: 8px; display: inline-block; font-size: 12px; font-weight: 700; color: var(--warning-red-dark); border: 1px dashed #fca5a5; }
+
+/* CAPSULE BUTTONS */
+.capsule-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); cursor: pointer; text-align: center; }
+.capsule-btn.gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); box-shadow: 0 4px 14px rgba(212,175,55,0.3); }
+.capsule-btn.gold:hover { background: var(--gold-glow); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+.capsule-btn.teal { background: var(--btn-bg); color: var(--white); box-shadow: 0 4px 14px rgba(7,72,66,0.25); }
+.capsule-btn.teal:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(7,72,66,0.35); }
+.capsule-btn.red { background: var(--warning-red); color: var(--white); box-shadow: 0 4px 14px rgba(230,57,70,0.3); }
+.capsule-btn.red:hover { background: var(--warning-red-dark); transform: translateY(-2px); }
+.capsule-btn.blue { background: var(--info-blue); color: var(--white); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
+.capsule-btn.blue:hover { background: #1d4ed8; transform: translateY(-2px); }
+.capsule-btn i { font-size: 13px; }
+.capsule-wrap { display: flex; justify-content: center; padding: 4px; }
+
+/* OFFICIAL SOURCE */
+.official-source { background: var(--white); border-radius: var(--radius-card); padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
+.official-source-text { flex: 1; min-width: 220px; font-size: 13px; color: var(--desc-color); font-weight: 600; }
+.official-source-text strong { color: var(--title-color); }
+
+/* REQ CARDS */
+.req-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .req-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.req-card { background: var(--white); border-radius: var(--radius-card); border: 1px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 22px; transition: var(--transition); display: flex; flex-direction: column; gap: 14px; }
+.req-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,0.1); }
+.req-card-head { display: flex; align-items: center; gap: 12px; }
+.req-card-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--btn-bg); flex-shrink: 0; }
+.req-card-icon.red { color: var(--warning-red); background: rgba(230,57,70,0.1); }
+.req-card h3 { font-size: 15px; color: var(--title-color); font-weight: 800; }
+.req-card .req-desc { font-size: 13.5px; color: var(--desc-color); line-height: 1.8; margin-bottom: 4px; }
+.req-spec-box { background: var(--bg-section); border-radius: 10px; padding: 10px 14px; border-right: 4px solid var(--info-blue); }
+.req-spec-box.recommended { border-right-color: var(--success-green); background: #f0fdfa; }
+.req-spec-box.red { border-right-color: var(--warning-red); background: #fef2f2; }
+.req-spec-box span { display: block; font-size: 11px; color: var(--desc-color); font-weight: 700; margin-bottom: 2px; }
+.req-spec-box p { font-size: 13px; font-weight: 800; color: var(--title-color); }
+
+/* CHECKLIST */
+.checklist-card { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
+.checklist-title { font-size: 17px; font-weight: 800; color: var(--title-color); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.checklist-title i { color: var(--success-green); }
+.checklist-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .checklist-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.checklist-item { background: var(--bg-section); padding: 16px; border-radius: 12px; border-right: 4px solid var(--btn-bg); }
+.checklist-item.warn { border-right-color: var(--warning-red); }
+.checklist-item.info { border-right-color: var(--info-blue); }
+.checklist-item h4 { font-size: 13.5px; font-weight: 800; color: var(--title-color); margin-bottom: 7px; display: flex; align-items: center; gap: 8px; }
+.checklist-item h4 .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--btn-bg); color: var(--white); font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.checklist-item p { font-size: 13.5px; color: var(--desc-color); line-height: 1.9; }
+
+/* EXAM IMAGE */
+.exam-image-wrap { width: 100%; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.1); background: var(--white); }
+.exam-image-wrap img { width: 100%; height: auto; display: block; }
+.exam-image-caption { padding: 12px 16px; font-size: 12px; color: var(--desc-color); text-align: center; background: var(--bg-section); font-weight: 600; }
+
+/* CONTACT CAPSULE */
+.contact-capsule { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border-radius: var(--radius-card); padding: 20px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
+.contact-capsule .cc-text { font-size: 15px; font-weight: 800; color: var(--white); }
+.contact-capsule .cc-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: #075E54; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); }
+.contact-capsule .cc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+.contact-capsule .cc-btn i { font-size: 16px; }
+
+/* ===== TAB 2: LOCKDOWN BROWSER ===== */
+.intro-card { background: var(--white); border-radius: var(--radius-card); padding: 28px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; border: 1px solid var(--gray-light); }
+.intro-card-header { display: flex; align-items: center; gap: 14px; }
+.intro-card-icon { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, rgba(7,72,66,0.1), rgba(212,175,55,0.1)); border: 2px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.intro-card-icon i { font-size: 30px; color: var(--btn-bg); }
+.intro-card-title { font-size: 20px; font-weight: 900; color: var(--title-color); }
+.intro-card-subtitle { font-size: 14px; color: var(--desc-color); font-weight: 600; }
+.intro-card-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.intro-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+.intro-badge.warning { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.intro-badge.info { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+.intro-badge i { font-size: 11px; }
+.intro-image-wrap { width: 100%; max-width: 600px; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+.intro-image-wrap img { width: 100%; height: auto; display: block; }
+
+/* DOWNLOAD SECTION */
+.download-section { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 20px; }
+.download-title { font-size: 17px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-light); }
+.download-title i { color: var(--gold); }
+.download-cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .download-cards { grid-template-columns: 1fr 1fr; } }
+.download-card { background: var(--bg-section); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; border: 1px solid var(--gray-light); transition: var(--transition); }
+.download-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+.download-card-icon { width: 56px; height: 56px; border-radius: 16px; background: var(--white); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.download-card-icon i { font-size: 28px; }
+.download-card-icon.windows i { color: #0078D4; }
+.download-card-icon.mac i { color: #555; }
+.download-card-name { font-size: 16px; font-weight: 800; color: var(--title-color); }
+.download-card-desc { font-size: 12px; color: var(--desc-color); line-height: 1.6; }
+.download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); width: 100%; justify-content: center; }
+.download-btn.windows { background: #0078D4; color: var(--white); }
+.download-btn.windows:hover { background: #106EBE; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,120,212,0.3); }
+.download-btn.mac { background: #1a1a1a; color: var(--white); }
+.download-btn.mac:hover { background: #333; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+.download-btn i { font-size: 15px; }
+
+/* INSTRUCTIONS SECTION */
+.instr-section { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 20px; }
+.instr-title { font-size: 17px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-light); }
+.instr-title i { color: var(--gold); }
+
+/* Guide links */
+.guide-links { display: flex; flex-direction: column; gap: 10px; }
+.guide-link { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--bg-section); border: 1px solid var(--gray-light); transition: var(--transition); }
+.guide-link:hover { border-color: var(--gold); transform: translateX(-3px); background: #fffbeb; }
+.guide-link-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(7,72,66,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.guide-link-icon i { font-size: 18px; color: var(--btn-bg); }
+.guide-link-text { flex: 1; }
+.guide-link-title { font-size: 14px; font-weight: 800; color: var(--title-color); }
+.guide-link-desc { font-size: 11px; color: var(--desc-color); }
+.guide-link-arrow { color: var(--gold); font-size: 14px; flex-shrink: 0; }
+
+/* Video cards */
+.video-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 640px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+.video-card { background: var(--bg-section); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--gray-light); transition: var(--transition); }
+.video-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+.video-card-head { display: flex; align-items: center; gap: 10px; }
+.video-card-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(230,57,70,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.video-card-icon i { font-size: 18px; color: var(--warning-red); }
+.video-card-title { font-size: 14px; font-weight: 800; color: var(--title-color); }
+.video-card-desc { font-size: 12px; color: var(--desc-color); line-height: 1.6; }
+.video-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.video-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; transition: var(--transition); }
+.video-btn.ar { background: var(--btn-bg); color: var(--white); }
+.video-btn.ar:hover { background: var(--btn-bg-hover); transform: translateY(-1px); }
+.video-btn.en { background: #dc2626; color: var(--white); }
+.video-btn.en:hover { background: #b91c1c; transform: translateY(-1px); }
+.video-btn i { font-size: 12px; }
+.video-btn.full { width: 100%; justify-content: center; }
+
+/* COMING SOON */
+.coming-soon { background: var(--white); border-radius: var(--radius-card); padding: 60px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px dashed var(--gray-light); }
+.coming-soon-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.coming-soon-icon i { font-size: 36px; color: var(--gold); }
+.coming-soon h3 { font-size: 20px; font-weight: 800; color: var(--title-color); margin-bottom: 10px; }
+.coming-soon p { font-size: 14px; color: var(--desc-color); line-height: 1.8; max-width: 500px; margin: 0 auto; }
+.coming-soon-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(212,175,55,0.15); color: var(--gold-dark); font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 50px; border: 1px solid rgba(212,175,55,0.3); margin-top: 16px; }
+.coming-soon-badge i { font-size: 11px; animation: spin 2s linear infinite; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+/* FOOTER */
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
+.footer-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-brand-name { font-size: 16px; font-weight: 700; color: var(--gold); }
+.footer-brand-sub { font-size: 11px; color: rgba(255,255,255,0.8); }
+.footer-whatsapp { display: flex; align-items: center; gap: 8px; background: #25D366; color: var(--white); padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; transition: var(--transition); }
+.footer-whatsapp:hover { background: #1fae54; transform: translateY(-2px); }
+.footer-whatsapp i { font-size: 16px; }
+.footer-social { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.footer-social-icons { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); color: var(--white); }
+.social-link:hover { transform: scale(1.1); }
+.social-link.snapchat { background: #FFFC00; color: #000; }
+.social-link.telegram { background: #0088CC; }
+.social-link.x { background: #000; }
+.social-link i { font-size: 16px; }
+.footer-phone { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gold); direction: ltr; }
+.footer-phone i { font-size: 14px; }
+.footer-divider { height: 1px; width: 100%; background: rgba(212,175,55,0.3); margin: 20px 0; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.footer-copy { color: rgba(255,255,255,0.7); }
+.footer-slogan { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); }
+.footer-slogan .star { color: var(--gold); }
+.footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
+.footer-made .heart { color: #10b981; }
+@media (max-width: 640px) { .footer-top { flex-direction: column; align-items: stretch; text-align: center; } .footer-brand { justify-content: center; } .footer-social { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo-moaeen">
+      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+    </div>
+    <div class="header-pill">
+      <span class="pill-line"></span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+      <span class="pill-star">⭐</span>
+      <span class="pill-line"></span>
+    </div>
+    <div class="header-seu-box">
+      <div class="seu-rect">
+        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <span class="seu-text-en">SEU_University</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-pill-bar">
+    <div class="mobile-pill">
+      <span class="pill-star">⭐</span>
+      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    </div>
+  </div>
+
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+    <div class="breadcrumb">
+      <span class="crumb-home">الرئيسية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span>الأدوات التفاعلية</span>
+      <i class="fas fa-chevron-left"></i>
+      <span class="crumb-current" id="crumbCurrent">دليل الاختبارات الإلكترونية</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-clipboard-check"></i> دليل الاختبارات الإلكترونية - مُعين</div>
+    <h1>دليل الاختبارات الإلكترونية <span class="gold">المحوسبة</span></h1>
+    <p>دليل شامل للاختبارات الإلكترونية (حضوري / Online) لطلاب الجامعة السعودية الإلكترونية. متطلبات تقنية، تعليمات تثبيت برنامج الاختبارات، نصائح وإرشادات لضمان تجربة اختبار سلسة ومستقرة.</p>
+  </section>
+
+  <!-- SHARE BAR -->
+  <div class="share-bar">
+    <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">#tab1 — متطلبات الجهاز</span></span>
+    <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
+      <span>مشاركة الصفحة</span>
+    </button>
+    <div class="share-dropdown" id="shareDropdown" role="menu">
+      <div class="share-dropdown-title">شارك عبر:</div>
+      <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
+        <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+      </a>
+      <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
+        <i class="fab fa-telegram"></i> <span>تيليجرام</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TABS NAV -->
+  <nav class="tabs-nav" id="tabsNav" aria-label="تبويبات دليل الاختبارات">
+    <button class="tab-card active" data-tab="tab1" role="tab" aria-selected="true">
+      <span class="tab-num">1</span>
+      <span class="tab-icon"><i class="fas fa-laptop"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">متطلبات الجهاز</span><span class="tab-desc">المواصفات التقنية وتهيئة الجهاز</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab2" role="tab" aria-selected="false">
+      <span class="tab-num">2</span>
+      <span class="tab-icon"><i class="fas fa-download"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">تحميل وتثبيت البرنامج</span><span class="tab-desc">LockDown Browser — المتصفح الآمن</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab3" role="tab" aria-selected="false">
+      <span class="tab-num">3</span>
+      <span class="tab-icon"><i class="fas fa-lightbulb"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">نصائح قبل الاختبار</span><span class="tab-desc">إرشادات مهمة قبل البدء</span></span>
+    </button>
+    <button class="tab-card" data-tab="tab4" role="tab" aria-selected="false">
+      <span class="tab-num">4</span>
+      <span class="tab-icon"><i class="fas fa-headset"></i></span>
+      <span class="tab-text-wrap"><span class="tab-title">المشاكل والدعم الفني</span><span class="tab-desc">حلول ورفع الأعذار</span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ==================== TAB 1: DEVICE REQUIREMENTS ============ -->
+  <!-- ============================================================ -->
+  <section class="tab-panel active" id="tab1" role="tabpanel">
+
+    <div class="section-head">
+      <h2><i class="fas fa-shield-halved"></i> نوع ومتطلبات الجهاز المستخدم</h2>
+      <p>المتطلبات التقنية الرسمية للأجهزة في الاختبارات الإلكترونية المحوسبة (حضوري / Online). تأكد من توافق جهازك مع الحد الأدنى للمواصفات لضمان أداء مستقر وتجربة اختبار دون مشكلات.</p>
+    </div>
+
+    <!-- Critical security notice -->
+    <div class="notice-box critical">
+      <div class="notice-icon"><i class="fas fa-circle-exclamation"></i></div>
+      <div class="notice-body">
+        <div class="notice-title"><i class="fas fa-triangle-exclamation"></i> تنبيه أمني هام جداً من عمادة القبول والتسجيل!</div>
+        <p class="notice-text">يُمنع منعاً باتاً استخدام <strong>الأجهزة اللوحية (Tablets)</strong> أو الهواتف الذكية لأداء الاختبارات الإلكترونية الحضورية بالجامعة، حتى وإن كانت تعمل بنظام التشغيل Windows وتقبل تركيب لوحة مفاتيح خارجية.</p>
+        <div class="notice-examples"><i class="fas fa-ban"></i> أمثلة لأجهزة لوحية ممنوعة بالاختبار: (HUAWEI MateBook E) و (HP Spectre x2) وكل طرازات iPad و Android Tablets</div>
+      </div>
+    </div>
+
+    <!-- Official source link -->
+    <div class="official-source">
+      <div class="official-source-text"><i class="fas fa-link" style="color:var(--btn-bg);"></i> <strong>المصدر الرسمي للمتطلبات</strong> — صفحة الجامعة SEU على منصة X (تويتر سابقاً).</div>
+      <a href="https://x.com/i/status/1527529561281421314" target="_blank" rel="noopener" class="capsule-btn teal">
+        <i class="fab fa-x-twitter"></i> المصدر الرسمي <i class="fas fa-up-right-from-square" style="font-size:11px;"></i>
+      </a>
+    </div>
+
+    <!-- 6 requirement cards -->
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon"><i class="fa-brands fa-windows"></i></div>
+          <div><h3>نظام التشغيل (OS)</h3><p class="req-desc">الأنظمة والنسخ المدعومة تقنياً لتثبيت متصفح الاختبارات الآمن.</p></div>
+        </div>
+        <div class="req-spec-box"><span>لمستخدمي ويندوز:</span><p>Windows 10 / 11 (نسخة 10 S غير مدعومة)</p></div>
+        <div class="req-spec-box recommended"><span>لمستخدمي ماك (MacOS):</span><p>الحد الأدنى Catalina 10.15 | الموصى به Big Sur 11.5.2</p></div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon"><i class="fa-solid fa-memory"></i></div>
+          <div><h3>الذاكرة العشوائية (RAM)</h3><p class="req-desc">الذاكرة اللازمة لتشغيل تطبيق الاختبارات بثبات تام.</p></div>
+        </div>
+        <div class="req-spec-box"><span>الحد الأدنى:</span><p>4 جيجابايت (4 GB)</p></div>
+        <div class="req-spec-box recommended"><span>الموصى به:</span><p>8 جيجابايت أو أعلى</p></div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon"><i class="fa-solid fa-expand"></i></div>
+          <div><h3>دقة الشاشة</h3><p class="req-desc">الدقة المناسبة لعرض أزرار وخيارات ونصوص الأسئلة دون مشاكل اختفاء.</p></div>
+        </div>
+        <div class="req-spec-box"><span>الحد الأدنى:</span><p>1280 × 720 بكسل</p></div>
+        <div class="req-spec-box recommended"><span>الموصى به:</span><p>1366 × 768 أو أعلى (FHD)</p></div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon"><i class="fa-solid fa-hard-drive"></i></div>
+          <div><h3>المساحة التخزينية</h3><p class="req-desc">المساحة الفارغة المطلوبة لتخزين وتنزيل بيانات وملفات نماذج الاختبارات.</p></div>
+        </div>
+        <div class="req-spec-box"><span>الحد الأدنى:</span><p>200 ميغابايت (200 MB)</p></div>
+        <div class="req-spec-box recommended"><span>الموصى به:</span><p>1 جيجابايت (1 GB) فما فوق</p></div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon red"><i class="fa-solid fa-bolt"></i></div>
+          <div><h3>شحن البطارية</h3><p class="req-desc">ضوابط الحفاظ على استمرارية تشغيل اللابتوب طوال فترة جلسة الاختبار.</p></div>
+        </div>
+        <div class="req-spec-box red"><span>متطلب إجباري للاختبار:</span><p>شحن الجهاز بالكامل 100% وإحضار الشاحن الأصلي</p></div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-head">
+          <div class="req-card-icon"><i class="fa-solid fa-wifi"></i></div>
+          <div><h3>اتصال الإنترنت</h3><p class="req-desc">ضرورة وجود اتصال مستقر لرفع الإجابات لقاعدة البيانات دون انقطاع.</p></div>
+        </div>
+        <div class="req-spec-box red"><span>متطلب إجباري للاختبار:</span><p>اتصال إنترنت مستقر</p></div>
+      </div>
+    </div>
+
+    <!-- Exam requirements image -->
+    <div class="exam-image-wrap">
+      <img src="../assets/images/exam_requirments.jpg" alt="المتطلبات التقنية الرسمية لأجهزة الاختبارات الإلكترونية" onerror="this.parentNode.style.display='none';">
+      <div class="exam-image-caption"><i class="fas fa-image"></i> المتطلبات التقنية الرسمية المعتمدة لأجهزة الاختبارات الإلكترونية — الجامعة السعودية الإلكترونية SEU</div>
+    </div>
+
+    <!-- Device setup checklist -->
+    <div class="section-head" style="margin-top:8px;">
+      <h2><i class="fas fa-tools"></i> تهيئة الجهاز وتثبيت برنامج الاختبارات</h2>
+      <p>قائمة فحص اللابتوب قبل يوم الاختبار الإلكتروني — الحضوري / عن بُعد (Online)</p>
+    </div>
+
+    <div class="checklist-card">
+      <div class="checklist-title"><i class="fas fa-circle-check"></i> قائمة فحص اللابتوب قبل يوم الاختبار الإلكتروني — الحضوري / عن بُعد (Online)</div>
+      <div class="checklist-grid">
+        <div class="checklist-item warn">
+          <h4><span class="step-num">1</span> تثبيت وتحديث متصفح الإختبارات LockDown</h4>
+          <p>تأكد من تنزيل برنامج الإختبارات Respondus LockDown Browser؛ وتحديثه لآخر إصدار حيث تبنى عليه منصة الاختبارات بشكل أساسي لضمان الاستقرار الكلي.</p>
+        </div>
+        <div class="checklist-item">
+          <h4><span class="step-num">2</span> فحص اتصال الشبكة اللاسلكية</h4>
+          <p>تأكد من كفاءة كارت الواي فاي الداخلي باللابتوب وسرعة اتصاله، لعدم مواجهة أي فصل مفاجئ أثناء تقديم الإجابات.</p>
+        </div>
+        <div class="checklist-item info">
+          <h4><span class="step-num">3</span> تنظيف القرص والرام</h4>
+          <p>أعد تشغيل لابتوبك قبل الدخول لقاعة الاختبار بـ 30 دقيقة لإغلاق التطبيقات الخلفية الثقيلة التي تستهلك طاقة الرام دون حاجة.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Redirect capsule to Tab 2 -->
+    <div class="capsule-wrap">
+      <button class="capsule-btn gold" onclick="switchTab('tab2')">
+        <i class="fas fa-download"></i> شرح وتعليمات تنزيل وتثبيت برنامج الاختبارات (اضغط هنا) <i class="fas fa-arrow-left"></i>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ==================== TAB 2: LOCKDOWN BROWSER =============== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab2" role="tabpanel">
+
+    <!-- Intro card -->
+    <div class="intro-card">
+      <div class="intro-card-header">
+        <div class="intro-card-icon"><i class="fas fa-lock"></i></div>
+        <div style="text-align:right;">
+          <div class="intro-card-title">برنامج متصفح LockDown 🔐 (المتصفح الآمن)</div>
+          <div class="intro-card-subtitle">Respondus LockDown Browser</div>
+        </div>
+      </div>
+      <div class="intro-card-badges">
+        <span class="intro-badge warning"><i class="fas fa-triangle-exclamation"></i> متطلب أساسي لإجراء الاختبارات المحوسبة (حضوري / عن بعد Online)</span>
+        <span class="intro-badge info"><i class="fas fa-info-circle"></i> مطلوب للاختبارات الفصلية Mid-term والنهائية Final-term</span>
+      </div>
+      <p style="font-size:14px;color:var(--desc-color);line-height:1.8;max-width:700px;">برنامج Respondus LockDown Browser هو متصفح آمن مخصص لإجراء الاختبارات الإلكترونية. يقوم بتأمين بيئة الاختبار عبر منع التبديل بين التطبيقات، نسخ النصوص، أو فتح نوافذ أخرى أثناء الاختبار.</p>
+      <div class="intro-image-wrap">
+        <img src="../assets/images/Lockdown_into.jpg" alt="مقدمة عن برنامج LockDown Browser" onerror="this.parentNode.style.display='none';">
+      </div>
+    </div>
+
+    <!-- Download section -->
+    <div class="download-section">
+      <div class="download-title"><i class="fas fa-download"></i> تحميل وتثبيت برنامج الاختبارات (المتصفح الآمن — Respondus LockDown Browser)</div>
+      <div class="download-cards">
+        <!-- Windows -->
+        <div class="download-card">
+          <div class="download-card-icon windows"><i class="fab fa-windows"></i></div>
+          <div class="download-card-name">Windows — ويندوز</div>
+          <div class="download-card-desc">متوافق مع Windows 10 / 11<br>(نسخة 10 S غير مدعومة)</div>
+          <a href="https://download.respondus.com/lockdown/download.php?id=383648125" target="_blank" rel="noopener" class="download-btn windows">
+            <i class="fas fa-download"></i> تحميل لنظام Windows
+          </a>
+        </div>
+        <!-- Mac -->
+        <div class="download-card">
+          <div class="download-card-icon mac"><i class="fab fa-apple"></i></div>
+          <div class="download-card-name">MacOS — ماك</div>
+          <div class="download-card-desc">متوافق مع macOS Big Sur 11.5.2+<br>أو Catalina 10.15 كحد أدنى</div>
+          <a href="https://download.respondus.com/lockdown/download.php?id=383648125" target="_blank" rel="noopener" class="download-btn mac">
+            <i class="fas fa-download"></i> تحميل لنظام Mac
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions section -->
+    <div class="instr-section">
+      <div class="instr-title"><i class="fas fa-book-open"></i> تعليمات التحميل والتثبيت</div>
+
+      <!-- Guide links -->
+      <div>
+        <div style="font-size:14px;font-weight:800;color:var(--title-color);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-file-lines" style="color:var(--gold);"></i> أدلة مصورة:</div>
+        <div class="guide-links">
+          <a href="https://tg-filebot-mn.onrender.com/stream/27?hash=3132eb&d=true" target="_blank" rel="noopener" class="guide-link">
+            <span class="guide-link-icon"><i class="fas fa-file-pdf"></i></span>
+            <div class="guide-link-text"><div class="guide-link-title">دليل تحميل / تثبيت البرنامج</div><div class="guide-link-desc">شرح مفصل خطوة بخطوة لتثبيت LockDown Browser</div></div>
+            <i class="fas fa-arrow-left guide-link-arrow"></i>
+          </a>
+          <a href="https://tg-filebot-mn.onrender.com/stream/28?hash=69d73d&d=true" target="_blank" rel="noopener" class="guide-link">
+            <span class="guide-link-icon"><i class="fas fa-file-pdf"></i></span>
+            <div class="guide-link-text"><div class="guide-link-title">دليل الاختبارات الإلكترونية SEU</div><div class="guide-link-desc">الدليل الرسمي للجامعة السعودية الإلكترونية</div></div>
+            <i class="fas fa-arrow-left guide-link-arrow"></i>
+          </a>
+          <a href="https://t.me/Moaeen_SEU/9" target="_blank" rel="noopener" class="guide-link">
+            <span class="guide-link-icon"><i class="fas fa-arrows-rotate"></i></span>
+            <div class="guide-link-text"><div class="guide-link-title">دليل طريقة تحديث البرنامج</div><div class="guide-link-desc">كيفية تحديث LockDown Browser لآخر إصدار</div></div>
+            <i class="fas fa-arrow-left guide-link-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Videos -->
+      <div>
+        <div style="font-size:14px;font-weight:800;color:var(--title-color);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-play-circle" style="color:var(--gold);"></i> شروحات بالفيديو:</div>
+        <div class="video-grid">
+          <!-- Windows video -->
+          <div class="video-card">
+            <div class="video-card-head">
+              <div class="video-card-icon"><i class="fab fa-windows"></i></div>
+              <div class="video-card-title">شرح على نظام Windows</div>
+            </div>
+            <div class="video-card-desc">شاهد شرح مفصل لتحميل وتثبيت برنامج LockDown Browser على نظام ويندوز.</div>
+            <div class="video-btns">
+              <a href="https://t.me/Moaeen_SEU/8" target="_blank" rel="noopener" class="video-btn ar"><i class="fas fa-play"></i> مشاهدة (عربي)</a>
+              <a href="https://youtu.be/gDLrCzOlhds?si=nOTMAJzdut4wLdWU" target="_blank" rel="noopener" class="video-btn en"><i class="fab fa-youtube"></i> مشاهدة (English)</a>
+            </div>
+          </div>
+          <!-- Mac video -->
+          <div class="video-card">
+            <div class="video-card-head">
+              <div class="video-card-icon"><i class="fab fa-apple" style="color:#555;"></i></div>
+              <div class="video-card-title">شرح على نظام Mac</div>
+            </div>
+            <div class="video-card-desc">شاهد شرح مفصل لتحميل وتثبيت برنامج LockDown Browser على نظام ماك.</div>
+            <div class="video-btns">
+              <a href="https://youtu.be/3JIdwDvGqRo?si=TWQeLdGpLWHQdLlD" target="_blank" rel="noopener" class="video-btn en full"><i class="fab fa-youtube"></i> مشاهدة الفيديو</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ==================== TAB 3: TIPS (COMING SOON) ============= -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab3" role="tabpanel">
+    <div class="coming-soon">
+      <div class="coming-soon-icon"><i class="fas fa-lightbulb"></i></div>
+      <h3>نصائح مهمة قبل بدء الاختبار</h3>
+      <p>سيتم إضافة هذا القسم قريباً — يحتوي على نصائح وإرشادات مهمة للطلاب قبل بدء الاختبارات الإلكترونية المحوسبة.</p>
+      <span class="coming-soon-badge"><i class="fas fa-spinner"></i> قيد التطوير</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ==================== TAB 4: TECHNICAL ISSUES (SOON) ======== -->
+  <!-- ============================================================ -->
+  <section class="tab-panel" id="tab4" role="tabpanel">
+    <div class="coming-soon">
+      <div class="coming-soon-icon"><i class="fas fa-headset"></i></div>
+      <h3>المشاكل التقنية والدعم الفني ورفع الأعذار</h3>
+      <p>سيتم إضافة هذا القسم قريباً — يحتوي على حلول للمشاكل التقنية الشائعة، قنوات الدعم الفني، وطريقة رفع الأعذار التقنية.</p>
+      <span class="coming-soon-badge"><i class="fas fa-spinner"></i> قيد التطوير</span>
+    </div>
+
+    <!-- Contact capsule -->
+    <div class="contact-capsule">
+      <span class="cc-text"><i class="fas fa-headset"></i> للاستفسارات وخدمات المساعدة تواصل معنا:</span>
+      <a href="https://wa.me/+966536004199" target="_blank" rel="noopener" class="cc-btn">
+        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/images/footer_logo.png" alt="منصة معين" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+        <div class="footer-brand-text">
+          <span class="footer-brand-name">منصة معين</span>
+          <span class="footer-brand-sub">للخدمات والمساعدات الطلابية</span>
+        </div>
+      </div>
+      <a href="https://wa.me/966536004199" target="_blank" rel="noopener" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> اتصل بنا عبر واتساب</a>
+      <div class="footer-social">
+        <div class="footer-social-icons">
+          <a href="#" class="social-link snapchat" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+          <a href="#" class="social-link telegram" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <a href="tel:+966536004199" dir="ltr" class="footer-phone"><i class="fas fa-phone"></i> +966 53 600 4199</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">منصة معين التعليمية © <span id="copyYear">2025</span> جميع الحقوق محفوظة</span>
+      <span class="footer-slogan"><span>معك ... نحو تفوقك بخطوات ثابتة !</span> <span class="star">★</span></span>
+      <span class="footer-made"><span>صنع بـ</span> <span class="heart">💚</span> <span>للطالب</span></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+$('#copyYear').textContent=new Date().getFullYear();
+
+/* TAB SWITCHING */
+var tabLabels={tab1:'متطلبات الجهاز',tab2:'تحميل وتثبيت البرنامج',tab3:'نصائح قبل الاختبار',tab4:'المشاكل والدعم الفني'};
+
+function switchTab(tabId){
+  $$('.tab-card').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-selected','false');});
+  $$('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  var tabCard=$('.tab-card[data-tab="'+tabId+'"]');
+  var panel=$('#'+tabId);
+  if(tabCard){tabCard.classList.add('active');tabCard.setAttribute('aria-selected','true');}
+  if(panel){panel.classList.add('active');}
+  window.location.hash=tabId;
+  $('#currentHashLabel').textContent='#'+tabId+' — '+tabLabels[tabId];
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateShareLinks();
+}
+
+$$('.tab-card').forEach(function(card){
+  card.addEventListener('click',function(){switchTab(card.getAttribute('data-tab'));});
+});
+
+/* HASH ROUTING */
+window.addEventListener('hashchange',function(){
+  var hash=window.location.hash.replace('#','');
+  if(hash&&tabLabels[hash]){switchTab(hash);}
+});
+
+/* On load: check hash */
+window.addEventListener('DOMContentLoaded',function(){
+  var hash=window.location.hash.replace('#','');
+  if(hash&&tabLabels[hash]){switchTab(hash);}
+});
+
+/* SHARE BUTTON */
+var shareBtn=$('#shareBtn');
+var shareDropdown=$('#shareDropdown');
+shareBtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  shareDropdown.classList.toggle('open');
+  shareBtn.setAttribute('aria-expanded',shareDropdown.classList.contains('open'));
+});
+document.addEventListener('click',function(e){
+  if(!shareDropdown.contains(e.target)&&!shareBtn.contains(e.target)){
+    shareDropdown.classList.remove('open');
+    shareBtn.setAttribute('aria-expanded','false');
+  }
+});
+
+function updateShareLinks(){
+  var url=window.location.href.split('#')[0]+'#'+(window.location.hash.replace('#','')||'tab1');
+  var title='دليل الاختبارات الإلكترونية المحوسبة — منصة معين';
+  $('#shareWhatsApp').href='https://wa.me/?text='+encodeURIComponent(title+' '+url);
+  $('#shareTelegram').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title);
+}
+updateShareLinks();
+</script>
+</body>
+</html>
