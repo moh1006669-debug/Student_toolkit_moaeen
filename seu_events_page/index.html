@@ -1,0 +1,3594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مواعيد المهام والأحداث الدراسية — طلبة الجامعة السعودية الإلكترونية SEU</title>
+    <meta name="description" content="مواعيد المهام الدراسية (واجبات - كويزات - إختبارات) و مواعيد الأحداث والإجراءات الأكاديمية — طلبة الجامعة السعودية الإلكترونية SEU" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
+        :root {
+            --primary: #084440;
+            --primary-dark: #063230;
+            --primary-light: #0A5C58;
+            --gold: #D8A63B;
+            --gold-light: #E8C46A;
+            --gold-dark: #B8892E;
+            --bg: #F5F8F8;
+            --bg-white: #FFFFFF;
+            --text: #173534;
+            --text-light: #4A6B68;
+            --text-muted: #7A9A97;
+            --shadow-sm: 0 2px 12px rgba(8, 68, 64, 0.06);
+            --shadow-md: 0 8px 32px rgba(8, 68, 64, 0.10);
+            --shadow-lg: 0 16px 56px rgba(8, 68, 64, 0.14);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            --font: 'Cairo', sans-serif;
+            --whatsapp-green: #25D366;
+            --sidebar-width: 440px;
+            --danger: #D64A4A;
+            --success: #2A9D8F;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-image: radial-gradient(circle, rgba(8, 68, 64, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            transition: padding-right var(--transition);
+        }
+
+        body.sidebar-open {
+            padding-right: calc(20px + var(--sidebar-width));
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 26px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(8, 68, 64, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-logo-moaeen {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-logo-moaeen img {
+            height: 85px;
+            width: auto;
+            transition: transform var(--transition);
+        }
+
+        .header-logo-moaeen img:hover {
+            transform: scale(1.05);
+        }
+
+        .header-seu-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .header-seu-box img {
+            height: 78px;
+            width: auto;
+            transition: transform var(--transition);
+        }
+
+        .header-seu-box img:hover {
+            transform: scale(1.05);
+        }
+
+        .seu-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            background: rgba(8, 68, 64, 0.06);
+            padding: 2px 10px;
+            border-radius: 6px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .header-actions .admin-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-actions .admin-toggle:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-actions .admin-toggle i {
+            font-size: 1.1rem;
+        }
+
+        .header-actions .admin-toggle.logged-in {
+            background: var(--gold);
+        }
+
+        .header-actions .admin-toggle.logged-in:hover {
+            background: var(--gold-dark);
+        }
+
+        .header-actions .admin-status {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            background: rgba(8, 68, 64, 0.04);
+            padding: 4px 12px;
+            border-radius: 60px;
+            display: none;
+        }
+
+        .header-actions .admin-status.show {
+            display: inline-block;
+        }
+
+        .header-actions .admin-status .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            margin-left: 6px;
+            animation: dot-pulse 2s infinite;
+        }
+
+        @keyframes dot-pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: var(--radius-lg);
+            padding: 40px 48px;
+            color: #fff;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(216, 166, 59, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(216, 166, 59, 0.15);
+            border: 1px solid rgba(216, 166, 59, 0.25);
+            border-radius: 60px;
+            padding: 6px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge i {
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 .title-line1 {
+            color: #fff;
+            display: block;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(216, 166, 59, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 480px;
+            line-height: 1.8;
+        }
+
+        .hero .timezone-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 60px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero .timezone-badge i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .hero-countdown {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 28px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            text-align: center;
+        }
+
+        .hero-countdown .next-event-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+        }
+
+        .hero-countdown .next-event-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+            animation: subtle-pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-countdown .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-countdown .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 10px 16px;
+            min-width: 68px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background var(--transition);
+        }
+
+        .hero-countdown .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .hero-countdown .countdown-item .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-countdown .countdown-item .label {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           SECTION TABS
+           ============================================================ */
+        .section-tabs-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            background: rgba(8, 68, 64, 0.06);
+            border: 2px solid rgba(8, 68, 64, 0.10);
+            color: var(--text);
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            border-bottom: 2px solid transparent;
+        }
+
+        .section-tab:hover {
+            background: rgba(8, 68, 64, 0.10);
+            border-color: rgba(8, 68, 64, 0.20);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-tab i {
+            font-size: 1.1rem;
+            color: var(--primary);
+            transition: color var(--transition);
+        }
+
+        .section-tab.active {
+            background: #084440;
+            color: #fff;
+            border-color: #084440;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-tab.active i {
+            color: var(--gold);
+        }
+
+        .section-tab.active:hover {
+            background: #084440;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           SECTION COUNTDOWN
+           ============================================================ */
+        .section-countdown {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: var(--radius-md);
+            padding: 24px 32px;
+            color: #fff;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .section-countdown.visible {
+            display: block;
+        }
+
+        .section-countdown::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -5%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(216, 166, 59, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .section-countdown .sc-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+        }
+
+        .section-countdown .sc-event-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 14px;
+            animation: subtle-pulse 2.5s ease-in-out infinite;
+        }
+
+        .section-countdown .sc-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .section-countdown .sc-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 8px 14px;
+            min-width: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .section-countdown .sc-item .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .section-countdown .sc-item .label {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           SECTION CONTENT
+           ============================================================ */
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .section-content .coming-soon {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            border: 2px dashed rgba(8, 68, 64, 0.10);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-content .coming-soon i {
+            font-size: 3.5rem;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-content .coming-soon h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .section-content .coming-soon p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           QUICK LINKS
+           ============================================================ */
+        .quick-links {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .quick-links .row-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .quick-links .row-buttons .btn-link {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 28px;
+            border-radius: var(--radius-md);
+            background: var(--bg-white);
+            border: 2px solid var(--whatsapp-green);
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            transition: all var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-links .row-buttons .btn-link::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.05), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .quick-links .row-buttons .btn-link:hover::after {
+            opacity: 1;
+        }
+
+        .quick-links .row-buttons .btn-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.25);
+            background: var(--whatsapp-green);
+            color: #fff;
+        }
+
+        .quick-links .row-buttons .btn-link i {
+            font-size: 1.4rem;
+            color: var(--whatsapp-green);
+            transition: color var(--transition);
+        }
+
+        .quick-links .row-buttons .btn-link:hover i {
+            color: #fff;
+        }
+
+        .quick-links .btn-library {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 16px 28px;
+            border-radius: var(--radius-md);
+            background: rgba(8, 68, 64, 0.04);
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+            transition: all var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-links .btn-library::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(8, 68, 64, 0.05), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .quick-links .btn-library:hover::after {
+            opacity: 1;
+        }
+
+        .quick-links .btn-library:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(8, 68, 64, 0.2);
+        }
+
+        .quick-links .btn-library img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .quick-links .btn-library .lib-desc {
+            font-weight: 400;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+
+        .quick-links .btn-library:hover .lib-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ============================================================
+           EVENTS SECTION
+           ============================================================ */
+        .events-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .events-section .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .events-section .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .events-section .section-header h2 i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .events-section .section-header h2 span {
+            color: var(--gold);
+        }
+
+        .events-section .section-header .event-count {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: var(--bg-white);
+            padding: 4px 16px;
+            border-radius: 60px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .events-grid .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            border: 2px dashed rgba(8, 68, 64, 0.10);
+            color: var(--text-muted);
+        }
+
+        .events-grid .empty-state i {
+            font-size: 3rem;
+            color: var(--primary-light);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .events-grid .empty-state p {
+            font-size: 1.1rem;
+        }
+
+        /* ===== EVENT CARD ===== */
+        .event-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 24px 24px 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(8, 68, 64, 0.04);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .event-card:hover::before {
+            opacity: 1;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(216, 166, 59, 0.10);
+        }
+
+        .event-card .card-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .event-card .card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(8, 68, 64, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 24px;
+            color: var(--primary);
+            transition: all var(--transition);
+        }
+
+        .event-card:hover .card-icon {
+            transform: scale(1.08);
+        }
+
+        .event-card .card-icon.quiz {
+            background: linear-gradient(135deg, rgba(216, 166, 59, 0.12), rgba(216, 166, 59, 0.06));
+            color: var(--gold-dark);
+        }
+
+        .event-card .card-icon.mid {
+            background: linear-gradient(135deg, rgba(8, 68, 64, 0.12), rgba(8, 68, 64, 0.06));
+            color: var(--primary);
+        }
+
+        .event-card .card-icon.final {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.08));
+            color: var(--gold-dark);
+        }
+
+        .event-card .card-icon.other {
+            background: linear-gradient(135deg, rgba(8, 68, 64, 0.08), rgba(8, 68, 64, 0.04));
+            color: var(--primary-light);
+        }
+
+        .event-card .card-title-area {
+            flex: 1;
+        }
+
+        .event-card .card-title-area .event-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .event-card .card-title-area .event-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .event-card .card-category-badge {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 60px;
+            background: rgba(216, 166, 59, 0.10);
+            color: var(--gold-dark);
+            border: 1px solid rgba(216, 166, 59, 0.15);
+            margin-bottom: 6px;
+        }
+
+        .event-card .card-date {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-card .card-date i {
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        .event-card .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(8, 68, 64, 0.04);
+        }
+
+        .event-card .card-footer .status-badge {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 60px;
+            background: rgba(8, 68, 64, 0.06);
+            color: var(--text-muted);
+            transition: all var(--transition);
+        }
+
+        .event-card .card-footer .status-badge.upcoming {
+            background: linear-gradient(135deg, rgba(216, 166, 59, 0.12), rgba(216, 166, 59, 0.06));
+            color: var(--gold-dark);
+            border: 1px solid rgba(216, 166, 59, 0.15);
+        }
+
+        .event-card .card-footer .status-badge.active {
+            background: linear-gradient(135deg, rgba(8, 68, 64, 0.12), rgba(8, 68, 64, 0.06));
+            color: var(--primary);
+            border: 1px solid rgba(8, 68, 64, 0.15);
+            animation: active-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes active-glow {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(8, 68, 64, 0);
+            }
+            50% {
+                box-shadow: 0 0 8px 2px rgba(8, 68, 64, 0.15);
+            }
+        }
+
+        .event-card .card-footer .status-badge.passed {
+            background: rgba(122, 154, 151, 0.10);
+            color: var(--text-muted);
+        }
+
+        .event-card .card-actions-admin {
+            display: none;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(8, 68, 64, 0.06);
+        }
+
+        .event-card .card-actions-admin.show {
+            display: flex;
+        }
+
+        .event-card .card-actions-admin button {
+            padding: 6px 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .event-card .card-actions-admin .btn-edit {
+            background: rgba(8, 68, 64, 0.08);
+            color: var(--primary);
+        }
+
+        .event-card .card-actions-admin .btn-edit:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .event-card .card-actions-admin .btn-delete {
+            background: rgba(214, 74, 74, 0.08);
+            color: var(--danger);
+        }
+
+        .event-card .card-actions-admin .btn-delete:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .toggle-details {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font);
+            transition: color var(--transition);
+            padding: 4px 0;
+        }
+
+        .toggle-details:hover {
+            color: var(--gold);
+        }
+
+        .toggle-details i {
+            transition: transform var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .toggle-details.open i {
+            transform: rotate(180deg);
+        }
+
+        .details-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            padding: 0 0 0 0;
+        }
+
+        .details-panel.open {
+            max-height: 400px;
+            opacity: 1;
+            padding: 14px 0 4px 0;
+        }
+
+        .details-panel .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(8, 68, 64, 0.04);
+            font-size: 0.92rem;
+        }
+
+        .details-panel .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .details-panel .detail-row .label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .details-panel .detail-row .value {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           ADMIN SIDEBAR
+           ============================================================ */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .admin-sidebar {
+            position: fixed;
+            top: 0;
+            left: calc(100% - 0px);
+            width: var(--sidebar-width);
+            height: 100%;
+            background: var(--bg-white);
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+            transition: transform var(--transition), box-shadow var(--transition);
+            transform: translateX(0);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(8, 68, 64, 0.04);
+        }
+
+        .admin-sidebar.closed {
+            transform: translateX(100%);
+        }
+
+        .admin-sidebar .sidebar-header {
+            padding: 24px 28px 16px;
+            border-bottom: 1px solid rgba(8, 68, 64, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            background: var(--bg-white);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .admin-sidebar .sidebar-header h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-sidebar .sidebar-header h3 i {
+            color: var(--gold);
+        }
+
+        .admin-sidebar .sidebar-header .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color var(--transition);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .admin-sidebar .sidebar-header .close-sidebar:hover {
+            color: var(--text);
+            background: rgba(8, 68, 64, 0.04);
+        }
+
+        .admin-sidebar .sidebar-body {
+            padding: 24px 28px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Login Form */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .login-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .login-form .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .login-form .form-group input {
+            padding: 12px 16px;
+            border: 2px solid rgba(8, 68, 64, 0.08);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            transition: border-color var(--transition);
+            background: var(--bg);
+        }
+
+        .login-form .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .login-form .login-btn {
+            padding: 14px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            margin-top: 8px;
+        }
+
+        .login-form .login-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .login-form .login-error {
+            color: var(--danger);
+            font-size: 0.85rem;
+            text-align: center;
+            min-height: 24px;
+        }
+
+        .login-form .login-error.hidden {
+            display: none;
+        }
+
+        /* Admin Controls */
+        .admin-controls {
+            display: none;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .admin-controls.show {
+            display: flex;
+        }
+
+        .admin-controls .admin-welcome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(8, 68, 64, 0.04);
+            border-radius: var(--radius-sm);
+        }
+
+        .admin-controls .admin-welcome span {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .admin-controls .admin-welcome .logout-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-controls .admin-welcome .logout-btn:hover {
+            color: #b33a3a;
+        }
+
+        .admin-controls .section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .admin-controls .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .admin-controls .form-row .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .admin-controls .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .admin-controls .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .admin-controls .form-group input,
+        .admin-controls .form-group select,
+        .admin-controls .form-group textarea {
+            padding: 10px 14px;
+            border: 2px solid rgba(8, 68, 64, 0.08);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.92rem;
+            transition: border-color var(--transition);
+            background: var(--bg);
+        }
+
+        .admin-controls .form-group input:focus,
+        .admin-controls .form-group select:focus,
+        .admin-controls .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .admin-controls .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .admin-controls .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .admin-controls .form-actions button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            flex: 1;
+        }
+
+        .admin-controls .form-actions .btn-submit {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .admin-controls .form-actions .btn-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .admin-controls .form-actions .btn-cancel {
+            background: rgba(8, 68, 64, 0.06);
+            color: var(--text-muted);
+        }
+
+        .admin-controls .form-actions .btn-cancel:hover {
+            background: rgba(8, 68, 64, 0.12);
+        }
+
+        .admin-controls .form-actions .btn-submit.edit-mode {
+            background: var(--gold);
+        }
+
+        .admin-controls .form-actions .btn-submit.edit-mode:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Category field in admin */
+        .category-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .category-field .category-select-group {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        .category-field .category-select-group select {
+            flex: 1;
+        }
+
+        .custom-category-input {
+            display: none;
+            margin-top: 4px;
+        }
+
+        .custom-category-input.visible {
+            display: block;
+        }
+
+        /* Custom type input in admin */
+        .custom-type-input {
+            display: none;
+            margin-top: 4px;
+        }
+
+        .custom-type-input.visible {
+            display: block;
+        }
+
+        /* Category filter in admin mini list */
+        .mini-list-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .mini-list-filter label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .mini-list-filter select {
+            padding: 6px 12px;
+            border: 2px solid rgba(8, 68, 64, 0.08);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            background: var(--bg);
+            color: var(--text);
+            transition: border-color var(--transition);
+        }
+
+        .mini-list-filter select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Mini event list in sidebar */
+        .admin-controls .mini-event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .admin-controls .mini-event-list .mini-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(8, 68, 64, 0.04);
+            transition: all var(--transition);
+        }
+
+        .admin-controls .mini-event-list .mini-item:hover {
+            border-color: rgba(8, 68, 64, 0.10);
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-info .mini-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-info .mini-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-actions button {
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-actions .mini-edit:hover {
+            color: var(--primary);
+            background: rgba(8, 68, 64, 0.06);
+        }
+
+        .admin-controls .mini-event-list .mini-item .mini-actions .mini-delete:hover {
+            color: var(--danger);
+            background: rgba(214, 74, 74, 0.06);
+        }
+
+        .admin-controls .mini-event-list .empty-mini {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--primary-dark);
+            border-radius: var(--radius-lg);
+            padding: 44px 44px 28px;
+            border-top: 3px solid var(--gold);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(216, 166, 59, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .footer .footer-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer .footer-top .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer .footer-top .brand-row img {
+            height: 72px;
+            width: auto;
+            filter: brightness(1.1);
+            transition: transform var(--transition);
+        }
+
+        .footer .footer-top .brand-row img:hover {
+            transform: scale(1.08);
+        }
+
+        .footer .footer-top .brand-row .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .footer .footer-top .brand-row .brand-name span {
+            color: var(--gold);
+        }
+
+        .footer .footer-top .footer-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-columns {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 0;
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            flex-wrap: nowrap;
+            z-index: 2;
+        }
+
+        .footer .footer-columns .col {
+            flex: 1 1 50%;
+            padding: 16px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .footer .footer-columns .col-right {
+            border-left: 2px dashed var(--gold);
+            position: relative;
+        }
+
+        .footer .footer-columns .col-right::after {
+            content: '⬅';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.2rem;
+            background: var(--primary-dark);
+            padding: 0 4px;
+        }
+
+        .footer .footer-columns .col h4 {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .footer .footer-columns .col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .footer .footer-columns .col ul li a {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 2px 0;
+        }
+
+        .footer .footer-columns .col ul li a:hover {
+            color: var(--gold);
+            transform: translateX(-4px);
+        }
+
+        .footer .footer-columns .col ul li a i {
+            width: 20px;
+            text-align: center;
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .footer .footer-columns .col .qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code {
+            width: 140px;
+            height: 140px;
+            border: 3px solid var(--gold);
+            border-radius: var(--radius-sm);
+            padding: 6px;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(216, 166, 59, 0.15);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 28px rgba(216, 166, 59, 0.25);
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .footer .footer-columns .col .qr-wrapper .qr-label {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .footer .footer-columns .col .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .footer .footer-columns .col .social-icons a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            transition: all var(--transition);
+        }
+
+        .footer .footer-columns .col .social-icons a:hover {
+            background: rgba(216, 166, 59, 0.15);
+            border-color: rgba(216, 166, 59, 0.30);
+            color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(216, 166, 59, 0.2);
+        }
+
+        .footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            margin-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ============================================================
+           FLOATING WHATSAPP BUTTON
+           ============================================================ */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp-green);
+            color: #fff;
+            padding: 16px 26px 16px 20px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: float-pulse 2s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.05);
+            background: #1DA851;
+            animation: none;
+        }
+
+        .float-wa svg {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+        }
+
+        @keyframes float-pulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ============================================================
+           TOAST NOTIFICATION
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .toast {
+            padding: 14px 22px;
+            background: var(--bg-white);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            border-right: 5px solid var(--primary);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--text);
+            animation: slideInToast 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.success {
+            border-right-color: var(--success);
+        }
+
+        .toast.error {
+            border-right-color: var(--danger);
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        .toast.success i {
+            color: var(--success);
+        }
+
+        .toast.error i {
+            color: var(--danger);
+        }
+
+        @keyframes slideInToast {
+            from {
+                transform: translateX(60px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 32px 28px;
+                text-align: center;
+            }
+            .hero .subtitle {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            .hero .timezone-badge {
+                margin: 14px auto 0;
+            }
+            :root {
+                --sidebar-width: 380px;
+            }
+            body.sidebar-open {
+                padding-right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            body.sidebar-open {
+                padding-right: 12px;
+            }
+            :root {
+                --sidebar-width: 100%;
+            }
+            .admin-sidebar {
+                width: 100%;
+                left: 0;
+                border-radius: 0;
+            }
+            .admin-sidebar.closed {
+                transform: translateY(100%);
+            }
+            .admin-sidebar .sidebar-body {
+                padding: 16px 20px;
+            }
+            .header {
+                padding: 18px 22px;
+                border-radius: var(--radius-md);
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .header-left {
+                flex: 1;
+                min-width: 0;
+            }
+            .header-logo-moaeen img {
+                height: 65px;
+            }
+            .header-seu-box img {
+                height: 60px;
+            }
+            .seu-label {
+                font-size: 0.7rem;
+                padding: 2px 8px;
+            }
+            .header-actions .admin-toggle span {
+                display: none;
+            }
+            .header-actions .admin-toggle {
+                padding: 10px 14px;
+            }
+            .header-actions .admin-status {
+                display: none !important;
+            }
+            .hero {
+                padding: 24px 20px;
+                border-radius: var(--radius-md);
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero-countdown .countdown-grid {
+                gap: 10px;
+            }
+            .hero-countdown .countdown-item {
+                min-width: 54px;
+                padding: 8px 12px;
+            }
+            .hero-countdown .countdown-item .number {
+                font-size: 1.6rem;
+            }
+            /* Section tabs responsive */
+            .section-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .section-tab {
+                padding: 10px 18px;
+                font-size: 0.92rem;
+                flex: 1 1 auto;
+                min-width: 140px;
+                justify-content: center;
+            }
+            .section-countdown .sc-grid {
+                gap: 8px;
+            }
+            .section-countdown .sc-item {
+                min-width: 50px;
+                padding: 6px 10px;
+            }
+            .section-countdown .sc-item .number {
+                font-size: 1.4rem;
+            }
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            .quick-links .row-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .quick-links .row-buttons .btn-link {
+                flex: 1 1 calc(50% - 8px);
+                min-width: unset;
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+            .event-card .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+            .footer {
+                padding: 28px 18px 22px;
+            }
+            .footer .footer-columns {
+                flex-wrap: nowrap;
+                gap: 8px;
+            }
+            .footer .footer-columns .col {
+                padding: 10px 14px;
+                flex: 1 1 50%;
+            }
+            .footer .footer-columns .col h4 {
+                font-size: 0.9rem;
+            }
+            .footer .footer-columns .col ul li a {
+                font-size: 0.85rem;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-code {
+                width: 110px;
+                height: 110px;
+            }
+            .footer .footer-columns .col-right::after {
+                font-size: 0.9rem;
+                left: -10px;
+            }
+            .footer .footer-top .brand-row img {
+                height: 58px;
+            }
+            .footer .footer-top .brand-row .brand-name {
+                font-size: 1.3rem;
+            }
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .float-wa {
+                bottom: 20px;
+                right: 20px;
+                padding: 14px 22px 14px 18px;
+                font-size: 14px;
+            }
+            .float-wa svg {
+                width: 28px;
+                height: 28px;
+            }
+            .footer .footer-columns .col .social-icons a {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+            .admin-controls .form-row {
+                grid-template-columns: 1fr;
+            }
+            .toast-container {
+                right: 12px;
+                left: 12px;
+                max-width: 100%;
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 14px 16px;
+                gap: 8px;
+            }
+            .header-logo-moaeen img {
+                height: 52px;
+            }
+            .header-seu-box img {
+                height: 48px;
+            }
+            .hero {
+                padding: 20px 16px;
+            }
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+            /* Section tabs - full width on small mobile */
+            .section-tabs {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .section-tab {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 16px;
+                font-size: 0.92rem;
+            }
+            .section-countdown .sc-item .number {
+                font-size: 1.2rem;
+            }
+            .section-countdown .sc-item {
+                min-width: 44px;
+                padding: 4px 8px;
+            }
+            .section-content .coming-soon {
+                padding: 50px 16px;
+            }
+            .event-card {
+                padding: 18px 16px;
+            }
+            .event-card .card-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 20px;
+            }
+            .quick-links .row-buttons {
+                flex-direction: column;
+            }
+            .quick-links .row-buttons .btn-link {
+                flex: 1 1 100%;
+                padding: 14px 16px;
+                font-size: 0.92rem;
+                justify-content: center;
+            }
+            .quick-links .btn-library {
+                flex-wrap: wrap;
+                padding: 12px 16px;
+            }
+            .quick-links .btn-library img {
+                width: 32px;
+                height: 32px;
+            }
+            .quick-links .btn-library .lib-desc {
+                font-size: 0.8rem;
+            }
+            .footer .footer-columns .col {
+                padding: 8px 8px;
+            }
+            .footer .footer-columns .col ul li a {
+                font-size: 0.78rem;
+                gap: 4px;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-code {
+                width: 90px;
+                height: 90px;
+            }
+            .footer .footer-columns .col .qr-wrapper .qr-label {
+                font-size: 0.72rem;
+            }
+            .footer .footer-columns .col-right::after {
+                font-size: 0.7rem;
+                left: -8px;
+            }
+            .footer .footer-columns .col .social-icons a {
+                width: 36px;
+                height: 36px;
+                font-size: 15px;
+            }
+            .float-wa span {
+                display: none;
+            }
+            .float-wa {
+                padding: 16px;
+                border-radius: 50%;
+            }
+            .admin-sidebar .sidebar-header {
+                padding: 16px 18px 12px;
+            }
+            .admin-sidebar .sidebar-body {
+                padding: 12px 16px;
+            }
+            .admin-controls .form-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* ============================================================
+           SIDEBAR SCROLL STYLING
+           ============================================================ */
+        .admin-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .admin-sidebar::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        .admin-sidebar::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+
+        .admin-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header">
+        <div class="header-left">
+            <div class="header-logo-moaeen">
+                <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
+            </div>
+            <div class="header-seu-box">
+                <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
+                <span class="seu-label">SEU</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <span class="admin-status" id="adminStatus">
+                <span class="dot"></span> أدمن
+            </span>
+            <button class="admin-toggle" id="adminToggle" aria-label="فتح لوحة الإدارة">
+                <i class="fas fa-cog"></i>
+                <span>لوحة الإدارة</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-calendar-alt"></i> مرجع المواعيد</div>
+            <h1>
+                <span class="title-line1">مواعيد المهام و الأحداث الدراسية</span>
+                <br>
+                <span class="highlight">طلبة الجامعة السعودية الإلكترونية_SEU</span>
+            </h1>
+            <div class="subtitle">
+                تابع مواعيد المهام الدراسية (واجبات - كويزات - إختبارات)
+                <br>
+                و مواعيد الأحداث والإجراءات الأكاديمية
+            </div>
+            <div class="timezone-badge">
+                <i class="fas fa-clock"></i>
+                <span>جميع الأوقات بتوقيت السعودية (UTC+3)</span>
+            </div>
+        </div>
+        <div class="hero-countdown" id="countdownPanel">
+            <div class="next-event-label">الحدث القادم</div>
+            <div class="next-event-name" id="nextEventName">—</div>
+            <div class="countdown-grid" id="countdownGrid">
+                <div class="countdown-item">
+                    <span class="number" id="days">00</span>
+                    <span class="label">أيام</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">ساعات</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">دقائق</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">ثواني</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION TABS
+    ============================================================ -->
+    <div class="section-tabs-wrapper">
+        <div class="section-tabs">
+            <button class="section-tab active" data-section="sectionPreparatory" id="tabPreparatory">
+                <i class="fas fa-graduation-cap"></i>
+                <span>طلاب التحضيري_SEU</span>
+            </button>
+            <button class="section-tab" data-section="sectionSpecializations" id="tabSpecializations">
+                <i class="fas fa-laptop-code"></i>
+                <span>طلاب التخصصات_SEU</span>
+            </button>
+            <button class="section-tab" data-section="sectionGeneral" id="tabGeneral">
+                <i class="fas fa-calendar-alt"></i>
+                <span>أحداث وتواريخ عامة</span>
+            </button>
+        </div>
+
+        <!-- Section-specific countdown -->
+        <div class="section-countdown visible" id="sectionCountdown">
+            <div class="sc-label">الحدث القادم في هذا القسم</div>
+            <div class="sc-event-name" id="scEventName">—</div>
+            <div class="sc-grid" id="scGrid">
+                <div class="sc-item">
+                    <span class="number" id="scDays">00</span>
+                    <span class="label">أيام</span>
+                </div>
+                <div class="sc-item">
+                    <span class="number" id="scHours">00</span>
+                    <span class="label">ساعات</span>
+                </div>
+                <div class="sc-item">
+                    <span class="number" id="scMinutes">00</span>
+                    <span class="label">دقائق</span>
+                </div>
+                <div class="sc-item">
+                    <span class="number" id="scSeconds">00</span>
+                    <span class="label">ثواني</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SECTION CONTENT: PREPARATORY
+    ============================================================ -->
+    <div class="section-content active" id="sectionPreparatory">
+
+        <!-- QUICK LINKS -->
+        <section class="quick-links">
+            <div class="row-buttons">
+                <a href="https://whatsapp.com/channel/0029VakYpEgJf05cOelgFv3t" target="_blank" class="btn-link">
+                    <i class="fab fa-whatsapp wa-icon"></i>
+                    <span>قناة الأخبار العامة SEU l</span>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbC18ul7DAX7ICgQzn11" target="_blank" class="btn-link">
+                    <i class="fab fa-whatsapp wa-icon"></i>
+                    <span>الترم الاستثنائي (صيفي د 25)</span>
+                </a>
+            </div>
+            <a href="https://moh1006669-debug.github.io/Student_toolkit_moaeen/Eng_Level_2_books/" target="_blank" class="btn-library">
+                <img src="../assets/images/icon-books.png" alt="كتب" />
+                <span>مكتبة الإستثنائي</span>
+                <span class="lib-desc">كتب + حلول الكتب + تجميعات &amp; مراجعات Eng_Level 2️⃣</span>
+            </a>
+        </section>
+
+        <!-- EVENTS SECTION -->
+        <section class="events-section">
+            <div class="section-header">
+                <h2><i class="fas fa-clipboard-list"></i> جدول <span>المواعيد</span></h2>
+                <span class="event-count" id="eventCount">0 حدث</span>
+            </div>
+            <div class="events-grid" id="eventsGrid">
+                <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================
+    SECTION CONTENT: SPECIALIZATIONS
+    ============================================================ -->
+    <div class="section-content" id="sectionSpecializations">
+        <div class="coming-soon">
+            <i class="fas fa-laptop-code"></i>
+            <h3>طلاب التخصصات_SEU</h3>
+            <p>قريباً — سيتم إضافة مواعيد المهام الدراسية لطلاب التخصصات</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SECTION CONTENT: GENERAL
+    ============================================================ -->
+    <div class="section-content" id="sectionGeneral">
+        <div class="coming-soon">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>أحداث وتواريخ عامة</h3>
+            <p>قريباً — سيتم إضافة الأحداث والتواريخ العامة الأكاديمية</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="brand-row">
+                <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين" />
+                <span class="brand-name">منصة <span>مُعين</span> التعليمية</span>
+            </div>
+            <div class="footer-description">
+                مرجع مواعيد المهام والأحداث الدراسية — طلبة الجامعة السعودية الإلكترونية SEU
+                <br>
+                <span style="font-size:0.85rem;color:rgba(255,255,255,0.3);">📋 أداة تفاعلية مع لوحة تحكم للإدارة</span>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="col col-right">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> المقررات</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>تواصل معنا</h4>
+                <div class="qr-wrapper">
+                    <div class="qr-code">
+                        <img src="../assets/images/qr-code.png" alt="رمز QR للتواصل" />
+                    </div>
+                    <span class="qr-label">امسح للتواصل عبر واتساب</span>
+                </div>
+                <div class="social-icons">
+                    <a href="https://wa.me/966536004199" target="_blank" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" aria-label="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" target="_blank" aria-label="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 منصة معين التعليمية — جميع الحقوق محفوظة</span>
+            <span>الإصدار 2.0 (تفاعلي)</span>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    FLOATING WHATSAPP BUTTON
+    ============================================================ -->
+    <a href="https://wa.me/966536004199" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+    </a>
+
+    <!-- ============================================================
+    SIDEBAR OVERLAY
+    ============================================================ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============================================================
+    ADMIN SIDEBAR
+    ============================================================ -->
+    <aside class="admin-sidebar closed" id="adminSidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-shield-alt"></i> لوحة الإدارة</h3>
+            <button class="close-sidebar" id="closeSidebar" aria-label="إغلاق اللوحة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-body">
+
+            <!-- Login Form -->
+            <div id="loginContainer">
+                <form class="login-form" id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم</label>
+                        <input type="text" id="username" placeholder="Moaeen-admin" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" placeholder="••••••••" required />
+                    </div>
+                    <div class="login-error" id="loginError"></div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                </form>
+            </div>
+
+            <!-- Admin Controls -->
+            <div id="adminControls" class="admin-controls">
+                <div class="admin-welcome">
+                    <span><i class="fas fa-user-cog"></i> مرحباً، <strong id="adminName">أدمن</strong></span>
+                    <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> خروج</button>
+                </div>
+
+                <!-- Add / Edit Form -->
+                <div>
+                    <div class="section-title"><i class="fas fa-plus-circle"></i> <span id="formTitle">إضافة حدث جديد</span></div>
+                    <form id="eventForm">
+                        <input type="hidden" id="editId" value="" />
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventCategory">التصنيف</label>
+                                <select id="eventCategory" required>
+                                    <option value="طلاب التحضيري_SEU">طلاب التحضيري_SEU</option>
+                                    <option value="طلاب التخصصات_SEU">طلاب التخصصات_SEU</option>
+                                    <option value="أحداث وتواريخ عامة">أحداث وتواريخ عامة</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                                <input type="text" id="eventCategoryCustom" class="custom-category-input" placeholder="أدخل اسم التصنيف..." />
+                            </div>
+                            <div class="form-group">
+                                <label for="eventType">النوع</label>
+                                <select id="eventType" required>
+                                    <option value="quiz">كويز</option>
+                                    <option value="mid">ميد</option>
+                                    <option value="final">فاينل</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                                <input type="text" id="eventTypeCustom" class="custom-type-input" placeholder="أدخل اسم النوع..." />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventName">الاسم</label>
+                                <input type="text" id="eventName" placeholder="مثال: Quiz 1" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventStart">تاريخ البدء</label>
+                                <input type="datetime-local" id="eventStart" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="eventEnd">تاريخ الانتهاء</label>
+                                <input type="datetime-local" id="eventEnd" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventWeight">الدرجة (%)</label>
+                                <input type="number" id="eventWeight" placeholder="20" min="0" max="100" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDuration">المدة</label>
+                                <input type="text" id="eventDuration" placeholder="مثال: 30 دقيقة" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="eventRange">النطاق</label>
+                                <input type="text" id="eventRange" placeholder="مثال: المحاضرات 1–3" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="eventDetails">تفاصيل إضافية</label>
+                                <textarea id="eventDetails" placeholder="ملاحظات إضافية عن الحدث..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-save"></i> حفظ</button>
+                            <button type="button" class="btn-cancel" id="cancelEditBtn"><i class="fas fa-times"></i> إلغاء</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Event List (mini) with category filter -->
+                <div>
+                    <div class="section-title"><i class="fas fa-list"></i> الأحداث الحالية</div>
+                    <div class="mini-list-filter">
+                        <label for="miniCategoryFilter">تصفية:</label>
+                        <select id="miniCategoryFilter">
+                            <option value="all">جميع التصنيفات</option>
+                            <option value="طلاب التحضيري_SEU">طلاب التحضيري_SEU</option>
+                            <option value="طلاب التخصصات_SEU">طلاب التخصصات_SEU</option>
+                            <option value="أحداث وتواريخ عامة">أحداث وتواريخ عامة</option>
+                        </select>
+                    </div>
+                    <div class="mini-event-list" id="miniEventList">
+                        <!-- يتم تعبئتها بواسطة JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // SECTION CATEGORY MAP
+            // ============================================================
+            const CATEGORY_SECTION_MAP = {
+                'طلاب التحضيري_SEU': 'sectionPreparatory',
+                'طلاب التخصصات_SEU': 'sectionSpecializations',
+                'أحداث وتواريخ عامة': 'sectionGeneral'
+            };
+
+            // ============================================================
+            // DEFAULT EVENTS (same as original, with category added)
+            // ============================================================
+            const defaultEvents = [{
+                id: 1,
+                type: 'quiz',
+                name: 'Quiz 1',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-07-11T12:00:00+03:00',
+                endDate: '2026-07-13T11:58:00+03:00',
+                weight: 20,
+                range: 'المحاضرات 1–3',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 13/07 الساعة 11:58 صباحاً.',
+                category: 'طلاب التحضيري_SEU'
+            }, {
+                id: 2,
+                type: 'quiz',
+                name: 'Quiz 2',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-07-18T12:00:00+03:00',
+                endDate: '2026-07-20T11:58:00+03:00',
+                weight: 45,
+                range: 'المحاضرات 4–6',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 20/07 الساعة 11:58 صباحاً.',
+                category: 'طلاب التحضيري_SEU'
+            }, {
+                id: 3,
+                type: 'quiz',
+                name: 'Quiz 3',
+                icon: 'fa-pencil-alt',
+                startDate: '2026-08-01T12:00:00+03:00',
+                endDate: '2026-08-03T11:59:00+03:00',
+                weight: 45,
+                range: 'المحاضرات 7–9',
+                duration: '30 دقيقة',
+                details: 'الموعد النهائي لتسليم الكويز يوم 03/08 الساعة 11:59 صباحاً.',
+                category: 'طلاب التحضيري_SEU'
+            }, {
+                id: 4,
+                type: 'mid',
+                name: 'الميدterm',
+                icon: 'fa-book-open',
+                startDate: '2026-07-25T12:00:00+03:00',
+                endDate: '2026-07-27T11:59:00+03:00',
+                weight: 30,
+                range: 'المحاضرات 1–6',
+                duration: 'ساعتان',
+                details: 'الموعد النهائي لتسليم الميد يوم 27/07 الساعة 11:59 صباحاً.',
+                category: 'طلاب التحضيري_SEU'
+            }, {
+                id: 5,
+                type: 'final',
+                name: 'الفاينل',
+                icon: 'fa-graduation-cap',
+                startDate: '2026-08-10T12:00:00+03:00',
+                endDate: '2026-08-12T11:59:00+03:00',
+                weight: 40,
+                range: 'المحاضرات 1–9 (شامل)',
+                duration: 'ساعتان',
+                details: 'الموعد النهائي لتسليم الفاينل يوم 12/08 الساعة 11:59 صباحاً.',
+                category: 'طلاب التحضيري_SEU'
+            }];
+
+            // ============================================================
+            // STATE
+            // ============================================================
+            let events = [];
+            let isLoggedIn = false;
+            let editingId = null;
+            let nextId = 6;
+            let activeSection = 'sectionPreparatory';
+            let miniCategoryFilter = 'all';
+
+            const STORAGE_KEY = 'moaeen_events_data';
+            const AUTH_KEY = 'moaeen_admin_auth';
+
+            // ============================================================
+            // DOM REFS
+            // ============================================================
+            const grid = document.getElementById('eventsGrid');
+            const miniList = document.getElementById('miniEventList');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const nextEventNameEl = document.getElementById('nextEventName');
+            const eventCountEl = document.getElementById('eventCount');
+
+            const sidebar = document.getElementById('adminSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const adminToggle = document.getElementById('adminToggle');
+            const closeSidebarBtn = document.getElementById('closeSidebar');
+            const adminStatus = document.getElementById('adminStatus');
+
+            const loginContainer = document.getElementById('loginContainer');
+            const adminControls = document.getElementById('adminControls');
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginError = document.getElementById('loginError');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const adminNameSpan = document.getElementById('adminName');
+
+            const eventForm = document.getElementById('eventForm');
+            const editIdInput = document.getElementById('editId');
+            const eventCategory = document.getElementById('eventCategory');
+            const eventCategoryCustom = document.getElementById('eventCategoryCustom');
+            const eventType = document.getElementById('eventType');
+            const eventTypeCustom = document.getElementById('eventTypeCustom');
+            const eventName = document.getElementById('eventName');
+            const eventStart = document.getElementById('eventStart');
+            const eventEnd = document.getElementById('eventEnd');
+            const eventWeight = document.getElementById('eventWeight');
+            const eventDuration = document.getElementById('eventDuration');
+            const eventRange = document.getElementById('eventRange');
+            const eventDetails = document.getElementById('eventDetails');
+            const formTitle = document.getElementById('formTitle');
+            const submitBtn = document.getElementById('submitBtn');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
+            const miniCategoryFilterEl = document.getElementById('miniCategoryFilter');
+
+            const toastContainer = document.getElementById('toastContainer');
+
+            // Section tab buttons
+            const sectionTabs = document.querySelectorAll('.section-tab');
+            const sectionContents = document.querySelectorAll('.section-content');
+            const sectionCountdown = document.getElementById('sectionCountdown');
+
+            // Section countdown elements
+            const scDaysEl = document.getElementById('scDays');
+            const scHoursEl = document.getElementById('scHours');
+            const scMinutesEl = document.getElementById('scMinutes');
+            const scSecondsEl = document.getElementById('scSeconds');
+            const scEventNameEl = document.getElementById('scEventName');
+
+            // ============================================================
+            // CATEGORY / TYPE LOGIC
+            // ============================================================
+            function getActiveCategory() {
+                const map = {
+                    'sectionPreparatory': 'طلاب التحضيري_SEU',
+                    'sectionSpecializations': 'طلاب التخصصات_SEU',
+                    'sectionGeneral': 'أحداث وتواريخ عامة'
+                };
+                return map[activeSection] || 'طلاب التحضيري_SEU';
+            }
+
+            function getFilteredEvents() {
+                const category = getActiveCategory();
+                return events.filter(ev => {
+                    // Include events whose category matches, or custom categories that don't match the 3 predefined ones
+                    if (ev.category === category) return true;
+                    // For custom categories, show them only in the "general" section if they don't match predefined
+                    if (activeSection === 'sectionGeneral' && !CATEGORY_SECTION_MAP[ev.category]) return true;
+                    return false;
+                });
+            }
+
+            function getEventTypeIcon(type, customType) {
+                const map = { quiz: 'fa-pencil-alt', mid: 'fa-book-open', final: 'fa-graduation-cap' };
+                if (type === 'other') return 'fa-calendar';
+                return map[type] || 'fa-calendar';
+            }
+
+            function getEventTypeLabel(type, customType) {
+                const map = { quiz: 'كويز', mid: 'ميد', final: 'فاينل' };
+                if (type === 'other') {
+                    return customType || 'أخرى';
+                }
+                return map[type] || type;
+            }
+
+            // ============================================================
+            // SECTION TAB SWITCHING
+            // ============================================================
+            function switchSection(sectionId) {
+                activeSection = sectionId;
+
+                // Update tabs
+                sectionTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.dataset.section === sectionId) {
+                        tab.classList.add('active');
+                    }
+                });
+
+                // Update content sections
+                sectionContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === sectionId) {
+                        content.classList.add('active');
+                    }
+                });
+
+                // Show/hide section countdown based on whether section has events
+                const filtered = getFilteredEvents();
+                if (filtered.length > 0) {
+                    sectionCountdown.classList.add('visible');
+                } else {
+                    sectionCountdown.classList.remove('visible');
+                }
+
+                // Re-render events for the preparatory section
+                if (sectionId === 'sectionPreparatory') {
+                    renderEvents();
+                }
+
+                // Update section countdown
+                updateSectionCountdown();
+            }
+
+            // ============================================================
+            // DATA PERSISTENCE
+            // ============================================================
+            function loadData() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    try {
+                        const parsed = JSON.parse(stored);
+                        if (Array.isArray(parsed) && parsed.length > 0) {
+                            events = parsed;
+                            // Ensure all events have a category field
+                            events.forEach(ev => {
+                                if (!ev.category) {
+                                    ev.category = 'طلاب التحضيري_SEU';
+                                }
+                                if (!ev.typeCustom) {
+                                    ev.typeCustom = '';
+                                }
+                            });
+                            // update nextId
+                            const maxId = events.reduce((max, e) => Math.max(max, e.id || 0), 0);
+                            nextId = maxId + 1;
+                            saveData();
+                            return;
+                        }
+                    } catch (_) { /* ignore */ }
+                }
+                // fallback to defaults
+                events = JSON.parse(JSON.stringify(defaultEvents));
+                const maxId = events.reduce((max, e) => Math.max(max, e.id || 0), 0);
+                nextId = maxId + 1;
+                saveData();
+            }
+
+            function saveData() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+            }
+
+            // ============================================================
+            // AUTH
+            // ============================================================
+            function checkAuth() {
+                const stored = localStorage.getItem(AUTH_KEY);
+                if (stored === 'true') {
+                    isLoggedIn = true;
+                    showAdminUI(true);
+                } else {
+                    isLoggedIn = false;
+                    showAdminUI(false);
+                }
+            }
+
+            function showAdminUI(loggedIn) {
+                if (loggedIn) {
+                    loginContainer.style.display = 'none';
+                    adminControls.classList.add('show');
+                    adminStatus.classList.add('show');
+                    adminToggle.classList.add('logged-in');
+                    adminToggle.innerHTML = '<i class="fas fa-user-shield"></i><span>أدمن</span>';
+                    adminNameSpan.textContent = 'أدمن';
+                } else {
+                    loginContainer.style.display = 'block';
+                    adminControls.classList.remove('show');
+                    adminStatus.classList.remove('show');
+                    adminToggle.classList.remove('logged-in');
+                    adminToggle.innerHTML = '<i class="fas fa-cog"></i><span>لوحة الإدارة</span>';
+                }
+                // re-render to show/hide admin actions on cards
+                renderEvents();
+                renderMiniList();
+            }
+
+            function login(username, password) {
+                if (username === 'Moaeen-admin' && password === 'Moaeen-admin-2026') {
+                    isLoggedIn = true;
+                    localStorage.setItem(AUTH_KEY, 'true');
+                    showAdminUI(true);
+                    loginError.textContent = '';
+                    loginError.classList.add('hidden');
+                    toast('تم تسجيل الدخول بنجاح ✅', 'success');
+                    return true;
+                } else {
+                    loginError.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
+                    loginError.classList.remove('hidden');
+                    return false;
+                }
+            }
+
+            function logout() {
+                isLoggedIn = false;
+                localStorage.removeItem(AUTH_KEY);
+                showAdminUI(false);
+                loginForm.reset();
+                loginError.textContent = '';
+                loginError.classList.add('hidden');
+                toast('تم تسجيل الخروج', '');
+                // close sidebar
+                closeSidebar();
+            }
+
+            // ============================================================
+            // SIDEBAR TOGGLE
+            // ============================================================
+            function openSidebar() {
+                sidebar.classList.remove('closed');
+                overlay.classList.add('open');
+                document.body.classList.add('sidebar-open');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('closed');
+                overlay.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+                // reset form if not editing
+                if (!editingId) {
+                    resetForm();
+                }
+            }
+
+            function toggleSidebar() {
+                if (sidebar.classList.contains('closed')) {
+                    openSidebar();
+                } else {
+                    closeSidebar();
+                }
+            }
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            function toast(message, type = 'success') {
+                const el = document.createElement('div');
+                el.className = `toast ${type}`;
+                const icon = type === 'success' ? 'fas fa-check-circle' :
+                    type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-info-circle';
+                el.innerHTML = `<i class="${icon}"></i> ${message}`;
+                toastContainer.appendChild(el);
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(40px)';
+                    setTimeout(() => el.remove(), 400);
+                }, 3000);
+            }
+
+            // ============================================================
+            // EVENT CRUD
+            // ============================================================
+            function formatDate(dateStr) {
+                const d = new Date(dateStr);
+                return d.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            }
+
+            function formatDateFull(dateStr) {
+                const d = new Date(dateStr);
+                return d.toLocaleString('ar-SA', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            function getStatus(startDate, endDate) {
+                const now = new Date();
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                if (now > end) return 'passed';
+                if (now >= start && now <= end) return 'active';
+                return 'upcoming';
+            }
+
+            function getStatusLabel(status) {
+                const map = { upcoming: 'قادم', active: 'جاري', passed: 'انتهى' };
+                return map[status] || status;
+            }
+
+            function getNextEvent(categoryFilter) {
+                const now = new Date();
+                const filtered = categoryFilter ? events.filter(ev => ev.category === categoryFilter) : events;
+                let next = null;
+                let minDiff = Infinity;
+                for (const ev of filtered) {
+                    const start = new Date(ev.startDate);
+                    const diff = start.getTime() - now.getTime();
+                    if (diff > 0 && diff < minDiff) {
+                        minDiff = diff;
+                        next = ev;
+                    }
+                }
+                if (!next && filtered.length > 0) {
+                    let last = filtered[0];
+                    for (const ev of filtered) {
+                        if (new Date(ev.startDate) > new Date(last.startDate)) last = ev;
+                    }
+                    next = last;
+                }
+                return next;
+            }
+
+            function renderEvents() {
+                // Only render in the preparatory section grid
+                const filtered = getFilteredEvents();
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-calendar-plus"></i>
+                            <p>لا توجد أحداث حالياً في هذا القسم. أضف حدثاً جديداً من لوحة الإدارة.</p>
+                        </div>
+                    `;
+                    eventCountEl.textContent = '0 حدث';
+                    return;
+                }
+
+                const html = filtered.map(ev => {
+                    const status = getStatus(ev.startDate, ev.endDate);
+                    const statusLabel = getStatusLabel(status);
+                    const statusClass = status;
+
+                    const iconClass = ev.type === 'quiz' ? 'quiz' : ev.type === 'mid' ? 'mid' : ev.type === 'final' ? 'final' : 'other';
+                    const dateStr =
+                        `${formatDate(ev.startDate)} — ${formatDate(ev.endDate)}`;
+
+                    const showAdminActions = isLoggedIn ? 'show' : '';
+                    const categoryBadge = ev.category && !CATEGORY_SECTION_MAP[ev.category] ?
+                        `<div class="card-category-badge">${ev.category}</div>` : '';
+
+                    const typeLabel = getEventTypeLabel(ev.type, ev.typeCustom);
+
+                    return `
+                        <div class="event-card" data-id="${ev.id}">
+                            <div class="card-top">
+                                <div class="card-icon ${iconClass}">
+                                    <i class="fas ${ev.icon || getEventTypeIcon(ev.type, ev.typeCustom)}"></i>
+                                </div>
+                                <div class="card-title-area">
+                                    <div class="event-name">${ev.name}</div>
+                                    <div class="event-sub">${typeLabel} · ${ev.range || ''}</div>
+                                </div>
+                            </div>
+                            ${categoryBadge}
+                            <div class="card-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${dateStr}</span>
+                            </div>
+                            <div class="card-footer">
+                                <span class="status-badge ${statusClass}">${statusLabel}</span>
+                                <button class="toggle-details" data-target="details-${ev.id}">
+                                    تفاصيل أكثر <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="details-panel" id="details-${ev.id}">
+                                <div class="detail-row">
+                                    <span class="label">الدرجة</span>
+                                    <span class="value">${ev.weight}%</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">المدة</span>
+                                    <span class="value">${ev.duration || '—'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">النطاق</span>
+                                    <span class="value">${ev.range || '—'}</span>
+                                </div>
+                                <div class="detail-row" style="border-bottom:none;">
+                                    <span class="label">ملاحظات</span>
+                                    <span class="value" style="font-weight:400;color:var(--text-light);">${ev.details || '—'}</span>
+                                </div>
+                                <div class="detail-row" style="border-bottom:none;padding-top:4px;">
+                                    <span class="label">التوقيت</span>
+                                    <span class="value" style="font-weight:400;font-size:0.82rem;color:var(--text-muted);">
+                                        ${formatDateFull(ev.startDate)} — ${formatDateFull(ev.endDate)}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-actions-admin ${showAdminActions}">
+                                <button class="btn-edit" data-id="${ev.id}"><i class="fas fa-edit"></i> تعديل</button>
+                                <button class="btn-delete" data-id="${ev.id}"><i class="fas fa-trash"></i> حذف</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                grid.innerHTML = html;
+                eventCountEl.textContent = `${filtered.length} حدث`;
+
+                // Attach toggle details
+                document.querySelectorAll('.toggle-details').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const targetId = this.dataset.target;
+                        const panel = document.getElementById(targetId);
+                        if (!panel) return;
+                        document.querySelectorAll('.details-panel.open').forEach(p => {
+                            if (p.id !== targetId) {
+                                p.classList.remove('open');
+                                const parentCard = p.closest('.event-card');
+                                if (parentCard) {
+                                    const toggleBtn = parentCard.querySelector('.toggle-details');
+                                    if (toggleBtn) toggleBtn.classList.remove('open');
+                                }
+                            }
+                        });
+                        panel.classList.toggle('open');
+                        this.classList.toggle('open');
+                    });
+                });
+
+                // Attach admin actions
+                document.querySelectorAll('.btn-edit').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        editEvent(id);
+                    });
+                });
+
+                document.querySelectorAll('.btn-delete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        if (confirm('هل أنت متأكد من حذف هذا الحدث؟')) {
+                            deleteEvent(id);
+                        }
+                    });
+                });
+
+                updateCountdown();
+            }
+
+            function renderMiniList() {
+                let filtered = events;
+                if (miniCategoryFilter !== 'all') {
+                    filtered = events.filter(ev => ev.category === miniCategoryFilter);
+                }
+
+                if (filtered.length === 0) {
+                    miniList.innerHTML = `<div class="empty-mini">لا توجد أحداث</div>`;
+                    return;
+                }
+
+                const html = filtered.map(ev => `
+                    <div class="mini-item">
+                        <div class="mini-info">
+                            <span class="mini-name">${ev.name}</span>
+                            <span class="mini-meta">${getEventTypeLabel(ev.type, ev.typeCustom)} · ${ev.weight}% · ${formatDate(ev.startDate)} · ${ev.category || ''}</span>
+                        </div>
+                        <div class="mini-actions">
+                            <button class="mini-edit" data-id="${ev.id}" title="تعديل"><i class="fas fa-edit"></i></button>
+                            <button class="mini-delete" data-id="${ev.id}" title="حذف"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                miniList.innerHTML = html;
+
+                miniList.querySelectorAll('.mini-edit').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        editEvent(id);
+                        // scroll to form
+                        const formEl = document.querySelector('#adminControls .section-title');
+                        if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                });
+
+                miniList.querySelectorAll('.mini-delete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.dataset.id);
+                        if (confirm('هل أنت متأكد من حذف هذا الحدث؟')) {
+                            deleteEvent(id);
+                        }
+                    });
+                });
+            }
+
+            function addEvent(data) {
+                const newEvent = {
+                    id: nextId++,
+                    type: data.type,
+                    typeCustom: data.typeCustom || '',
+                    name: data.name,
+                    icon: getEventTypeIcon(data.type, data.typeCustom),
+                    startDate: data.startDate,
+                    endDate: data.endDate,
+                    weight: parseInt(data.weight) || 0,
+                    range: data.range || '',
+                    duration: data.duration || '',
+                    details: data.details || '',
+                    category: data.category || 'طلاب التحضيري_SEU'
+                };
+                events.push(newEvent);
+                saveData();
+                renderEvents();
+                renderMiniList();
+                updateSectionCountdown();
+                toast(`تم إضافة "${newEvent.name}" بنجاح ✅`, 'success');
+                resetForm();
+            }
+
+            function editEvent(id) {
+                const ev = events.find(e => e.id === id);
+                if (!ev) return;
+
+                editingId = id;
+                editIdInput.value = id;
+                eventType.value = ev.type;
+                eventName.value = ev.name;
+                // Handle custom type
+                if (ev.type === 'other') {
+                    eventTypeCustom.value = ev.typeCustom || '';
+                    eventTypeCustom.classList.add('visible');
+                } else {
+                    eventTypeCustom.value = '';
+                    eventTypeCustom.classList.remove('visible');
+                }
+                // Handle category
+                if (CATEGORY_SECTION_MAP[ev.category] || ev.category === 'أخرى') {
+                    eventCategory.value = ev.category || 'طلاب التحضيري_SEU';
+                } else {
+                    // Custom category
+                    eventCategory.value = 'أخرى';
+                    eventCategoryCustom.value = ev.category;
+                    eventCategoryCustom.classList.add('visible');
+                }
+                // format datetime-local
+                const start = new Date(ev.startDate);
+                const end = new Date(ev.endDate);
+                eventStart.value = start.toISOString().slice(0, 16);
+                eventEnd.value = end.toISOString().slice(0, 16);
+                eventWeight.value = ev.weight;
+                eventDuration.value = ev.duration || '';
+                eventRange.value = ev.range || '';
+                eventDetails.value = ev.details || '';
+
+                formTitle.textContent = '✏️ تعديل الحدث';
+                submitBtn.textContent = '💾 تحديث';
+                submitBtn.classList.add('edit-mode');
+                cancelEditBtn.style.display = 'block';
+
+                // Open sidebar if closed
+                if (sidebar.classList.contains('closed')) {
+                    openSidebar();
+                }
+
+                // Scroll to form
+                setTimeout(() => {
+                    const formEl = document.querySelector('#adminControls .section-title');
+                    if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+
+            function updateEvent(id, data) {
+                const idx = events.findIndex(e => e.id === id);
+                if (idx === -1) return;
+
+                events[idx] = {
+                    ...events[idx],
+                    type: data.type,
+                    typeCustom: data.typeCustom || '',
+                    name: data.name,
+                    icon: getEventTypeIcon(data.type, data.typeCustom),
+                    startDate: data.startDate,
+                    endDate: data.endDate,
+                    weight: parseInt(data.weight) || 0,
+                    range: data.range || '',
+                    duration: data.duration || '',
+                    details: data.details || '',
+                    category: data.category || 'طلاب التحضيري_SEU'
+                };
+                saveData();
+                renderEvents();
+                renderMiniList();
+                updateSectionCountdown();
+                toast(`تم تحديث "${events[idx].name}" بنجاح ✅`, 'success');
+                resetForm();
+            }
+
+            function deleteEvent(id) {
+                const ev = events.find(e => e.id === id);
+                if (!ev) return;
+                const name = ev.name;
+                events = events.filter(e => e.id !== id);
+                saveData();
+                renderEvents();
+                renderMiniList();
+                updateSectionCountdown();
+                toast(`تم حذف "${name}" 🗑️`, '');
+                if (editingId === id) resetForm();
+            }
+
+            function resetForm() {
+                editingId = null;
+                editIdInput.value = '';
+                eventForm.reset();
+                eventType.value = 'quiz';
+                eventCategory.value = 'طلاب التحضيري_SEU';
+                eventTypeCustom.value = '';
+                eventTypeCustom.classList.remove('visible');
+                eventCategoryCustom.value = '';
+                eventCategoryCustom.classList.remove('visible');
+                formTitle.textContent = '➕ إضافة حدث جديد';
+                submitBtn.textContent = '💾 حفظ';
+                submitBtn.classList.remove('edit-mode');
+                cancelEditBtn.style.display = 'none';
+            }
+
+            // ============================================================
+            // COUNTDOWN (Hero - global)
+            // ============================================================
+            function updateCountdown() {
+                const next = getNextEvent(null);
+                if (!next) {
+                    nextEventNameEl.textContent = 'لا توجد أحداث';
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const now = new Date();
+                const target = new Date(next.startDate);
+                let diff = target.getTime() - now.getTime();
+
+                if (diff < 0) {
+                    nextEventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                nextEventNameEl.textContent =
+                    `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff -= days * (1000 * 60 * 60 * 24);
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff -= hours * (1000 * 60 * 60);
+                const minutes = Math.floor(diff / (1000 * 60));
+                diff -= minutes * (1000 * 60);
+                const seconds = Math.floor(diff / 1000);
+
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            // ============================================================
+            // SECTION COUNTDOWN
+            // ============================================================
+            function updateSectionCountdown() {
+                const category = getActiveCategory();
+                const filtered = getFilteredEvents();
+                const next = getNextEvent(category);
+
+                // Also check for custom-category events in general section
+                if (activeSection === 'sectionGeneral' && !next) {
+                    const customEvents = events.filter(ev => !CATEGORY_SECTION_MAP[ev.category]);
+                    if (customEvents.length > 0) {
+                        const now = new Date();
+                        let minDiff = Infinity;
+                        for (const ev of customEvents) {
+                            const start = new Date(ev.startDate);
+                            const diff = start.getTime() - now.getTime();
+                            if (diff > 0 && diff < minDiff) {
+                                minDiff = diff;
+                                // next already null, find it
+                                next = ev; // This will work since we're in same scope
+                            }
+                        }
+                    }
+                }
+
+                if (filtered.length === 0 || !next) {
+                    sectionCountdown.classList.remove('visible');
+                    scEventNameEl.textContent = 'لا توجد أحداث';
+                    scDaysEl.textContent = '00';
+                    scHoursEl.textContent = '00';
+                    scMinutesEl.textContent = '00';
+                    scSecondsEl.textContent = '00';
+                    return;
+                }
+
+                sectionCountdown.classList.add('visible');
+
+                const now = new Date();
+                const target = new Date(next.startDate);
+                let diff = target.getTime() - now.getTime();
+
+                if (diff < 0) {
+                    scEventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
+                    scDaysEl.textContent = '00';
+                    scHoursEl.textContent = '00';
+                    scMinutesEl.textContent = '00';
+                    scSecondsEl.textContent = '00';
+                    return;
+                }
+
+                scEventNameEl.textContent =
+                    `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff -= days * (1000 * 60 * 60 * 24);
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff -= hours * (1000 * 60 * 60);
+                const minutes = Math.floor(diff / (1000 * 60));
+                diff -= minutes * (1000 * 60);
+                const sec = Math.floor(diff / 1000);
+
+                scDaysEl.textContent = String(days).padStart(2, '0');
+                scHoursEl.textContent = String(hours).padStart(2, '0');
+                scMinutesEl.textContent = String(minutes).padStart(2, '0');
+                scSecondsEl.textContent = String(sec).padStart(2, '0');
+            }
+
+            // ============================================================
+            // EVENT HANDLERS
+            // ============================================================
+
+            // Section Tab Clicks
+            sectionTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    switchSection(this.dataset.section);
+                });
+            });
+
+            // Category select - show/hide custom input
+            eventCategory.addEventListener('change', function() {
+                if (this.value === 'أخرى') {
+                    eventCategoryCustom.classList.add('visible');
+                } else {
+                    eventCategoryCustom.classList.remove('visible');
+                    eventCategoryCustom.value = '';
+                }
+            });
+
+            // Event type select - show/hide custom input
+            eventType.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    eventTypeCustom.classList.add('visible');
+                } else {
+                    eventTypeCustom.classList.remove('visible');
+                    eventTypeCustom.value = '';
+                }
+            });
+
+            // Mini category filter
+            miniCategoryFilterEl.addEventListener('change', function() {
+                miniCategoryFilter = this.value;
+                renderMiniList();
+            });
+
+            // Login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                login(username, password);
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', function() {
+                logout();
+            });
+
+            // Toggle sidebar
+            adminToggle.addEventListener('click', toggleSidebar);
+            closeSidebarBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (!sidebar.classList.contains('closed')) {
+                        closeSidebar();
+                    }
+                }
+            });
+
+            // Event form submit
+            eventForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const type = eventType.value;
+                const typeCustom = eventTypeCustom.value.trim();
+                const name = eventName.value.trim();
+                const startDate = eventStart.value;
+                const endDate = eventEnd.value;
+                const weight = eventWeight.value;
+                const duration = eventDuration.value.trim();
+                const range = eventRange.value.trim();
+                const details = eventDetails.value.trim();
+
+                // Get category
+                let category = eventCategory.value;
+                if (category === 'أخرى') {
+                    category = eventCategoryCustom.value.trim() || 'أخرى';
+                }
+
+                if (!name || !startDate || !endDate || !weight) {
+                    toast('⚠️ الرجاء ملء جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                if (end <= start) {
+                    toast('⚠️ تاريخ الانتهاء يجب أن يكون بعد تاريخ البدء', 'error');
+                    return;
+                }
+
+                const data = { type, typeCustom, name, startDate, endDate, weight, duration, range, details, category };
+
+                const editId = editIdInput.value;
+                if (editId) {
+                    updateEvent(parseInt(editId), data);
+                } else {
+                    addEvent(data);
+                }
+            });
+
+            // Cancel edit
+            cancelEditBtn.addEventListener('click', function() {
+                resetForm();
+                toast('تم إلغاء التعديل', '');
+            });
+
+            // ============================================================
+            // KEYBOARD SHORTCUT: Ctrl+Shift+A to toggle admin
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && (e.key === 'a' || e.key === 'A')) {
+                    e.preventDefault();
+                    toggleSidebar();
+                }
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            loadData();
+            checkAuth();
+            switchSection('sectionPreparatory');
+            renderEvents();
+            renderMiniList();
+            updateCountdown();
+            updateSectionCountdown();
+
+            setInterval(function() {
+                updateCountdown();
+                updateSectionCountdown();
+            }, 1000);
+
+            // Show a welcome toast if logged in
+            if (isLoggedIn) {
+                setTimeout(() => {
+                    toast('👋 مرحباً أدمن! يمكنك إدارة المواعيد من اللوحة الجانبية', 'success');
+                }, 500);
+            }
+
+            console.log('📋 مواعيد المهام والأحداث الدراسية — طلبة الجامعة السعودية الإلكترونية SEU');
+            console.log('🔐 اسم المستخدم: Moaeen-admin');
+            console.log('🔑 كلمة المرور: Moaeen-admin-2026');
+            console.log('⌨️  اختصار: Ctrl+Shift+A لفتح/إغلاق اللوحة');
+
+        })();
+    </script>
+
+</body>
+</html>
