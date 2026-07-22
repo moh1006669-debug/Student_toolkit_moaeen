@@ -1758,7 +1758,277 @@
         font-size: 13px;
       }
     }
+  
+/* ============================================================
+   CARD WIDE - بطاقة عريضة مع 3 بطاقات فرعية
+   ============================================================ */
 
+/* ===== البطاقة الأم ===== */
+.cards-grid .card-wide {
+    grid-column: 1 / -1;
+    position: relative;
+    padding: 28px 28px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(14, 91, 87, 0.06);
+    transition: all var(--transition);
+    overflow: hidden;
+}
+
+.cards-grid .card-wide:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+/* ===== ريبون أخضر داكن ===== */
+.card-wide-ribbon {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 40px;
+    height: 48px;
+    background: var(--btn-bg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 8px;
+    box-shadow: 0 2px 8px rgba(7, 72, 66, 0.3);
+    z-index: 2;
+}
+
+.card-wide-ribbon i {
+    color: var(--bg-card);
+    font-size: 14px;
+}
+
+/* ===== رأس البطاقة (أيقونة + عنوان أفقي) ===== */
+.card-wide-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid rgba(216, 166, 59, 0.12);
+    margin-bottom: 20px;
+    margin-top: 4px;
+}
+
+.card-wide-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--icon-circle-bg); /* خلفية خضراء فاتحة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-wide-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-family: var(--font-cairo);
+    color: var(--title-color);
+    margin: 0;
+}
+
+/* ===== حاوية البطاقات الفرعية (3 أعمدة) ===== */
+.card-wide-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* ===== البطاقة الفرعية ===== */
+.sub-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px 18px;
+    background: rgba(14, 91, 87, 0.02);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(14, 91, 87, 0.06);
+    transition: all var(--transition);
+    min-height: 180px;
+}
+
+.sub-card:hover {
+    background: rgba(14, 91, 87, 0.04);
+    border-color: rgba(216, 166, 59, 0.15);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ===== أيقونة البطاقة الفرعية (خلفية خضراء فاتحة) ===== */
+.sub-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--icon-circle-bg); /* خلفية خضراء فاتحة مثل البطاقات الرئيسية */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+}
+
+/* ===== عنوان البطاقة الفرعية (غامق وكبير) ===== */
+.sub-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--title-color);
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+/* ===== زر البطاقة الفرعية ===== */
+.sub-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 60px;
+    background: var(--btn-bg);
+    color: var(--bg-card);
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: var(--font-tajawal);
+    transition: all var(--transition);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    max-width: 200px;
+    margin-top: auto;
+}
+
+.sub-card-btn i {
+    font-size: 15px;
+}
+
+.sub-card-btn:hover {
+    background: var(--btn-bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(7, 72, 66, 0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* شاشات متوسطة (تابلت) */
+@media (max-width: 820px) {
+    .card-wide-body {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .sub-card {
+        min-height: 160px;
+        padding: 16px 14px;
+    }
+
+    .sub-card-title {
+        font-size: 0.9rem;
+    }
+
+    .sub-card-btn {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+        max-width: 100%;
+    }
+
+    .card-wide-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* شاشات صغيرة (جوال) */
+@media (max-width: 640px) {
+    .card-wide-body {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .sub-card {
+        min-height: 140px;
+        padding: 16px;
+        flex-direction: column;
+    }
+
+    .sub-card-btn {
+        max-width: 80%;
+    }
+
+    .card-wide-header {
+        gap: 10px;
+        padding-bottom: 14px;
+    }
+
+    .card-wide-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-wide-icon i {
+        font-size: 20px !important;
+    }
+
+    .card-wide-title {
+        font-size: 0.95rem;
+    }
+
+    .card-wide-ribbon {
+        width: 34px;
+        height: 40px;
+        left: 14px;
+    }
+
+    .card-wide-ribbon i {
+        font-size: 12px;
+    }
+}
+
+/* شاشات صغيرة جداً */
+@media (max-width: 400px) {
+    .card-wide {
+        padding: 18px 14px 16px;
+    }
+
+    .sub-card {
+        padding: 14px 12px;
+        min-height: 120px;
+    }
+
+    .sub-card-title {
+        font-size: 0.85rem;
+    }
+
+    .sub-card-btn {
+        font-size: 0.7rem;
+        padding: 6px 14px;
+        max-width: 100%;
+    }
+
+    .card-wide-title {
+        font-size: 0.85rem;
+    }
+
+    .card-wide-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .card-wide-icon i {
+        font-size: 16px !important;
+    }
+}
 
   </style>
 </head>
@@ -2109,6 +2379,72 @@
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>استكشف الأداة</span>
     </a>
+</div>
+<!-- ===== البطاقة 12: قروبات الطلاب و قنوات الأخبار (عريضة) ===== -->
+<div class="card card-wide">
+    <!-- شارة خضراء داكنة (Ribbon) -->
+    <div class="card-wide-ribbon">
+        <i class="fas fa-users" aria-hidden="true"></i>
+    </div>
+
+    <!-- رأس البطاقة (أيقونة + عنوان أفقي) -->
+    <div class="card-wide-header">
+        <div class="card-wide-icon">
+            <i class="fas fa-users" style="font-size: 30px; color: var(--gold);"></i>
+        </div>
+        <h3 class="card-wide-title">قروبات الطلاب و قنوات الأخبار</h3>
+    </div>
+
+    <!-- البطاقات الفرعية (عمودية) -->
+    <div class="card-wide-body">
+
+        <!-- البطاقة الفرعية 1 -->
+        <div class="sub-card">
+            <div class="sub-card-icon">
+                <i class="fas fa-users" style="font-size: 32px; color: var(--gold);"></i>
+            </div>
+          <h4 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+        <span>قروب تجمع طلبة التحضيري¹⁴⁴⁹</span>
+        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(SEU)</span>
+          </h4>
+            <a href="#" class="sub-card-btn">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                انضمام
+            </a>
+        </div>
+
+        <!-- البطاقة الفرعية 2 -->
+        <div class="sub-card">
+            <div class="sub-card-icon">
+                <i class="fas fa-bullhorn" style="font-size: 32px; color: var(--gold);"></i>
+            </div>
+            <h4 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+        <span>قناة الأخبار و الإعلامات</span>
+        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(SEU)</span>
+            </h4>
+            <a href="https://whatsapp.com/channel/0029VakYpEgJf05cOelgFv3t" class="sub-card-btn">
+                <i class="fas fa-rss" aria-hidden="true"></i>
+                عرض القناة
+            </a>
+        </div>
+
+        <!-- البطاقة الفرعية 3 -->
+            <div class="sub-card">
+            <div class="sub-card-icon">
+               <i class="brand-header" style="font-size: 32px; color: var(--gold);"></i>
+            </div>
+            <h4 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+        <span>خدمات منصة مُعين</span>
+        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(خدمات طلابي)</span>
+            </h4>
+            <a href="https://moaeen-help.space-z.ai/services" class="sub-card-btn">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                تصفح الخدمات
+            </a>
+        </div>
+
+    
+    </div>
 </div>
 
     </div> <!-- ===== نهاية .cards-grid ===== -->
