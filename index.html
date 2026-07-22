@@ -1758,227 +1758,6 @@
         font-size: 13px;
       }
     }
-/* ============================================================
-   CARD WIDE - مجتمع الطالب
-   ============================================================ */
-
-/* متغيرات افتراضية (استخدم المتغيرات الموجودة في مشروعك إذا كانت معرفة مسبقاً) */
-:root {
-    --primary-color: #0e5b57;
-    --gold: #d8a63b;
-    --bg-light: #f7fbfa;
-    --border-color: #c0dedb;
-}
-
-/* ===== البطاقة الأم ===== */
-.cards-grid .card-wide {
-    grid-column: 1 / -1;
-    position: relative;
-    background: var(--bg-light); /* خلفية فاتحة جداً للحاوية */
-    border-radius: 24px;
-    border: 1px solid var(--border-color); /* إطار أخضر فاتح مطابق للصورة */
-    overflow: hidden;
-    margin-bottom: 24px;
-}
-
-/* ===== رأس البطاقة (Header) ===== */
-.card-wide-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 30px 40px 10px 40px;
-    position: relative;
-    background: linear-gradient(90deg, rgba(240,248,247,1) 0%, rgba(255,255,255,0) 100%); /* تدرج لوني خفيف من اليمين */
-}
-
-/* الأيقونة الكبيرة في رأس البطاقة */
-.card-wide-icon-large {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #e6f2f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(14, 91, 87, 0.1);
-}
-
-.card-wide-icon-large i {
-    font-size: 36px;
-    color: var(--primary-color);
-}
-
-/* مجموعة العناوين */
-.card-wide-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 2;
-}
-
-.card-wide-main-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin: 0;
-    font-family: var(--font-cairo);
-}
-
-.card-wide-subtitle {
-    font-size: 0.95rem;
-    color: #666;
-    margin: 0;
-}
-
-/* ===== شريط الأقسام (Tabs) ===== */
-.card-wide-tabs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 20px 0 30px 0;
-}
-
-.tab-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.tab-item i {
-    font-size: 1.2rem;
-}
-
-/* ===== حاوية البطاقات الفرعية ===== */
-.card-wide-body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    padding: 0 30px 30px 30px;
-}
-
-/* ===== البطاقة الفرعية ===== */
-.sub-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 30px 20px 24px;
-    background: #ffffff; /* خلفية بيضاء خالصة */
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04); /* ظل ناعم */
-    transition: all var(--transition, 0.3s ease);
-    min-height: 240px;
-}
-
-.sub-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(14, 91, 87, 0.08);
-}
-
-/* أيقونة البطاقة الفرعية */
-.sub-card-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: #e6f2f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-bottom: 20px;
-}
-
-/* نصوص البطاقة الفرعية */
-.sub-card-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 20px;
-}
-
-.sub-card-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin: 0;
-    line-height: 1.4;
-}
-
-.sub-card-desc {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--gold);
-}
-
-/* ===== زر البطاقة الفرعية ===== */
-.sub-card-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border-radius: 50px; /* شكل حبة الدواء (Pill) */
-    background: var(--primary-color); /* أخضر داكن */
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-decoration: none;
-    width: 100%;
-    max-width: 220px;
-    transition: all var(--transition, 0.3s ease);
-}
-
-.sub-card-btn i {
-    font-size: 16px;
-}
-
-.sub-card-btn:hover {
-    background: #0a423f; /* درجة أغمق عند التمرير */
-    color: #ffffff;
-}
-
-/* ===== التجاوب مع الشاشات (RESPONSIVE) ===== */
-@media (max-width: 992px) {
-    .card-wide-tabs {
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 820px) {
-    .card-wide-body {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .card-wide-header {
-        padding: 24px 20px 0 20px;
-    }
-}
-
-@media (max-width: 640px) {
-    .card-wide-body {
-        grid-template-columns: 1fr;
-        padding: 0 20px 20px 20px;
-    }
-    .card-wide-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-    }
-    .card-wide-tabs {
-        padding: 20px 10px;
-        gap: 15px;
-    }
-    .tab-item {
-        font-size: 0.95rem;
-    }
-}
 
 
   </style>
@@ -2080,92 +1859,6 @@
 
     <!-- ===== شبكة البطاقات ===== -->
     <div class="cards-grid">
-    <!-- ===== البطاقة 1: مجتمع الطالب ===== -->
-<div class="card card-wide">
-    
-    <!-- رأس البطاقة (الأيقونة + العنوان + الوصف) -->
-    <div class="card-wide-header">
-        <div class="card-wide-icon-large">
-            <i class="fas fa-users" aria-hidden="true"></i>
-        </div>
-        <div class="card-wide-title-group">
-            <h2 class="card-wide-main-title">مجتمع الطالب</h2>
-            <p class="card-wide-subtitle">انضم إلى القروبات الرسمية وتابع آخر الإعلانات والاخبار</p>
-        </div>
-        <!-- خلفية زخرفية اختيارية في اليسار (يمكن إضافتها كصورة في الـ CSS) -->
-        <div class="card-wide-header-bg"></div>
-    </div>
-
-    <!-- شريط الأقسام (المجتمع، الأخبار، القروبات، الخدمات) -->
-    <div class="card-wide-tabs">
-        <div class="tab-item">
-            <i class="fas fa-users" style="color: var(--primary-color, #0e5b57);"></i>
-            <span>المجتمع</span>
-        </div>
-        <div class="tab-item">
-            <i class="fas fa-bullhorn" style="color: var(--gold, #d8a63b);"></i>
-            <span>الأخبار</span>
-        </div>
-        <div class="tab-item">
-            <i class="fas fa-comment-dots" style="color: var(--primary-color, #0e5b57);"></i>
-            <span>القروبات</span>
-        </div>
-        <div class="tab-item">
-            <i class="fas fa-star" style="color: var(--gold, #d8a63b);"></i>
-            <span>الخدمات</span>
-        </div>
-    </div>
-
-    <!-- البطاقات الفرعية (3 بطاقات متجاورة أفقياً) -->
-    <div class="card-wide-body">
-
-        <!-- البطاقة الفرعية 1: قروب التحضيري -->
-        <div class="sub-card">
-            <div class="sub-card-icon">
-                <i class="fas fa-users" style="font-size: 28px; color: var(--gold, #d8a63b);"></i>
-            </div>
-            <div class="sub-card-text">
-                <h4 class="sub-card-title">قروب تجمع طلبة<br>التحضيري 1449</h4>
-                <span class="sub-card-desc">(SEU)</span>
-            </div>
-            <a href="#" class="sub-card-btn">
-                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                انضمام
-            </a>
-        </div>
-
-        <!-- البطاقة الفرعية 2: قناة الأخبار -->
-        <div class="sub-card">
-            <div class="sub-card-icon">
-                <i class="fas fa-bullhorn" style="font-size: 28px; color: var(--gold, #d8a63b);"></i>
-            </div>
-            <div class="sub-card-text">
-                <h4 class="sub-card-title">قناة الأخبار و الإعلانات</h4>
-                <span class="sub-card-desc">(SEU)</span>
-            </div>
-            <a href="#" class="sub-card-btn">
-                <i class="fas fa-rss" aria-hidden="true"></i>
-                عرض القناة
-            </a>
-        </div>
-
-        <!-- البطاقة الفرعية 3: خدمات منصة مُعين -->
-        <div class="sub-card">
-            <div class="sub-card-icon">
-                <i class="fas fa-graduation-cap" style="font-size: 28px; color: var(--primary-color, #0e5b57);"></i>
-            </div>
-            <div class="sub-card-text">
-                <h4 class="sub-card-title">خدمات منصة مُعين</h4>
-                <span class="sub-card-desc" style="color: var(--gold, #d8a63b);">(خدمات طلابي)</span>
-            </div>
-            <a href="#" class="sub-card-btn">
-                تصفح الخدمات
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-            </a>
-        </div>
-
-    </div>
-</div>
 
         <!-- ===== البطاقة 1: كتب ومصادر اللغة الإنجليزية ===== -->
         <div class="card">
@@ -2293,7 +1986,7 @@
                 <span>استكشف الأداة</span>
             </a>
         </div>
-      <!-- ===== البطاقة 6: مرجع مواعيد طلاب_SEU ===== -->
+      <!-- ===== البطاقة 6: مرجع مواعيد المهام===== -->
         <div class="card">
             <div class="card-ribbon">
                 <i class="fas fa-star" aria-hidden="true"></i>
@@ -2301,9 +1994,9 @@
             <div class="card-icon-circle">
                 <img src="./assets/images/icon-schedule.png" alt="مرجع مواعيد English" />
             </div>
-            <h3 class="card-title">
-                <span>مرجع مواعيد -طلاب_SEU  (تحضيري/تخصص)</span>
-                <span class="title-icon">📅</span>
+<h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                <span>مرجع مواعيد - المهام📅 </span>
+		<span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(تحضيري/تخصص_SEU)</span>
             </h3>
             <p class="card-desc">
                 متابعة مواعيد الكويزات والميد والفاينل مع مؤقت للعد التنازلي.
@@ -2436,9 +2129,6 @@
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>استكشف الأداة</span>
     </a>
-</div>
-
-    </div>
 </div>
 
     </div> <!-- ===== نهاية .cards-grid ===== -->
