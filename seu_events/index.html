@@ -73,6 +73,14 @@
             padding-right: calc(20px + var(--sidebar-width));
         }
 
+        /* main content takes remaining space */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
         a {
             text-decoration: none;
             color: inherit;
@@ -275,7 +283,7 @@
         .hero {
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto 24px;
+            margin: 0 auto;
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             border-radius: var(--radius-lg);
             padding: 40px 48px;
@@ -287,6 +295,7 @@
             box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .hero::before {
@@ -316,6 +325,11 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-badge {
@@ -329,7 +343,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--gold-light);
-            margin-bottom: 12px;
+            margin: 0 auto 12px;
             backdrop-filter: blur(4px);
         }
 
@@ -357,7 +371,8 @@
         .hero .subtitle {
             font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.75);
-            max-width: 480px;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.8;
         }
 
@@ -365,7 +380,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 14px;
+            margin: 14px auto 0;
             background: rgba(255, 255, 255, 0.06);
             border-radius: 60px;
             padding: 6px 18px;
@@ -380,31 +395,6 @@
             font-size: 1rem;
         }
 
-        .hero-countdown {
-            position: relative;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: var(--radius-md);
-            padding: 28px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(4px);
-            text-align: center;
-        }
-
-        .hero-countdown .next-event-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 6px;
-        }
-
-        .hero-countdown .next-event-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 16px;
-            animation: subtle-pulse 2.5s ease-in-out infinite;
-        }
-
         @keyframes subtle-pulse {
             0%,
             100% {
@@ -415,51 +405,13 @@
             }
         }
 
-        .hero-countdown .countdown-grid {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .hero-countdown .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-sm);
-            padding: 10px 16px;
-            min-width: 68px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: background var(--transition);
-        }
-
-        .hero-countdown .countdown-item:hover {
-            background: rgba(255, 255, 255, 0.10);
-        }
-
-        .hero-countdown .countdown-item .number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.2;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-countdown .countdown-item .label {
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-        }
-
         /* ============================================================
            SECTION TABS
            ============================================================ */
         .section-tabs-wrapper {
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto 24px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -521,80 +473,147 @@
         }
 
         /* ============================================================
-           SECTION COUNTDOWN
+           HERO TRI-COUNTDOWN
            ============================================================ */
-        .section-countdown {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            border-radius: var(--radius-md);
-            padding: 24px 32px;
-            color: #fff;
-            text-align: center;
-            box-shadow: var(--shadow-md);
+        .hero-tri-countdown {
+            display: flex;
+            gap: 16px;
             position: relative;
-            overflow: hidden;
-            display: none;
+            z-index: 2;
         }
 
-        .section-countdown.visible {
-            display: block;
+        .hero-count-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 20px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            flex: 1;
+            backdrop-filter: blur(4px);
         }
 
-        .section-countdown::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -5%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(216, 166, 59, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .section-countdown .sc-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+        .hero-count-box .hero-count-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.5px;
             margin-bottom: 6px;
         }
 
-        .section-countdown .sc-event-name {
-            font-size: 1.15rem;
+        .hero-count-box .hero-count-event-name {
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--gold);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             animation: subtle-pulse 2.5s ease-in-out infinite;
+            line-height: 1.3;
         }
 
-        .section-countdown .sc-grid {
+        .hero-count-box .hero-count-grid {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .section-countdown .sc-item {
+        .hero-count-box .countdown-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             background: rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-sm);
-            padding: 8px 14px;
-            min-width: 60px;
+            padding: 8px 12px;
+            min-width: 54px;
             border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background var(--transition);
         }
 
-        .section-countdown .sc-item .number {
-            font-size: 1.8rem;
+        .hero-count-box .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .hero-count-box .countdown-item .number {
+            font-size: 1.5rem;
             font-weight: 800;
             color: #fff;
             line-height: 1.2;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
-        .section-countdown .sc-item .label {
-            font-size: 0.72rem;
+        .hero-count-box .countdown-item .label {
+            font-size: 0.68rem;
             color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-top: 2px;
+        }
+
+        /* ============================================================
+           HERO SHARE BUTTON
+           ============================================================ */
+        .hero-share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            padding: 10px 18px;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.9rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(4px);
+        }
+        .hero-share-btn:hover {
+            background: rgba(216, 166, 59, 0.15);
+            border-color: rgba(216, 166, 59, 0.30);
+        }
+        .hero-share-btn i {
+            font-size: 1.1rem;
+        }
+        .hero-share-dropdown {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            margin-top: 8px;
+            background: var(--bg-white);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-md);
+            padding: 8px 0;
+            display: none;
+            flex-direction: column;
+            z-index: 11;
+            min-width: 160px;
+            animation: fadeInShare 0.2s ease-out;
+        }
+        .hero-share-dropdown.open {
+            display: flex;
+        }
+        .hero-share-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+        }
+        .hero-share-dropdown a:hover {
+            background: rgba(8, 68, 64, 0.06);
+            color: var(--primary);
+        }
+        .hero-share-dropdown a i {
+            font-size: 1.2rem;
+        }
+        .hero-share-dropdown a .wa-icon { color: #25D366; }
+        .hero-share-dropdown a .tg-icon { color: #0088cc; }
+
+        @keyframes fadeInShare {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ============================================================
@@ -645,7 +664,7 @@
         .quick-links {
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto 24px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -770,7 +789,7 @@
         .events-section {
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto 40px;
+            margin: 0 auto;
         }
 
         .events-section .section-header {
@@ -1142,7 +1161,7 @@
         .admin-sidebar {
             position: fixed;
             top: 0;
-            left: calc(100% - 0px);
+            right: 0;
             width: var(--sidebar-width);
             height: 100%;
             background: var(--bg-white);
@@ -1153,7 +1172,7 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid rgba(8, 68, 64, 0.04);
+            border-left: 1px solid rgba(8, 68, 64, 0.04);
         }
 
         .admin-sidebar.closed {
@@ -1441,6 +1460,22 @@
 
         .custom-category-input.visible {
             display: block;
+        }
+
+        /* Sub-category input in admin */
+        .sub-category-input {
+            padding: 10px 14px;
+            border: 2px solid rgba(8, 68, 64, 0.08);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.92rem;
+            transition: border-color var(--transition);
+            background: var(--bg);
+        }
+
+        .sub-category-input:focus {
+            border-color: var(--primary);
+            outline: none;
         }
 
         /* Custom type input in admin */
@@ -1925,6 +1960,7 @@
             }
             .admin-sidebar {
                 width: 100%;
+                right: 0;
                 left: 0;
                 border-radius: 0;
             }
@@ -1970,17 +2006,14 @@
             .hero h1 {
                 font-size: 1.6rem;
             }
-            .hero-countdown .countdown-grid {
-                gap: 10px;
+            .hero-share-wrapper {
+                top: 24px;
+                left: 20px;
             }
-            .hero-countdown .countdown-item {
-                min-width: 54px;
-                padding: 8px 12px;
+            .hero-share-btn {
+                font-size: 0.82rem;
+                padding: 8px 14px;
             }
-            .hero-countdown .countdown-item .number {
-                font-size: 1.6rem;
-            }
-            /* Section tabs responsive */
             .section-tabs {
                 flex-wrap: wrap;
                 gap: 8px;
@@ -1992,15 +2025,19 @@
                 min-width: 140px;
                 justify-content: center;
             }
-            .section-countdown .sc-grid {
-                gap: 8px;
+            .hero-tri-countdown {
+                flex-direction: column;
+                gap: 12px;
             }
-            .section-countdown .sc-item {
-                min-width: 50px;
+            .hero-count-box .hero-count-event-name {
+                font-size: 0.88rem;
+            }
+            .hero-count-box .countdown-item {
+                min-width: 44px;
                 padding: 6px 10px;
             }
-            .section-countdown .sc-item .number {
-                font-size: 1.4rem;
+            .hero-count-box .countdown-item .number {
+                font-size: 1.3rem;
             }
             .events-grid {
                 grid-template-columns: 1fr;
@@ -2022,6 +2059,7 @@
             }
             .footer {
                 padding: 28px 18px 22px;
+                border-radius: var(--radius-md);
             }
             .footer .footer-columns {
                 flex-wrap: nowrap;
@@ -2056,7 +2094,7 @@
                 text-align: center;
             }
             .float-wa {
-                bottom: 20px;
+                bottom: 30px;
                 right: 20px;
                 padding: 14px 22px 14px 18px;
                 font-size: 14px;
@@ -2077,7 +2115,7 @@
                 right: 12px;
                 left: 12px;
                 max-width: 100%;
-                bottom: 80px;
+                bottom: 90px;
             }
         }
 
@@ -2098,10 +2136,18 @@
             .hero h1 {
                 font-size: 1.3rem;
             }
+            .hero-share-wrapper {
+                top: 20px;
+                left: 16px;
+            }
+            .hero-share-btn {
+                font-size: 0.78rem;
+                padding: 6px 10px;
+                gap: 4px;
+            }
             .hero .subtitle {
                 font-size: 0.95rem;
             }
-            /* Section tabs - full width on small mobile */
             .section-tabs {
                 flex-direction: column;
                 gap: 6px;
@@ -2112,12 +2158,21 @@
                 padding: 12px 16px;
                 font-size: 0.92rem;
             }
-            .section-countdown .sc-item .number {
-                font-size: 1.2rem;
+            .hero-tri-countdown {
+                gap: 8px;
             }
-            .section-countdown .sc-item {
-                min-width: 44px;
+            .hero-count-box {
+                padding: 14px 12px;
+            }
+            .hero-count-box .countdown-item {
+                min-width: 38px;
                 padding: 4px 8px;
+            }
+            .hero-count-box .countdown-item .number {
+                font-size: 1.1rem;
+            }
+            .hero-count-box .hero-count-event-name {
+                font-size: 0.82rem;
             }
             .section-content .coming-soon {
                 padding: 50px 16px;
@@ -2246,152 +2301,197 @@
     </header>
 
     <!-- ============================================================
-    HERO
+    MAIN CONTENT (pushes footer to bottom)
     ============================================================ -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-calendar-alt"></i> مرجع المواعيد</div>
-            <h1>
-                <span class="title-line1">مواعيد المهام و الأحداث الدراسية</span>
-                <br>
-                <span class="highlight">طلبة الجامعة السعودية الإلكترونية_SEU</span>
-            </h1>
-            <div class="subtitle">
-                تابع مواعيد المهام الدراسية (واجبات - كويزات - إختبارات)
-                <br>
-                و مواعيد الأحداث والإجراءات الأكاديمية
-            </div>
-            <div class="timezone-badge">
-                <i class="fas fa-clock"></i>
-                <span>جميع الأوقات بتوقيت السعودية (UTC+3)</span>
-            </div>
-        </div>
-        <div class="hero-countdown" id="countdownPanel">
-            <div class="next-event-label">الحدث القادم</div>
-            <div class="next-event-name" id="nextEventName">—</div>
-            <div class="countdown-grid" id="countdownGrid">
-                <div class="countdown-item">
-                    <span class="number" id="days">00</span>
-                    <span class="label">أيام</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="number" id="hours">00</span>
-                    <span class="label">ساعات</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="number" id="minutes">00</span>
-                    <span class="label">دقائق</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="number" id="seconds">00</span>
-                    <span class="label">ثواني</span>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <!-- Share button (left side, above countdown) -->
+            <div class="hero-share-wrapper" style="position: absolute; left: 0; top: 40px; z-index: 10;">
+                <button class="hero-share-btn" id="heroShareBtn" aria-label="مشاركة الصفحة">
+                    <i class="fas fa-share-from-square"></i>
+                    مشاركة الصفحة
+                </button>
+                <div class="hero-share-dropdown" id="heroShareDropdown">
+                    <a href="#" id="shareWhatsApp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp wa-icon"></i>
+                        واتساب
+                    </a>
+                    <a href="#" id="shareTelegram" target="_blank" rel="noopener">
+                        <i class="fab fa-telegram-plane tg-icon"></i>
+                        تيليجرام
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    SECTION TABS
-    ============================================================ -->
-    <div class="section-tabs-wrapper">
-        <div class="section-tabs">
-            <button class="section-tab active" data-section="sectionPreparatory" id="tabPreparatory">
-                <i class="fas fa-graduation-cap"></i>
-                <span>طلاب التحضيري_SEU</span>
-            </button>
-            <button class="section-tab" data-section="sectionSpecializations" id="tabSpecializations">
-                <i class="fas fa-laptop-code"></i>
-                <span>طلاب التخصصات_SEU</span>
-            </button>
-            <button class="section-tab" data-section="sectionGeneral" id="tabGeneral">
-                <i class="fas fa-calendar-alt"></i>
-                <span>أحداث وتواريخ عامة</span>
-            </button>
-        </div>
-
-        <!-- Section-specific countdown -->
-        <div class="section-countdown visible" id="sectionCountdown">
-            <div class="sc-label">الحدث القادم في هذا القسم</div>
-            <div class="sc-event-name" id="scEventName">—</div>
-            <div class="sc-grid" id="scGrid">
-                <div class="sc-item">
-                    <span class="number" id="scDays">00</span>
-                    <span class="label">أيام</span>
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-calendar-alt"></i> مرجع المواعيد</div>
+                <h1>
+                    <span class="title-line1">مواعيد المهام و الأحداث الدراسية</span>
+                    <br>
+                    <span class="highlight">طلبة الجامعة السعودية الإلكترونية_SEU</span>
+                </h1>
+                <div class="subtitle">
+                    تابع مواعيد المهام الدراسية (واجبات - كويزات - إختبارات)
+                    <br>
+                    و مواعيد الأحداث والإجراءات الأكاديمية
                 </div>
-                <div class="sc-item">
-                    <span class="number" id="scHours">00</span>
-                    <span class="label">ساعات</span>
-                </div>
-                <div class="sc-item">
-                    <span class="number" id="scMinutes">00</span>
-                    <span class="label">دقائق</span>
-                </div>
-                <div class="sc-item">
-                    <span class="number" id="scSeconds">00</span>
-                    <span class="label">ثواني</span>
+                <div class="timezone-badge">
+                    <i class="fas fa-clock"></i>
+                    <span>جميع الأوقات بتوقيت السعودية (UTC+3)</span>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- ============================================================
-    SECTION CONTENT: PREPARATORY
-    ============================================================ -->
-    <div class="section-content active" id="sectionPreparatory">
-
-        <!-- QUICK LINKS -->
-        <section class="quick-links">
-            <div class="row-buttons">
-                <a href="https://whatsapp.com/channel/0029VakYpEgJf05cOelgFv3t" target="_blank" class="btn-link">
-                    <i class="fab fa-whatsapp wa-icon"></i>
-                    <span>قناة الأخبار العامة SEU l</span>
-                </a>
-                <a href="https://whatsapp.com/channel/0029VbC18ul7DAX7ICgQzn11" target="_blank" class="btn-link">
-                    <i class="fab fa-whatsapp wa-icon"></i>
-                    <span>الترم الاستثنائي (صيفي د 25)</span>
-                </a>
-            </div>
-            <a href="https://moh1006669-debug.github.io/Student_toolkit_moaeen/Eng_Level_2_books/" target="_blank" class="btn-library">
-                <img src="../assets/images/icon-books.png" alt="كتب" />
-                <span>مكتبة الإستثنائي</span>
-                <span class="lib-desc">كتب + حلول الكتب + تجميعات &amp; مراجعات Eng_Level 2️⃣</span>
-            </a>
-        </section>
-
-        <!-- EVENTS SECTION -->
-        <section class="events-section">
-            <div class="section-header">
-                <h2><i class="fas fa-clipboard-list"></i> جدول <span>المواعيد</span></h2>
-                <span class="event-count" id="eventCount">0 حدث</span>
-            </div>
-            <div class="events-grid" id="eventsGrid">
-                <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+            <div class="hero-tri-countdown">
+                <!-- تحضيري -->
+                <div class="hero-count-box" id="heroCountPrep">
+                    <div class="hero-count-label">تحضيري</div>
+                    <div class="hero-count-event-name" id="heroPrepEventName">—</div>
+                    <div class="hero-count-grid">
+                        <div class="countdown-item">
+                            <span class="number" id="heroPrepDays">00</span>
+                            <span class="label">أيام</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroPrepHours">00</span>
+                            <span class="label">ساعات</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroPrepMinutes">00</span>
+                            <span class="label">دقائق</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroPrepSeconds">00</span>
+                            <span class="label">ثواني</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- تخصص -->
+                <div class="hero-count-box" id="heroCountSpec">
+                    <div class="hero-count-label">تخصص</div>
+                    <div class="hero-count-event-name" id="heroSpecEventName">—</div>
+                    <div class="hero-count-grid">
+                        <div class="countdown-item">
+                            <span class="number" id="heroSpecDays">00</span>
+                            <span class="label">أيام</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroSpecHours">00</span>
+                            <span class="label">ساعات</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroSpecMinutes">00</span>
+                            <span class="label">دقائق</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroSpecSeconds">00</span>
+                            <span class="label">ثواني</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- عام -->
+                <div class="hero-count-box" id="heroCountGen">
+                    <div class="hero-count-label">عام</div>
+                    <div class="hero-count-event-name" id="heroGenEventName">—</div>
+                    <div class="hero-count-grid">
+                        <div class="countdown-item">
+                            <span class="number" id="heroGenDays">00</span>
+                            <span class="label">أيام</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroGenHours">00</span>
+                            <span class="label">ساعات</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroGenMinutes">00</span>
+                            <span class="label">دقائق</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number" id="heroGenSeconds">00</span>
+                            <span class="label">ثواني</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-    </div>
-
-    <!-- ============================================================
-    SECTION CONTENT: SPECIALIZATIONS
-    ============================================================ -->
-    <div class="section-content" id="sectionSpecializations">
-        <div class="coming-soon">
-            <i class="fas fa-laptop-code"></i>
-            <h3>طلاب التخصصات_SEU</h3>
-            <p>قريباً — سيتم إضافة مواعيد المهام الدراسية لطلاب التخصصات</p>
+        <!-- SECTION TABS -->
+        <div class="section-tabs-wrapper">
+            <div class="section-tabs">
+                <button class="section-tab active" data-section="sectionPreparatory" id="tabPreparatory">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>طلاب التحضيري_SEU</span>
+                </button>
+                <button class="section-tab" data-section="sectionSpecializations" id="tabSpecializations">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>طلاب التخصصات_SEU</span>
+                </button>
+                <button class="section-tab" data-section="sectionGeneral" id="tabGeneral">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>أحداث وتواريخ عامة</span>
+                </button>
+            </div>
         </div>
-    </div>
 
-    <!-- ============================================================
-    SECTION CONTENT: GENERAL
-    ============================================================ -->
-    <div class="section-content" id="sectionGeneral">
-        <div class="coming-soon">
-            <i class="fas fa-calendar-alt"></i>
-            <h3>أحداث وتواريخ عامة</h3>
-            <p>قريباً — سيتم إضافة الأحداث والتواريخ العامة الأكاديمية</p>
+        <!-- SECTION CONTENT: PREPARATORY -->
+        <div class="section-content active" id="sectionPreparatory">
+
+            <!-- QUICK LINKS -->
+            <section class="quick-links">
+                <div class="row-buttons">
+                    <a href="https://whatsapp.com/channel/0029VakYpEgJf05cOelgFv3t" target="_blank" class="btn-link">
+                        <i class="fab fa-whatsapp wa-icon"></i>
+                        <span>قناة الأخبار العامة SEU l</span>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VbC18ul7DAX7ICgQzn11" target="_blank" class="btn-link">
+                        <i class="fab fa-whatsapp wa-icon"></i>
+                        <span>الترم الاستثنائي (صيفي د 25)</span>
+                    </a>
+                </div>
+                <a href="https://moh1006669-debug.github.io/Student_toolkit_moaeen/Eng_Level_2_books/" target="_blank" class="btn-library">
+                    <img src="../assets/images/icon-books.png" alt="كتب" />
+                    <span>مكتبة الإستثنائي</span>
+                    <span class="lib-desc">كتب + حلول الكتب + تجميعات &amp; مراجعات Eng_Level 2️⃣</span>
+                </a>
+            </section>
+
+            <!-- EVENTS SECTION -->
+            <section class="events-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> جدول <span>المواعيد</span></h2>
+                    <span class="event-count" id="eventCount">0 حدث</span>
+                </div>
+                <div class="events-grid" id="eventsGrid">
+                    <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+                </div>
+            </section>
+
         </div>
-    </div>
+
+        <!-- SECTION CONTENT: SPECIALIZATIONS -->
+        <div class="section-content" id="sectionSpecializations">
+            <section class="events-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-laptop-code"></i> جدول <span>المواعيد</span> — طلاب التخصصات</h2>
+                    <span class="event-count" id="eventCountSpec">0 حدث</span>
+                </div>
+                <div class="events-grid" id="eventsGridSpec">
+                    <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION CONTENT: GENERAL -->
+        <div class="section-content" id="sectionGeneral">
+            <section class="events-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> جدول <span>المواعيد</span> — أحداث وتواريخ عامة</h2>
+                    <span class="event-count" id="eventCountGen">0 حدث</span>
+                </div>
+                <div class="events-grid" id="eventsGridGen">
+                    <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
 
     <!-- ============================================================
     FOOTER
@@ -2438,7 +2538,6 @@
 
         <div class="footer-bottom">
             <span>© 2026 منصة معين التعليمية — جميع الحقوق محفوظة</span>
-            <span>الإصدار 2.0 (تفاعلي)</span>
         </div>
     </footer>
 
@@ -2507,6 +2606,10 @@
                                     <option value="أخرى">أخرى</option>
                                 </select>
                                 <input type="text" id="eventCategoryCustom" class="custom-category-input" placeholder="أدخل اسم التصنيف..." />
+                            </div>
+                            <div class="form-group">
+                                <label for="eventSubCategory">التصنيف الثانوي</label>
+                                <input type="text" id="eventSubCategory" class="sub-category-input" placeholder="مثال: مادة English، IT101..." />
                             </div>
                             <div class="form-group">
                                 <label for="eventType">النوع</label>
@@ -2688,13 +2791,31 @@
             // DOM REFS
             // ============================================================
             const grid = document.getElementById('eventsGrid');
+            const gridSpec = document.getElementById('eventsGridSpec');
+            const gridGen = document.getElementById('eventsGridGen');
+            const eventCountSpecEl = document.getElementById('eventCountSpec');
+            const eventCountGenEl = document.getElementById('eventCountGen');
             const miniList = document.getElementById('miniEventList');
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
-            const nextEventNameEl = document.getElementById('nextEventName');
             const eventCountEl = document.getElementById('eventCount');
+
+            // Hero tri-countdown elements — Preparatory
+            const heroPrepDaysEl = document.getElementById('heroPrepDays');
+            const heroPrepHoursEl = document.getElementById('heroPrepHours');
+            const heroPrepMinutesEl = document.getElementById('heroPrepMinutes');
+            const heroPrepSecondsEl = document.getElementById('heroPrepSeconds');
+            const heroPrepEventNameEl = document.getElementById('heroPrepEventName');
+            // Hero tri-countdown elements — Specializations
+            const heroSpecDaysEl = document.getElementById('heroSpecDays');
+            const heroSpecHoursEl = document.getElementById('heroSpecHours');
+            const heroSpecMinutesEl = document.getElementById('heroSpecMinutes');
+            const heroSpecSecondsEl = document.getElementById('heroSpecSeconds');
+            const heroSpecEventNameEl = document.getElementById('heroSpecEventName');
+            // Hero tri-countdown elements — General
+            const heroGenDaysEl = document.getElementById('heroGenDays');
+            const heroGenHoursEl = document.getElementById('heroGenHours');
+            const heroGenMinutesEl = document.getElementById('heroGenMinutes');
+            const heroGenSecondsEl = document.getElementById('heroGenSeconds');
+            const heroGenEventNameEl = document.getElementById('heroGenEventName');
 
             const sidebar = document.getElementById('adminSidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -2715,6 +2836,7 @@
             const editIdInput = document.getElementById('editId');
             const eventCategory = document.getElementById('eventCategory');
             const eventCategoryCustom = document.getElementById('eventCategoryCustom');
+            const eventSubCategory = document.getElementById('eventSubCategory');
             const eventType = document.getElementById('eventType');
             const eventTypeCustom = document.getElementById('eventTypeCustom');
             const eventName = document.getElementById('eventName');
@@ -2734,14 +2856,6 @@
             // Section tab buttons
             const sectionTabs = document.querySelectorAll('.section-tab');
             const sectionContents = document.querySelectorAll('.section-content');
-            const sectionCountdown = document.getElementById('sectionCountdown');
-
-            // Section countdown elements
-            const scDaysEl = document.getElementById('scDays');
-            const scHoursEl = document.getElementById('scHours');
-            const scMinutesEl = document.getElementById('scMinutes');
-            const scSecondsEl = document.getElementById('scSeconds');
-            const scEventNameEl = document.getElementById('scEventName');
 
             // ============================================================
             // CATEGORY / TYPE LOGIC
@@ -2802,21 +2916,8 @@
                     }
                 });
 
-                // Show/hide section countdown based on whether section has events
-                const filtered = getFilteredEvents();
-                if (filtered.length > 0) {
-                    sectionCountdown.classList.add('visible');
-                } else {
-                    sectionCountdown.classList.remove('visible');
-                }
-
-                // Re-render events for the preparatory section
-                if (sectionId === 'sectionPreparatory') {
-                    renderEvents();
-                }
-
-                // Update section countdown
-                updateSectionCountdown();
+                // Re-render events for all sections
+                renderEvents();
             }
 
             // ============================================================
@@ -2836,6 +2937,9 @@
                                 }
                                 if (!ev.typeCustom) {
                                     ev.typeCustom = '';
+                                }
+                                if (!ev.subCategory) {
+                                    ev.subCategory = '';
                                 }
                             });
                             // update nextId
@@ -3019,18 +3123,28 @@
                 return next;
             }
 
-            function renderEvents() {
-                // Only render in the preparatory section grid
-                const filtered = getFilteredEvents();
+            function renderSectionEvents(sectionId, targetGrid, countEl) {
+                // Filter events for this section
+                const categoryMap = {
+                    'sectionPreparatory': 'طلاب التحضيري_SEU',
+                    'sectionSpecializations': 'طلاب التخصصات_SEU',
+                    'sectionGeneral': 'أحداث وتواريخ عامة'
+                };
+                const category = categoryMap[sectionId] || 'طلاب التحضيري_SEU';
+                const filtered = events.filter(ev => {
+                    if (ev.category === category) return true;
+                    if (sectionId === 'sectionGeneral' && !CATEGORY_SECTION_MAP[ev.category]) return true;
+                    return false;
+                });
 
                 if (filtered.length === 0) {
-                    grid.innerHTML = `
+                    targetGrid.innerHTML = `
                         <div class="empty-state">
                             <i class="fas fa-calendar-plus"></i>
                             <p>لا توجد أحداث حالياً في هذا القسم. أضف حدثاً جديداً من لوحة الإدارة.</p>
                         </div>
                     `;
-                    eventCountEl.textContent = '0 حدث';
+                    countEl.textContent = '0 حدث';
                     return;
                 }
 
@@ -3048,6 +3162,8 @@
                         `<div class="card-category-badge">${ev.category}</div>` : '';
 
                     const typeLabel = getEventTypeLabel(ev.type, ev.typeCustom);
+                    const subCatDisplay = ev.subCategory ?
+                        `<div class="detail-row"><span class="label">التصنيف الثانوي</span><span class="value">${ev.subCategory}</span></div>` : '';
 
                     return `
                         <div class="event-card" data-id="${ev.id}">
@@ -3084,6 +3200,7 @@
                                     <span class="label">النطاق</span>
                                     <span class="value">${ev.range || '—'}</span>
                                 </div>
+                                ${subCatDisplay}
                                 <div class="detail-row" style="border-bottom:none;">
                                     <span class="label">ملاحظات</span>
                                     <span class="value" style="font-weight:400;color:var(--text-light);">${ev.details || '—'}</span>
@@ -3103,11 +3220,11 @@
                     `;
                 }).join('');
 
-                grid.innerHTML = html;
-                eventCountEl.textContent = `${filtered.length} حدث`;
+                targetGrid.innerHTML = html;
+                countEl.textContent = `${filtered.length} حدث`;
 
                 // Attach toggle details
-                document.querySelectorAll('.toggle-details').forEach(btn => {
+                targetGrid.querySelectorAll('.toggle-details').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
                         const targetId = this.dataset.target;
@@ -3129,14 +3246,14 @@
                 });
 
                 // Attach admin actions
-                document.querySelectorAll('.btn-edit').forEach(btn => {
+                targetGrid.querySelectorAll('.btn-edit').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const id = parseInt(this.dataset.id);
                         editEvent(id);
                     });
                 });
 
-                document.querySelectorAll('.btn-delete').forEach(btn => {
+                targetGrid.querySelectorAll('.btn-delete').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const id = parseInt(this.dataset.id);
                         if (confirm('هل أنت متأكد من حذف هذا الحدث؟')) {
@@ -3144,8 +3261,14 @@
                         }
                     });
                 });
+            }
 
-                updateCountdown();
+            function renderEvents() {
+                // Render events for ALL three sections
+                renderSectionEvents('sectionPreparatory', grid, eventCountEl);
+                renderSectionEvents('sectionSpecializations', gridSpec, eventCountSpecEl);
+                renderSectionEvents('sectionGeneral', gridGen, eventCountGenEl);
+                updateHeroCountdowns();
             }
 
             function renderMiniList() {
@@ -3163,7 +3286,7 @@
                     <div class="mini-item">
                         <div class="mini-info">
                             <span class="mini-name">${ev.name}</span>
-                            <span class="mini-meta">${getEventTypeLabel(ev.type, ev.typeCustom)} · ${ev.weight}% · ${formatDate(ev.startDate)} · ${ev.category || ''}</span>
+                            <span class="mini-meta">${getEventTypeLabel(ev.type, ev.typeCustom)} · ${ev.weight}% · ${formatDate(ev.startDate)} · ${ev.category || ''}${ev.subCategory ? ' · ' + ev.subCategory : ''}</span>
                         </div>
                         <div class="mini-actions">
                             <button class="mini-edit" data-id="${ev.id}" title="تعديل"><i class="fas fa-edit"></i></button>
@@ -3207,13 +3330,14 @@
                     range: data.range || '',
                     duration: data.duration || '',
                     details: data.details || '',
-                    category: data.category || 'طلاب التحضيري_SEU'
+                    category: data.category || 'طلاب التحضيري_SEU',
+                    subCategory: data.subCategory || ''
                 };
                 events.push(newEvent);
                 saveData();
                 renderEvents();
                 renderMiniList();
-                updateSectionCountdown();
+                updateHeroCountdowns();
                 toast(`تم إضافة "${newEvent.name}" بنجاح ✅`, 'success');
                 resetForm();
             }
@@ -3249,6 +3373,7 @@
                 eventStart.value = start.toISOString().slice(0, 16);
                 eventEnd.value = end.toISOString().slice(0, 16);
                 eventWeight.value = ev.weight;
+                eventSubCategory.value = ev.subCategory || '';
                 eventDuration.value = ev.duration || '';
                 eventRange.value = ev.range || '';
                 eventDetails.value = ev.details || '';
@@ -3286,12 +3411,13 @@
                     range: data.range || '',
                     duration: data.duration || '',
                     details: data.details || '',
-                    category: data.category || 'طلاب التحضيري_SEU'
+                    category: data.category || 'طلاب التحضيري_SEU',
+                    subCategory: data.subCategory || ''
                 };
                 saveData();
                 renderEvents();
                 renderMiniList();
-                updateSectionCountdown();
+                updateHeroCountdowns();
                 toast(`تم تحديث "${events[idx].name}" بنجاح ✅`, 'success');
                 resetForm();
             }
@@ -3304,7 +3430,7 @@
                 saveData();
                 renderEvents();
                 renderMiniList();
-                updateSectionCountdown();
+                updateHeroCountdowns();
                 toast(`تم حذف "${name}" 🗑️`, '');
                 if (editingId === id) resetForm();
             }
@@ -3319,6 +3445,7 @@
                 eventTypeCustom.classList.remove('visible');
                 eventCategoryCustom.value = '';
                 eventCategoryCustom.classList.remove('visible');
+                eventSubCategory.value = '';
                 formTitle.textContent = '➕ إضافة حدث جديد';
                 submitBtn.textContent = '💾 حفظ';
                 submitBtn.classList.remove('edit-mode');
@@ -3326,120 +3453,101 @@
             }
 
             // ============================================================
-            // COUNTDOWN (Hero - global)
+            // HERO TRI-COUNTDOWN (3 sections: Preparatory, Specializations, General)
             // ============================================================
-            function updateCountdown() {
-                const next = getNextEvent(null);
-                if (!next) {
-                    nextEventNameEl.textContent = 'لا توجد أحداث';
-                    daysEl.textContent = '00';
-                    hoursEl.textContent = '00';
-                    minutesEl.textContent = '00';
-                    secondsEl.textContent = '00';
-                    return;
-                }
+            function updateHeroCountdowns() {
+                // Helper: update one countdown section
+                function updateOneSection(category, daysEl, hoursEl, minutesEl, secondsEl, eventNameEl) {
+                    let next = getNextEvent(category);
 
-                const now = new Date();
-                const target = new Date(next.startDate);
-                let diff = target.getTime() - now.getTime();
-
-                if (diff < 0) {
-                    nextEventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
-                    daysEl.textContent = '00';
-                    hoursEl.textContent = '00';
-                    minutesEl.textContent = '00';
-                    secondsEl.textContent = '00';
-                    return;
-                }
-
-                nextEventNameEl.textContent =
-                    `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                diff -= days * (1000 * 60 * 60 * 24);
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                diff -= hours * (1000 * 60 * 60);
-                const minutes = Math.floor(diff / (1000 * 60));
-                diff -= minutes * (1000 * 60);
-                const seconds = Math.floor(diff / 1000);
-
-                daysEl.textContent = String(days).padStart(2, '0');
-                hoursEl.textContent = String(hours).padStart(2, '0');
-                minutesEl.textContent = String(minutes).padStart(2, '0');
-                secondsEl.textContent = String(seconds).padStart(2, '0');
-            }
-
-            // ============================================================
-            // SECTION COUNTDOWN
-            // ============================================================
-            function updateSectionCountdown() {
-                const category = getActiveCategory();
-                const filtered = getFilteredEvents();
-                const next = getNextEvent(category);
-
-                // Also check for custom-category events in general section
-                if (activeSection === 'sectionGeneral' && !next) {
-                    const customEvents = events.filter(ev => !CATEGORY_SECTION_MAP[ev.category]);
-                    if (customEvents.length > 0) {
-                        const now = new Date();
-                        let minDiff = Infinity;
-                        for (const ev of customEvents) {
-                            const start = new Date(ev.startDate);
-                            const diff = start.getTime() - now.getTime();
-                            if (diff > 0 && diff < minDiff) {
-                                minDiff = diff;
-                                // next already null, find it
-                                next = ev; // This will work since we're in same scope
+                    // For general section, also check custom-category events
+                    if (category === 'أحداث وتواريخ عامة' && !next) {
+                        const customEvents = events.filter(ev => !CATEGORY_SECTION_MAP[ev.category]);
+                        if (customEvents.length > 0) {
+                            const now = new Date();
+                            let minDiff = Infinity;
+                            for (const ev of customEvents) {
+                                const start = new Date(ev.startDate);
+                                const diff = start.getTime() - now.getTime();
+                                if (diff > 0 && diff < minDiff) {
+                                    minDiff = diff;
+                                    next = ev;
+                                }
                             }
                         }
                     }
+
+                    if (!next) {
+                        eventNameEl.textContent = 'لا توجد أحداث';
+                        daysEl.textContent = '00';
+                        hoursEl.textContent = '00';
+                        minutesEl.textContent = '00';
+                        secondsEl.textContent = '00';
+                        return;
+                    }
+
+                    const now = new Date();
+                    const target = new Date(next.startDate);
+                    let diff = target.getTime() - now.getTime();
+
+                    if (diff < 0) {
+                        eventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
+                        daysEl.textContent = '00';
+                        hoursEl.textContent = '00';
+                        minutesEl.textContent = '00';
+                        secondsEl.textContent = '00';
+                        return;
+                    }
+
+                    eventNameEl.textContent =
+                        `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    diff -= days * (1000 * 60 * 60 * 24);
+                    const hours = Math.floor(diff / (1000 * 60 * 60));
+                    diff -= hours * (1000 * 60 * 60);
+                    const minutes = Math.floor(diff / (1000 * 60));
+                    diff -= minutes * (1000 * 60);
+                    const seconds = Math.floor(diff / 1000);
+
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
                 }
 
-                if (filtered.length === 0 || !next) {
-                    sectionCountdown.classList.remove('visible');
-                    scEventNameEl.textContent = 'لا توجد أحداث';
-                    scDaysEl.textContent = '00';
-                    scHoursEl.textContent = '00';
-                    scMinutesEl.textContent = '00';
-                    scSecondsEl.textContent = '00';
-                    return;
-                }
-
-                sectionCountdown.classList.add('visible');
-
-                const now = new Date();
-                const target = new Date(next.startDate);
-                let diff = target.getTime() - now.getTime();
-
-                if (diff < 0) {
-                    scEventNameEl.textContent = `🟢 ${next.name} (بدأ)`;
-                    scDaysEl.textContent = '00';
-                    scHoursEl.textContent = '00';
-                    scMinutesEl.textContent = '00';
-                    scSecondsEl.textContent = '00';
-                    return;
-                }
-
-                scEventNameEl.textContent =
-                    `${next.name} — ${target.toLocaleDateString('ar-SA', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                diff -= days * (1000 * 60 * 60 * 24);
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                diff -= hours * (1000 * 60 * 60);
-                const minutes = Math.floor(diff / (1000 * 60));
-                diff -= minutes * (1000 * 60);
-                const sec = Math.floor(diff / 1000);
-
-                scDaysEl.textContent = String(days).padStart(2, '0');
-                scHoursEl.textContent = String(hours).padStart(2, '0');
-                scMinutesEl.textContent = String(minutes).padStart(2, '0');
-                scSecondsEl.textContent = String(sec).padStart(2, '0');
+                // Update all 3 sections
+                updateOneSection('طلاب التحضيري_SEU', heroPrepDaysEl, heroPrepHoursEl, heroPrepMinutesEl, heroPrepSecondsEl, heroPrepEventNameEl);
+                updateOneSection('طلاب التخصصات_SEU', heroSpecDaysEl, heroSpecHoursEl, heroSpecMinutesEl, heroSpecSecondsEl, heroSpecEventNameEl);
+                updateOneSection('أحداث وتواريخ عامة', heroGenDaysEl, heroGenHoursEl, heroGenMinutesEl, heroGenSecondsEl, heroGenEventNameEl);
             }
 
             // ============================================================
             // EVENT HANDLERS
             // ============================================================
+
+            // Share button
+            const heroShareBtn = document.getElementById('heroShareBtn');
+            const heroShareDropdown = document.getElementById('heroShareDropdown');
+            const shareWhatsApp = document.getElementById('shareWhatsApp');
+            const shareTelegram = document.getElementById('shareTelegram');
+
+            heroShareBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                heroShareDropdown.classList.toggle('open');
+                // Update share URLs
+                const pageUrl = encodeURIComponent(window.location.href);
+                const pageTitle = encodeURIComponent(document.title);
+                shareWhatsApp.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+                shareTelegram.href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!heroShareBtn.contains(e.target) && !heroShareDropdown.contains(e.target)) {
+                    heroShareDropdown.classList.remove('open');
+                }
+            });
 
             // Section Tab Clicks
             sectionTabs.forEach(tab => {
@@ -3521,6 +3629,8 @@
                     category = eventCategoryCustom.value.trim() || 'أخرى';
                 }
 
+                const subCategory = eventSubCategory.value.trim();
+
                 if (!name || !startDate || !endDate || !weight) {
                     toast('⚠️ الرجاء ملء جميع الحقول المطلوبة', 'error');
                     return;
@@ -3533,7 +3643,7 @@
                     return;
                 }
 
-                const data = { type, typeCustom, name, startDate, endDate, weight, duration, range, details, category };
+                const data = { type, typeCustom, name, startDate, endDate, weight, duration, range, details, category, subCategory };
 
                 const editId = editIdInput.value;
                 if (editId) {
@@ -3567,12 +3677,10 @@
             switchSection('sectionPreparatory');
             renderEvents();
             renderMiniList();
-            updateCountdown();
-            updateSectionCountdown();
+            updateHeroCountdowns();
 
             setInterval(function() {
-                updateCountdown();
-                updateSectionCountdown();
+                updateHeroCountdowns();
             }, 1000);
 
             // Show a welcome toast if logged in
@@ -3589,6 +3697,5 @@
 
         })();
     </script>
-
 </body>
 </html>
