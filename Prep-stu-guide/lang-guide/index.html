@@ -26,13 +26,14 @@
             --white: #FFFFFF;
             --whatsapp-green: #25D366;
             --whatsapp-dark: #1DA851;
+            --telegram-blue: #0088CC;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --card-bg: #ffffff;
-            --primary-color: #122143;
-            --secondary-color: #f6b534;
-            --bg-color: #f4f6f9;
+            --primary-color: #0f3057;
             --transition: 0.3s ease;
+            --radius-card: 20px;
+            --radius-btn: 10px;
         }
 
         /* ===== Reset & Base ===== */
@@ -71,7 +72,7 @@
             gap: 24px;
         }
 
-        /* ===== HEADER (معدل) ===== */
+        /* ===== HEADER ===== */
         .header {
             width: 100%;
             background: var(--bg-dark);
@@ -126,151 +127,217 @@
             letter-spacing: 1px;
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO SECTION (مع التبويبات داخله) ===== */
         .hero {
             width: 100%;
             background: var(--bg-dark);
-            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
+                              url('./assets/images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
             border-radius: 30px;
-            padding: 40px 50px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .hero-top {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            flex-direction: row-reverse;
-            align-items: center;
-            gap: 8px;
-            background: rgba(1, 32, 32, 0.5);
-            border: 1.5px solid var(--gold);
-            border-radius: 50px;
-            padding: 10px 24px;
-            width: fit-content;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 16px rgba(212, 175, 55, 0.2);
-        }
-
-        .hero-badge-star {
-            color: var(--gold);
-            font-size: 18px;
-            filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
-        }
-
-        .hero-badge-text {
-            color: var(--white);
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-        }
-
-        .hero h1 {
-            font-size: clamp(28px, 4vw, 44px);
+        .hero-top h1 {
+            font-size: clamp(28px, 3.5vw, 44px);
             font-weight: 800;
             color: var(--white);
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
         }
 
-        .hero h1 span {
+        .hero-top h1 i {
             color: var(--gold);
+            margin-left: 12px;
         }
 
         .hero-actions {
             display: flex;
-            gap: 20px;
             flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
-            margin-top: 10px;
+            gap: 16px;
+            margin-top: 6px;
         }
 
-        .hero-btn {
+        /* زر المشاركة مع القائمة المنسدلة */
+        .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .share-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: var(--gold);
-            color: var(--bg-dark);
-            padding: 14px 32px;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: var(--white);
+            padding: 12px 24px;
             border-radius: 50px;
             font-size: 16px;
             font-weight: 700;
+            cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .share-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        .share-dropdown-content {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--bg-dark);
+            min-width: 200px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            z-index: 100;
+            padding: 8px 0;
+        }
+
+        .share-dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--white);
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .share-dropdown-content a:hover {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .share-dropdown-content a i {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
+        .share-dropdown-content a .fa-telegram { color: var(--telegram-blue); }
+
+        .share-dropdown.active .share-dropdown-content {
+            display: block;
+        }
+
+        /* زر المساعدة */
+        .help-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            line-height: 1.3;
+            text-align: center;
             border: none;
             cursor: pointer;
         }
 
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        .help-btn:hover {
+            background: var(--whatsapp-dark);
+            transform: scale(1.03);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
         }
 
-        .hero-btn i {
-            font-size: 18px;
+        .help-btn .main-text {
+            font-size: 15px;
         }
 
-        /* ===== GUIDANCE TABS ===== */
-        .guidance-tabs {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
+        .help-btn .sub-text {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.95;
         }
 
-        .tab-card {
-            background: rgba(1, 42, 43, 0.85);
+        /* ===== التبويبات (داخل الهيرو) ===== */
+        .hero-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .tab-item {
+            flex: 1 1 280px;
+            max-width: 450px;
+            background: rgba(1, 32, 32, 0.6);
             backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            border-radius: 24px;
-            padding: 24px 28px;
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-radius: 20px;
+            padding: 18px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: var(--transition);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        .tab-card:hover {
-            transform: translateY(-4px);
+        .tab-item:hover {
             border-color: var(--gold);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .tab-info {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .tab-icon {
-            width: 52px;
-            height: 52px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(212, 175, 55, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: var(--gold);
-            flex-shrink: 0;
             border: 1px solid rgba(212, 175, 55, 0.2);
+            flex-shrink: 0;
         }
 
         .tab-text h4 {
             color: var(--white);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             margin-bottom: 2px;
         }
 
         .tab-text p {
             color: #a0b4b8;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
         }
 
@@ -280,12 +347,12 @@
             gap: 8px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: var(--bg-dark);
-            padding: 10px 22px;
+            padding: 8px 18px;
             border-radius: 50px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
             white-space: nowrap;
             border: none;
             cursor: pointer;
@@ -293,149 +360,182 @@
 
         .tab-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
         }
 
-        /* ===== المحتوى الرئيسي (دليل اللغة) ===== */
-        .guide-container {
+        .tab-btn i {
+            font-size: 13px;
+        }
+
+        /* ===== المحتوى الرئيسي ===== */
+        .main-content {
             width: 100%;
             background: #f8fafc;
             border-radius: 24px;
             padding: 40px 40px 50px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== بطاقة الملاحظة التوضيحية ===== */
+        .note-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            border-right: 6px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             color: var(--text-main);
         }
 
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .page-header h2 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
+        .note-card h3 {
+            font-size: 22px;
             font-weight: 800;
-            display: inline-block;
-            position: relative;
-            padding: 0 30px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .page-header h2::before,
-        .page-header h2::after {
-            content: '•';
+        .note-card h3 i {
             color: var(--gold);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
         }
 
-        .page-header h2::before { right: 0; }
-        .page-header h2::after { left: 0; }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 768px) {
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .steps-grid .step-card:last-child:nth-child(odd) {
-                grid-column: 1 / -1;
-                max-width: 50%;
-                margin: 0 auto;
-            }
-        }
-
-        .step-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .step-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .step-header {
-            background-color: var(--primary-color);
-            color: #fff;
+        .note-list {
+            list-style: none;
+            padding-right: 0;
             display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            min-height: 60px;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .step-number {
-            background-color: var(--gold);
-            color: var(--primary-color);
-            min-width: 35px;
-            height: 35px;
-            border-radius: 50%;
+        .note-list li {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin-left: 15px;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .note-list li i {
+            color: var(--gold);
+            font-size: 18px;
+            margin-top: 4px;
             flex-shrink: 0;
         }
 
-        .step-header p {
-            margin: 0;
-            font-weight: 600;
-            font-size: 1rem;
-            line-height: 1.4;
+        .note-list li .highlight {
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
-        .step-image-container {
-            padding: 15px;
-            text-align: center;
-            background-color: #fff;
+        .note-list li .arrow-icon {
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin: 0 6px;
+        }
+
+        /* ===== شبكة الخطوات (نفس تصميم دليل المحاضرات) ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            padding: 32px 24px 24px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            color: var(--text-main);
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -22px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 4px solid #f8fafc;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+        }
+
+        .step-card h2 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-card h2 i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .step-card p, .step-card ul {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .step-card ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .step-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+        }
+
+        .step-card ul li::before {
+            content: '\f100';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--gold);
         }
 
         .step-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 1px solid #eee;
-            transition: opacity 0.3s;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-top: auto;
+            object-fit: cover;
+            background: #f1f5f9;
+            min-height: 170px;
+            cursor: zoom-in;
+            transition: opacity 0.3s ease;
         }
 
         .step-image:hover {
-            opacity: 0.9;
-        }
-
-        .footer-note {
-            background-color: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 15px 25px;
-            border-radius: 50px;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .footer-note i {
-            color: var(--gold);
-            font-size: 1.8rem;
-        }
-
-        .footer-note p {
-            margin: 0;
-            font-weight: 600;
-            font-size: 1.1rem;
+            opacity: 0.85;
         }
 
         /* ===== FOOTER (مختصر) ===== */
@@ -537,7 +637,7 @@
         }
 
         .footer-social-compact a.x:hover { background: #000; }
-        .footer-social-compact a.telegram:hover { background: #0088CC; }
+        .footer-social-compact a.telegram:hover { background: var(--telegram-blue); }
         .footer-social-compact a.snapchat:hover { background: #FFFC00; color: #000; }
 
         /* ===== Floating WhatsApp ===== */
@@ -587,20 +687,22 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: rgba(15, 48, 87, 0.9);
-            backdrop-filter: blur(5px);
+            background-color: rgba(15, 48, 87, 0.92);
+            backdrop-filter: blur(6px);
             opacity: 0;
             transition: opacity 0.3s ease;
-            justify-content: center;
-            align-items: center;
         }
 
         .lightbox.show {
             display: flex;
+            align-items: center;
+            justify-content: center;
             opacity: 1;
         }
 
         .lightbox-content {
+            margin: auto;
+            display: block;
             max-width: 90%;
             max-height: 90vh;
             border-radius: 12px;
@@ -634,8 +736,8 @@
             .header { flex-wrap: wrap; justify-content: center; text-align: center; }
             .header-brand { flex-direction: column; align-items: center; }
             .header-brand .brand-name { align-items: center; }
-            .hero { padding: 30px 20px; }
-            .guidance-tabs { grid-template-columns: 1fr; }
+            .hero { padding: 35px 25px; }
+            .tab-item { flex: 1 1 240px; }
         }
 
         @media (max-width: 768px) {
@@ -643,30 +745,34 @@
             .header { border-radius: 24px; padding: 16px; }
             .header-brand img { width: 100px; }
             .header-brand .brand-name h3 { font-size: 22px; }
-            .hero { padding: 25px 20px; }
-            .hero h1 { font-size: 24px; }
-            .guide-container { padding: 20px; }
-            .page-header h2 { font-size: 1.6rem; padding: 0 20px; }
+            .main-content { padding: 20px; }
             .steps-grid { grid-template-columns: 1fr; }
-            .steps-grid .step-card:last-child:nth-child(odd) { max-width: 100%; }
+            .step-number { right: 20px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .share-dropdown { width: 100%; }
+            .share-btn { width: 100%; justify-content: center; }
+            .help-btn { width: 100%; }
+            .hero-tabs { flex-direction: row; flex-wrap: wrap; }
+            .tab-item { flex: 1 1 200px; min-width: 160px; flex-direction: column; text-align: center; gap: 12px; }
+            .tab-info { flex-direction: column; }
             .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
             .footer-contact-compact { justify-content: center; }
             .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
             .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
-            .footer-note { flex-direction: column; border-radius: 20px; text-align: center; }
-            .tab-card { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
-            .tab-info { justify-content: center; }
-            .tab-btn { justify-content: center; }
+            .note-card { padding: 20px; }
+            .note-card h3 { font-size: 19px; }
+            .note-list li { font-size: 15px; }
         }
 
         @media (max-width: 480px) {
             .header-brand img { width: 80px; }
             .header-brand .brand-name h3 { font-size: 18px; }
             .header-brand .brand-name span { font-size: 11px; }
+            .hero-tabs { flex-direction: column; align-items: stretch; }
+            .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
+            .tab-info { flex-direction: row; }
             .footer-brand-compact .brand-name h3 { font-size: 17px; }
             .footer-phone { font-size: 15px; }
-            .hero h1 { font-size: 20px; }
-            .hero-btn { padding: 10px 20px; font-size: 14px; }
         }
 
         ::selection { background: var(--gold); color: var(--bg-dark); }
@@ -694,124 +800,146 @@
     </header>
 
     <!-- ============================================================
-         HERO
+         HERO (مع التبويبات داخله)
          ============================================================ -->
     <section class="hero">
-        <div class="hero-badge">
-            <span class="hero-badge-star">⭐</span>
-            <span class="hero-badge-text">دليل تعليمي تفاعلي</span>
+
+        <!-- الجزء العلوي من الهيرو -->
+        <div class="hero-top">
+            <h1><i class="fa-solid fa-language"></i> دليل تغيير لغة البلاك بورد</h1>
+
+            <div class="hero-actions">
+                <!-- زر مشاركة الصفحة مع قائمة منسدلة -->
+                <div class="share-dropdown" id="shareDropdown">
+                    <button class="share-btn" id="shareToggle">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>مشاركة الصفحة</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                    </button>
+                    <div class="share-dropdown-content">
+                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20تغيير%20لغة%20البلاك%20بورد%20-%20منصة%20معين%20https://example.com" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            مشاركة عبر واتساب
+                        </a>
+                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20تغيير%20لغة%20البلاك%20بورد%20-%20منصة%20معين" target="_blank">
+                            <i class="fa-brands fa-telegram"></i>
+                            مشاركة عبر تليجرام
+                        </a>
+                    </div>
+                </div>
+
+                <!-- زر المساعدة والاستفسار -->
+                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
+                    <span class="main-text">للمساعدة والإستفسار</span>
+                    <span class="sub-text">تواصل مع فريق مُعين</span>
+                </a>
+            </div>
         </div>
-        <h1>دليل تغيير لغة <span>البلاك بورد</span></h1>
-        <div class="hero-actions">
-            <button class="hero-btn" onclick="sharePage()">
-                <i class="fas fa-share-alt"></i> مشاركة الصفحة
-            </button>
+
+        <!-- التبويبات (داخل الهيرو) -->
+        <div class="hero-tabs">
+            <!-- التبويب الأول -->
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-users"></i></div>
+                    <div class="tab-text">
+                        <h4>قروب تجمع طلبة التحضيري</h4>
+                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+            </div>
+
+            <!-- التبويب الثاني -->
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                    <div class="tab-text">
+                        <h4>قناة أخبار و إعلامات التحضيري</h4>
+                        <p>آخر المستجدات والإعلانات الرسمية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+            </div>
         </div>
+
     </section>
 
     <!-- ============================================================
-         GUIDANCE TABS
+         المحتوى الرئيسي (بطاقة الملاحظة + الخطوات)
          ============================================================ -->
-    <section class="guidance-tabs">
-        <div class="tab-card">
-            <div class="tab-info">
-                <div class="tab-icon"><i class="fas fa-users"></i></div>
-                <div class="tab-text">
-                    <h4>قروب تجمع طلبة التحضيري</h4>
-                    <p>انضم إلى زملائك في السنة التحضيرية</p>
-                </div>
-            </div>
-            <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+    <div class="main-content">
+
+        <!-- بطاقة الملاحظة التوضيحية -->
+        <div class="note-card">
+            <h3><i class="fa-regular fa-circle-check"></i> أهمية وهدف تغيير لغة البلاك بورد</h3>
+            <ul class="note-list">
+                <li>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span><span class="highlight">مهم في إختبارات اللغة الإنجليزية</span> - أو المواد التي لغتها English <span class="arrow-icon">←</span> حتى لا تنعكس اتجاه نص الأسئلة وتظهر بترتيب ونمط نصي صحيح.</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span><span class="highlight">مهم في إختبارات الرياضيات_Math</span> <span class="arrow-icon">←</span> حتى لا تنعكس الإشارات في المعادلات - وتخطئ في الحل.</span>
+                </li>
+            </ul>
         </div>
-        <div class="tab-card">
-            <div class="tab-info">
-                <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
-                <div class="tab-text">
-                    <h4>قناة أخبار و إعلامات التحضيري</h4>
-                    <p>آخر المستجدات والإعلانات الرسمية</p>
-                </div>
-            </div>
-            <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         GUIDE CONTENT
-         ============================================================ -->
-    <div class="guide-container">
-
-        <header class="page-header">
-            <h2>خطوات تغيير اللغة</h2>
-        </header>
-
+        <!-- شبكة الخطوات (نفس تصميم دليل المحاضرات) -->
         <div class="steps-grid">
 
             <!-- الخطوة 1 -->
             <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">1</div>
-                    <p>الدخول على البلاك بورد ثم الضغط على شرطات عرض القائمة الجانبية</p>
-                </div>
-                <div class="step-image-container">
-                    <img src="../assets/images/langstep1.png" alt="الخطوة 1" class="step-image">
-                </div>
+                <div class="step-number">1</div>
+                <h2><i class="fa-solid fa-bars"></i> الدخول للقائمة الجانبية</h2>
+                <p>الدخول على البلاك بورد ثم الضغط على شرطات عرض القائمة الجانبية.</p>
+                <img src="../assets/images/langstep1.png" alt="الخطوة 1" class="step-image">
             </div>
 
             <!-- الخطوة 2 -->
             <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <p>الضغط على اسم المستخدم (بروفايل الطالب)</p>
-                </div>
-                <div class="step-image-container">
-                    <img src="../assets/images/langstep2.png" alt="الخطوة 2" class="step-image">
-                </div>
+                <div class="step-number">2</div>
+                <h2><i class="fa-solid fa-user-circle"></i> الضغط على البروفايل</h2>
+                <p>الضغط على اسم المستخدم (بروفايل الطالب) من القائمة الجانبية.</p>
+                <img src="../assets/images/langstep2.png" alt="الخطوة 2" class="step-image">
             </div>
 
             <!-- الخطوة 3 -->
             <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <p>بعد فتح البروفايل اضغط على خيار اللغة "Language"</p>
-                </div>
-                <div class="step-image-container">
-                    <img src="../assets/images/langstep3.png" alt="الخطوة 3" class="step-image">
-                </div>
+                <div class="step-number">3</div>
+                <h2><i class="fa-solid fa-globe"></i> اختيار اللغة</h2>
+                <p>بعد فتح البروفايل اضغط على خيار اللغة "Language".</p>
+                <img src="../assets/images/langstep3.png" alt="الخطوة 3" class="step-image">
             </div>
 
             <!-- الخطوة 4 -->
             <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <p>سيفتح مع قائمة إعدادات اللغة اضغط على حقل الخيارات وحدد اللغة التي تريدها</p>
-                </div>
-                <div class="step-image-container">
-                    <img src="../assets/images/langstep4.png" alt="الخطوة 4" class="step-image">
-                </div>
+                <div class="step-number">4</div>
+                <h2><i class="fa-solid fa-list-dropdown"></i> تحديد اللغة المطلوبة</h2>
+                <p>سيفتح مع قائمة إعدادات اللغة اضغط على حقل الخيارات وحدد اللغة التي تريدها.</p>
+                <img src="../assets/images/langstep4.png" alt="الخطوة 4" class="step-image">
             </div>
 
             <!-- الخطوة 5 -->
             <div class="step-card">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <p>الضغط على خيار الحفظ</p>
-                </div>
-                <div class="step-image-container">
-                    <img src="../assets/images/langstep5.png" alt="الخطوة 5" class="step-image">
-                </div>
+                <div class="step-number">5</div>
+                <h2><i class="fa-solid fa-floppy-disk"></i> حفظ التغييرات</h2>
+                <p>الضغط على خيار الحفظ لتطبيق اللغة الجديدة على الواجهة.</p>
+                <img src="../assets/images/langstep5.png" alt="الخطوة 5" class="step-image">
             </div>
 
         </div>
 
-        <div class="footer-note">
-            <i class="fas fa-lightbulb"></i>
-            <p>ملاحظة: ستتغير لغة واجهة البلاك بورد بالكامل إلى اللغة التي اخترتها بعد الحفظ.</p>
+        <!-- ملاحظة سفلية بسيطة -->
+        <div style="margin-top: 35px; text-align: center; color: var(--text-muted); font-weight: 600; font-size: 1.05rem; background: #eef2f7; padding: 16px 24px; border-radius: 50px; border: 1px solid #dce3ec;">
+            <i class="fa-regular fa-lightbulb" style="color: var(--gold); margin-left: 10px;"></i>
+            ملاحظة: ستتغير لغة واجهة البلاك بورد بالكامل إلى اللغة التي اخترتها بعد الحفظ.
         </div>
 
     </div>
 
     <!-- ============================================================
-         FOOTER
+         FOOTER (مختصر)
          ============================================================ -->
     <footer class="footer">
         <div class="footer-brand-compact">
@@ -837,91 +965,86 @@
     <!-- ============================================================
          FLOATING WHATSAPP
          ============================================================ -->
-    <a href="https://wa.me/966536004199" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         <span>تواصل معنا</span>
     </a>
 
 </div>
 
-<!-- ===== Lightbox Script ===== -->
+<!-- ============================================================
+     سكريبت التفاعلية
+     ============================================================ -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
+
+        // ===== 1. القائمة المنسدلة لمشاركة الصفحة =====
+        const shareToggle = document.getElementById('shareToggle');
+        const shareDropdown = document.getElementById('shareDropdown');
+
+        if (shareToggle && shareDropdown) {
+            shareToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                shareDropdown.classList.toggle('active');
+            });
+
+            // إغلاق القائمة عند الضغط خارجها
+            document.addEventListener('click', function(e) {
+                if (!shareDropdown.contains(e.target)) {
+                    shareDropdown.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== 2. Lightbox لتكبير الصور =====
+        // إنشاء عناصر الـ Lightbox ديناميكياً
+        const lightboxHTML = `
+            <div id="imageLightbox" class="lightbox">
+                <span class="close-lightbox">&times;</span>
+                <img class="lightbox-content" id="expandedImg" alt="صورة مكبرة">
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('expandedImg');
         const closeBtn = document.querySelector('.close-lightbox');
         const images = document.querySelectorAll('.step-image');
 
-        // إنشاء عناصر الـ Lightbox إذا لم تكن موجودة
-        if (!lightbox) {
-            const newLightbox = document.createElement('div');
-            newLightbox.id = 'lightbox';
-            newLightbox.className = 'lightbox';
-            newLightbox.innerHTML = `
-                <span class="close-lightbox">&times;</span>
-                <img class="lightbox-content" id="lightbox-img" alt="صورة مكبرة">
-            `;
-            document.body.appendChild(newLightbox);
-        }
-
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const closeLb = lb ? lb.querySelector('.close-lightbox') : null;
-
+        // فتح الـ Lightbox
         images.forEach(img => {
             img.addEventListener('click', function() {
-                if (lb) {
-                    lbImg.src = this.src;
-                    lb.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
+                lightboxImg.src = this.src;
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
             });
         });
 
+        // إغلاق الـ Lightbox
         const closeLightbox = () => {
-            if (lb) {
-                lb.classList.remove('show');
-                document.body.style.overflow = 'auto';
-                setTimeout(() => { lbImg.src = ''; }, 300);
-            }
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
         };
 
-        if (closeLb) {
-            closeLb.addEventListener('click', closeLightbox);
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
         }
 
-        if (lb) {
-            lb.addEventListener('click', function(e) {
-                if (e.target === lb) {
-                    closeLightbox();
-                }
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && lb.classList.contains('show')) {
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
                     closeLightbox();
                 }
             });
         }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) {
+                closeLightbox();
+            }
+        });
     });
-
-    // دالة مشاركة الصفحة
-    function sharePage() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'دليل تغيير لغة البلاك بورد - منصة معين',
-                text: 'دليل خطوات تغيير لغة البلاك بورد بسهولة',
-                url: window.location.href
-            }).catch(() => {});
-        } else {
-            // نسخ الرابط للحالات التي لا تدعم المشاركة
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                alert('تم نسخ رابط الصفحة!');
-            }).catch(() => {
-                prompt('انسخ الرابط:', window.location.href);
-            });
-        }
-    }
 </script>
 
 </body>
