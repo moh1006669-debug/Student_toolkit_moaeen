@@ -172,7 +172,7 @@
         }
 
         .hero-top h1 .safe-icon {
-            width: 72px; /* زيادة الحجم بنسبة 50% من 48px */
+            width: 60px; /* تم التكبير بنسبة 50% */
             height: auto;
             filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
         }
@@ -443,51 +443,41 @@
             font-weight: 700;
         }
 
-        /* ===== بنر التنبيه (SMS) ===== */
-        .alert-banner {
-            background: linear-gradient(to right, #e6f4ea, #f0f9f4);
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 1.2rem 2rem;
-            border-radius: var(--radius-card);
+        /* ===== شبكة الخطوات المعاد ترتيبها ===== */
+        .steps-wrapper {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+            flex-direction: column;
+            gap: 24px;
             margin-bottom: 30px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
-        .alert-banner .alert-content {
+        /* صفوف الشبكة */
+        .steps-row {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            flex: 1;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* صف يحتوي على بطاقتين */
+        .steps-row.grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* صف يحتوي على عنصر واحد */
+        .steps-row.single {
+            display: flex;
             justify-content: center;
         }
 
-        .alert-banner i {
-            font-size: 2rem;
-            color: var(--accent-green);
+        /* بطاقة متمركزة (للخطوة 4) */
+        .steps-row.centered .step-card {
+            max-width: 65%;
+            flex: 0 0 65%;
         }
 
-        .alert-banner .sms-icon {
-            height: 45px;
-            width: auto;
-            flex-shrink: 0;
-        }
-
-        /* ===== شبكة الخطوات (نظام Grid متجاوب) ===== */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
+        /* ===== البطاقة الأساسية ===== */
         .step-card {
             background: var(--card-bg);
             border-radius: var(--radius-card);
@@ -499,22 +489,25 @@
             display: flex;
             flex-direction: column;
             color: var(--text-main);
+            flex: 1;
         }
 
         .step-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            z-index: 10;
         }
 
+        /* ===== رقم الخطوة على الحد العلوي ===== */
         .step-number {
             position: absolute;
             top: -22px;
             right: 24px;
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: var(--bg-dark);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -526,17 +519,18 @@
 
         .step-card h2 {
             color: var(--primary-color);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-top: 6px;
         }
 
         .step-card h2 i {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .step-card .site-link {
@@ -615,7 +609,7 @@
             opacity: 0.85;
         }
 
-        /* ===== تنسيق خاص للخطوة 5 (أفقي، منفردة) ===== */
+        /* ===== البطاقة الأفقية (للخطوتين 3 و 5) ===== */
         .step-card-horizontal {
             display: flex;
             flex-direction: row;
@@ -624,34 +618,8 @@
             padding: 28px 30px;
             border-radius: var(--radius-card);
             border-top: 5px solid var(--gold);
-            background: var(--card-bg);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            color: var(--text-main);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .step-card-horizontal:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .step-card-horizontal .step-number {
-            position: absolute;
-            top: -22px;
-            right: 24px;
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            font-size: 1.4rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 4px solid #f8fafc;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+            flex: 1;
+            width: 100%;
         }
 
         .step-card-horizontal .step-content {
@@ -659,35 +627,69 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: 10px;
-        }
-
-        .step-card-horizontal .step-content h2 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .step-card-horizontal .step-content h2 i {
-            color: var(--gold);
         }
 
         .step-card-horizontal .step-image-container {
-            flex: 0 0 45%;
-            max-width: 45%;
+            flex: 0 0 40%;
+            max-width: 40%;
             display: flex;
             align-items: center;
         }
 
         .step-card-horizontal .step-image {
             min-height: 200px;
-            max-height: 320px;
+            max-height: 300px;
             object-fit: contain;
             background: #f8fafc;
+        }
+
+        /* تكبير خط نقاط التعليمات للخطوتين 3 و 5 */
+        .step-card-horizontal .step-instructions li {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .step-card-horizontal .step-instructions li .num-badge {
+            width: 26px;
+            height: 26px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== بنر التنبيه (SMS) ===== */
+        .alert-banner {
+            background: linear-gradient(to right, #e6f4ea, #f0f9f4);
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1.2rem 2rem;
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            width: 100%;
+        }
+
+        .alert-banner .alert-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .alert-banner i {
+            font-size: 2rem;
+            color: var(--accent-green);
+        }
+
+        .alert-banner .sms-icon {
+            height: 45px;
+            width: auto;
+            flex-shrink: 0;
         }
 
         /* ===== بطاقة النجاح ===== */
@@ -975,21 +977,25 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        /* الشاشات المتوسطة والكبيرة */
+
+        /* الشاشات المتوسطة واللوحية */
         @media (max-width: 992px) {
             .header { flex-wrap: wrap; justify-content: center; text-align: center; }
             .header-brand { flex-direction: column; align-items: center; }
             .header-brand .brand-name { align-items: center; }
             .hero { padding: 35px 25px; }
             .tab-item { flex: 1 1 240px; }
-            
-            .steps-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 25px;
+            .steps-row.centered .step-card {
+                max-width: 80%;
+                flex: 0 0 80%;
+            }
+            .step-card-horizontal .step-image-container {
+                flex: 0 0 35%;
+                max-width: 35%;
             }
         }
 
-        /* الشاشات المتوسطة (Tablet) */
+        /* الشاشات الصغيرة (الموبايل) */
         @media (max-width: 768px) {
             body { padding: 12px; }
             .header { border-radius: 24px; padding: 16px; }
@@ -1010,29 +1016,62 @@
             .note-card { padding: 20px; }
             .note-card h3 { font-size: 19px; }
             .note-list li { font-size: 15px; }
-            .alert-banner { flex-direction: column; text-align: center; padding: 1.5rem; }
-            .alert-banner .alert-content { flex-direction: column; }
-            
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
+
+            /* ===== إعادة تعيين التخطيط للشاشات الضيقة (1×1) ===== */
+            .steps-row {
+                flex-direction: column;
+                gap: 20px;
             }
-            
+
+            .steps-row.grid-2 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .steps-row.centered .step-card {
+                max-width: 100%;
+                flex: 1;
+            }
+
+            /* البطاقات الأفقية تصبح عمودية */
             .step-card-horizontal {
                 flex-direction: column;
+                gap: 20px;
+                padding: 28px 22px 24px;
             }
-            
+
             .step-card-horizontal .step-image-container {
                 flex: 1 1 auto;
                 max-width: 100%;
             }
-            
-            .hero-top h1 .safe-icon {
-                width: 54px; /* تصغير نسبي للشاشات الصغيرة */
+
+            .step-card-horizontal .step-image {
+                min-height: 150px;
+                max-height: 250px;
+            }
+
+            .step-card-horizontal .step-instructions li {
+                font-size: 1rem;
+            }
+
+            .alert-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .alert-banner .alert-content {
+                flex-direction: column;
+            }
+
+            .step-number {
+                right: 16px;
+                width: 42px;
+                height: 42px;
+                font-size: 1.3rem;
+                top: -20px;
             }
         }
 
-        /* الشاشات الضيقة جداً (الهواتف الصغيرة) */
         @media (max-width: 480px) {
             .header-brand img { width: 80px; }
             .header-brand .brand-name h3 { font-size: 18px; }
@@ -1042,11 +1081,9 @@
             .tab-info { flex-direction: row; }
             .footer-brand-compact .brand-name h3 { font-size: 17px; }
             .footer-phone { font-size: 15px; }
-            .hero-top h1 .safe-icon { width: 42px; }
-            
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
+            .hero-top h1 .safe-icon { width: 48px; }
+            .step-card-horizontal .step-instructions li {
+                font-size: 0.95rem;
             }
         }
 
@@ -1066,7 +1103,7 @@
          ============================================================ -->
     <header class="header">
         <div class="header-brand">
-            <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
+            <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
             <div class="brand-name">
                 <h3>مُعين</h3>
                 <span>MOAEEN PLATFORM</span>
@@ -1078,12 +1115,11 @@
          HERO
          ============================================================ -->
     <section class="hero">
-
         <div class="hero-top">
             <h1>
                 <i class="fa-solid fa-lock"></i>
                 خطوات إعادة تعيين كلمة المرور
-                <img src="./assets/images/safeicon.png" alt="أيقونة الأمان" class="safe-icon">
+                <img src="../assets/images/safeicon.png" alt="أيقونة الأمان" class="safe-icon">
             </h1>
 
             <div class="hero-actions">
@@ -1123,7 +1159,6 @@
                 </div>
                 <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
             </div>
-
             <div class="tab-item">
                 <div class="tab-info">
                     <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
@@ -1135,7 +1170,6 @@
                 <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
             </div>
         </div>
-
     </section>
 
     <!-- ============================================================
@@ -1143,7 +1177,7 @@
          ============================================================ -->
     <div class="main-content">
 
-        <!-- بطاقة الملاحظة التوضيحية -->
+        <!-- بطاقة الملاحظة -->
         <div class="note-card">
             <h3><i class="fa-regular fa-circle-question"></i> لماذا قد تحتاج إلى تغيير كلمة المرور؛ ومتى؟</h3>
             <ul class="note-list">
@@ -1162,84 +1196,98 @@
             </ul>
         </div>
 
-        <!-- ===== شبكة الخطوات (الصف الأول: بطاقات 1 و 2) ===== -->
-        <div class="steps-grid">
-            <!-- الخطوة 1 -->
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <h2><i class="fa-solid fa-arrow-right-to-bracket"></i> ادخل إلى صفحة تسجيل الدخول</h2>
-                <a href="https://eservice.seu.edu.sa/student/" target="_blank" class="site-link">eservice.seu.edu.sa/student/</a>
-                <div class="action-box">
-                    اضغط على <span class="highlight-badge"><i class="fa-solid fa-question-circle"></i> Forgot password</span>
+        <!-- ===== شبكة الخطوات المعاد ترتيبها ===== -->
+        <div class="steps-wrapper">
+
+            <!-- الصف الأول: البطاقتان 1 و 2 متجاورتين -->
+            <div class="steps-row grid-2">
+                <!-- الخطوة 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h2><i class="fa-solid fa-arrow-right-to-bracket"></i> ادخل إلى صفحة تسجيل الدخول</h2>
+                    <a href="https://eservice.seu.edu.sa/student/" target="_blank" class="site-link">eservice.seu.edu.sa/student/</a>
+                    <div class="action-box">
+                        اضغط على <span class="highlight-badge"><i class="fa-solid fa-question-circle"></i> Forgot password</span>
+                    </div>
+                    <img src="../assets/images/passstep1.png" alt="صفحة تسجيل الدخول" class="step-image">
                 </div>
-                <img src="../assets/images/passstep1.png" alt="صفحة تسجيل الدخول" class="step-image">
-            </div>
 
-            <!-- الخطوة 2 -->
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <h2><i class="fa-solid fa-list-check"></i> اختر طريقة إعادة التعيين</h2>
-                <div class="action-box">
-                    اختر الخيار الأول : <span class="highlight-badge">SMS</span>
+                <!-- الخطوة 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h2><i class="fa-solid fa-list-check"></i> اختر طريقة إعادة التعيين</h2>
+                    <div class="action-box">
+                        اختر الخيار الأول : <span class="highlight-badge">SMS</span>
+                    </div>
+                    <img src="../assets/images/passstep2.png" alt="خيارات إعادة التعيين" class="step-image">
                 </div>
-                <img src="../assets/images/passstep2.png" alt="خيارات إعادة التعيين" class="step-image">
-            </div>
-        </div>
-
-        <!-- ===== الصف الثاني: الخطوة 3 + بنر SMS + الخطوة 4 ===== -->
-        <div class="steps-grid" style="margin-bottom: 30px;">
-            <!-- الخطوة 3 -->
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <h2><i class="fa-solid fa-pen-to-square"></i> أدخل بياناتك لإرسال SMS</h2>
-                <ul class="step-instructions">
-                    <li><span class="num-badge">1</span> ادخل رقمك الجامعي (S26xxxxxxx)</li>
-                    <li><span class="num-badge">2</span> ادخل رقم الهوية الوطنية</li>
-                    <li><span class="num-badge">3</span> إضغط على مربع التحقق reCAPTCHA</li>
-                    <li><span class="num-badge">4</span> ثم إضغط على Submit</li>
-                </ul>
-                <img src="../assets/images/passstep3.png" alt="إدخال البيانات لإرسال SMS" class="step-image">
             </div>
 
-            <!-- بنر التنبيه بوصول الرسالة (موضعه بين الخطوة 3 و 4) -->
-            <div class="alert-banner" style="margin-bottom: 0; align-self: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                <div class="alert-content">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <div>
-                        ستصلك كلمة مرور مؤقتة (🔑) عبر رسالة SMS على رقم الجوال المسجل في الجامعة<br>
-                        إستخدمها في الخطوة التالية لإعادة تعيين كلمة المرور
+            <!-- الصف الثاني: البطاقة 3 (أفقية - منفردة) -->
+            <div class="steps-row single">
+                <div class="step-card step-card-horizontal">
+                    <div class="step-content">
+                        <div class="step-number">3</div>
+                        <h2><i class="fa-solid fa-pen-to-square"></i> أدخل بياناتك لإرسال SMS</h2>
+                        <ul class="step-instructions">
+                            <li><span class="num-badge">1</span> ادخل رقمك الجامعي (S26xxxxxxx)</li>
+                            <li><span class="num-badge">2</span> ادخل رقم الهوية الوطنية</li>
+                            <li><span class="num-badge">3</span> إضغط على مربع التحقق reCAPTCHA</li>
+                            <li><span class="num-badge">4</span> ثم إضغط على Submit</li>
+                        </ul>
+                    </div>
+                    <div class="step-image-container">
+                        <img src="../assets/images/passstep3.png" alt="إدخال البيانات لإرسال SMS" class="step-image">
                     </div>
                 </div>
-                <img src="./assets/images/smsicon.png" alt="أيقونة الرسالة النصية" class="sms-icon" style="margin-top: 10px;">
             </div>
 
-            <!-- الخطوة 4 -->
-            <div class="step-card">
-                <div class="step-number">4</div>
-                <h2><i class="fa-solid fa-rotate-left"></i> عد إلى الصفحة السابقة</h2>
-                <div class="action-box">
-                    اختر خيار <span class="highlight-badge">Reset Password</span> لمتابعة إعادة التعيين
+            <!-- الصف الثالث: بنر التنبيه بوصول الرسالة -->
+            <div class="steps-row single">
+                <div class="alert-banner">
+                    <div class="alert-content">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <div>
+                            ستصلك كلمة مرور مؤقتة (🔑) عبر رسالة SMS على رقم الجوال المسجل في الجامعة<br>
+                            إستخدمها في الخطوة التالية لإعادة تعيين كلمة المرور
+                        </div>
+                    </div>
+                    <img src="../assets/images/smsicon.png" alt="أيقونة الرسالة النصية" class="sms-icon">
                 </div>
-                <img src="../assets/images/passstep4.png" alt="متابعة إعادة التعيين" class="step-image">
             </div>
-        </div>
 
-        <!-- ===== الصف الثالث: الخطوة 5 منفردة (أفقي) ===== -->
-        <div class="step-card-horizontal">
-            <div class="step-number">5</div>
-            <div class="step-content">
-                <h2><i class="fa-solid fa-key"></i> أدخل كلمة المرور الجديدة</h2>
-                <ul class="step-instructions">
-                    <li><span class="num-badge">1</span> <strong>(User Login):</strong> ادخل رقمك الجامعي</li>
-                    <li><span class="num-badge">2</span> <strong>(Current Password):</strong> ادخل كلمة المرور المؤقتة</li>
-                    <li><span class="num-badge">3</span> <strong>(New Password):</strong> ادخل كلمة المرور الجديدة</li>
-                    <li><span class="num-badge">4</span> <strong>(Confirm):</strong> أعد إدخال كلمة المرور الجديدة</li>
-                    <li><span class="num-badge">5</span> إضغط على reCAPTCHA ثم Submit</li>
-                </ul>
+            <!-- الصف الرابع: البطاقة 4 (متمركزة) -->
+            <div class="steps-row single centered">
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h2><i class="fa-solid fa-rotate-left"></i> عد إلى الصفحة السابقة</h2>
+                    <div class="action-box">
+                        اختر خيار <span class="highlight-badge">Reset Password</span> لمتابعة إعادة التعيين
+                    </div>
+                    <img src="../assets/images/passstep4.png" alt="متابعة إعادة التعيين" class="step-image">
+                </div>
             </div>
-            <div class="step-image-container">
-                <img src="../assets/images/passstep5.png" alt="إدخال كلمة المرور الجديدة" class="step-image">
+
+            <!-- الصف الخامس: البطاقة 5 (أفقية - منفردة) -->
+            <div class="steps-row single">
+                <div class="step-card step-card-horizontal">
+                    <div class="step-content">
+                        <div class="step-number">5</div>
+                        <h2><i class="fa-solid fa-key"></i> أدخل كلمة المرور الجديدة</h2>
+                        <ul class="step-instructions">
+                            <li><span class="num-badge">1</span> <strong>(User Login):</strong> ادخل رقمك الجامعي</li>
+                            <li><span class="num-badge">2</span> <strong>(Current Password):</strong> ادخل كلمة المرور المؤقتة</li>
+                            <li><span class="num-badge">3</span> <strong>(New Password):</strong> ادخل كلمة المرور الجديدة</li>
+                            <li><span class="num-badge">4</span> <strong>(Confirm):</strong> أعد إدخال كلمة المرور الجديدة</li>
+                            <li><span class="num-badge">5</span> إضغط على reCAPTCHA ثم Submit</li>
+                        </ul>
+                    </div>
+                    <div class="step-image-container">
+                        <img src="../assets/images/passstep5.png" alt="إدخال كلمة المرور الجديدة" class="step-image">
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <!-- بطاقة النجاح -->
@@ -1304,7 +1352,7 @@
          ============================================================ -->
     <footer class="footer">
         <div class="footer-brand-compact">
-            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
             <div class="brand-name">
                 <h3>منصة معين التعليمية</h3>
                 <span>MOAEEN PLATFORM</span>
@@ -1339,7 +1387,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // ===== 1. القائمة المنسدلة لمشاركة الصفحة =====
+        // القائمة المنسدلة لمشاركة الصفحة
         const shareToggle = document.getElementById('shareToggle');
         const shareDropdown = document.getElementById('shareDropdown');
 
@@ -1356,7 +1404,7 @@
             });
         }
 
-        // ===== 2. Lightbox لتكبير الصور =====
+        // Lightbox لتكبير الصور
         const lightboxHTML = `
             <div id="imageLightbox" class="lightbox">
                 <span class="close-lightbox">&times;</span>
