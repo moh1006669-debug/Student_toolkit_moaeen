@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل خطوات عرض الجدول الدراسي - منصة معين</title>
+    <meta name="description" content="دليل خطوات عرض الجدول الدراسي عبر نظام البانر - منصة معين التعليمية">
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== متغيرات منصة معين ===== */
+        :root {
+            --bg-dark: #012727;
+            --bg-dark-2: #0A2C2C;
+            --bg-darker: #012020;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --gold-light: #E5C158;
+            --white: #FFFFFF;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #1DA851;
+            --telegram-blue: #0088CC;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --primary-color: #1a4233;
+            --secondary-color: #f7a928;
+            --transition: 0.3s ease;
+            --radius-card: 20px;
+            --radius-btn: 10px;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: url('./assets/images/body-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1320px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
+                              url('./assets/images/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-brand img {
+            width: 130px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+            transition: var(--transition);
+        }
+
+        .header-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .header-brand .brand-name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-brand .brand-name h3 {
+            color: var(--gold);
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .header-brand .brand-name span {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
+                              url('./assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .hero-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .hero-top h1 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            color: var(--white);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-top h1 i {
+            color: var(--gold);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 6px;
+        }
+
+        .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        .share-dropdown-content {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--bg-dark);
+            min-width: 200px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            z-index: 100;
+            padding: 8px 0;
+        }
+
+        .share-dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--white);
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .share-dropdown-content a:hover {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .share-dropdown-content a i {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
+        .share-dropdown-content a .fa-telegram { color: var(--telegram-blue); }
+
+        .share-dropdown.active .share-dropdown-content {
+            display: block;
+        }
+
+        .help-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            line-height: 1.3;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .help-btn:hover {
+            background: var(--whatsapp-dark);
+            transform: scale(1.03);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+        }
+
+        .help-btn .main-text {
+            font-size: 15px;
+        }
+
+        .help-btn .sub-text {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        /* ===== التبويبات داخل الهيرو ===== */
+        .hero-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .tab-item {
+            flex: 1 1 280px;
+            max-width: 450px;
+            background: rgba(1, 32, 32, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-radius: 20px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .tab-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .tab-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            flex-shrink: 0;
+        }
+
+        .tab-text h4 {
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .tab-text p {
+            color: #a0b4b8;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+        }
+
+        .tab-btn i {
+            font-size: 13px;
+        }
+
+        /* ===== التبويبان الجديدان أسفل الهيرو ===== */
+        .guide-tabs-section {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .guide-tab-card {
+            flex: 1 1 300px;
+            max-width: 550px;
+            background: rgba(1, 42, 43, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: 24px;
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .guide-tab-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .guide-tab-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .guide-tab-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            flex-shrink: 0;
+        }
+
+        .guide-tab-text h4 {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .guide-tab-text p {
+            color: #a0b4b8;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .guide-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+
+        .guide-tab-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .guide-tab-btn i {
+            font-size: 13px;
+        }
+
+        /* ===== المحتوى الرئيسي ===== */
+        .main-content {
+            width: 100%;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 40px 40px 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== عناوين الأقسام ===== */
+        .section-title {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-right: 4px solid var(--gold);
+        }
+
+        .section-title i {
+            color: var(--gold);
+            margin-left: 10px;
+        }
+
+        /* ===== شبكة البطاقات ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        @media (min-width: 768px) {
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== البطاقة ===== */
+        .step-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border-top: 5px solid var(--gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-main);
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-header {
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .step-badge {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .step-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .step-header h3 i {
+            color: var(--gold);
+            margin-left: 8px;
+        }
+
+        /* ===== محتوى البطاقة ===== */
+        .step-body {
+            padding: 20px 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* صندوق الرابط مع زر النسخ */
+        .link-box {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid #e2e8f0;
+            direction: ltr;
+        }
+
+        .link-box .url-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            word-break: break-all;
+            flex: 1;
+            font-weight: 600;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: var(--bg-dark);
+            transform: scale(1.05);
+        }
+
+        .copy-btn i {
+            font-size: 0.9rem;
+        }
+
+        .copy-btn.copied {
+            background: var(--whatsapp-green);
+        }
+
+        /* أزرار التوجيه */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-go {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-go:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-go i {
+            font-size: 1rem;
+        }
+
+        /* ===== حاوية الصورة ===== */
+        .image-container {
+            padding: 0 22px 22px 22px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fafbfc;
+        }
+
+        .step-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            background: #f1f5f9;
+        }
+
+        .step-image:hover {
+            opacity: 0.85;
+        }
+
+        /* ===== تذييل الملاحظة ===== */
+        .footer-note {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 20px 28px;
+            border-radius: var(--radius-card);
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-right: 4px solid var(--gold);
+        }
+
+        .footer-note i {
+            color: var(--gold);
+            font-size: 2rem;
+        }
+
+        /* ===== زر التوجيه لأداة إنشاء الجدول ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-color) 100%);
+            border-radius: var(--radius-card);
+            padding: 32px 40px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .cta-section .cta-text {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--white);
+        }
+
+        .cta-section .cta-text i {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .cta-section .cta-text h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .cta-section .cta-text p {
+            font-size: 0.95rem;
+            color: #a0b4b8;
+            font-weight: 400;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            width: 100%;
+            max-width: 1320px;
+            background: var(--bg-dark);
+            border-radius: 24px;
+            overflow: hidden;
+            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-brand-compact {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-brand-compact img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            padding: 4px;
+            background: var(--bg-dark);
+            object-fit: contain;
+        }
+
+        .footer-brand-compact .brand-name {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand-compact .brand-name h3 {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .footer-brand-compact .brand-name span {
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-contact-compact {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-phone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            direction: ltr;
+        }
+
+        .footer-phone i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .footer-social-compact {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social-compact a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .footer-social-compact a:hover {
+            transform: translateY(-3px) scale(1.1);
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-social-compact a.x:hover { background: #000; }
+        .footer-social-compact a.telegram:hover { background: var(--telegram-blue); }
+        .footer-social-compact a.snapchat:hover { background: #FFFC00; color: #000; }
+
+        /* ===== Floating WhatsApp ===== */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 14px 24px 14px 18px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: float-pulse 2s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.05);
+            background: var(--whatsapp-dark);
+            animation: none;
+        }
+
+        .float-wa svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        @keyframes float-pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== Lightbox ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(15, 30, 25, 0.92);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.show .lightbox-content {
+            transform: scale(1);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .close-lightbox:hover {
+            color: var(--gold);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .header { flex-wrap: wrap; justify-content: center; text-align: center; }
+            .header-brand { flex-direction: column; align-items: center; }
+            .header-brand .brand-name { align-items: center; }
+            .hero { padding: 35px 25px; }
+            .tab-item { flex: 1 1 240px; }
+            .guide-tab-card { flex: 1 1 280px; }
+            .section-title { font-size: 1.2rem; padding: 10px 20px; }
+            .cta-section { flex-direction: column; text-align: center; }
+            .cta-section .cta-text { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .header { border-radius: 24px; padding: 16px; }
+            .header-brand img { width: 100px; }
+            .header-brand .brand-name h3 { font-size: 22px; }
+            .main-content { padding: 20px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .share-dropdown { width: 100%; }
+            .share-btn { width: 100%; justify-content: center; }
+            .help-btn { width: 100%; }
+            .hero-tabs { flex-direction: row; flex-wrap: wrap; }
+            .tab-item { flex: 1 1 200px; min-width: 160px; flex-direction: column; text-align: center; gap: 12px; }
+            .tab-info { flex-direction: column; }
+            .guide-tabs-section { flex-direction: column; align-items: stretch; }
+            .guide-tab-card { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
+            .guide-tab-info { flex-direction: row; }
+            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
+            .footer-contact-compact { justify-content: center; }
+            .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+            .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .step-image { height: 150px; }
+            .link-box { flex-wrap: wrap; justify-content: center; }
+            .link-box .url-text { text-align: center; width: 100%; }
+            .footer-note { flex-direction: column; text-align: center; }
+            .section-title { display: block; text-align: center; }
+            .cta-section .cta-text h3 { font-size: 1.1rem; }
+            .cta-btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .header-brand img { width: 80px; }
+            .header-brand .brand-name h3 { font-size: 18px; }
+            .header-brand .brand-name span { font-size: 11px; }
+            .hero-tabs { flex-direction: column; align-items: stretch; }
+            .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
+            .tab-info { flex-direction: row; }
+            .guide-tab-card { flex-direction: column; text-align: center; gap: 12px; }
+            .guide-tab-info { flex-direction: column; }
+            .footer-brand-compact .brand-name h3 { font-size: 17px; }
+            .footer-phone { font-size: 15px; }
+            .step-image { height: 130px; }
+            .step-header h3 { font-size: 0.95rem; }
+        }
+
+        ::selection { background: var(--gold); color: var(--bg-dark); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-darker); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-brand">
+            <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
+            <div class="brand-name">
+                <h3>مُعين</h3>
+                <span>MOAEEN PLATFORM</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-top">
+            <h1>
+                <i class="fa-solid fa-calendar-alt"></i>
+                دليل خطوات عرض الجدول الدراسي
+            </h1>
+
+            <div class="hero-actions">
+                <div class="share-dropdown" id="shareDropdown">
+                    <button class="share-btn" id="shareToggle">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>مشاركة الصفحة</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                    </button>
+                    <div class="share-dropdown-content">
+                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين%20https://example.com" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            مشاركة عبر واتساب
+                        </a>
+                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين" target="_blank">
+                            <i class="fa-brands fa-telegram"></i>
+                            مشاركة عبر تليجرام
+                        </a>
+                    </div>
+                </div>
+
+                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
+                    <span class="main-text">للمساعدة والإستفسار</span>
+                    <span class="sub-text">تواصل مع فريق مُعين</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- التبويبات داخل الهيرو -->
+        <div class="hero-tabs">
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-users"></i></div>
+                    <div class="tab-text">
+                        <h4>قروب تجمع طلبة التحضيري</h4>
+                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+            </div>
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                    <div class="tab-text">
+                        <h4>قناة أخبار و إعلامات التحضيري</h4>
+                        <p>آخر المستجدات والإعلانات الرسمية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== التبويبان الجديدان أسفل الهيرو ===== -->
+    <section class="guide-tabs-section">
+        <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
+        <div class="guide-tab-card">
+            <div class="guide-tab-info">
+                <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
+                <div class="guide-tab-text">
+                    <h4>دليل عرض الجدول الدراسي</h4>
+                    <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
+                </div>
+            </div>
+            <a href="#main-content" class="guide-tab-btn">
+                <i class="fas fa-arrow-left"></i> استعراض الدليل
+            </a>
+        </div>
+
+        <!-- التبويب الثاني: شرح الجدول الدراسي -->
+        <div class="guide-tab-card">
+            <div class="guide-tab-info">
+                <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
+                <div class="guide-tab-text">
+                    <h4>شرح الجدول الدراسي</h4>
+                    <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
+                </div>
+            </div>
+            <a href="#" class="guide-tab-btn" id="scheduleExplanationBtn">
+                <i class="fas fa-arrow-left"></i> استعراض الشرح
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== المحتوى الرئيسي ===== -->
+    <div class="main-content" id="main-content">
+
+        <!-- ===== القسم الأول ===== -->
+        <div class="section-title">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            الدخول الى بنر - الخدمات الذاتية (نظام الـ Banner)
+        </div>
+
+        <div class="steps-grid">
+
+            <!-- البطاقة الأولى: عبر موقع الجامعة -->
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">1</span>
+                    <h3><i class="fa-solid fa-globe"></i> عبر موقع الجامعة - الخدمات الإلكترونية</h3>
+                </div>
+                <div class="step-body">
+                    <div class="link-box">
+                        <span class="url-text" id="url1">https://eservice.seu.edu.sa/student/</span>
+                        <button class="copy-btn" data-target="url1">
+                            <i class="fa-regular fa-copy"></i> نسخ
+                        </button>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://eservice.seu.edu.sa/student/" target="_blank" class="btn-go">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Services
+                        </a>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
+                        ثم الدخول على تبويب "بانر - الخدمات الذاتية" كما في الصورة أدناه
+                    </p>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep1.png" alt="الخطوة 1" class="step-image">
+                </div>
+            </div>
+
+            <!-- البطاقة الثانية: الرابط المباشر -->
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">2</span>
+                    <h3><i class="fa-solid fa-link"></i> أو عن طريق الرابط المباشر</h3>
+                </div>
+                <div class="step-body">
+                    <div class="link-box">
+                        <span class="url-text" id="url2">https://bannservices.seu.edu.sa/StudentSelfService/</span>
+                        <button class="copy-btn" data-target="url2">
+                            <i class="fa-regular fa-copy"></i> نسخ
+                        </button>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://bannservices.seu.edu.sa/StudentSelfService/" target="_blank" class="btn-go">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> الخدمات الذاتية
+                        </a>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep2.png" alt="الخطوة 2" class="step-image">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== القسم الثاني ===== -->
+        <div class="section-title">
+            <i class="fa-solid fa-list-check"></i>
+            بعد الدخول على البانر
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">1</span>
+                    <h3><i class="fa-solid fa-bars"></i> اضغط على أيقونة القائمة في الزاوية العليا اليمنى</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep3.png" alt="الخطوة 3" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">2</span>
+                    <h3><i class="fa-solid fa-building-columns"></i> اختر الـ Banner</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep4.png" alt="الخطوة 4" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">3</span>
+                    <h3><i class="fa-solid fa-user-graduate"></i> اختر خيار "الطالب"</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep5.png" alt="الخطوة 5" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">4</span>
+                    <h3><i class="fa-solid fa-pen-to-square"></i> ثم خيار "التسجيل"</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep6.png" alt="الخطوة 6" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    <span class="step-badge">5</span>
+                    <h3><i class="fa-solid fa-table"></i> ثم خيار "جدول الطالب"</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep7.png" alt="الخطوة 7" class="step-image">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== القسم الثالث ===== -->
+        <div class="section-title">
+            <i class="fa-solid fa-eye"></i>
+            ستفتح معك صفحة الجدول
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-header">
+                    <i class="fa-solid fa-list-ul" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                    <h3>اضغط على خيار تفاصيل الجدول ليتم عرض الجدول</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep8.png" alt="الخطوة 8" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    <i class="fa-solid fa-magnifying-glass" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                    <h3>إذا كنت في ترم غير الترم الظاهر في خانة الفصل الدراسي</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep9.png" alt="الخطوة 9" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-card" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto;">
+                <div class="step-header">
+                    <i class="fa-solid fa-arrows-up-down" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                    <h3>يمكنك الضغط على السهم للأعلى لتوسيع خانة عرض الجدول</h3>
+                </div>
+                <div class="image-container">
+                    <img src="../assets/images/ltabstep10.png" alt="الخطوة 10" class="step-image">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== تذييل الملاحظة ===== -->
+        <div class="footer-note">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>باتباع هذه الخطوات يمكنك الوصول إلى جدولك الدراسي بسهولة ومتابعة مقرراتك وأوقاتها.</span>
+        </div>
+
+        <!-- ===== زر التوجيه لأداة إنشاء الجدول ===== -->
+        <div class="cta-section">
+            <div class="cta-text">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <div>
+                    <h3>استخدم أداة إنشاء جدول مواعيد المحاضرات</h3>
+                    <p>لترتيب مواعيد محاضراتك بسهولة واحترافية</p>
+                </div>
+            </div>
+            <a href="#" class="cta-btn">
+                <i class="fa-solid fa-arrow-left"></i> استكشف الأداة
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-brand-compact">
+            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <div class="brand-name">
+                <h3>منصة معين التعليمية</h3>
+                <span>MOAEEN PLATFORM</span>
+            </div>
+        </div>
+        <div class="footer-contact-compact">
+            <div class="footer-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>+966 53 600 4199</span>
+            </div>
+            <div class="footer-social-compact">
+                <a href="#" class="x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="snapchat" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== Floating WhatsApp ===== -->
+    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+    </a>
+
+</div>
+
+<!-- ===== Lightbox & Copy Script ===== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ===== 1. القائمة المنسدلة للمشاركة =====
+        const shareToggle = document.getElementById('shareToggle');
+        const shareDropdown = document.getElementById('shareDropdown');
+
+        if (shareToggle && shareDropdown) {
+            shareToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                shareDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!shareDropdown.contains(e.target)) {
+                    shareDropdown.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== 2. زر نسخ الرابط =====
+        const copyButtons = document.querySelectorAll('.copy-btn');
+
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const urlElement = document.getElementById(targetId);
+                if (urlElement) {
+                    const url = urlElement.textContent.trim();
+                    navigator.clipboard.writeText(url).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
+                        this.classList.add('copied');
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('فشل النسخ:', err);
+                        const textArea = document.createElement('textarea');
+                        textArea.value = url;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
+                        this.classList.add('copied');
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('copied');
+                        }, 2000);
+                    });
+                }
+            });
+        });
+
+        // ===== 3. Lightbox لتكبير الصور =====
+        const lightboxHTML = `
+            <div id="imageLightbox" class="lightbox">
+                <span class="close-lightbox">&times;</span>
+                <img class="lightbox-content" id="expandedImg" alt="صورة مكبرة">
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('expandedImg');
+        const closeBtn = document.querySelector('.close-lightbox');
+        const images = document.querySelectorAll('.step-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
+        }
+
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) {
+                closeLightbox();
+            }
+        });
+
+        // ===== 4. زر التبويب الثاني (شرح الجدول) مؤقت =====
+        const explanationBtn = document.getElementById('scheduleExplanationBtn');
+        if (explanationBtn) {
+            explanationBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('سيتم إضافة محتوى شرح الجدول الدراسي قريباً. يرجى المتابعة!');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
