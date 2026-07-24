@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طريقة الدخول للمحاضرات المباشرة</title>
+    <!-- استيراد خط كايرو -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- استيراد مكتبة FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0f3057; 
+            --secondary-color: #00587a;
+            --accent-color: #008891;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* تنسيق رأس الصفحة (البنر العلوي) */
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(15, 48, 87, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-banner h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-banner h1 i {
+            margin-left: 15px;
+            color: var(--accent-color);
+        }
+
+        .header-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .login-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            background-color: var(--bg-color);
+        }
+
+        /* شبكة الخطوات - تصميم متجاوب عمودين للشاشات الكبيرة وعمود للموبايل */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* تنسيق بطاقة الخطوة */
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -25px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 4px solid var(--bg-color);
+            box-shadow: 0 4px 10px rgba(0, 136, 145, 0.3);
+        }
+
+        .step-card h2 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-card h2 i {
+            color: var(--accent-color);
+        }
+
+        .step-card p, .step-card ul {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .step-card ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .step-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+
+        .step-card ul li::before {
+            content: '\f100'; /* رمز سهم من FontAwesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+        }
+
+        .step-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-top: auto;
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            background: #f1f5f9;
+            min-height: 200px;
+            cursor: zoom-in; /* تغيير شكل الماوس للدلالة على التكبير */
+            transition: opacity 0.3s ease;
+        }
+        
+        .step-image:hover {
+            opacity: 0.85;
+        }
+
+        /* تنسيق ملاحظة المتصفحات */
+        .browsers-note {
+            background: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .browsers-note h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .browsers-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .browser {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .browser img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .browser span {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* ---------------- Lightbox CSS ---------------- */
+        .lightbox {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: rgba(15, 48, 87, 0.9); /* خلفية داكنة متناسقة مع الهوية */
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.show .lightbox-content {
+            transform: scale(1);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .close-lightbox:hover,
+        .close-lightbox:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* توافق مع الشاشات الصغيرة (الموبايل) */
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr; /* عمود واحد للموبايل */
+            }
+            .header-banner h1 {
+                font-size: 2.2rem;
+            }
+            body {
+                padding: 1rem;
+            }
+            .step-number {
+                right: 20px;
+            }
+            .close-lightbox {
+                top: 10px;
+                right: 20px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="guide-container">
+        
+        <!-- البنر العلوي للمقدمة -->
+        <header class="header-banner">
+            <h1><i class="fa-solid fa-graduation-cap"></i> طريقة الدخول للمحاضرات المباشرة</h1>
+            <p>الدخول إلى منصة البلاك بورد عبر الرابط التالي:</p>
+            <a href="https://lms.seu.edu.sa/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_196_1" class="login-link" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-link"></i> رابط الدخول للمنصة
+            </a>
+        </header>
+
+        <!-- خطوات الدخول -->
+        <main class="steps-grid">
+            
+            <!-- الخطوة الأولى -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h2><i class="fa-solid fa-right-to-bracket"></i> الدخول إلى منصة البلاك بورد</h2>
+                <ul>
+                    <li>أدخل رقمك الجامعي ( S26xxxxxxx )</li>
+                    <li>أدخل كلمة المرور</li>
+                </ul>
+                <img src="../assets/images/st-gu/step1.png" alt="تسجيل الدخول في منصة البلاك بورد" class="step-image">
+            </div>
+
+            <!-- الخطوة الثانية -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h2><i class="fa-solid fa-bars"></i> القائمة الجانبية</h2>
+                <p>اضغط على شريط القائمة الجانبية لإظهار الخيارات المتاحة.</p>
+                <img src="../assets/images/st-gu/step2.png" alt="شريط القائمة الجانبية" class="step-image">
+            </div>
+
+            <!-- الخطوة الثالثة -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h2><i class="fa-solid fa-book"></i> اختيار المقررات</h2>
+                <p>ادخل على خيار المقررات الدراسية (Courses).</p>
+                <img src="../assets/images/st-gu/step3.png" alt="خيار المقررات الدراسية" class="step-image">
+            </div>
+
+            <!-- الخطوة الرابعة -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h2><i class="fa-solid fa-laptop-code"></i> اختيار المقرر المراد حضوره</h2>
+                <p>من صفحة المقررات، اختر مقرر تقنية المعلومات المراد الدخول على محاضرته (في اليوم والوقت المحدد حسب الجدول).</p>
+                <img src="../assets/images/st-gu/step4.png" alt="اختيار المقرر من القائمة" class="step-image">
+            </div>
+
+            <!-- الخطوة الخامسة -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <h2><i class="fa-solid fa-video"></i> الدخول على البيانات والإجراءات (Details & Actions)</h2>
+                <ul>
+                    <li>اضغط على <strong>Class Collaborate</strong></li>
+                    <li>ثم الإنضمام للجلسة <strong>Join session</strong></li>
+                    <li>ثم اضغط على اسم المحاضرة أو <strong>course room</strong></li>
+                </ul>
+                <img src="../assets/images/st-gu/step5.png" alt="تفاصيل الدخول للغرفة الافتراضية" class="step-image">
+            </div>
+
+            <!-- الخطوة السادسة -->
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <h2><i class="fa-solid fa-spinner fa-spin-pulse"></i> جاري الانضمام</h2>
+                <p>ستظهر لك صفحة جاري الإنضمام كـ... "اسمك" <br>( Joining session as .... )</p>
+                <img src="../assets/images/st-gu/step6.png" alt="شاشة جاري الانضمام للمحاضرة" class="step-image">
+            </div>
+
+            <!-- الخطوة السابعة -->
+            <div class="step-card">
+                <div class="step-number">7</div>
+                <h2><i class="fa-solid fa-chalkboard-user"></i> الوصول للمحاضرة</h2>
+                <p>وكذا تكون أصبحت في المحاضرة بنجاح.</p>
+                <img src="../assets/images/st-gu/step7.png" alt="شاشة قاعة المحاضرة الافتراضية" class="step-image">
+            </div>
+
+        </main>
+
+        <!-- ملاحظة المتصفحات -->
+        <section class="browsers-note">
+            <h3><i class="fa-solid fa-circle-exclamation"></i> ملاحظة: المتصفحات الموصى بها لحضور المحاضرات</h3>
+            <div class="browsers-wrapper">
+                <div class="browser">
+                    <img src="../assets/images/st-gu/chrome.png" alt="متصفح جوجل كروم">
+                    <span>كروم Chrome</span>
+                </div>
+                <div class="browser">
+                    <img src="../assets/images/st-gu/safari.png" alt="متصفح سفاري">
+                    <span>سفاري Safari</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- حاوية الـ Lightbox (التكبير) -->
+    <div id="imageLightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="expandedImg">
+    </div>
+
+    <!-- سكربت تفاعلية الـ Lightbox -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('expandedImg');
+            const images = document.querySelectorAll('.step-image');
+            const closeBtn = document.querySelector('.close-lightbox');
+
+            // فتح الـ Lightbox عند الضغط على أي صورة
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('show');
+                    lightboxImg.src = this.src;
+                });
+            });
+
+            // إغلاق الـ Lightbox عند الضغط على علامة (X)
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('show');
+            });
+
+            // إغلاق الـ Lightbox عند الضغط في أي مكان فارغ بالخلفية الداكنة
+            lightbox.addEventListener('click', function(e) {
+                if (e.target !== lightboxImg) {
+                    lightbox.classList.remove('show');
+                }
+            });
+
+            // إغلاق الـ Lightbox عند الضغط على زر Esc في الكيبورد
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                    lightbox.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
