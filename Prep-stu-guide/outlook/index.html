@@ -3,16 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل تفعيل البريد الجامعي</title>
-    
-    <!-- استيراد خط Cairo من Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- استيراد مكتبة أيقونات FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>دليل تفعيل البريد الجامعي - منصة معين</title>
+    <meta name="description" content="دليل خطوات تفعيل البريد الجامعي للطلاب - منصة معين التعليمية">
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* === إعدادات عامة === */
+        /* ===== متغيرات منصة معين ===== */
+        :root {
+            --bg-dark: #012727;
+            --bg-dark-2: #0A2C2C;
+            --bg-darker: #012020;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --gold-light: #E5C158;
+            --white: #FFFFFF;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #1DA851;
+            --telegram-blue: #0088CC;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --primary-color: #0f3057;
+            --transition: 0.3s ease;
+            --radius-card: 20px;
+            --radius-btn: 10px;
+        }
+
+        /* ===== Reset & Base ===== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,262 +44,689 @@
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f4f7fc;
-            display: flex;
-            justify-content: center;
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: url('./assets/images/body-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--white);
+            line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
         }
 
-        /* === الحاوية الرئيسية === */
-        .guide-container {
-            max-width: 750px;
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .page-wrapper {
             width: 100%;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            padding: 30px;
-            position: relative;
+            max-width: 1320px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
-        /* === رأس الصفحة === */
-        .guide-header {
-            background: #1a5bbf;
-            color: white;
+        /* ===== HEADER ===== */
+        .header {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
+                              url('./assets/images/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
             padding: 20px 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .guide-header h1 {
-            font-size: 24px;
-            font-weight: 700;
+        .header-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
-        .guide-header .header-icon {
-            font-size: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 50%;
+        .header-brand img {
+            width: 130px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+            transition: var(--transition);
         }
 
-        /* === شبكة الخطوات (ترتيب عمودي) === */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
+        .header-brand img:hover {
+            transform: scale(1.05);
         }
 
-        /* === بطاقة الخطوة === */
-        .step-card {
-            background: #fafbfc;
-            border: 1px solid #eef2f7;
-            border-radius: 16px;
-            padding: 25px 20px;
-            transition: all 0.3s ease;
+        .header-brand .brand-name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-brand .brand-name h3 {
+            color: var(--gold);
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .header-brand .brand-name span {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
+                              url('./assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .step-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(26, 91, 191, 0.12);
+        .hero-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
         }
 
-        .step-number {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: #0d3b7c;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .hero-top h1 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            color: var(--white);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            font-weight: 700;
-            border: 3px solid #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        .step-title-wrap {
+        .hero-top h1 i {
+            color: var(--gold);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 6px;
+        }
+
+        .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        .share-dropdown-content {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--bg-dark);
+            min-width: 200px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            z-index: 100;
+            padding: 8px 0;
+        }
+
+        .share-dropdown-content a {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            padding: 12px 20px;
+            color: var(--white);
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 15px;
         }
 
-        .step-title-wrap img {
-            width: 45px;
+        .share-dropdown-content a:hover {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .share-dropdown-content a i {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
+        .share-dropdown-content a .fa-telegram { color: var(--telegram-blue); }
+
+        .share-dropdown.active .share-dropdown-content {
+            display: block;
+        }
+
+        .help-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            line-height: 1.3;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .help-btn:hover {
+            background: var(--whatsapp-dark);
+            transform: scale(1.03);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+        }
+
+        .help-btn .main-text {
+            font-size: 15px;
+        }
+
+        .help-btn .sub-text {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .hero-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .tab-item {
+            flex: 1 1 280px;
+            max-width: 450px;
+            background: rgba(1, 32, 32, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-radius: 20px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .tab-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .tab-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            flex-shrink: 0;
+        }
+
+        .tab-text h4 {
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .tab-text p {
+            color: #a0b4b8;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+        }
+
+        .tab-btn i {
+            font-size: 13px;
+        }
+
+        /* ===== المحتوى الرئيسي ===== */
+        .main-content {
+            width: 100%;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 40px 40px 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== شبكة البطاقات (عمود واحد) ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* ===== البطاقة ===== */
+        .step-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            padding: 32px 28px 28px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            color: var(--text-main);
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== رقم الخطوة (على الحافة العلوية) ===== */
+        .step-number {
+            position: absolute;
+            top: -22px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 4px solid #f8fafc;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+        .step-header img {
+            width: 40px;
             height: auto;
             object-fit: contain;
         }
 
         .step-title {
-            font-size: 20px;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #0d3b7c;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .step-title i {
+            color: var(--gold);
         }
 
         .step-desc {
-            color: #444c56;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
         }
 
         .step-desc strong {
-            color: #1a5bbf;
+            color: var(--primary-color);
         }
 
-        /* === النص التمهيدي للبطاقة الثانية (A) === */
-        .step-preamble-bold {
-            display: block;
-            font-size: 16px;
-            color: #222;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
+        /* ===== صندوق التمييز (البريد) ===== */
         .highlight-box {
             background: #eaf3ff;
-            border: 1px dashed #1a5bbf;
-            padding: 10px;
-            border-radius: 8px;
-            color: #0d3b7c;
+            border: 1.5px dashed var(--gold);
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: var(--primary-color);
             font-weight: 700;
             text-align: center;
-            margin: 10px 0 15px 0;
-            font-size: 14px;
+            margin: 10px 0 18px 0;
+            font-size: 1.1rem;
         }
 
-        .red-text {
-            color: #d32f2f; /* اللون الأحمر لحرف S */
+        .highlight-box .red-text {
+            color: #d32f2f;
         }
 
-        /* === تنسيق أشرطة التحميل === */
+        /* ===== أشرطة التحميل ===== */
         .download-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #ffffff;
-            border: 1px solid #dbe1e8;
-            border-radius: 8px;
-            padding: 12px 15px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 18px;
             margin-bottom: 12px;
             transition: border-color 0.3s ease;
         }
 
         .download-bar:last-child {
-            margin-bottom: 0; /* تم إزالة الصورة فلن نحتاج مسافة إضافية */
+            margin-bottom: 0;
         }
 
         .download-bar:hover {
-            border-color: #1a5bbf;
+            border-color: var(--gold);
         }
 
         .download-info {
             display: flex;
             align-items: center;
             gap: 12px;
-            color: #1a202c;
+            color: var(--text-main);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 0.95rem;
         }
 
         .download-info i {
-            font-size: 22px;
+            font-size: 1.6rem;
         }
 
         .download-btn {
-            background: #1a5bbf;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 14px;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
             font-weight: 700;
-            transition: background 0.3s ease, transform 0.2s ease;
-            display: flex;
+            transition: var(--transition);
+            display: inline-flex;
             align-items: center;
             gap: 6px;
+            border: none;
+            cursor: pointer;
         }
 
         .download-btn:hover {
-            background: #0d3b7c;
+            background: var(--bg-dark);
             transform: scale(1.05);
         }
 
-        /* === تنسيق الخطوة الثانية (تقسيم A/B) === */
+        /* ===== الأقسام الفرعية (الخطوة 2 - A و B) ===== */
         .step-subsection {
-            margin-top: 18px;
+            margin-top: 24px;
             padding-top: 20px;
-            border-top: 1px dashed #dbe1e8;
+            border-top: 1.5px dashed #e2e8f0;
         }
 
         .step-sub-label {
             display: inline-block;
-            background: #eaf3ff;
-            color: #1a5bbf;
-            padding: 2px 10px;
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 0 14px;
             border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 0.85rem;
+            font-weight: 800;
             margin-bottom: 8px;
         }
 
         .step-sub-title {
-            font-size: 18px;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #0d3b7c;
-            margin-bottom: 8px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* === تنسيق الصورة === */
+        /* ===== الصور ===== */
         .step-image-wrapper {
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #eef2f7;
+            border: 1px solid #e2e8f0;
             background: white;
             cursor: pointer;
-            position: relative;
             transition: border-color 0.3s ease;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .step-image-wrapper:hover {
-            border-color: #1a5bbf;
+            border-color: var(--gold);
         }
 
-        .step-image-wrapper img {
+        .step-image {
             width: 100%;
             height: auto;
             display: block;
             transition: transform 0.3s ease;
         }
 
-        .step-image-wrapper:hover img {
-            transform: scale(1.03);
+        .step-image-wrapper:hover .step-image {
+            transform: scale(1.02);
         }
 
-        /* === Lightbox (تكبير الصور) === */
+        /* ===== FOOTER ===== */
+        .footer {
+            width: 100%;
+            max-width: 1320px;
+            background: var(--bg-dark);
+            border-radius: 24px;
+            overflow: hidden;
+            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-brand-compact {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-brand-compact img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            padding: 4px;
+            background: var(--bg-dark);
+            object-fit: contain;
+        }
+
+        .footer-brand-compact .brand-name {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand-compact .brand-name h3 {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .footer-brand-compact .brand-name span {
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-contact-compact {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-phone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            direction: ltr;
+        }
+
+        .footer-phone i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .footer-social-compact {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social-compact a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .footer-social-compact a:hover {
+            transform: translateY(-3px) scale(1.1);
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-social-compact a.x:hover { background: #000; }
+        .footer-social-compact a.telegram:hover { background: var(--telegram-blue); }
+        .footer-social-compact a.snapchat:hover { background: #FFFC00; color: #000; }
+
+        /* ===== Floating WhatsApp ===== */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 14px 24px 14px 18px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: float-pulse 2s infinite;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.05);
+            background: var(--whatsapp-dark);
+            animation: none;
+        }
+
+        .float-wa svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        @keyframes float-pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== Lightbox ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -284,118 +735,197 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
+            overflow: hidden;
+            background-color: rgba(15, 30, 25, 0.92);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .lightbox.active {
+        .lightbox.show {
             display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
         }
 
         .lightbox-content {
+            margin: auto;
+            display: block;
             max-width: 90%;
-            max-height: 80vh;
+            max-height: 90vh;
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.show .lightbox-content {
+            transform: scale(1);
         }
 
         .close-lightbox {
             position: absolute;
-            top: 30px;
-            right: 40px;
-            color: #f1f1f1;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
             font-size: 40px;
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            z-index: 10000;
         }
 
-        .close-lightbox:hover,
-        .close-lightbox:focus {
-            color: #bbb;
-            transform: rotate(90deg);
+        .close-lightbox:hover {
+            color: var(--gold);
         }
-        
+
         .lightbox-caption {
             color: #ccc;
             margin-top: 15px;
-            font-size: 18px;
+            font-size: 1rem;
             font-weight: 600;
         }
 
-        /* === استعلامات الوسائط (Responsive) === */
-        @media (max-width: 768px) {
-            .guide-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .guide-header h1 {
-                font-size: 20px;
-            }
-            .step-number {
-                right: 0px;
-                top: -15px;
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            .close-lightbox {
-                top: 15px;
-                right: 20px;
-                font-size: 30px;
-            }
-            .download-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            .download-btn {
-                align-self: flex-start;
-            }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .header { flex-wrap: wrap; justify-content: center; text-align: center; }
+            .header-brand { flex-direction: column; align-items: center; }
+            .header-brand .brand-name { align-items: center; }
+            .hero { padding: 35px 25px; }
+            .tab-item { flex: 1 1 240px; }
         }
+
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .header { border-radius: 24px; padding: 16px; }
+            .header-brand img { width: 100px; }
+            .header-brand .brand-name h3 { font-size: 22px; }
+            .main-content { padding: 20px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .share-dropdown { width: 100%; }
+            .share-btn { width: 100%; justify-content: center; }
+            .help-btn { width: 100%; }
+            .hero-tabs { flex-direction: row; flex-wrap: wrap; }
+            .tab-item { flex: 1 1 200px; min-width: 160px; flex-direction: column; text-align: center; gap: 12px; }
+            .tab-info { flex-direction: column; }
+            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
+            .footer-contact-compact { justify-content: center; }
+            .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+            .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
+            .step-card { padding: 28px 18px 20px; }
+            .step-number { right: 16px; width: 42px; height: 42px; font-size: 1.3rem; top: -20px; }
+            .download-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .download-btn { align-self: flex-start; }
+            .step-header { flex-wrap: wrap; }
+        }
+
+        @media (max-width: 480px) {
+            .header-brand img { width: 80px; }
+            .header-brand .brand-name h3 { font-size: 18px; }
+            .header-brand .brand-name span { font-size: 11px; }
+            .hero-tabs { flex-direction: column; align-items: stretch; }
+            .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
+            .tab-info { flex-direction: row; }
+            .footer-brand-compact .brand-name h3 { font-size: 17px; }
+            .footer-phone { font-size: 15px; }
+            .step-title { font-size: 1.1rem; }
+        }
+
+        ::selection { background: var(--gold); color: var(--bg-dark); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-darker); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
     </style>
 </head>
 <body>
 
-    <div class="guide-container">
-        <!-- رأس الصفحة -->
-        <header class="guide-header">
-            <h1>
-                <i class="fas fa-envelope-open-text header-icon"></i>
-                خطوات تفعيل / الدخول إلى البريد الجامعي
-            </h1>
-            <span><i class="fas fa-university"></i> الجامعه السعوديه الإلكترونيه SEU</span>
-        </header>
+<div class="page-wrapper">
 
-        <!-- شبكة الخطوات -->
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-brand">
+            <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
+            <div class="brand-name">
+                <h3>مُعين</h3>
+                <span>MOAEEN PLATFORM</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-top">
+            <h1>
+                <i class="fa-solid fa-envelope-open-text"></i>
+                دليل تفعيل البريد الجامعي
+            </h1>
+
+            <div class="hero-actions">
+                <div class="share-dropdown" id="shareDropdown">
+                    <button class="share-btn" id="shareToggle">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>مشاركة الصفحة</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                    </button>
+                    <div class="share-dropdown-content">
+                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين%20https://example.com" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            مشاركة عبر واتساب
+                        </a>
+                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين" target="_blank">
+                            <i class="fa-brands fa-telegram"></i>
+                            مشاركة عبر تليجرام
+                        </a>
+                    </div>
+                </div>
+
+                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
+                    <span class="main-text">للمساعدة والإستفسار</span>
+                    <span class="sub-text">تواصل مع فريق مُعين</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-tabs">
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-users"></i></div>
+                    <div class="tab-text">
+                        <h4>قروب تجمع طلبة التحضيري</h4>
+                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+            </div>
+            <div class="tab-item">
+                <div class="tab-info">
+                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                    <div class="tab-text">
+                        <h4>قناة أخبار و إعلامات التحضيري</h4>
+                        <p>آخر المستجدات والإعلانات الرسمية</p>
+                    </div>
+                </div>
+                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== المحتوى الرئيسي ===== -->
+    <div class="main-content">
+
         <div class="steps-grid">
-            
-            <!-- الخطوة 1 -->
+
+            <!-- ===== الخطوة 1 ===== -->
             <div class="step-card">
                 <div class="step-number">1</div>
-                <div class="step-title-wrap">
+                <div class="step-header">
                     <img src="../assets/images/outlookicon.png" alt="Outlook Icon">
                     <h3 class="step-title"><i class="fab fa-microsoft"></i> تحميل برنامج Outlook</h3>
                 </div>
-                
                 <p class="step-desc">قم بتحميل برنامج Outlook من المتجر الرسمي لهاتفك:</p>
 
-                <!-- شريط تحميل الأندرويد -->
                 <div class="download-bar">
                     <div class="download-info">
                         <i class="fab fa-android" style="color: #a4c639;"></i>
@@ -406,7 +936,6 @@
                     </a>
                 </div>
 
-                <!-- شريط تحميل الأيفون -->
                 <div class="download-bar">
                     <div class="download-info">
                         <i class="fab fa-apple" style="color: #000;"></i>
@@ -418,103 +947,166 @@
                 </div>
             </div>
 
-            <!-- الخطوة 2 (مقسمة إلى A و B) -->
+            <!-- ===== الخطوة 2 ===== -->
             <div class="step-card">
                 <div class="step-number">2</div>
-                
-                <!-- الجزء A -->
-                <span class="step-preamble-bold">بعد تحميل/تثبيت البرنامج</span>
-                <p class="step-desc">افتح البرنامج وقم بكتابة البريد الجامعي الخاص بك بالصيغة التالية :</p>
-                
+                <div class="step-header">
+                    <h3 class="step-title"><i class="fa-regular fa-envelope"></i> إدخال البريد الجامعي</h3>
+                </div>
+
+                <p class="step-desc"><strong>بعد تحميل/تثبيت البرنامج</strong>، افتح البرنامج وقم بكتابة البريد الجامعي الخاص بك بالصيغة التالية:</p>
+
                 <div class="highlight-box">
                     <i class="fas fa-envelope"></i> <span class="red-text">S</span><strong>الرقم الجامعي</strong>@seu.edu.sa<br>
-                    <span style="font-size: 12px; font-weight: 400;">مثال: (S26*****@seu.edu.sa)</span>
+                    <span style="font-size: 0.85rem; font-weight: 400;">مثال: (S26*****@seu.edu.sa)</span>
                 </div>
 
                 <div class="step-image-wrapper" onclick="openLightbox(this)">
-                    <img src="../assets/images/outlook1.png" alt="كتابة البريد الجامعي">
+                    <img src="../assets/images/outlook1.png" alt="كتابة البريد الجامعي" class="step-image">
                 </div>
 
-                <!-- الجزء B -->
                 <div class="step-subsection">
                     <span class="step-sub-label">B</span>
                     <h4 class="step-sub-title"><i class="fas fa-user-plus"></i> إضافة حساب</h4>
-                    <p class="step-desc">بعد إدخال البريد الجامعي -> اضغط <strong style="color: #1a5bbf;">"إضافة حساب"</strong> وليس <strong style="color: #d32f2f;">"إنشاء حساب"</strong>.</p>
-                    
+                    <p class="step-desc">بعد إدخال البريد الجامعي -> اضغط <strong style="color: var(--primary-color);">"إضافة حساب"</strong> وليس <strong style="color: #d32f2f;">"إنشاء حساب"</strong>.</p>
+
                     <div class="step-image-wrapper" onclick="openLightbox(this)">
-                        <img src="../assets/images/outlook2.png" alt="إضافة الحساب">
+                        <img src="../assets/images/outlook2.png" alt="إضافة الحساب" class="step-image">
                     </div>
                 </div>
-
             </div>
 
-            <!-- الخطوة 3 -->
+            <!-- ===== الخطوة 3 ===== -->
             <div class="step-card">
                 <div class="step-number">3</div>
-                <h3 class="step-title"><i class="fas fa-lock"></i> تسجيل الدخول</h3>
+                <div class="step-header">
+                    <h3 class="step-title"><i class="fas fa-lock"></i> تسجيل الدخول</h3>
+                </div>
                 <p class="step-desc">سيفتح معك صفحة تسجيل دخول الجامعة، ادخل رقمك الجامعي وكلمة المرور الخاصة بك.</p>
                 <div class="step-image-wrapper" onclick="openLightbox(this)">
-                    <img src="../assets/images/outlook3.png" alt="صفحة تسجيل الدخول">
+                    <img src="../assets/images/outlook3.png" alt="صفحة تسجيل الدخول" class="step-image">
                 </div>
             </div>
 
-            <!-- الخطوة 4 -->
+            <!-- ===== الخطوة 4 ===== -->
             <div class="step-card">
                 <div class="step-number">4</div>
-                <h3 class="step-title"><i class="fas fa-check-circle" style="color: #28a745;"></i> التفعيل</h3>
+                <div class="step-header">
+                    <h3 class="step-title"><i class="fas fa-check-circle" style="color: #28a745;"></i> التفعيل</h3>
+                </div>
                 <p class="step-desc"><strong>وبهذه الطريقة تكون فعلت بريدك الجامعي!</strong></p>
-                <p class="step-desc" style="margin-top: 5px;">ستصلك رسائل التفعيل والبريد الجامعي مباشرة في تطبيق Outlook.</p>
+                <p class="step-desc" style="margin-top: -8px;">ستصلك رسائل التفعيل والبريد الجامعي مباشرة في تطبيق Outlook.</p>
                 <div class="step-image-wrapper" onclick="openLightbox(this)">
-                    <img src="../assets/images/outlook4.png" alt="تفعيل البريد الجامعي">
+                    <img src="../assets/images/outlook4.png" alt="تفعيل البريد الجامعي" class="step-image">
                 </div>
             </div>
 
         </div>
+
     </div>
 
-    <!-- نافذة Lightbox لتكبير الصور -->
-    <div id="imageLightbox" class="lightbox" onclick="closeLightboxOutside(event)">
-        <span class="close-lightbox" onclick="closeLightbox()"><i class="fas fa-times"></i></span>
-        <img class="lightbox-content" id="lightboxImg" src="" alt="صورة مكبرة">
-        <div class="lightbox-caption">انقر خارج الصورة أو على زر الإغلاق للخروج</div>
-    </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-brand-compact">
+            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <div class="brand-name">
+                <h3>منصة معين التعليمية</h3>
+                <span>MOAEEN PLATFORM</span>
+            </div>
+        </div>
+        <div class="footer-contact-compact">
+            <div class="footer-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>+966 53 600 4199</span>
+            </div>
+            <div class="footer-social-compact">
+                <a href="#" class="x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="snapchat" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    <script>
-        // دالة فتح Lightbox
-        function openLightbox(element) {
+    <!-- ===== Floating WhatsApp ===== -->
+    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+    </a>
+
+</div>
+
+<!-- ===== Lightbox Script ===== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ===== 1. القائمة المنسدلة للمشاركة =====
+        const shareToggle = document.getElementById('shareToggle');
+        const shareDropdown = document.getElementById('shareDropdown');
+
+        if (shareToggle && shareDropdown) {
+            shareToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                shareDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!shareDropdown.contains(e.target)) {
+                    shareDropdown.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== 2. Lightbox =====
+        const lightboxHTML = `
+            <div id="imageLightbox" class="lightbox">
+                <span class="close-lightbox">&times;</span>
+                <img class="lightbox-content" id="expandedImg" alt="صورة مكبرة">
+                <div class="lightbox-caption">انقر خارج الصورة أو على زر الإغلاق للخروج</div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('expandedImg');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        // دالة فتح Lightbox (متاحة عمومياً للـ onclick)
+        window.openLightbox = function(element) {
             const img = element.querySelector('img');
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            
             if (img) {
                 lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.add('active');
+                lightboxImg.alt = img.alt || 'صورة مكبرة';
+                lightbox.classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
-        }
+        };
 
         // دالة إغلاق Lightbox
-        function closeLightbox() {
-            const lightbox = document.getElementById('imageLightbox');
-            lightbox.classList.remove('active');
+        const closeLightbox = () => {
+            lightbox.classList.remove('show');
             document.body.style.overflow = 'auto';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
         }
 
-        // إغلاق Lightbox عند الضغط على الخلفية الداكنة
-        function closeLightboxOutside(event) {
-            if (event.target === document.getElementById('imageLightbox')) {
-                closeLightbox();
-            }
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
         }
 
-        // إضافة اختصار زر ESC للإغلاق
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) {
                 closeLightbox();
             }
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>
