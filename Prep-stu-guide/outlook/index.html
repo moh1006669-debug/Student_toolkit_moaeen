@@ -130,26 +130,27 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 8px;
         }
 
         .step-desc {
             color: #444c56;
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .step-desc strong {
             color: #1a5bbf;
         }
 
-        /* === النص الإضافي الجديد قبل العنوان === */
-        .step-preamble {
-            font-size: 16px; /* حجم أصغر قليلاً من العنوان 20px */
-            color: #555;
-            font-weight: 600;
-            margin-bottom: 4px;
+        /* === النص التمهيدي للبطاقة الثانية (A) === */
+        .step-preamble-bold {
             display: block;
+            font-size: 16px;
+            color: #222;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
         .highlight-box {
@@ -160,8 +161,12 @@
             color: #0d3b7c;
             font-weight: 700;
             text-align: center;
-            margin: 10px 0;
+            margin: 10px 0 15px 0;
             font-size: 14px;
+        }
+
+        .red-text {
+            color: #d32f2f; /* اللون الأحمر لحرف S */
         }
 
         /* === تنسيق أشرطة التحميل === */
@@ -178,7 +183,7 @@
         }
 
         .download-bar:last-child {
-            margin-bottom: 20px;
+            margin-bottom: 0; /* تم إزالة الصورة فلن نحتاج مسافة إضافية */
         }
 
         .download-bar:hover {
@@ -217,6 +222,31 @@
             transform: scale(1.05);
         }
 
+        /* === تنسيق الخطوة الثانية (تقسيم A/B) === */
+        .step-subsection {
+            margin-top: 18px;
+            padding-top: 20px;
+            border-top: 1px dashed #dbe1e8;
+        }
+
+        .step-sub-label {
+            display: inline-block;
+            background: #eaf3ff;
+            color: #1a5bbf;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-sub-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0d3b7c;
+            margin-bottom: 8px;
+        }
+
         /* === تنسيق الصورة === */
         .step-image-wrapper {
             width: 100%;
@@ -227,6 +257,7 @@
             cursor: pointer;
             position: relative;
             transition: border-color 0.3s ease;
+            margin-top: 12px;
         }
 
         .step-image-wrapper:hover {
@@ -385,30 +416,36 @@
                         <i class="fas fa-download"></i> تنزيل
                     </a>
                 </div>
-
-                <div class="step-image-wrapper" onclick="openLightbox(this)">
-                    <img src="../assets/images/outlook1.png" alt="تحميل برنامج Outlook">
-                </div>
             </div>
 
-            <!-- الخطوة 2 -->
+            <!-- الخطوة 2 (مقسمة إلى A و B) -->
             <div class="step-card">
                 <div class="step-number">2</div>
                 
-                <!-- النص المطلوب إضافته قبل العنوان -->
-                <span class="step-preamble">بعد تحميل البرنامج وتثبيته قم بــ</span>
+                <!-- الجزء A -->
+                <span class="step-preamble-bold">بعد تحميل/تثبيت البرنامج</span>
+                <p class="step-desc">افتح البرنامج وقم بكتابة البريد الجامعي الخاص بك بالصيغة التالية :</p>
                 
-                <h3 class="step-title"><i class="fas fa-user-plus"></i> إضافة الحساب</h3>
-                
-                <p class="step-desc">افتح البرنامج وقم بكتابة البريد الجامعي الخاص بك بالصيغة التالية:</p>
                 <div class="highlight-box">
-                    <i class="fas fa-envelope"></i> S<strong>الرقم الجامعي</strong>@seu.edu.sa<br>
+                    <i class="fas fa-envelope"></i> <span class="red-text">S</span><strong>الرقم الجامعي</strong>@seu.edu.sa<br>
                     <span style="font-size: 12px; font-weight: 400;">مثال: (S26*****@seu.edu.sa)</span>
                 </div>
-                <p class="step-desc">بعدها اضغط <strong style="color: #1a5bbf;">"إضافة حساب"</strong> وليس "إنشاء حساب".</p>
+
                 <div class="step-image-wrapper" onclick="openLightbox(this)">
-                    <img src="../assets/images/outlook2.png" alt="إضافة الحساب">
+                    <img src="../assets/images/outlook1.png" alt="كتابة البريد الجامعي">
                 </div>
+
+                <!-- الجزء B -->
+                <div class="step-subsection">
+                    <span class="step-sub-label">B</span>
+                    <h4 class="step-sub-title"><i class="fas fa-user-plus"></i> إضافة حساب</h4>
+                    <p class="step-desc">بعد إدخال البريد الجامعي -> اضغط <strong style="color: #1a5bbf;">"إضافة حساب"</strong> وليس <strong style="color: #d32f2f;">"إنشاء حساب"</strong>.</p>
+                    
+                    <div class="step-image-wrapper" onclick="openLightbox(this)">
+                        <img src="../assets/images/outlook2.png" alt="إضافة الحساب">
+                    </div>
+                </div>
+
             </div>
 
             <!-- الخطوة 3 -->
@@ -453,7 +490,7 @@
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // منع التمرير أثناء فتح النافذة
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -461,17 +498,17 @@
         function closeLightbox() {
             const lightbox = document.getElementById('imageLightbox');
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // إعادة التمرير
+            document.body.style.overflow = 'auto';
         }
 
-        // إغلاق Lightbox عند الضغط على الخلفية الداكنة (خارج الصورة)
+        // إغلاق Lightbox عند الضغط على الخلفية الداكنة
         function closeLightboxOutside(event) {
             if (event.target === document.getElementById('imageLightbox')) {
                 closeLightbox();
             }
         }
 
-        // إضافة اختصار لوحة المفاتيح (زر ESC للإغلاق)
+        // إضافة اختصار زر ESC للإغلاق
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeLightbox();
