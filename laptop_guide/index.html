@@ -44,16 +44,48 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; }
+body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg-section); color: var(--title-color); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; padding: 0; margin: 0; }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, select, textarea { font-family: inherit; }
 
-.page-wrapper { width: 100%; max-width: 1280px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+/* ===== WRAPPER ===== */
+.page-wrapper { 
+  width: 100%; 
+  max-width: 100%; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  flex: 1; 
+}
 
-/* ===== HEADER ===== */
-.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+/* ===== MAIN BANNER (MERGED HEADER + BACK BAR + HERO) ===== */
+.main-banner {
+  width: 100%;
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%);
+  padding: 18px 24px 36px 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== HEADER (RESET STYLES) ===== */
+.header { 
+  width: 100%; 
+  background: transparent !important; 
+  border-radius: 0 !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  display: grid; 
+  grid-template-columns: 1fr 2fr 1fr; 
+  align-items: center; 
+  gap: 20px; 
+}
 .header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
 .header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
 .header-logo-moaeen img:hover { transform: scale(1.05); }
@@ -65,14 +97,24 @@ input, select, textarea { font-family: inherit; }
 .seu-rect { display: flex; align-items: center; gap: 12px; }
 .seu-rect img { width: 44px; height: 44px; object-fit: contain; }
 .seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
-@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
-.mobile-pill-bar { display: none; width: 100%; }
+
+.mobile-pill-bar { display: none; width: 100%; background: transparent !important; }
 .mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
 .mobile-pill .pill-text { font-size: 12px; }
-@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
 
-/* ===== BACK BAR ===== */
-.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+/* ===== BACK BAR (RESET STYLES) ===== */
+.back-bar { 
+  width: 100%; 
+  background: var(--white); 
+  border-radius: 16px; 
+  padding: 12px 20px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 12px; 
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); 
+  flex-wrap: wrap; 
+}
 .back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
 .back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
 .back-btn i { font-size: 12px; }
@@ -81,18 +123,31 @@ input, select, textarea { font-family: inherit; }
 .breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
 .breadcrumb i { font-size: 10px; }
 
-/* ===== HERO ===== */
-.hero { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.92) 0%, rgba(10,44,44,0.88) 100%); border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+/* ===== HERO (RESET STYLES) ===== */
+.hero { 
+  width: 100%; 
+  background: transparent !important; 
+  border-radius: 0 !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  gap: 14px; 
+  position: relative; 
+  overflow: hidden; 
+}
 .hero::before { content: ''; position: absolute; top: -40%; left: -10%; width: 50%; height: 200%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); z-index: 1; }
 .hero-badge i { font-size: 12px; }
 .hero h1 { font-size: 26px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 880px; z-index: 1; }
 .hero h1 .gold { color: var(--gold); }
 .hero p { font-size: 14px; color: rgba(255,255,255,0.85); max-width: 780px; line-height: 1.8; z-index: 1; }
-@media (min-width: 768px) { .hero h1 { font-size: 30px; } .hero p { font-size: 15px; } }
 
-/* ===== SHARE BAR ===== */
-.share-bar { width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; position: relative; }
+/* ===== SHARE BAR & OTHER ELEMENTS (ADDED PADDING FOR LAYOUT) ===== */
+.share-bar, .tabs-nav, .tab-panel, .footer { padding-left: 20px; padding-right: 20px; width: 100%; box-sizing: border-box; }
+.share-bar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; position: relative; }
 .share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
 .share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
 .share-btn .share-ico { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
@@ -392,7 +447,7 @@ input, select, textarea { font-family: inherit; }
 .contact-capsule .cc-btn i { font-size: 16px; }
 
 /* ===== FOOTER ===== */
-.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 0; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); margin-bottom: 20px; }
 .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
@@ -420,56 +475,71 @@ input, select, textarea { font-family: inherit; }
 .footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
 .footer-made .heart { color: #10b981; }
 @media (max-width: 640px) { .footer-top { flex-direction: column; align-items: stretch; text-align: center; } .footer-brand { justify-content: center; } .footer-social { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } }
+
+/* ===== MEDIA QUERIES FOR MAIN BANNER ===== */
+@media (max-width: 768px) {
+  .main-banner { padding: 14px 16px 24px 16px; gap: 12px; border-radius: 0; }
+  .header { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .header-pill { display: none; }
+  .header-logo-moaeen img { width: 70px; }
+  .seu-rect img { width: 38px; height: 38px; }
+  .mobile-pill-bar { display: block; }
+  .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero h1 { font-size: 22px; }
+}
 </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="header-logo-moaeen">
-      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
-    </div>
-    <div class="header-pill">
-      <span class="pill-line"></span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-      <span class="pill-star">⭐</span>
-      <span class="pill-line"></span>
-    </div>
-    <div class="header-seu-box">
-      <div class="seu-rect">
-        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-        <span class="seu-text-en">SEU_University</span>
+  <!-- ===== MAIN BANNER (MERGED SECTION) ===== -->
+  <div class="main-banner">
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-logo-moaeen">
+        <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+      </div>
+      <div class="header-pill">
+        <span class="pill-line"></span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+        <span class="pill-star">⭐</span>
+        <span class="pill-line"></span>
+      </div>
+      <div class="header-seu-box">
+        <div class="seu-rect">
+          <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+          <span class="seu-text-en">SEU</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-pill-bar">
+      <div class="mobile-pill">
+        <span class="pill-star">⭐</span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
       </div>
     </div>
-  </header>
 
-  <div class="mobile-pill-bar">
-    <div class="mobile-pill">
-      <span class="pill-star">⭐</span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    <!-- ===== BACK BAR ===== -->
+    <div class="back-bar">
+      <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+      <div class="breadcrumb">
+        <span class="crumb-home">الرئيسية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span>الأدوات التفاعلية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span class="crumb-current">دليل اختيار اللابتوب</span>
+      </div>
     </div>
-  </div>
 
-  <!-- ===== BACK BAR ===== -->
-  <div class="back-bar">
-    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
-    <div class="breadcrumb">
-      <span class="crumb-home">الرئيسية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span>الأدوات التفاعلية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span class="crumb-current">دليل اختيار اللابتوب</span>
-    </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-badge"><i class="fas fa-laptop"></i> دليل اختيار اللابتوب - مُعين</div>
+      <h1>دليلك الشامل لاختيار <span class="gold">لابتوب الجامعة</span></h1>
+      <p>المواصفات التقنية، التوصيات حسب التخصص، الأجهزة المقترحة، ومتطلبات الاختبارات الإلكترونية — كل ما تحتاجه في مكان واحد.</p>
+    </section>
   </div>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="hero-badge"><i class="fas fa-laptop"></i> دليل اختيار اللابتوب - مُعين</div>
-    <h1>دليلك الشامل لاختيار <span class="gold">لابتوب الجامعة</span></h1>
-    <p>المواصفات التقنية، التوصيات حسب التخصص، الأجهزة المقترحة، ومتطلبات الاختبارات الإلكترونية — كل ما تحتاجه في مكان واحد.</p>
-  </section>
 
   <!-- ===== SHARE BAR ===== -->
   <div class="share-bar">
