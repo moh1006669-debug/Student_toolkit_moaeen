@@ -46,10 +46,41 @@ a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, select, textarea { font-family: inherit; }
 
-.page-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 20px; padding: 20px; flex: 1; }
+/* ===== WRAPPER ===== */
+.page-wrapper { 
+  width: 100%; 
+  max-width: 100%; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  flex: 1; 
+}
 
-/* HEADER */
-.header { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 18px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+/* ===== MAIN BANNER (MERGED) ===== */
+.main-banner {
+  width: 100%;
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%);
+  border-radius: 0; /* إزالة الزوايا الدائرية */
+  padding: 18px 24px 24px 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Header Reset inside Banner */
+.main-banner .header {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
 .header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
 .header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
 .header-logo-moaeen img:hover { transform: scale(1.05); }
@@ -61,14 +92,23 @@ input, select, textarea { font-family: inherit; }
 .seu-rect { display: flex; align-items: center; gap: 12px; }
 .seu-rect img { width: 44px; height: 44px; object-fit: contain; }
 .seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
-@media (max-width: 768px) { .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; } .header-pill { display: none; } .header-logo-moaeen img { width: 70px; } .seu-rect img { width: 38px; height: 38px; } }
-.mobile-pill-bar { display: none; width: 100%; }
+.mobile-pill-bar { display: none; width: 100%; background: transparent !important; }
 .mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
 .mobile-pill .pill-text { font-size: 12px; }
-@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
 
-/* BACK BAR */
-.back-bar { width: 100%; background: var(--white); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+/* Back Bar Reset inside Banner */
+.main-banner .back-bar {
+  width: 100%;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+}
 .back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
 .back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
 .back-btn i { font-size: 12px; }
@@ -77,18 +117,47 @@ input, select, textarea { font-family: inherit; }
 .breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
 .breadcrumb i { font-size: 10px; }
 
-/* HERO */
-.hero { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.92) 0%, rgba(10,44,44,0.88) 100%); border-radius: 24px; padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; top: -30%; left: -10%; width: 60%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.1), transparent 70%); pointer-events: none; }
+/* Hero Reset inside Banner */
+.main-banner .hero {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.main-banner .hero::before {
+  content: ''; 
+  position: absolute; 
+  top: -30%; 
+  left: -10%; 
+  width: 60%; 
+  height: 160%; 
+  background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); 
+  pointer-events: none;
+}
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); position: relative; z-index: 1; }
 .hero-badge i { font-size: 12px; }
 .hero h1 { font-size: 24px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 800px; position: relative; z-index: 1; }
 .hero h1 .gold { color: var(--gold); }
 .hero p { font-size: 14px; color: rgba(255,255,255,0.85); max-width: 700px; line-height: 1.7; position: relative; z-index: 1; }
-@media (min-width: 768px) { .hero h1 { font-size: 28px; } .hero p { font-size: 15px; } }
 
-/* SHARE BAR */
-.share-bar { width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; position: relative; }
+/* Share Bar inside Banner */
+.main-banner .share-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
 .share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
 .share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
 .share-btn svg { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
@@ -106,8 +175,14 @@ input, select, textarea { font-family: inherit; }
 .share-option.telegram { background: #eff6ff; color: #1d4ed8; }
 .share-option.telegram:hover { background: #dbeafe; }
 
-/* TABS NAV */
-.tabs-nav { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: sticky; top: 12px; z-index: 50; }
+/* ===== TABS NAV & PANELS OUTSIDE BANNER ===== */
+.tabs-nav, .tab-panel {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.tabs-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: sticky; top: 12px; z-index: 50; }
 .tab-card { background: var(--white); border-radius: 16px; padding: 16px 14px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; cursor: pointer; transition: var(--transition); border: 2px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
 .tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 .tab-card.active { background: linear-gradient(135deg, var(--btn-bg) 0%, var(--bg-dark-2) 100%); border-color: var(--gold); color: var(--white); box-shadow: 0 8px 24px rgba(7,72,66,0.3); }
@@ -133,12 +208,11 @@ input, select, textarea { font-family: inherit; }
   .tab-card .tab-num { top: 50%; right: auto; left: 12px; transform: translateY(-50%); }
 }
 
-/* TAB PANELS */
-.tab-panel { width: 100%; display: none; flex-direction: column; gap: 18px; animation: fadeUp 0.4s ease; }
+.tab-panel { display: none; flex-direction: column; gap: 18px; animation: fadeUp 0.4s ease; }
 .tab-panel.active { display: flex; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-/* SECTION HEAD */
+/* ===== SECTION HEAD ===== */
 .section-head { background: var(--white); border-radius: var(--radius-card); padding: 22px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 8px; }
 .section-head h2 { font-size: 20px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .section-head h2 i { color: var(--gold); font-size: 22px; }
@@ -148,7 +222,7 @@ input, select, textarea { font-family: inherit; }
 .section-head h3 { font-size: 16px; font-weight: 800; color: var(--title-color); }
 .section-head p { font-size: 13px; color: var(--desc-color); line-height: 1.8; }
 
-/* NOTICE BOXES */
+/* ===== NOTICE BOXES ===== */
 .notice-box { width: 100%; border-radius: var(--radius-card); padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
 .notice-box.warning { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #fde68a; }
 .notice-box.critical { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #fecaca; }
@@ -164,7 +238,7 @@ input, select, textarea { font-family: inherit; }
 .notice-body .notice-text strong { color: var(--title-color); font-weight: 800; }
 .notice-examples { margin-top: 10px; background: rgba(255,255,255,0.6); padding: 8px 14px; border-radius: 8px; display: inline-block; font-size: 12px; font-weight: 700; color: var(--warning-red-dark); border: 1px dashed #fca5a5; }
 
-/* CAPSULE BUTTONS */
+/* ===== CAPSULE BUTTONS ===== */
 .capsule-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); cursor: pointer; text-align: center; }
 .capsule-btn.gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); box-shadow: 0 4px 14px rgba(212,175,55,0.3); }
 .capsule-btn.gold:hover { background: var(--gold-glow); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
@@ -177,12 +251,12 @@ input, select, textarea { font-family: inherit; }
 .capsule-btn i { font-size: 13px; }
 .capsule-wrap { display: flex; justify-content: center; padding: 4px; }
 
-/* OFFICIAL SOURCE */
+/* ===== OFFICIAL SOURCE ===== */
 .official-source { background: var(--white); border-radius: var(--radius-card); padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
 .official-source-text { flex: 1; min-width: 220px; font-size: 13px; color: var(--desc-color); font-weight: 600; }
 .official-source-text strong { color: var(--title-color); }
 
-/* REQ CARDS */
+/* ===== REQ CARDS ===== */
 .req-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 768px) { .req-grid { grid-template-columns: 1fr 1fr 1fr; } }
 .req-card { background: var(--white); border-radius: var(--radius-card); border: 1px solid var(--gray-light); box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 22px; transition: var(--transition); display: flex; flex-direction: column; gap: 14px; }
@@ -198,7 +272,7 @@ input, select, textarea { font-family: inherit; }
 .req-spec-box span { display: block; font-size: 11px; color: var(--desc-color); font-weight: 700; margin-bottom: 2px; }
 .req-spec-box p { font-size: 13px; font-weight: 800; color: var(--title-color); }
 
-/* CHECKLIST */
+/* ===== CHECKLIST ===== */
 .checklist-card { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
 .checklist-title { font-size: 17px; font-weight: 800; color: var(--title-color); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
 .checklist-title i { color: var(--success-green); }
@@ -211,12 +285,12 @@ input, select, textarea { font-family: inherit; }
 .checklist-item h4 .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--btn-bg); color: var(--white); font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .checklist-item p { font-size: 13.5px; color: var(--desc-color); line-height: 1.9; }
 
-/* EXAM IMAGE */
+/* ===== EXAM IMAGE ===== */
 .exam-image-wrap { width: 100%; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.1); background: var(--white); }
 .exam-image-wrap img { width: 100%; height: auto; display: block; }
 .exam-image-caption { padding: 12px 16px; font-size: 12px; color: var(--desc-color); text-align: center; background: var(--bg-section); font-weight: 600; }
 
-/* CONTACT CAPSULE */
+/* ===== CONTACT CAPSULE ===== */
 .contact-capsule { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border-radius: var(--radius-card); padding: 20px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
 .contact-capsule .cc-text { font-size: 15px; font-weight: 800; color: var(--white); }
 .contact-capsule .cc-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: #075E54; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 800; transition: var(--transition); }
@@ -238,7 +312,7 @@ input, select, textarea { font-family: inherit; }
 .intro-image-wrap { width: 100%; max-width: 600px; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
 .intro-image-wrap img { width: 100%; height: auto; display: block; }
 
-/* DOWNLOAD SECTION */
+/* ===== DOWNLOAD SECTION ===== */
 .download-section { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 20px; }
 .download-title { font-size: 17px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-light); }
 .download-title i { color: var(--gold); }
@@ -259,7 +333,7 @@ input, select, textarea { font-family: inherit; }
 .download-btn.mac:hover { background: #333; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
 .download-btn i { font-size: 15px; }
 
-/* INSTRUCTIONS SECTION */
+/* ===== INSTRUCTIONS SECTION ===== */
 .instr-section { background: var(--white); border-radius: var(--radius-card); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 20px; }
 .instr-title { font-size: 17px; font-weight: 800; color: var(--title-color); display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-light); }
 .instr-title i { color: var(--gold); }
@@ -294,7 +368,7 @@ input, select, textarea { font-family: inherit; }
 .video-btn i { font-size: 12px; }
 .video-btn.full { width: 100%; justify-content: center; }
 
-/* COMING SOON */
+/* ===== COMING SOON ===== */
 .coming-soon { background: var(--white); border-radius: var(--radius-card); padding: 60px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px dashed var(--gray-light); }
 .coming-soon-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--icon-circle-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
 .coming-soon-icon i { font-size: 36px; color: var(--gold); }
@@ -304,8 +378,16 @@ input, select, textarea { font-family: inherit; }
 .coming-soon-badge i { font-size: 11px; animation: spin 2s linear infinite; }
 @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
 
-/* FOOTER */
-.footer { width: 100%; background: var(--bg-dark); background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+/* ===== FOOTER (Rounded corners removed) ===== */
+.footer { 
+  width: 100%; 
+  background: var(--bg-dark); 
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%); 
+  border-radius: 0; /* إزالة الزوايا الدائرية */
+  padding: 24px; 
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+  margin-bottom: 20px; 
+}
 .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
 .footer-brand img { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.5); object-fit: contain; }
@@ -333,74 +415,90 @@ input, select, textarea { font-family: inherit; }
 .footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
 .footer-made .heart { color: #10b981; }
 @media (max-width: 640px) { .footer-top { flex-direction: column; align-items: stretch; text-align: center; } .footer-brand { justify-content: center; } .footer-social { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } }
+
+/* ===== MEDIA QUERIES FOR BANNER ===== */
+@media (max-width: 768px) {
+  .main-banner { padding: 14px 16px 16px 16px; gap: 12px; }
+  .main-banner .header { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .main-banner .header .header-pill { display: none; }
+  .main-banner .mobile-pill-bar { display: block; }
+  .main-banner .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero h1 { font-size: 22px; }
+}
 </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-logo-moaeen">
-      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
-    </div>
-    <div class="header-pill">
-      <span class="pill-line"></span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-      <span class="pill-star">⭐</span>
-      <span class="pill-line"></span>
-    </div>
-    <div class="header-seu-box">
-      <div class="seu-rect">
-        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-        <span class="seu-text-en">SEU_University</span>
+  <!-- ===== MAIN BANNER (MERGED SECTION) ===== -->
+  <div class="main-banner">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-logo-moaeen">
+        <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+      </div>
+      <div class="header-pill">
+        <span class="pill-line"></span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+        <span class="pill-star">⭐</span>
+        <span class="pill-line"></span>
+      </div>
+      <div class="header-seu-box">
+        <div class="seu-rect">
+          <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+          <span class="seu-text-en">SEU</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-pill-bar">
+      <div class="mobile-pill">
+        <span class="pill-star">⭐</span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
       </div>
     </div>
-  </header>
 
-  <div class="mobile-pill-bar">
-    <div class="mobile-pill">
-      <span class="pill-star">⭐</span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    <!-- BACK BAR -->
+    <div class="back-bar">
+      <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+      <div class="breadcrumb">
+        <span class="crumb-home">الرئيسية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span>الأدوات التفاعلية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span class="crumb-current" id="crumbCurrent">دليل الاختبارات الإلكترونية</span>
+      </div>
     </div>
-  </div>
 
-  <!-- BACK BAR -->
-  <div class="back-bar">
-    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
-    <div class="breadcrumb">
-      <span class="crumb-home">الرئيسية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span>الأدوات التفاعلية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span class="crumb-current" id="crumbCurrent">دليل الاختبارات الإلكترونية</span>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge"><i class="fas fa-clipboard-check"></i> دليل الاختبارات الإلكترونية - مُعين</div>
+      <h1>دليل الاختبارات الإلكترونية <span class="gold">المحوسبة</span></h1>
+      <p>دليل شامل للاختبارات الإلكترونية (حضوري / Online) لطلاب الجامعة السعودية الإلكترونية. متطلبات تقنية، تعليمات تثبيت برنامج الاختبارات، نصائح وإرشادات لضمان تجربة اختبار سلسة ومستقرة.</p>
+    </section>
+
+    <!-- SHARE BAR -->
+    <div class="share-bar">
+      <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">#tab1 — متطلبات الجهاز</span></span>
+      <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
+        <span>مشاركة الصفحة</span>
+      </button>
+      <div class="share-dropdown" id="shareDropdown" role="menu">
+        <div class="share-dropdown-title">شارك عبر:</div>
+        <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
+          <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+        </a>
+        <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
+          <i class="fab fa-telegram"></i> <span>تيليجرام</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge"><i class="fas fa-clipboard-check"></i> دليل الاختبارات الإلكترونية - مُعين</div>
-    <h1>دليل الاختبارات الإلكترونية <span class="gold">المحوسبة</span></h1>
-    <p>دليل شامل للاختبارات الإلكترونية (حضوري / Online) لطلاب الجامعة السعودية الإلكترونية. متطلبات تقنية، تعليمات تثبيت برنامج الاختبارات، نصائح وإرشادات لضمان تجربة اختبار سلسة ومستقرة.</p>
-  </section>
-
-  <!-- SHARE BAR -->
-  <div class="share-bar">
-    <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">#tab1 — متطلبات الجهاز</span></span>
-    <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
-      <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
-      <span>مشاركة الصفحة</span>
-    </button>
-    <div class="share-dropdown" id="shareDropdown" role="menu">
-      <div class="share-dropdown-title">شارك عبر:</div>
-      <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
-        <i class="fab fa-whatsapp"></i> <span>واتساب</span>
-      </a>
-      <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
-        <i class="fab fa-telegram"></i> <span>تيليجرام</span>
-      </a>
-    </div>
   </div>
+  <!-- ===== END MAIN BANNER ===== -->
 
   <!-- TABS NAV -->
   <nav class="tabs-nav" id="tabsNav" aria-label="تبويبات دليل الاختبارات">
