@@ -2,7 +2,6 @@
    منصة معين التعليمية — الخطط الدراسية (Shared Styles)
    ============================================================ */
 
-
 :root {
   --bg-card: #FFFFFF;
   --bg-dark: #012727;
@@ -32,8 +31,16 @@ a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input, select, textarea { font-family: inherit; }
 
-/* ===== WRAPPER & LAYOUT RESET ===== */
-.page-wrapper { width: 100%; max-width: 100%; padding: 0; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+/* ===== WRAPPER ===== */
+.page-wrapper { 
+  width: 100%; 
+  max-width: 100%; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  flex: 1; 
+}
 
 /* ===== MAIN BANNER (MERGED) ===== */
 .main-banner {
@@ -46,7 +53,6 @@ input, select, textarea { font-family: inherit; }
   flex-direction: column;
   gap: 16px;
   position: relative;
-  overflow: hidden;
 }
 
 /* Header Reset inside Banner */
@@ -97,7 +103,9 @@ input, select, textarea { font-family: inherit; }
 .breadcrumb i { font-size: 10px; }
 
 /* Hero Reset inside Banner */
-.main-banner .hero {
+.main-banner .hero, 
+.main-banner .spec-header, 
+.main-banner .curriculum-hero {
   background: transparent !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -106,10 +114,30 @@ input, select, textarea { font-family: inherit; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
+  gap: 14px;
   position: relative;
+  overflow: hidden;
 }
-.main-banner .hero::before { content: ''; position: absolute; top: -30%; left: -10%; width: 50%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); pointer-events: none; }
+.main-banner .hero::before,
+.main-banner .spec-header::before,
+.main-banner .curriculum-hero::before {
+  content: ''; 
+  position: absolute; 
+  top: -30%; 
+  left: -10%; 
+  width: 60%; 
+  height: 160%; 
+  background: radial-gradient(ellipse, rgba(212,175,55,0.08), transparent 70%); 
+  pointer-events: none;
+}
+.main-banner .spec-header, 
+.main-banner .curriculum-hero { 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: flex-start; 
+  text-align: right; 
+  width: 100%;
+}
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold-glow); position: relative; z-index: 1; }
 .hero-badge i { font-size: 12px; }
 .hero h1 { font-size: 24px; font-weight: 800; color: var(--white); line-height: 1.4; max-width: 800px; position: relative; z-index: 1; }
@@ -144,15 +172,11 @@ input, select, textarea { font-family: inherit; }
 .share-option.telegram { background: #eff6ff; color: #1d4ed8; }
 .share-option.telegram:hover { background: #dbeafe; }
 
-/* ===== CONTENT CONTAINER (Centers inner content) ===== */
-.content-wrap {
-  max-width: 1280px;
+/* ===== MAIN CONTENT OUTSIDE BANNER ===== */
+.level-tabs-bar, .level-section, .colleges-grid, .helper-note, #notFound, .curriculum-content {
   width: 100%;
   padding: 0 20px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  box-sizing: border-box;
 }
 
 /* ===== COLLEGE CARDS ===== */
@@ -186,24 +210,32 @@ input, select, textarea { font-family: inherit; }
 .spec-link.coming:hover { transform: none; background: var(--bg-section); border-color: var(--gray-light); }
 .coming-badge { font-size: 9px; font-weight: 700; color: var(--desc-color); background: var(--gray-light); padding: 2px 8px; border-radius: 20px; }
 
-/* ===== CURRICULUM VIEW ===== */
-.spec-header { width: 100%; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%); border-radius: 24px; padding: 28px 28px; display: flex; align-items: center; gap: 18px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
-.spec-header::before { content: ''; position: absolute; top: -30%; left: -10%; width: 50%; height: 160%; background: radial-gradient(ellipse, rgba(212,175,55,0.1), transparent 70%); pointer-events: none; }
-.spec-header-icon { width: 64px; height: 64px; border-radius: 18px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; }
-.spec-header-icon i { font-size: 30px; color: var(--gold); }
-.spec-header-text { position: relative; z-index: 1; flex: 1; }
-.spec-header-college { font-size: 12px; font-weight: 600; color: var(--gold-glow); }
-.spec-header-name { font-size: 22px; font-weight: 900; color: var(--white); margin-top: 2px; }
-.spec-header-name-en { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-@media (max-width: 640px) { .spec-header { padding: 20px; flex-direction: column; text-align: center; } .spec-header-text { text-align: center; } }
+/* ===== CURRICULUM VIEW (SPEC HEADER & STATS) ===== */
+.main-banner .spec-header-icon { width: 64px; height: 64px; border-radius: 18px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; }
+.main-banner .spec-header-icon i { font-size: 30px; color: var(--gold); }
+.main-banner .spec-header-text { position: relative; z-index: 1; flex: 1; }
+.main-banner .spec-header-college { font-size: 12px; font-weight: 600; color: var(--gold-glow); }
+.main-banner .spec-header-name { font-size: 22px; font-weight: 900; color: var(--white); margin-top: 2px; }
+.main-banner .spec-header-name-en { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
 
-/* Stats row */
-.spec-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.spec-stat { background: var(--white); border-radius: 16px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--gray-light); }
-.spec-stat-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; background: var(--icon-circle-bg); }
-.spec-stat-icon i { font-size: 18px; color: var(--btn-bg); }
-.spec-stat-num { font-size: 22px; font-weight: 900; color: var(--title-color); }
-.spec-stat-label { font-size: 10px; color: var(--desc-color); margin-top: 2px; }
+/* Stats row (inside banner) */
+.main-banner .spec-stats { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  gap: 12px; 
+  width: 100%;
+}
+.main-banner .spec-stat { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 16px 12px; text-align: center; backdrop-filter: blur(4px); }
+.main-banner .spec-stat-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; background: rgba(255,255,255,0.1); }
+.main-banner .spec-stat-icon i { font-size: 18px; color: var(--gold); }
+.main-banner .spec-stat-num { font-size: 22px; font-weight: 900; color: var(--white); }
+.main-banner .spec-stat-label { font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+@media (max-width: 640px) { 
+  .main-banner .spec-header { flex-direction: column; text-align: center; } 
+  .main-banner .spec-header-text { text-align: center; } 
+  .main-banner .spec-stats { grid-template-columns: 1fr 1fr 1fr; } 
+}
 
 /* ===== LEVEL TABS (sticky) ===== */
 .level-tabs-bar { width: 100%; background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; position: sticky; top: 12px; z-index: 50; border: 1px solid var(--gray-light); }
@@ -218,7 +250,7 @@ input, select, textarea { font-family: inherit; }
 .level-tab:not(.active) .tab-count { background: var(--bg-section); color: var(--desc-color); }
 
 /* ===== LEVEL SECTIONS ===== */
-.level-section { margin-bottom: 24px; scroll-margin-top: 130px; }
+.level-section { margin-bottom: 24px; scroll-margin-top: 130px; padding: 0 20px; }
 .level-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 0 4px; }
 .level-badge { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px; font-weight: 900; flex-shrink: 0; box-shadow: 0 4px 12px rgba(212,175,55,0.25); }
 .level-title { font-size: 17px; font-weight: 800; color: var(--title-color); }
@@ -256,12 +288,12 @@ table.courses-table tbody tr:hover { background: rgba(236,253,245,0.4); }
 }
 
 /* Helper note */
-.helper-note { display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,251,235,0.6); border-radius: var(--radius-card); padding: 16px; }
+.helper-note { display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,251,235,0.6); border-radius: var(--radius-card); padding: 16px; margin: 0 20px; }
 .helper-note .star { font-size: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
 .helper-note .note-title { font-size: 13px; font-weight: 700; color: var(--title-color); margin-bottom: 4px; }
 .helper-note .note-text { font-size: 12px; line-height: 1.6; color: rgba(7,72,66,0.8); }
 
-/* ===== FOOTER (Rounded corners removed) ===== */
+/* FOOTER (Rounded corners removed) */
 .footer { 
   width: 100%; 
   background: var(--bg-dark); 
@@ -269,6 +301,7 @@ table.courses-table tbody tr:hover { background: rgba(236,253,245,0.4); }
   border-radius: 0; /* إزالة الزوايا الدائرية */
   padding: 24px; 
   box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+  margin-bottom: 0; 
 }
 .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
@@ -296,6 +329,7 @@ table.courses-table tbody tr:hover { background: rgba(236,253,245,0.4); }
 .footer-slogan .star { color: var(--gold); }
 .footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
 .footer-made .heart { color: #10b981; }
+@media (max-width: 640px) { .footer-top { flex-direction: column; align-items: stretch; text-align: center; } .footer-brand { justify-content: center; } .footer-social { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } }
 
 /* ===== MEDIA QUERIES FOR BANNER ===== */
 @media (max-width: 768px) {
@@ -304,4 +338,6 @@ table.courses-table tbody tr:hover { background: rgba(236,253,245,0.4); }
   .main-banner .header .header-pill { display: none; }
   .main-banner .mobile-pill-bar { display: block; }
   .main-banner .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
-  .hero h1 { font-size: 22px; }
+  .main-banner .hero h1 { font-size: 22px; }
+  .main-banner .spec-stats { gap: 8px; }
+}
