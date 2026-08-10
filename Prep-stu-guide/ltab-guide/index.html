@@ -55,7 +55,7 @@
             color: var(--white);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0; /* إزالة الحواشي الجانبية */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,28 +67,39 @@
 
         .page-wrapper {
             width: 100%;
-            max-width: 1320px;
+            max-width: 100%; /* تمديد كامل */
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 24px;
         }
 
-        /* ===== HEADER ===== */
-        .header {
+        /* ===== MAIN BANNER (Merged Header + Hero) ===== */
+        .main-banner {
             width: 100%;
             background: var(--bg-dark);
             background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
                               url('./assets/images/header-bg.jpg');
             background-size: cover;
             background-position: center;
-            border-radius: 30px;
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            border-radius: 0; /* إزالة الزوايا الدائرية */
+            padding: 20px 30px 50px 30px; /* دمج الحواشي الداخلية */
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ===== HEADER (inside Banner) ===== */
+        .header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
         }
 
         .header-brand {
@@ -128,22 +139,14 @@
             letter-spacing: 1px;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO (inside Banner) ===== */
         .hero {
             width: 100%;
-            background: var(--bg-dark);
-            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
-                              url('./assets/images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-top {
@@ -179,6 +182,7 @@
             margin-top: 6px;
         }
 
+        /* ===== Dropdown Share ===== */
         .share-dropdown {
             position: relative;
             display: inline-block;
@@ -462,10 +466,12 @@
         /* ===== المحتوى الرئيسي ===== */
         .main-content {
             width: 100%;
+            max-width: 1200px; /* تحديد عرض أقصى للمحتوى ليظهر في المنتصف */
             background: #f8fafc;
             border-radius: 24px;
             padding: 40px 40px 50px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin: 0 20px; /* هوامش جانبية للمحتوى فقط لعدم التصاقه بالشاشات الصغيرة */
         }
 
         /* ===== عناوين الأقسام ===== */
@@ -487,17 +493,13 @@
             margin-left: 10px;
         }
 
-        /* ===== شبكة البطاقات ===== */
+        /* ===== شبكة البطاقات (تخطيط عمودي) ===== */
         .steps-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* عمود واحد */
             gap: 28px;
-        }
-
-        @media (min-width: 768px) {
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            max-width: 900px;
+            margin: 0 auto; /* توسيط الشبكة */
         }
 
         /* ===== البطاقة ===== */
@@ -649,21 +651,22 @@
             font-size: 1rem;
         }
 
-        /* ===== حاوية الصورة ===== */
+        /* ===== حاوية الصورة (مرنة) ===== */
         .image-container {
             padding: 0 22px 22px 22px;
             text-align: center;
-            flex-grow: 1;
+            background-color: #fafbfc;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #fafbfc;
+            width: 100%;
         }
 
         .step-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
+            width: 100%; /* امتداد بعرض الحاوية */
+            height: auto; /* ارتفاع تلقائي للحفاظ على الأبعاد */
+            max-height: 400px; /* حد أقصى للارتفاع لمنع الصور الكبيرة جداً */
+            object-fit: contain; /* عرض الصورة كاملة داخل الحاوية */
             border-radius: 12px;
             border: 1px solid #e2e8f0;
             cursor: pointer;
@@ -762,21 +765,19 @@
             font-size: 1.1rem;
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER (Rounded corners removed) ===== */
         .footer {
             width: 100%;
-            max-width: 1320px;
             background: var(--bg-dark);
-            border-radius: 24px;
-            overflow: hidden;
+            border-radius: 0; /* إزالة الزوايا الدائرية */
             padding: 30px 40px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* توسيط المحتوى في الفوتر */
             flex-wrap: wrap;
             gap: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .footer-brand-compact {
@@ -957,23 +958,23 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .header { flex-wrap: wrap; justify-content: center; text-align: center; }
-            .header-brand { flex-direction: column; align-items: center; }
-            .header-brand .brand-name { align-items: center; }
             .hero { padding: 35px 25px; }
             .tab-item { flex: 1 1 240px; }
             .guide-tab-card { flex: 1 1 280px; }
             .section-title { font-size: 1.2rem; padding: 10px 20px; }
             .cta-section { flex-direction: column; text-align: center; }
             .cta-section .cta-text { flex-direction: column; text-align: center; }
+            .footer { padding: 24px 20px; justify-content: center; }
+            .footer-contact-compact { justify-content: center; }
         }
 
         @media (max-width: 768px) {
-            body { padding: 12px; }
-            .header { border-radius: 24px; padding: 16px; }
-            .header-brand img { width: 100px; }
-            .header-brand .brand-name h3 { font-size: 22px; }
-            .main-content { padding: 20px; }
+            body { padding: 0; } /* إزالة الحواشي لضمان التمدد الكامل */
+            .main-banner { padding: 16px 16px 40px 16px; }
+            .header-brand img { width: 80px; }
+            .header-brand .brand-name h3 { font-size: 20px; }
+            .header-brand .brand-name span { font-size: 11px; }
+            .main-content { padding: 20px; margin: 0 10px; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .share-dropdown { width: 100%; }
             .share-btn { width: 100%; justify-content: center; }
@@ -984,12 +985,9 @@
             .guide-tabs-section { flex-direction: column; align-items: stretch; }
             .guide-tab-card { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
             .guide-tab-info { flex-direction: row; }
-            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
-            .footer-contact-compact { justify-content: center; }
             .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
             .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
-            .steps-grid { grid-template-columns: 1fr; }
-            .step-image { height: 150px; }
+            .step-image { max-height: 250px; }
             .link-box { flex-wrap: wrap; justify-content: center; }
             .link-box .url-text { text-align: center; width: 100%; }
             .footer-note { flex-direction: column; text-align: center; }
@@ -999,9 +997,10 @@
         }
 
         @media (max-width: 480px) {
-            .header-brand img { width: 80px; }
+            .main-banner { padding: 12px 12px 30px 12px; }
+            .header-brand img { width: 60px; }
             .header-brand .brand-name h3 { font-size: 18px; }
-            .header-brand .brand-name span { font-size: 11px; }
+            .header-brand .brand-name span { font-size: 10px; }
             .hero-tabs { flex-direction: column; align-items: stretch; }
             .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
             .tab-info { flex-direction: row; }
@@ -1009,7 +1008,7 @@
             .guide-tab-info { flex-direction: column; }
             .footer-brand-compact .brand-name h3 { font-size: 17px; }
             .footer-phone { font-size: 15px; }
-            .step-image { height: 130px; }
+            .step-image { max-height: 200px; }
             .step-header h3 { font-size: 0.95rem; }
         }
 
@@ -1024,106 +1023,109 @@
 
 <div class="page-wrapper">
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="header-brand">
-            <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
-            <div class="brand-name">
-                <h3>مُعين</h3>
-                <span>MOAEEN PLATFORM</span>
+    <!-- ===== MAIN BANNER (MERGED HEADER & HERO) ===== -->
+    <div class="main-banner">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-brand">
+                <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
+                <div class="brand-name">
+                    <h3>مُعين</h3>
+                    <span>MOAEEN PLATFORM</span>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="hero-top">
-            <h1>
-                <i class="fa-solid fa-calendar-alt"></i>
-                دليل خطوات عرض الجدول الدراسي
-            </h1>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-top">
+                <h1>
+                    <i class="fa-solid fa-calendar-alt"></i>
+                    دليل خطوات عرض الجدول الدراسي
+                </h1>
 
-            <div class="hero-actions">
-                <div class="share-dropdown" id="shareDropdown">
-                    <button class="share-btn" id="shareToggle">
-                        <i class="fa-solid fa-share-nodes"></i>
-                        <span>مشاركة الصفحة</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
-                    </button>
-                    <div class="share-dropdown-content">
-                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين%20https://example.com" target="_blank">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            مشاركة عبر واتساب
-                        </a>
-                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين" target="_blank">
-                            <i class="fa-brands fa-telegram"></i>
-                            مشاركة عبر تليجرام
-                        </a>
+                <div class="hero-actions">
+                    <div class="share-dropdown" id="shareDropdown">
+                        <button class="share-btn" id="shareToggle">
+                            <i class="fa-solid fa-share-nodes"></i>
+                            <span>مشاركة الصفحة</span>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                        </button>
+                        <div class="share-dropdown-content">
+                            <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين%20https://example.com" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                مشاركة عبر واتساب
+                            </a>
+                            <a href="https://t.me/share/url?url=https://example.com&text=دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين" target="_blank">
+                                <i class="fa-brands fa-telegram"></i>
+                                مشاركة عبر تليجرام
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
+                        <span class="main-text">للمساعدة والإستفسار</span>
+                        <span class="sub-text">تواصل مع فريق مُعين</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- التبويبات داخل الهيرو -->
+            <div class="hero-tabs">
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-users"></i></div>
+                        <div class="tab-text">
+                            <h4>قروب تجمع طلبة التحضيري</h4>
+                            <p>انضم إلى زملائك في السنة التحضيرية</p>
+                        </div>
+                    </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+                </div>
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                        <div class="tab-text">
+                            <h4>قناة أخبار و إعلامات التحضيري</h4>
+                            <p>آخر المستجدات والإعلانات الرسمية</p>
+                        </div>
+                    </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- التبويبان الجديدان أسفل الهيرو -->
+        <section class="guide-tabs-section">
+            <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
+            <div class="guide-tab-card">
+                <div class="guide-tab-info">
+                    <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
+                    <div class="guide-tab-text">
+                        <h4>دليل عرض الجدول الدراسي</h4>
+                        <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
                     </div>
                 </div>
-
-                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
-                    <span class="main-text">للمساعدة والإستفسار</span>
-                    <span class="sub-text">تواصل مع فريق مُعين</span>
+                <a href="#main-content" class="guide-tab-btn">
+                    <i class="fas fa-arrow-left"></i> استعراض الدليل
                 </a>
             </div>
-        </div>
 
-        <!-- التبويبات داخل الهيرو -->
-        <div class="hero-tabs">
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-users"></i></div>
-                    <div class="tab-text">
-                        <h4>قروب تجمع طلبة التحضيري</h4>
-                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+            <!-- التبويب الثاني: شرح الجدول الدراسي -->
+            <div class="guide-tab-card">
+                <div class="guide-tab-info">
+                    <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
+                    <div class="guide-tab-text">
+                        <h4>شرح الجدول الدراسي</h4>
+                        <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
                     </div>
                 </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+                <a href="#" class="guide-tab-btn" id="scheduleExplanationBtn">
+                    <i class="fas fa-arrow-left"></i> استعراض الشرح
+                </a>
             </div>
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
-                    <div class="tab-text">
-                        <h4>قناة أخبار و إعلامات التحضيري</h4>
-                        <p>آخر المستجدات والإعلانات الرسمية</p>
-                    </div>
-                </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== التبويبان الجديدان أسفل الهيرو ===== -->
-    <section class="guide-tabs-section">
-        <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
-        <div class="guide-tab-card">
-            <div class="guide-tab-info">
-                <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
-                <div class="guide-tab-text">
-                    <h4>دليل عرض الجدول الدراسي</h4>
-                    <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
-                </div>
-            </div>
-            <a href="#main-content" class="guide-tab-btn">
-                <i class="fas fa-arrow-left"></i> استعراض الدليل
-            </a>
-        </div>
-
-        <!-- التبويب الثاني: شرح الجدول الدراسي -->
-        <div class="guide-tab-card">
-            <div class="guide-tab-info">
-                <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
-                <div class="guide-tab-text">
-                    <h4>شرح الجدول الدراسي</h4>
-                    <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
-                </div>
-            </div>
-            <a href="#" class="guide-tab-btn" id="scheduleExplanationBtn">
-                <i class="fas fa-arrow-left"></i> استعراض الشرح
-            </a>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- ===== المحتوى الرئيسي ===== -->
     <div class="main-content" id="main-content">
@@ -1277,7 +1279,7 @@
                 </div>
             </div>
 
-            <div class="step-card" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto;">
+            <div class="step-card">
                 <div class="step-header">
                     <i class="fa-solid fa-arrows-up-down" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
                     <h3>يمكنك الضغط على السهم للأعلى لتوسيع خانة عرض الجدول</h3>
