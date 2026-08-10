@@ -16,51 +16,71 @@
 
 <div class="page-wrapper">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-logo-moaeen">
-      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
-    </div>
-    <div class="header-pill">
-      <span class="pill-line"></span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-      <span class="pill-star">⭐</span>
-      <span class="pill-line"></span>
-    </div>
-    <div class="header-seu-box">
-      <div class="seu-rect">
-        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-        <span class="seu-text-en">SEU_University</span>
+  <!-- ===== MAIN BANNER (MERGED SECTION) ===== -->
+  <div class="main-banner">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-logo-moaeen">
+        <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+      </div>
+      <div class="header-pill">
+        <span class="pill-line"></span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+        <span class="pill-star">⭐</span>
+        <span class="pill-line"></span>
+      </div>
+      <div class="header-seu-box">
+        <div class="seu-rect">
+          <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+          <span class="seu-text-en">SEU_University</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-pill-bar">
+      <div class="mobile-pill">
+        <span class="pill-star">⭐</span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
       </div>
     </div>
-  </header>
 
-  <div class="mobile-pill-bar">
-    <div class="mobile-pill">
-      <span class="pill-star">⭐</span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    <!-- BACK BAR -->
+    <div class="back-bar">
+      <a href="./" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للكليات</span></a>
+      <div class="breadcrumb">
+        <span class="crumb-home">الرئيسية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span>الخطط الدراسية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span class="crumb-current" id="crumbCurrent">التخصص</span>
+      </div>
     </div>
-  </div>
 
-  <!-- BACK BAR -->
-  <div class="back-bar">
-    <a href="./" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للكليات</span></a>
-    <div class="breadcrumb">
-      <span class="crumb-home">الرئيسية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span>الخطط الدراسية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span class="crumb-current" id="crumbCurrent">التخصص</span>
+    <!-- SPEC HEADER & STATS (filled dynamically by JS) -->
+    <div id="specHeaderWrap" style="width:100%;"></div>
+    <div id="statsWrap" style="width:100%;"></div>
+
+    <!-- SHARE BAR -->
+    <div class="share-bar" style="margin-top:10px;">
+      <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">تفاصيل الخطة</span></span>
+      <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
+        <span>مشاركة الصفحة</span>
+      </button>
+      <div class="share-dropdown" id="shareDropdown" role="menu">
+        <div class="share-dropdown-title">شارك عبر:</div>
+        <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
+          <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+        </a>
+        <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
+          <i class="fab fa-telegram"></i> <span>تيليجرام</span>
+        </a>
+      </div>
     </div>
+
   </div>
-
-  <!-- SPEC HEADER (filled by JS) -->
-  <div id="specHeaderWrap"></div>
-
-  <!-- STATS (filled by JS) -->
-  <div id="statsWrap"></div>
-
-  <!-- All dynamic content (level tabs + levels) inserted directly into page-wrapper by JS -->
+  <!-- ===== END MAIN BANNER ===== -->
 
   <!-- NOT FOUND -->
   <div id="notFound" style="display:none;text-align:center;padding:60px 20px;background:var(--white);border-radius:var(--radius-card);box-shadow:0 2px 12px rgba(0,0,0,0.06);">
@@ -133,9 +153,10 @@ if(!result){
   var college=result.college, spec=result.spec;
   // Breadcrumb
   $('#crumbCurrent').textContent=spec.name;
+  
   // Spec header
   $('#specHeaderWrap').innerHTML=
-    '<div class="spec-header">'+
+    '<div class="hero spec-header">'+
       '<span class="spec-header-icon"><i class="fas '+spec.icon+'"></i></span>'+
       '<div class="spec-header-text">'+
         '<div class="spec-header-college">'+esc(college.name)+'</div>'+
@@ -147,15 +168,15 @@ if(!result){
   // Stats
   var tHours=totalHours(spec), tCourses=totalCourses(spec), tLevels=Object.keys(spec.levels).length;
   $('#statsWrap').innerHTML=
-    '<div class="spec-stats" style="margin-top:20px;">'+
+    '<div class="spec-stats">'+
       '<div class="spec-stat"><div class="spec-stat-icon"><i class="fas fa-layer-group"></i></div><div class="spec-stat-num">'+tLevels+'</div><div class="spec-stat-label">مستويات</div></div>'+
       '<div class="spec-stat"><div class="spec-stat-icon"><i class="fas fa-book"></i></div><div class="spec-stat-num">'+tCourses+'</div><div class="spec-stat-label">مقررات</div></div>'+
       '<div class="spec-stat"><div class="spec-stat-icon"><i class="fas fa-clock"></i></div><div class="spec-stat-num">'+tHours+'</div><div class="spec-stat-label">ساعة معتمدة</div></div>'+
     '</div>';
 
-  // Level tabs (sorted) — insert directly into page-wrapper (not a wrapper div) so sticky works
+  // Level tabs (sorted)
   var levelNums=Object.keys(spec.levels).sort(function(a,b){return parseInt(a)-parseInt(b);});
-  var tabsHtml='<nav class="level-tabs-bar" id="catTabsBar" style="margin-top:20px;"><div class="level-tabs-scroll" id="catTabsScroll">';
+  var tabsHtml='<nav class="level-tabs-bar" id="catTabsBar"><div class="level-tabs-scroll" id="catTabsScroll">';
   levelNums.forEach(function(ln,i){
     tabsHtml+='<button class="level-tab'+(i===0?' active':'')+'" data-target="level-'+ln+'"><i class="fas fa-flag"></i> المستوى '+ln+' <span class="tab-count">'+spec.levels[ln].length+'</span></button>';
   });
@@ -208,7 +229,7 @@ if(!result){
     notFound.parentNode.insertBefore(levelWrap.firstChild, notFound);
   });
 
-  // Init tabs behavior (click to scroll + scroll spy)
+  // Init tabs behavior
   var catTabs=$$('.level-tab');
   var catSections=levelNums.map(function(ln){return $('#level-'+ln);});
 
@@ -252,6 +273,21 @@ if(!result){
   },{passive:true});
   updateActiveTab();
 }
+
+// Share button functionality
+var shareBtn=$('#shareBtn');
+var shareDropdown=$('#shareDropdown');
+shareBtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  shareDropdown.classList.toggle('open');
+  shareBtn.setAttribute('aria-expanded',shareDropdown.classList.contains('open'));
+});
+document.addEventListener('click',function(e){
+  if(!shareDropdown.contains(e.target)&&!shareBtn.contains(e.target)){
+    shareDropdown.classList.remove('open');
+    shareBtn.setAttribute('aria-expanded','false');
+  }
+});
 </script>
 </body>
 </html>
