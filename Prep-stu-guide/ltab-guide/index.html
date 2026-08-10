@@ -33,16 +33,12 @@
             --primary-color: #1a4233;
             --secondary-color: #f7a928;
             --transition: 0.3s ease;
-            --radius-card: 20px;
             --radius-btn: 10px;
+            --radius-card: 20px;
         }
 
         /* ===== Reset & Base ===== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Cairo', Tahoma, Arial, sans-serif;
@@ -55,7 +51,6 @@
             color: var(--white);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 0; /* إزالة الحواشي الجانبية */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,14 +62,13 @@
 
         .page-wrapper {
             width: 100%;
-            max-width: 100%; /* تمديد كامل */
+            max-width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 24px;
         }
 
-        /* ===== MAIN BANNER (Merged Header + Hero) ===== */
+        /* ===== MAIN BANNER (Merged Header + Back Bar + Hero + Share) ===== */
         .main-banner {
             width: 100%;
             background: var(--bg-dark);
@@ -83,210 +77,107 @@
             background-size: cover;
             background-position: center;
             border-radius: 0; /* إزالة الزوايا الدائرية */
-            padding: 20px 30px 50px 30px; /* دمج الحواشي الداخلية */
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            padding: 18px 24px 24px 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* ===== HEADER (inside Banner) ===== */
+        /* ===== HEADER (Reset Styles) ===== */
         .header {
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+        .header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+        .header-logo-moaeen img:hover { transform: scale(1.05); }
+        .header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
+        .pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
+        .pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+        .pill-star { color: var(--gold); font-size: 18px; }
+        .header-seu-box { display: flex; align-items: center; justify-content: center; }
+        .seu-rect { display: flex; align-items: center; gap: 12px; }
+        .seu-rect img { width: 44px; height: 44px; object-fit: contain; }
+        .seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
+        .mobile-pill-bar { display: none; width: 100%; background: transparent !important; }
+        .mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
+        .mobile-pill .pill-text { font-size: 12px; }
+
+        /* ===== BACK BAR (Reset Styles) ===== */
+        .back-bar {
             width: 100%;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            z-index: 1;
+            gap: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            flex-wrap: wrap;
         }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white); padding: 8px 18px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; transition: var(--transition); }
+        .back-btn:hover { background: var(--btn-bg-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,72,66,0.3); }
+        .back-btn i { font-size: 12px; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--desc-color); flex-wrap: wrap; }
+        .breadcrumb .crumb-home { font-weight: 700; color: var(--btn-bg); }
+        .breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
+        .breadcrumb i { font-size: 10px; }
 
-        .header-brand {
+        /* ===== SHARE BAR (Reset Styles) ===== */
+        .share-bar {
+            width: 100%;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
+        .share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
+        .share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
+        .share-btn svg { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
+        .share-current-hash { font-size: 12px; color: var(--desc-color); background: var(--white); padding: 6px 14px; border-radius: 50px; border: 1px dashed var(--gray-light); display: inline-flex; align-items: center; gap: 6px; }
+        .share-current-hash i { color: var(--gold); font-size: 11px; }
+        .share-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); padding: 10px; display: none; flex-direction: column; gap: 6px; min-width: 220px; z-index: 60; border: 1px solid var(--gray-light); }
+        .share-dropdown.open { display: flex; animation: dropIn 0.2s ease; }
+        @keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .share-dropdown-title { font-size: 11px; font-weight: 700; color: var(--desc-color); padding: 4px 10px; }
+        .share-option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; transition: var(--transition); }
+        .share-option:hover { transform: translateX(-3px); }
+        .share-option i { font-size: 18px; width: 24px; text-align: center; }
+        .share-option.whatsapp { background: #f0fdf4; color: #047857; }
+        .share-option.whatsapp:hover { background: #dcfce7; }
+        .share-option.telegram { background: #eff6ff; color: #1d4ed8; }
+        .share-option.telegram:hover { background: #dbeafe; }
 
-        .header-brand img {
-            width: 130px;
-            height: auto;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-            transition: var(--transition);
-        }
-
-        .header-brand img:hover {
-            transform: scale(1.05);
-        }
-
-        .header-brand .brand-name {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .header-brand .brand-name h3 {
-            color: var(--gold);
-            font-size: 26px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .header-brand .brand-name span {
-            color: var(--gold-light);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* ===== HERO (inside Banner) ===== */
+        /* ===== HERO (Reset Styles) ===== */
         .hero {
-            width: 100%;
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
             display: flex;
             flex-direction: column;
             gap: 30px;
             position: relative;
-            z-index: 1;
-        }
-
-        .hero-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            text-align: center;
-        }
-
-        .hero-top h1 {
-            font-size: clamp(28px, 3.5vw, 44px);
-            font-weight: 800;
-            color: var(--white);
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .hero-top h1 i {
-            color: var(--gold);
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 6px;
-        }
-
-        /* ===== Dropdown Share ===== */
-        .share-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .share-btn:hover {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--gold);
-        }
-
-        .share-dropdown-content {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            background: var(--bg-dark);
-            min-width: 200px;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.2);
             overflow: hidden;
-            z-index: 100;
-            padding: 8px 0;
         }
-
-        .share-dropdown-content a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            color: var(--white);
-            font-weight: 600;
-            transition: var(--transition);
-            font-size: 15px;
-        }
-
-        .share-dropdown-content a:hover {
-            background: rgba(212, 175, 55, 0.15);
-        }
-
-        .share-dropdown-content a i {
-            font-size: 20px;
-            width: 28px;
-            text-align: center;
-        }
-
-        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
-        .share-dropdown-content a .fa-telegram { color: var(--telegram-blue); }
-
-        .share-dropdown.active .share-dropdown-content {
-            display: block;
-        }
-
-        .help-btn {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--whatsapp-green);
-            color: var(--white);
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: var(--transition);
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-            line-height: 1.3;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-
-        .help-btn:hover {
-            background: var(--whatsapp-dark);
-            transform: scale(1.03);
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
-        }
-
-        .help-btn .main-text {
-            font-size: 15px;
-        }
-
-        .help-btn .sub-text {
-            font-size: 12px;
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        /* ===== التبويبات داخل الهيرو ===== */
+        .hero-top { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+        .hero-top h1 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; color: var(--white); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .hero-top h1 i { color: var(--gold); }
+        
+        /* ===== HERO TABS (Inside Banner) ===== */
         .hero-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -294,7 +185,6 @@
             justify-content: center;
             margin-top: 6px;
         }
-
         .tab-item {
             flex: 1 1 280px;
             max-width: 450px;
@@ -308,81 +198,26 @@
             justify-content: space-between;
             transition: var(--transition);
         }
+        .tab-item:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
+        .tab-info { display: flex; align-items: center; gap: 14px; }
+        .tab-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
+        .tab-text h4 { color: var(--white); font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+        .tab-text p { color: #a0b4b8; font-size: 13px; font-weight: 400; }
+        .tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 8px 18px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; }
+        .tab-btn:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5); }
+        .tab-btn i { font-size: 13px; }
 
-        .tab-item:hover {
-            border-color: var(--gold);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .tab-info {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .tab-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            flex-shrink: 0;
-        }
-
-        .tab-text h4 {
-            color: var(--white);
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .tab-text p {
-            color: #a0b4b8;
-            font-size: 13px;
-            font-weight: 400;
-        }
-
-        .tab-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 700;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-        }
-
-        .tab-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
-        }
-
-        .tab-btn i {
-            font-size: 13px;
-        }
-
-        /* ===== التبويبان الجديدان أسفل الهيرو ===== */
+        /* ===== GUIDE TABS (Outside Banner) ===== */
         .guide-tabs-section {
             width: 100%;
+            max-width: 1320px;
+            padding: 0 20px;
+            box-sizing: border-box;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-
         .guide-tab-card {
             flex: 1 1 300px;
             max-width: 550px;
@@ -397,84 +232,28 @@
             transition: var(--transition);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
+        .guide-tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1); }
+        .guide-tab-info { display: flex; align-items: center; gap: 14px; }
+        .guide-tab-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
+        .guide-tab-text h4 { color: var(--white); font-size: 18px; font-weight: 700; margin-bottom: 2px; }
+        .guide-tab-text p { color: #a0b4b8; font-size: 14px; font-weight: 400; }
+        .guide-tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; }
+        .guide-tab-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+        .guide-tab-btn i { font-size: 13px; }
 
-        .guide-tab-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
-        }
-
-        .guide-tab-info {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .guide-tab-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            flex-shrink: 0;
-        }
-
-        .guide-tab-text h4 {
-            color: var(--white);
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .guide-tab-text p {
-            color: #a0b4b8;
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        .guide-tab-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 700;
-            transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-        }
-
-        .guide-tab-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .guide-tab-btn i {
-            font-size: 13px;
-        }
-
-        /* ===== المحتوى الرئيسي ===== */
+        /* ===== MAIN CONTENT (White Card) ===== */
         .main-content {
-            width: 100%;
-            max-width: 1200px; /* تحديد عرض أقصى للمحتوى ليظهر في المنتصف */
+            width: 95%;
+            max-width: 1320px; /* توسيع العرض وتقليل الهامش الجانبي */
             background: #f8fafc;
             border-radius: 24px;
             padding: 40px 40px 50px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            margin: 0 20px; /* هوامش جانبية للمحتوى فقط لعدم التصاقه بالشاشات الصغيرة */
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
-        /* ===== عناوين الأقسام ===== */
+        /* ===== SECTION TITLES ===== */
         .section-title {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
             color: #fff;
@@ -487,22 +266,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             border-right: 4px solid var(--gold);
         }
+        .section-title i { color: var(--gold); margin-left: 10px; }
 
-        .section-title i {
-            color: var(--gold);
-            margin-left: 10px;
-        }
-
-        /* ===== شبكة البطاقات (تخطيط عمودي) ===== */
+        /* ===== STEPS GRID (Vertical Layout) ===== */
         .steps-grid {
             display: grid;
-            grid-template-columns: 1fr; /* عمود واحد */
+            grid-template-columns: 1fr;
             gap: 28px;
             max-width: 900px;
-            margin: 0 auto; /* توسيط الشبكة */
+            margin: 0 auto;
         }
 
-        /* ===== البطاقة ===== */
+        /* ===== STEP CARD ===== */
         .step-card {
             background: var(--card-bg);
             border-radius: var(--radius-card);
@@ -514,353 +289,69 @@
             flex-direction: column;
             color: var(--text-main);
         }
+        .step-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
+        .step-header { padding: 18px 22px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #f0f0f0; }
+        .step-badge { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); }
+        .step-header h3 { margin: 0; font-size: 1.1rem; color: var(--text-main); line-height: 1.5; font-weight: 700; }
+        .step-header h3 i { color: var(--gold); margin-left: 8px; }
+        
+        /* Step Body */
+        .step-body { padding: 20px 22px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px; }
+        .link-box { background: #f1f5f9; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid #e2e8f0; direction: ltr; }
+        .link-box .url-text { font-size: 0.85rem; color: var(--text-muted); word-break: break-all; flex: 1; font-weight: 600; direction: ltr; text-align: left; }
+        .copy-btn { background: var(--primary-color); color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 6px; white-space: nowrap; font-family: 'Cairo', sans-serif; }
+        .copy-btn:hover { background: var(--bg-dark); transform: scale(1.05); }
+        .copy-btn i { font-size: 0.9rem; }
+        .copy-btn.copied { background: var(--whatsapp-green); }
+        .action-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-go { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 22px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; transition: var(--transition); border: none; cursor: pointer; text-decoration: none; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
+        .btn-go:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+        .btn-go i { font-size: 1rem; }
 
-        .step-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
+        /* Image Container */
+        .image-container { padding: 0 22px 22px 22px; text-align: center; background-color: #fafbfc; display: flex; align-items: center; justify-content: center; width: 100%; }
+        .step-image { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 12px; border: 1px solid #e2e8f0; cursor: pointer; transition: opacity 0.3s ease; background: #f1f5f9; }
+        .step-image:hover { opacity: 0.85; }
 
-        .step-header {
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
+        /* ===== FOOTER NOTE ===== */
+        .footer-note { background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%); color: #fff; text-align: center; padding: 20px 28px; border-radius: var(--radius-card); margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 1.2rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-right: 4px solid var(--gold); }
+        .footer-note i { color: var(--gold); font-size: 2rem; }
 
-        .step-badge {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
-        }
+        /* ===== CTA SECTION ===== */
+        .cta-section { background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-color) 100%); border-radius: var(--radius-card); padding: 32px 40px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        .cta-section .cta-text { display: flex; align-items: center; gap: 16px; color: var(--white); }
+        .cta-section .cta-text i { font-size: 2.5rem; color: var(--gold); }
+        .cta-section .cta-text h3 { font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
+        .cta-section .cta-text p { font-size: 0.95rem; color: #a0b4b8; font-weight: 400; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 14px 32px; border-radius: 50px; font-size: 1.1rem; font-weight: 800; transition: var(--transition); text-decoration: none; box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35); white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5); }
+        .cta-btn i { font-size: 1.1rem; }
 
-        .step-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        .step-header h3 i {
-            color: var(--gold);
-            margin-left: 8px;
-        }
-
-        /* ===== محتوى البطاقة ===== */
-        .step-body {
-            padding: 20px 22px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* صندوق الرابط مع زر النسخ */
-        .link-box {
-            background: #f1f5f9;
-            border-radius: 10px;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            border: 1px solid #e2e8f0;
-            direction: ltr;
-        }
-
-        .link-box .url-text {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            word-break: break-all;
-            flex: 1;
-            font-weight: 600;
-            direction: ltr;
-            text-align: left;
-        }
-
-        .copy-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .copy-btn:hover {
-            background: var(--bg-dark);
-            transform: scale(1.05);
-        }
-
-        .copy-btn i {
-            font-size: 0.9rem;
-        }
-
-        .copy-btn.copied {
-            background: var(--whatsapp-green);
-        }
-
-        /* أزرار التوجيه */
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn-go {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-go:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .btn-go i {
-            font-size: 1rem;
-        }
-
-        /* ===== حاوية الصورة (مرنة) ===== */
-        .image-container {
-            padding: 0 22px 22px 22px;
-            text-align: center;
-            background-color: #fafbfc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .step-image {
-            width: 100%; /* امتداد بعرض الحاوية */
-            height: auto; /* ارتفاع تلقائي للحفاظ على الأبعاد */
-            max-height: 400px; /* حد أقصى للارتفاع لمنع الصور الكبيرة جداً */
-            object-fit: contain; /* عرض الصورة كاملة داخل الحاوية */
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-            background: #f1f5f9;
-        }
-
-        .step-image:hover {
-            opacity: 0.85;
-        }
-
-        /* ===== تذييل الملاحظة ===== */
-        .footer-note {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
-            color: #fff;
-            text-align: center;
-            padding: 20px 28px;
-            border-radius: var(--radius-card);
-            margin-top: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-right: 4px solid var(--gold);
-        }
-
-        .footer-note i {
-            color: var(--gold);
-            font-size: 2rem;
-        }
-
-        /* ===== زر التوجيه لأداة إنشاء الجدول ===== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-color) 100%);
-            border-radius: var(--radius-card);
-            padding: 32px 40px;
-            margin-top: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
-        .cta-section .cta-text {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: var(--white);
-        }
-
-        .cta-section .cta-text i {
-            font-size: 2.5rem;
-            color: var(--gold);
-        }
-
-        .cta-section .cta-text h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .cta-section .cta-text p {
-            font-size: 0.95rem;
-            color: #a0b4b8;
-            font-weight: 400;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
-        }
-
-        .cta-btn i {
-            font-size: 1.1rem;
-        }
-
-        /* ===== FOOTER (Rounded corners removed) ===== */
+        /* ===== FOOTER (No rounded corners) ===== */
         .footer {
             width: 100%;
             background: var(--bg-dark);
-            border-radius: 0; /* إزالة الزوايا الدائرية */
+            border-radius: 0;
             padding: 30px 40px;
             display: flex;
             align-items: center;
-            justify-content: center; /* توسيط المحتوى في الفوتر */
+            justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
             border-top: 1px solid rgba(212, 175, 55, 0.15);
             box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
         }
-
-        .footer-brand-compact {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .footer-brand-compact img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            padding: 4px;
-            background: var(--bg-dark);
-            object-fit: contain;
-        }
-
-        .footer-brand-compact .brand-name {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-brand-compact .brand-name h3 {
-            color: var(--gold);
-            font-size: 20px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .footer-brand-compact .brand-name span {
-            color: var(--gold-light);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-contact-compact {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .footer-phone {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--white);
-            font-size: 18px;
-            font-weight: 700;
-            direction: ltr;
-        }
-
-        .footer-phone i {
-            color: var(--gold);
-            font-size: 20px;
-        }
-
-        .footer-social-compact {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-social-compact a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            color: var(--white);
-            font-size: 18px;
-        }
-
-        .footer-social-compact a:hover {
-            transform: translateY(-3px) scale(1.1);
-            border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
+        .footer-brand-compact { display: flex; align-items: center; gap: 16px; }
+        .footer-brand-compact img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); padding: 4px; background: var(--bg-dark); object-fit: contain; }
+        .footer-brand-compact .brand-name { display: flex; flex-direction: column; }
+        .footer-brand-compact .brand-name h3 { color: var(--gold); font-size: 20px; font-weight: 800; line-height: 1.2; }
+        .footer-brand-compact .brand-name span { color: var(--gold-light); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+        .footer-contact-compact { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .footer-phone { display: flex; align-items: center; gap: 10px; color: var(--white); font-size: 18px; font-weight: 700; direction: ltr; }
+        .footer-phone i { color: var(--gold); font-size: 20px; }
+        .footer-social-compact { display: flex; gap: 12px; }
+        .footer-social-compact a { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); border: 2px solid rgba(212, 175, 55, 0.3); color: var(--white); font-size: 18px; }
+        .footer-social-compact a:hover { transform: translateY(-3px) scale(1.1); border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
         .footer-social-compact a.x:hover { background: #000; }
         .footer-social-compact a.telegram:hover { background: var(--telegram-blue); }
         .footer-social-compact a.snapchat:hover { background: #FFFC00; color: #000; }
@@ -884,105 +375,35 @@
             transition: var(--transition);
             animation: float-pulse 2s infinite;
         }
-
-        .float-wa:hover {
-            transform: scale(1.05);
-            background: var(--whatsapp-dark);
-            animation: none;
-        }
-
-        .float-wa svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--white);
-        }
-
+        .float-wa:hover { transform: scale(1.05); background: var(--whatsapp-dark); animation: none; }
+        .float-wa svg { width: 28px; height: 28px; fill: var(--white); }
         @keyframes float-pulse {
             0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); }
             50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); }
         }
 
         /* ===== Lightbox ===== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: rgba(15, 30, 25, 0.92);
-            backdrop-filter: blur(8px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox.show .lightbox-content {
-            transform: scale(1);
-        }
-
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            z-index: 10000;
-        }
-
-        .close-lightbox:hover {
-            color: var(--gold);
-        }
+        .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(15, 30, 25, 0.92); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; }
+        .lightbox.show { display: flex; align-items: center; justify-content: center; opacity: 1; }
+        .lightbox-content { margin: auto; display: block; max-width: 90%; max-height: 90vh; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.3s ease; }
+        .lightbox.show .lightbox-content { transform: scale(1); }
+        .close-lightbox { position: absolute; top: 20px; right: 35px; color: #ffffff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 10000; }
+        .close-lightbox:hover { color: var(--gold); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .hero { padding: 35px 25px; }
-            .tab-item { flex: 1 1 240px; }
-            .guide-tab-card { flex: 1 1 280px; }
-            .section-title { font-size: 1.2rem; padding: 10px 20px; }
-            .cta-section { flex-direction: column; text-align: center; }
-            .cta-section .cta-text { flex-direction: column; text-align: center; }
-            .footer { padding: 24px 20px; justify-content: center; }
-            .footer-contact-compact { justify-content: center; }
-        }
-
         @media (max-width: 768px) {
-            body { padding: 0; } /* إزالة الحواشي لضمان التمدد الكامل */
-            .main-banner { padding: 16px 16px 40px 16px; }
-            .header-brand img { width: 80px; }
-            .header-brand .brand-name h3 { font-size: 20px; }
-            .header-brand .brand-name span { font-size: 11px; }
-            .main-content { padding: 20px; margin: 0 10px; }
-            .hero-actions { flex-direction: column; align-items: stretch; }
-            .share-dropdown { width: 100%; }
-            .share-btn { width: 100%; justify-content: center; }
-            .help-btn { width: 100%; }
-            .hero-tabs { flex-direction: row; flex-wrap: wrap; }
-            .tab-item { flex: 1 1 200px; min-width: 160px; flex-direction: column; text-align: center; gap: 12px; }
+            body { padding: 0; }
+            .main-banner { padding: 14px 16px 16px 16px; gap: 12px; }
+            .header { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .header .header-pill { display: none; }
+            .mobile-pill-bar { display: block; }
+            .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+            .main-content { width: 98%; padding: 20px; margin: 0 auto; }
+            .hero-top h1 { font-size: 24px; }
+            .hero-tabs { flex-wrap: wrap; }
+            .tab-item { flex: 1 1 200px; flex-direction: column; text-align: center; gap: 12px; }
             .tab-info { flex-direction: column; }
-            .guide-tabs-section { flex-direction: column; align-items: stretch; }
+            .guide-tabs-section { flex-direction: column; align-items: stretch; padding: 0 10px; }
             .guide-tab-card { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
             .guide-tab-info { flex-direction: row; }
             .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
@@ -992,49 +413,86 @@
             .link-box .url-text { text-align: center; width: 100%; }
             .footer-note { flex-direction: column; text-align: center; }
             .section-title { display: block; text-align: center; }
-            .cta-section .cta-text h3 { font-size: 1.1rem; }
+            .cta-section { flex-direction: column; text-align: center; }
+            .cta-section .cta-text { flex-direction: column; text-align: center; }
             .cta-btn { width: 100%; justify-content: center; }
         }
 
         @media (max-width: 480px) {
-            .main-banner { padding: 12px 12px 30px 12px; }
-            .header-brand img { width: 60px; }
-            .header-brand .brand-name h3 { font-size: 18px; }
-            .header-brand .brand-name span { font-size: 10px; }
+            .main-banner { padding: 12px; }
+            .header-logo-moaeen img { width: 70px; }
+            .seu-rect img { width: 38px; height: 38px; }
             .hero-tabs { flex-direction: column; align-items: stretch; }
             .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
             .tab-info { flex-direction: row; }
             .guide-tab-card { flex-direction: column; text-align: center; gap: 12px; }
             .guide-tab-info { flex-direction: column; }
-            .footer-brand-compact .brand-name h3 { font-size: 17px; }
-            .footer-phone { font-size: 15px; }
-            .step-image { max-height: 200px; }
-            .step-header h3 { font-size: 0.95rem; }
+            .step-image { max-height: 180px; }
         }
-
-        ::selection { background: var(--gold); color: var(--bg-dark); }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-darker); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
-    <!-- ===== MAIN BANNER (MERGED HEADER & HERO) ===== -->
+    <!-- ===== MAIN BANNER (Merged) ===== -->
     <div class="main-banner">
+        
         <!-- HEADER -->
         <header class="header">
-            <div class="header-brand">
-                <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
-                <div class="brand-name">
-                    <h3>مُعين</h3>
-                    <span>MOAEEN PLATFORM</span>
+            <div class="header-logo-moaeen">
+                <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+            </div>
+            <div class="header-pill">
+                <span class="pill-line"></span>
+                <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+                <span class="pill-star">⭐</span>
+                <span class="pill-line"></span>
+            </div>
+            <div class="header-seu-box">
+                <div class="seu-rect">
+                    <img src="./assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+                    <span class="seu-text-en">SEU_University</span>
                 </div>
             </div>
         </header>
+
+        <div class="mobile-pill-bar">
+            <div class="mobile-pill">
+                <span class="pill-star">⭐</span>
+                <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+            </div>
+        </div>
+
+        <!-- BACK BAR -->
+        <div class="back-bar">
+            <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+            <div class="breadcrumb">
+                <span class="crumb-home">الرئيسية</span>
+                <i class="fas fa-chevron-left"></i>
+                <span>الأدوات التفاعلية</span>
+                <i class="fas fa-chevron-left"></i>
+                <span class="crumb-current">دليل عرض الجدول الدراسي</span>
+            </div>
+        </div>
+
+        <!-- SHARE BAR -->
+        <div class="share-bar">
+            <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">دليل عرض الجدول الدراسي</span></span>
+            <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
+                <span>مشاركة الصفحة</span>
+            </button>
+            <div class="share-dropdown" id="shareDropdown" role="menu">
+                <div class="share-dropdown-title">شارك عبر:</div>
+                <a href="#" class="share-option whatsapp" id="shareWhatsApp" target="_blank" rel="noopener" role="menuitem">
+                    <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+                </a>
+                <a href="#" class="share-option telegram" id="shareTelegram" target="_blank" rel="noopener" role="menuitem">
+                    <i class="fab fa-telegram"></i> <span>تيليجرام</span>
+                </a>
+            </div>
+        </div>
 
         <!-- HERO -->
         <section class="hero">
@@ -1043,34 +501,10 @@
                     <i class="fa-solid fa-calendar-alt"></i>
                     دليل خطوات عرض الجدول الدراسي
                 </h1>
-
-                <div class="hero-actions">
-                    <div class="share-dropdown" id="shareDropdown">
-                        <button class="share-btn" id="shareToggle">
-                            <i class="fa-solid fa-share-nodes"></i>
-                            <span>مشاركة الصفحة</span>
-                            <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
-                        </button>
-                        <div class="share-dropdown-content">
-                            <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين%20https://example.com" target="_blank">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                مشاركة عبر واتساب
-                            </a>
-                            <a href="https://t.me/share/url?url=https://example.com&text=دليل%20عرض%20الجدول%20الدراسي%20-%20منصة%20معين" target="_blank">
-                                <i class="fa-brands fa-telegram"></i>
-                                مشاركة عبر تليجرام
-                            </a>
-                        </div>
-                    </div>
-
-                    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
-                        <span class="main-text">للمساعدة والإستفسار</span>
-                        <span class="sub-text">تواصل مع فريق مُعين</span>
-                    </a>
-                </div>
+                <p style="color: rgba(255,255,255,0.85); max-width: 700px; font-size: 15px; line-height: 1.7; position: relative; z-index: 1;">دليل شامل وخطوات تفصيلية للوصول إلى جدولك الدراسي عبر نظام البانر (الخدمات الذاتية).</p>
             </div>
 
-            <!-- التبويبات داخل الهيرو -->
+            <!-- التبويبات (القروبات) داخل الهيرو -->
             <div class="hero-tabs">
                 <div class="tab-item">
                     <div class="tab-info">
@@ -1094,40 +528,40 @@
                 </div>
             </div>
         </section>
-
-        <!-- التبويبان الجديدان أسفل الهيرو -->
-        <section class="guide-tabs-section">
-            <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
-            <div class="guide-tab-card">
-                <div class="guide-tab-info">
-                    <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
-                    <div class="guide-tab-text">
-                        <h4>دليل عرض الجدول الدراسي</h4>
-                        <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
-                    </div>
-                </div>
-                <a href="#main-content" class="guide-tab-btn">
-                    <i class="fas fa-arrow-left"></i> استعراض الدليل
-                </a>
-            </div>
-
-            <!-- التبويب الثاني: شرح الجدول الدراسي -->
-            <div class="guide-tab-card">
-                <div class="guide-tab-info">
-                    <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
-                    <div class="guide-tab-text">
-                        <h4>شرح الجدول الدراسي</h4>
-                        <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
-                    </div>
-                </div>
-                <a href="#" class="guide-tab-btn" id="scheduleExplanationBtn">
-                    <i class="fas fa-arrow-left"></i> استعراض الشرح
-                </a>
-            </div>
-        </section>
     </div>
 
-    <!-- ===== المحتوى الرئيسي ===== -->
+    <!-- ===== التبويبات الفرعية (خارج بطاقة الهيرو) ===== -->
+    <section class="guide-tabs-section">
+        <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
+        <div class="guide-tab-card">
+            <div class="guide-tab-info">
+                <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
+                <div class="guide-tab-text">
+                    <h4>دليل عرض الجدول الدراسي</h4>
+                    <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
+                </div>
+            </div>
+            <a href="#main-content" class="guide-tab-btn">
+                <i class="fas fa-arrow-left"></i> استعراض الدليل
+            </a>
+        </div>
+
+        <!-- التبويب الثاني: شرح الجدول الدراسي -->
+        <div class="guide-tab-card">
+            <div class="guide-tab-info">
+                <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
+                <div class="guide-tab-text">
+                    <h4>شرح الجدول الدراسي</h4>
+                    <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
+                </div>
+            </div>
+            <a href="#" class="guide-tab-btn" id="scheduleExplanationBtn">
+                <i class="fas fa-arrow-left"></i> استعراض الشرح
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== المحتوى الرئيسي (البطاقة البيضاء) ===== -->
     <div class="main-content" id="main-content">
 
         <!-- ===== القسم الأول ===== -->
@@ -1316,7 +750,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-brand-compact">
-            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
             <div class="brand-name">
                 <h3>منصة معين التعليمية</h3>
                 <span>MOAEEN PLATFORM</span>
@@ -1343,30 +777,46 @@
 
 </div>
 
-<!-- ===== Lightbox & Copy Script ===== -->
+<!-- ===== Lightbox & Copy & Share Script ===== -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
         // ===== 1. القائمة المنسدلة للمشاركة =====
-        const shareToggle = document.getElementById('shareToggle');
+        const shareBtn = document.getElementById('shareBtn');
         const shareDropdown = document.getElementById('shareDropdown');
+        const shareWhatsApp = document.getElementById('shareWhatsApp');
+        const shareTelegram = document.getElementById('shareTelegram');
 
-        if (shareToggle && shareDropdown) {
-            shareToggle.addEventListener('click', function(e) {
+        if (shareBtn && shareDropdown) {
+            shareBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                shareDropdown.classList.toggle('active');
+                shareDropdown.classList.toggle('open');
+                shareBtn.setAttribute('aria-expanded', shareDropdown.classList.contains('open'));
             });
 
             document.addEventListener('click', function(e) {
-                if (!shareDropdown.contains(e.target)) {
-                    shareDropdown.classList.remove('active');
+                if (!shareDropdown.contains(e.target) && !shareBtn.contains(e.target)) {
+                    shareDropdown.classList.remove('open');
+                    shareBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         }
 
-        // ===== 2. زر نسخ الرابط =====
-        const copyButtons = document.querySelectorAll('.copy-btn');
+        // ===== 2. تحديث روابط المشاركة =====
+        function updateShareLinks() {
+            var url = window.location.href.split('#')[0];
+            var title = 'دليل عرض الجدول الدراسي - منصة معين التعليمية';
+            if(shareWhatsApp) {
+                shareWhatsApp.href = 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + url);
+            }
+            if(shareTelegram) {
+                shareTelegram.href = 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title);
+            }
+        }
+        updateShareLinks();
 
+        // ===== 3. زر نسخ الرابط =====
+        const copyButtons = document.querySelectorAll('.copy-btn');
         copyButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
@@ -1401,7 +851,7 @@
             });
         });
 
-        // ===== 3. Lightbox لتكبير الصور =====
+        // ===== 4. Lightbox لتكبير الصور =====
         const lightboxHTML = `
             <div id="imageLightbox" class="lightbox">
                 <span class="close-lightbox">&times;</span>
@@ -1447,7 +897,7 @@
             }
         });
 
-        // ===== 4. زر التبويب الثاني (شرح الجدول) مؤقت =====
+        // ===== 5. زر التبويب الثاني (شرح الجدول) مؤقت =====
         const explanationBtn = document.getElementById('scheduleExplanationBtn');
         if (explanationBtn) {
             explanationBtn.addEventListener('click', function(e) {
