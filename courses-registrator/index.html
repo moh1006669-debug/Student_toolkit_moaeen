@@ -852,11 +852,211 @@
     ::-webkit-scrollbar-track { background: var(--bg-darker); }
     ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+
+    /* ==========================================================
+       BRAND + HERO CARD — تخطيط موحد بعرض الصفحة
+       ========================================================== */
+    .brand-hero-card {
+      width: calc(100% + 40px);
+      margin-inline: -20px;
+      background: linear-gradient(145deg, rgba(1, 42, 43, 0.98), rgba(1, 32, 32, 0.98));
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42);
+    }
+
+    .brand-hero-card .header {
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: auto minmax(220px, 1fr) auto;
+      grid-template-areas: "seu pill moaeen";
+      align-items: center;
+      gap: 24px;
+      padding: 20px clamp(18px, 4vw, 46px);
+      direction: ltr;
+    }
+
+    .brand-hero-card .header-logo-moaeen {
+      grid-area: moaeen;
+      justify-self: end;
+      direction: rtl;
+    }
+
+    .brand-hero-card .header-seu-box {
+      grid-area: seu;
+      justify-self: start;
+      direction: rtl;
+    }
+
+    .brand-hero-card .header-pill {
+      grid-area: pill;
+      width: min(100%, 560px);
+      justify-self: center;
+      direction: rtl;
+    }
+
+    .header-hero-divider {
+      position: relative;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(1, 32, 32, 0.5);
+    }
+
+    .header-hero-divider-line {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      left: 24px;
+      height: 1px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.95) 15%, rgba(229, 193, 88, 0.8) 50%, rgba(212, 175, 55, 0.95) 85%, transparent 100%);
+      box-shadow: 0 0 7px rgba(212, 175, 55, 0.35);
+    }
+
+    .share-page-btn {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 30px;
+      margin-left: auto;
+      padding: 5px 13px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-dark);
+      font: 800 11px/1.2 'Cairo', Tahoma, Arial, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      direction: rtl;
+    }
+
+    .share-page-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+    }
+
+    .share-page-btn i {
+      font-size: 12px;
+    }
+
+    .brand-hero-card .hero {
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    /* إزالة الهوامش والزوايا من بطاقة الفوتر وتمديدها بعرض الصفحة */
+    .page-wrapper > .footer {
+      width: calc(100% + 40px);
+      max-width: none;
+      margin-inline: -20px;
+      border-radius: 0;
+      border-inline: 0;
+    }
+
+    @media (max-width: 992px) {
+      .brand-hero-card .header {
+        grid-template-columns: auto minmax(160px, 1fr) auto;
+        grid-template-areas: "seu pill moaeen";
+        padding-inline: 24px;
+      }
+
+      .brand-hero-card .header-pill {
+        width: min(100%, 470px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .brand-hero-card {
+        width: calc(100% + 24px);
+        margin-inline: -12px;
+      }
+
+      .brand-hero-card .header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "seu moaeen" "pill pill";
+        gap: 10px 14px;
+        padding: 14px 16px 16px;
+      }
+
+      .brand-hero-card .header-seu-box {
+        justify-self: start;
+      }
+
+      .brand-hero-card .header-logo-moaeen {
+        justify-self: end;
+      }
+
+      .brand-hero-card .header-pill {
+        width: min(100%, 360px);
+        justify-self: center;
+        margin: 2px auto 0;
+      }
+
+      .brand-hero-card .header-logo-moaeen img {
+        width: 110px;
+      }
+
+      .brand-hero-card .seu-rect img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .header-hero-divider {
+        min-height: 32px;
+        padding-inline: 16px;
+      }
+
+      .header-hero-divider-line {
+        right: 16px;
+        left: 16px;
+      }
+
+      .share-page-btn {
+        min-height: 28px;
+        padding: 4px 10px;
+        font-size: 10px;
+      }
+
+      .page-wrapper > .footer {
+        width: calc(100% + 24px);
+        margin-inline: -12px;
+        border-radius: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-hero-card .header-logo-moaeen img {
+        width: 90px;
+      }
+
+      .brand-hero-card .header-pill {
+        max-width: calc(100% - 4px);
+        padding: 8px 14px;
+      }
+    }
+
   </style>
 </head>
 <body>
 <div class="page-wrapper">
 
+    <section class="brand-hero-card" aria-label="هوية منصة مُعين ومقدمة الصفحة">
     <!-- ============================================================
          HEADER
          ============================================================ -->
@@ -879,6 +1079,14 @@
         </div>
       </div>
     </header>
+
+    <div class="header-hero-divider" aria-hidden="false">
+      <span class="header-hero-divider-line"></span>
+      <button class="share-page-btn" id="sharePageBtn" type="button" aria-label="مشاركة الصفحة">
+        <i class="fas fa-share-nodes" aria-hidden="true"></i>
+        <span>مشاركة الصفحة</span>
+      </button>
+    </div>
 
     <!-- ============================================================
          HERO SECTION
@@ -904,6 +1112,8 @@
           <span class="line"></span>
         </div>
       </div>
+    </section>
+
     </section>
 
     <!-- ============================================================
@@ -1093,5 +1303,52 @@
     </a>
 
   </div>
+
+
+  <script>
+    (() => {
+      const button = document.getElementById('sharePageBtn');
+      if (!button) return;
+      const label = button.querySelector('span');
+      const originalLabel = label ? label.textContent : '';
+
+      const fallbackCopy = () => {
+        const helper = document.createElement('textarea');
+        helper.value = window.location.href;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      };
+
+      button.addEventListener('click', async () => {
+        try {
+          if (navigator.share) {
+            await navigator.share({
+              title: document.title,
+              text: 'دليل منصة مُعين التعليمية',
+              url: window.location.href
+            });
+          } else {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(window.location.href);
+            } else {
+              fallbackCopy();
+            }
+            if (label) label.textContent = 'تم نسخ الرابط';
+            window.setTimeout(() => {
+              if (label) label.textContent = originalLabel;
+            }, 1800);
+          }
+        } catch (error) {
+          // إغلاق نافذة المشاركة أو رفض الإذن لا يغيّر محتوى الصفحة.
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
