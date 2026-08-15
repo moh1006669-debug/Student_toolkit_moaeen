@@ -837,22 +837,414 @@
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+
+        /* ==========================================================
+           UNIFIED BRAND + HERO CARD — بطاقة الهيدر والهيرو الموحدة
+           ========================================================== */
+        .brand-hero-card {
+            width: calc(100% + 40px);
+            margin-inline: -20px;
+            background: linear-gradient(145deg, rgba(1, 42, 43, 0.98), rgba(1, 32, 32, 0.98));
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42);
+        }
+
+        .brand-hero-card .header {
+            width: 100%;
+            max-width: none;
+            border-radius: 30px 30px 0 0;
+            box-shadow: none;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, 2fr) minmax(0, 1fr);
+            grid-template-areas: "seu pill brand";
+            align-items: center;
+            gap: clamp(12px, 2vw, 28px);
+            padding: 20px clamp(18px, 4vw, 46px);
+            direction: ltr;
+        }
+
+        .brand-hero-card .header-brand {
+            grid-area: brand;
+            justify-self: end;
+            direction: rtl;
+            min-width: 0;
+        }
+
+        .brand-hero-card .header-brand .brand-name {
+            direction: rtl;
+            align-items: flex-start;
+            text-align: right;
+        }
+
+        .brand-hero-card .header-brand .brand-name h3 {
+            white-space: nowrap;
+        }
+
+        .brand-hero-card .header-pill {
+            grid-area: pill;
+            width: min(100%, clamp(260px, 44vw, 620px));
+            justify-self: center;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(1, 32, 32, 0.6);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            padding: 13px clamp(14px, 2.6vw, 30px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            direction: rtl;
+        }
+
+        .brand-hero-card .pill-line {
+            width: clamp(24px, 5vw, 60px);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            flex-shrink: 1;
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+        }
+
+        .brand-hero-card .pill-text {
+            color: var(--white);
+            font-size: clamp(13px, 1.4vw, 19px);
+            font-weight: 700;
+            white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .brand-hero-card .pill-star {
+            color: var(--gold);
+            font-size: clamp(17px, 1.7vw, 22px);
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .brand-hero-card .header-seu-box {
+            grid-area: seu;
+            justify-self: start;
+            direction: rtl;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-hero-card .seu-rect {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .brand-hero-card .seu-rect img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .brand-hero-card .seu-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            text-align: right;
+        }
+
+        .brand-hero-card .seu-text-en {
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .header-hero-divider {
+            position: relative;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            padding: 0 clamp(16px, 4vw, 46px);
+            background: rgba(1, 32, 32, 0.48);
+            direction: ltr;
+        }
+
+        .header-hero-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: clamp(16px, 4vw, 46px);
+            left: clamp(16px, 4vw, 46px);
+            height: 1px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.98) 14%, rgba(229, 193, 88, 0.82) 50%, rgba(212, 175, 55, 0.98) 86%, transparent 100%);
+            box-shadow: 0 0 7px rgba(212, 175, 55, 0.35);
+        }
+
+        /* نقل زر المشاركة إلى نهاية الفاصل الذهبي يساراً */
+        .header-share-slot {
+            position: relative;
+            z-index: 2;
+            margin-right: auto;
+            direction: rtl;
+        }
+
+        .header-share-slot .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .header-share-slot .share-btn {
+            padding: 8px 16px;
+            font-size: 13px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--bg-dark);
+            border-color: var(--gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-share-slot .share-btn:hover {
+            background: var(--gold-light);
+            color: var(--bg-dark);
+        }
+
+        .header-share-slot .share-dropdown-content {
+            top: calc(100% + 8px);
+            left: 0;
+        }
+
+        .brand-hero-card .hero {
+            width: 100%;
+            max-width: none;
+            border-radius: 0;
+            margin: 0;
+            box-shadow: none;
+        }
+
+        /* لسان المساعدة: ملامس للحافة اليسرى بلون أبيض سماوي وحد ذهبي */
+        .brand-hero-card .hero-actions {
+            width: 100%;
+            align-self: stretch;
+            justify-content: flex-start;
+            align-items: flex-start;
+            direction: ltr;
+        }
+
+        .brand-hero-card .help-btn {
+            align-self: flex-start;
+            width: fit-content;
+            margin-left: -40px;
+            padding: 11px 26px 11px 20px;
+            border: 1.5px solid var(--gold);
+            border-left: 0;
+            border-radius: 0 999px 999px 0;
+            background: #eaf7f9;
+            color: #0b3b3c;
+            box-shadow: 0 5px 18px rgba(212, 175, 55, 0.24);
+            direction: rtl;
+        }
+
+        .brand-hero-card .help-btn:hover {
+            background: #ffffff;
+            color: #0b3b3c;
+            transform: translateX(2px);
+            box-shadow: 0 7px 22px rgba(212, 175, 55, 0.34);
+        }
+
+        .brand-hero-card .help-btn .main-text {
+            color: #0b3b3c;
+        }
+
+        .brand-hero-card .help-btn .sub-text {
+            color: #55777a;
+            opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+            .brand-hero-card .header {
+                grid-template-columns: minmax(0, 1fr) minmax(180px, 2fr) minmax(0, 1fr);
+                gap: 14px;
+                padding-inline: 24px;
+            }
+
+            .brand-hero-card .header-pill {
+                width: min(100%, 520px);
+            }
+
+            .brand-hero-card .hero-actions {
+                justify-content: flex-start;
+            }
+
+            .brand-hero-card .help-btn {
+                margin-left: -25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .brand-hero-card {
+                width: calc(100% + 24px);
+                margin-inline: -12px;
+                border-radius: 24px 24px 0 0;
+            }
+
+            .brand-hero-card .header {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                grid-template-areas: "seu brand" "pill pill";
+                gap: 10px 14px;
+                padding: 14px 16px 16px;
+                border-radius: 24px 24px 0 0;
+            }
+
+            .brand-hero-card .header-seu-box {
+                justify-self: start;
+            }
+
+            .brand-hero-card .header-brand {
+                justify-self: end;
+            }
+
+            .brand-hero-card .header-brand img {
+                width: 100px;
+            }
+
+            .brand-hero-card .header-brand .brand-name h3 {
+                font-size: 22px;
+            }
+
+            .brand-hero-card .header-pill {
+                width: min(100%, calc(100vw - 44px));
+                justify-self: center;
+                margin: 2px auto 0;
+                padding: 8px 14px;
+                gap: 6px;
+            }
+
+            .brand-hero-card .seu-rect {
+                gap: 6px;
+            }
+
+            .brand-hero-card .seu-rect img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-hero-card .seu-text-en {
+                font-size: 10px;
+            }
+
+            .header-hero-divider {
+                min-height: 38px;
+                padding-inline: 16px;
+            }
+
+            .header-hero-divider::before {
+                right: 16px;
+                left: 16px;
+            }
+
+            .header-share-slot .share-btn {
+                padding: 7px 12px;
+                font-size: 11px;
+            }
+
+            .brand-hero-card .hero-actions {
+                justify-content: flex-start;
+            }
+
+            .brand-hero-card .help-btn {
+                margin-left: -25px;
+                max-width: calc(100% + 25px);
+                padding: 10px 20px 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-hero-card .header-brand img {
+                width: 80px;
+            }
+
+            .brand-hero-card .header-brand .brand-name h3 {
+                font-size: 18px;
+            }
+
+            .brand-hero-card .header-brand .brand-name span {
+                font-size: 11px;
+            }
+
+            .brand-hero-card .header-pill {
+                max-width: calc(100vw - 44px);
+            }
+
+            .brand-hero-card .pill-text {
+                font-size: 12px;
+            }
+
+            .brand-hero-card .pill-line {
+                width: 18px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
+    <section class="brand-hero-card" aria-label="هوية منصة معين ومقدمة دليل البريد الجامعي">
     <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="header-brand">
             <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
-            <div class="brand-name">
-                <h3>مُعين</h3>
-                <span>MOAEEN PLATFORM</span>
+        </div>
+
+        <div class="header-seu-box">
+            <div class="seu-rect">
+                <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
+                <div class="seu-text">
+                    <span class="seu-text-en">SEU_University</span>
+                </div>
             </div>
         </div>
+
+
+        <div class="header-pill" aria-label="رسالة منصة معين">
+            <span class="pill-line" aria-hidden="true"></span>
+            <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة</span>
+            <span class="pill-star">⭐️</span>
+            <span class="pill-line" aria-hidden="true"></span>
+        </div>
     </header>
+
+    <div class="header-hero-divider" aria-label="فاصل الهيدر والهيرو">
+        <span class="header-hero-divider-line" aria-hidden="true"></span>
+        <div class="header-share-slot">
+            <div class="share-dropdown" id="shareDropdown">
+                <button class="share-btn" id="shareToggle" type="button">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>مشاركة الصفحة</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                </button>
+                <div class="share-dropdown-content">
+                    <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين%20https://example.com" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        مشاركة عبر واتساب
+                    </a>
+                    <a href="https://t.me/share/url?url=https://example.com&text=دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                        مشاركة عبر تليجرام
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -863,23 +1255,7 @@
             </h1>
 
             <div class="hero-actions">
-                <div class="share-dropdown" id="shareDropdown">
-                    <button class="share-btn" id="shareToggle">
-                        <i class="fa-solid fa-share-nodes"></i>
-                        <span>مشاركة الصفحة</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
-                    </button>
-                    <div class="share-dropdown-content">
-                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين%20https://example.com" target="_blank">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            مشاركة عبر واتساب
-                        </a>
-                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20تفعيل%20البريد%20الجامعي%20-%20منصة%20معين" target="_blank">
-                            <i class="fa-brands fa-telegram"></i>
-                            مشاركة عبر تليجرام
-                        </a>
-                    </div>
-                </div>
+
 
                 <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
                     <span class="main-text">للمساعدة والإستفسار</span>
@@ -910,6 +1286,8 @@
                 <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
             </div>
         </div>
+    </section>
+
     </section>
 
     <!-- ===== المحتوى الرئيسي ===== -->
