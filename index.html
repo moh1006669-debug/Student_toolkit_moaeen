@@ -1760,11 +1760,237 @@
     }
 
 
+
+
+    /* ==========================================================
+       UNIFIED BRAND + HERO CARD — بطاقة الهوية والهيرو الموحدة
+       ========================================================== */
+    .brand-hero-card {
+      width: calc(100% + 40px);
+      margin-inline: -20px;
+      background: linear-gradient(145deg, rgba(1, 42, 43, 0.98), rgba(1, 32, 32, 0.98));
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42);
+    }
+
+    .brand-hero-card .header {
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 2fr) minmax(0, 1fr);
+      grid-template-areas: "seu pill moaeen";
+      align-items: center;
+      gap: clamp(12px, 2vw, 28px);
+      padding: 20px clamp(18px, 4vw, 46px);
+      direction: ltr;
+    }
+
+    .brand-hero-card .header-logo-moaeen {
+      grid-area: moaeen;
+      justify-self: end;
+      direction: rtl;
+    }
+
+    .brand-hero-card .header-seu-box {
+      grid-area: seu;
+      justify-self: start;
+      direction: rtl;
+    }
+
+    .brand-hero-card .header-pill {
+      grid-area: pill;
+      width: min(100%, clamp(260px, 44vw, 620px));
+      justify-self: center;
+      direction: rtl;
+      min-width: 0;
+    }
+
+    .header-hero-divider {
+      position: relative;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(16px, 4vw, 46px);
+      background: rgba(1, 32, 32, 0.48);
+      direction: ltr;
+    }
+
+    .header-hero-divider-line {
+      position: absolute;
+      top: 50%;
+      right: clamp(16px, 4vw, 46px);
+      left: clamp(16px, 4vw, 46px);
+      height: 1px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.98) 14%, rgba(229, 193, 88, 0.82) 50%, rgba(212, 175, 55, 0.98) 86%, transparent 100%);
+      box-shadow: 0 0 7px rgba(212, 175, 55, 0.35);
+    }
+
+    /* يسار الصفحة، أسفل شعار الجامعة */
+    .share-page-btn {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 30px;
+      margin-right: auto;
+      padding: 5px 13px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-dark);
+      font: 800 11px/1.2 'Cairo', Tahoma, Arial, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      direction: rtl;
+    }
+
+    .share-page-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+    }
+
+    .share-page-btn i {
+      font-size: 12px;
+    }
+
+    .brand-hero-card .hero {
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+      margin: 0;
+      box-shadow: none;
+    }
+
+    /* تمديد بطاقة الفوتر حتى حدود الصفحة وإزالة الزوايا */
+    .page-wrapper > .footer {
+      width: calc(100% + 40px);
+      max-width: none;
+      margin-inline: -20px;
+      border-radius: 0;
+      border-inline: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .brand-hero-card .header {
+        grid-template-columns: minmax(0, 1fr) minmax(180px, 2fr) minmax(0, 1fr);
+        gap: 14px;
+        padding-inline: 24px;
+      }
+
+      .brand-hero-card .header-pill {
+        width: min(100%, 520px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .brand-hero-card {
+        width: calc(100% + 24px);
+        margin-inline: -12px;
+      }
+
+      /* الشعاران ثابتان يميناً ويساراً، والكبسولة وحدها تنزل أسفلهما */
+      .brand-hero-card .header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas: "seu moaeen" "pill pill";
+        gap: 10px 14px;
+        padding: 14px 16px 16px;
+      }
+
+      .brand-hero-card .header-seu-box {
+        justify-self: start;
+      }
+
+      .brand-hero-card .header-logo-moaeen {
+        justify-self: end;
+      }
+
+      .brand-hero-card .header-pill {
+        width: min(100%, calc(100vw - 44px));
+        justify-self: center;
+        margin: 2px auto 0;
+        padding: 8px 16px;
+        gap: 6px;
+      }
+
+      .brand-hero-card .header-logo-moaeen img {
+        width: 110px;
+      }
+
+      .brand-hero-card .seu-rect {
+        padding: 0;
+        gap: 6px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      .brand-hero-card .seu-rect img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .brand-hero-card .seu-text {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .header-hero-divider {
+        min-height: 32px;
+        padding-inline: 16px;
+      }
+
+      .header-hero-divider-line {
+        right: 16px;
+        left: 16px;
+      }
+
+      .share-page-btn {
+        min-height: 28px;
+        padding: 4px 10px;
+        font-size: 10px;
+      }
+
+      .page-wrapper > .footer {
+        width: calc(100% + 24px);
+        margin-inline: -12px;
+        border-radius: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-hero-card .header-logo-moaeen img {
+        width: 90px;
+      }
+
+      .brand-hero-card .header-pill {
+        max-width: calc(100vw - 44px);
+        padding-inline: 12px;
+      }
+
+      .brand-hero-card .pill-text {
+        font-size: 13px;
+      }
+
+      .brand-hero-card .pill-line {
+        width: 20px;
+      }
+    }
+
   </style>
 </head>
 <body>
 <div class="page-wrapper">
 
+    <section class="brand-hero-card" aria-label="هوية منصة مُعين ومقدمة الصفحة">
     <!-- ============================================================
          HEADER - الشريط العلوي
          ============================================================ -->
@@ -1793,10 +2019,17 @@
             <span class="seu-text-en">SEU_University</span>
           </div>
         </div>
-        </div>
       </div>
 
     </header>
+
+    <div class="header-hero-divider" aria-label="فاصل الهيدر والهيرو">
+      <span class="header-hero-divider-line" aria-hidden="true"></span>
+      <button class="share-page-btn" id="sharePageBtn" type="button" aria-label="مشاركة الصفحة">
+        <i class="fas fa-share-nodes" aria-hidden="true"></i>
+        <span>مشاركة الصفحة</span>
+      </button>
+    </div>
 
     <!-- ============================================================
          HERO SECTION - قسم البطل
@@ -1842,6 +2075,8 @@
     </section>
 
   
+
+    </section>
 
     <!-- ============================================================
          CARDS SECTION - قسم بطاقات الأدوات
@@ -2374,5 +2609,52 @@
   </a>
 
   </div>
+
+
+  <script>
+    (() => {
+      const button = document.getElementById('sharePageBtn');
+      if (!button) return;
+      const label = button.querySelector('span');
+      const originalLabel = label ? label.textContent : '';
+
+      const fallbackCopy = () => {
+        const helper = document.createElement('textarea');
+        helper.value = window.location.href;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      };
+
+      button.addEventListener('click', async () => {
+        try {
+          if (navigator.share) {
+            await navigator.share({
+              title: document.title,
+              text: 'منصة مُعين التعليمية',
+              url: window.location.href
+            });
+          } else {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(window.location.href);
+            } else {
+              fallbackCopy();
+            }
+            if (label) label.textContent = 'تم نسخ الرابط';
+            window.setTimeout(() => {
+              if (label) label.textContent = originalLabel;
+            }, 1800);
+          }
+        } catch (error) {
+          // إغلاق نافذة المشاركة أو رفض الإذن لا يغير محتوى الصفحة.
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
