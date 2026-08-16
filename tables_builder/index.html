@@ -69,17 +69,18 @@ input, select, textarea { font-family: inherit; }
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
+  padding: 12px 20px 20px;
   flex: 1;
 }
 
 /* ===================== HEADER ===================== */
 .header {
-  width: 100%;
+  width: calc(100% + 40px);
+  margin-inline: -20px;
   background: var(--bg-dark);
   background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%);
-  border-radius: 24px;
-  padding: 18px 24px;
+  border-radius: 24px 24px 0 0;
+  padding: 14px 24px 12px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
@@ -88,42 +89,62 @@ input, select, textarea { font-family: inherit; }
   position: relative;
   overflow: hidden;
 }
-.header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+.header-main { display: contents; }
+.header-logo-moaeen { position: absolute; right: 24px; top: 14px; z-index: 2; display: flex; align-items: center; justify-content: flex-end; min-width: 0; }
 .header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
 .header-logo-moaeen img:hover { transform: scale(1.05); }
 .header-pill {
+  grid-column: 1 / -1; grid-row: 1; justify-self: center;
   display: flex; align-items: center; justify-content: center; gap: 14px;
-  background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px;
-  padding: 12px 28px;
+  min-width: 0; width: min(100%, 650px);
+  background: rgba(1,32,32,0.6); border: 1px solid var(--gold); border-radius: 50px;
+  padding: 10px 18px;
   box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3);
   backdrop-filter: blur(8px);
 }
 .pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; box-shadow: 0 0 6px rgba(212,175,55,0.5); }
-.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; text-shadow: 0 1px 4px rgba(0,0,0,0.5); overflow: hidden; text-overflow: ellipsis; }
 .pill-star { color: var(--gold); font-size: 18px; filter: drop-shadow(0 0 6px rgba(212,175,55,0.6)); flex-shrink: 0; }
-.header-seu-box { display: flex; align-items: center; justify-content: center; }
-.seu-rect { display: flex; align-items: center; gap: 12px; transition: var(--transition); }
-.seu-rect:hover { transform: translateY(-2px); }
-.seu-rect img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+.header-seu-box { position: absolute; left: 24px; top: 14px; z-index: 2; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.seu-logo-image { width: 90px; height: 90px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
+.seu-logo-image:hover { transform: scale(1.05); }
+.seu-rect { display: flex; align-items: center; justify-content: center; padding: 7px 13px; border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; background: rgba(255,255,255,0.10); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 14px rgba(0,0,0,0.12); backdrop-filter: blur(10px); transition: var(--transition); }
+.seu-rect:hover { transform: translateY(-2px); background: rgba(255,255,255,0.15); }
 .seu-text { display: flex; flex-direction: column; gap: 2px; }
-.seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+.seu-text-en { color: var(--white); font-size: 14px; font-weight: 800; letter-spacing: 1px; white-space: nowrap; }
+.header-divider { grid-column: 1 / -1; grid-row: 2; position: relative; height: 24px; margin-top: 2px; }
+.header-divider::before { content: ''; position: absolute; right: 0; left: 0; top: 50%; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,0.25), var(--gold), rgba(212,175,55,0.25)); box-shadow: 0 0 7px rgba(212,175,55,0.32); }
+.share-button { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; color: var(--bg-dark); background: var(--gold); border: 1px solid var(--gold-glow); border-radius: 8px; font-size: 11px; font-weight: 800; box-shadow: 0 3px 10px rgba(0,0,0,0.18); transition: var(--transition); z-index: 1; }
+.share-button:hover { background: var(--gold-glow); transform: translateY(-50%) translateY(-2px); }
+.share-button i { font-size: 11px; }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .header-pill { width: min(650px, calc(100% - 360px)); padding-inline: 12px; gap: 8px; }
+  .pill-text { font-size: 14px; }
+  .pill-line { width: 32px; }
+}
 @media (max-width: 768px) {
-  .header { grid-template-columns: 1fr 1fr; padding: 14px 16px; }
-  .header-pill { display: none; }
+  .header { grid-template-columns: 1fr 1fr; grid-template-rows: 76px auto 24px; padding: 10px 16px 10px; gap: 12px; }
+  .header-logo-moaeen { right: 16px; top: 10px; }
+  .header-seu-box { left: 16px; top: 10px; gap: 5px; }
+  .header-pill { grid-column: 1 / -1; grid-row: 2; width: 100%; padding: 8px 12px; gap: 8px; margin-top: 0; }
   .header-logo-moaeen img { width: 70px; }
-  .seu-rect img { width: 38px; height: 38px; }
+  .seu-logo-image { width: 70px; height: 70px; }
+  .seu-rect { padding: 5px 10px; }
+  .pill-text { font-size: 12px; white-space: normal; text-align: center; }
+  .pill-line { width: 24px; }
+  .header-divider { grid-row: 3; }
+  .mobile-pill-bar { display: none !important; }
 }
 
-/* Mobile pill (below header) */
-.mobile-pill-bar { display: none; width: 100%; }
+/* Mobile pill (legacy markup kept hidden for compatibility) */
+.mobile-pill-bar { display: none !important; width: 100%; }
 .mobile-pill {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6);
   border-radius: 50px; padding: 8px 16px;
 }
 .mobile-pill .pill-text { font-size: 12px; }
-@media (max-width: 768px) { .mobile-pill-bar { display: block; } }
 
 /* ===================== BACK BAR ===================== */
 .back-bar {
@@ -184,10 +205,10 @@ input, select, textarea { font-family: inherit; }
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 .tab-btn {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 10px; flex: 1 1 0; min-width: 0;
   padding: 12px 18px; border-radius: 12px;
   background: rgba(1,32,32,0.6); color: #d1d5db;
-  transition: var(--transition); flex-shrink: 0; position: relative;
+  transition: var(--transition); position: relative;
   border: 1px solid transparent;
 }
 .tab-btn:hover { background: var(--bg-dark-2); color: var(--white); }
@@ -201,9 +222,18 @@ input, select, textarea { font-family: inherit; }
 .tab-btn.active i { color: var(--gold-glow); }
 .tab-btn:not(.active) i { color: #9ca3af; }
 .tab-btn:hover i { color: var(--gold); }
-.tab-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
-.tab-label { font-size: 13px; font-weight: 700; }
-.tab-desc { font-size: 10px; opacity: 0.7; }
+.tab-text { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; line-height: 1.35; }
+.tab-label, .tab-desc { display: block; max-width: 100%; overflow-wrap: anywhere; }
+.tab-label { font-size: 14px; font-weight: 800; line-height: 1.45; }
+.tab-desc { font-size: 11px; opacity: 0.85; line-height: 1.45; }
+@media (max-width: 768px) {
+  .tabs-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; overflow-x: visible; padding: 7px; }
+  .tab-btn { justify-content: center; gap: 5px; padding: 10px 6px; text-align: center; }
+  .tab-btn i { font-size: 16px; }
+  .tab-text { align-items: center; text-align: center; }
+  .tab-label { font-size: 12px; }
+  .tab-desc { font-size: 9px; }
+}
 
 /* ===================== TOOL PANEL ===================== */
 .tool-panel { display: none; width: 100%; }
@@ -502,10 +532,11 @@ table.sched-table tbody tr:hover { background: rgba(236,253,245,0.4); }
 
 /* ===================== FOOTER ===================== */
 .footer {
-  width: 100%;
+  width: calc(100% + 40px);
+  margin-inline: -20px;
   background: var(--bg-dark);
   background-image: linear-gradient(135deg, rgba(1,42,43,0.95) 0%, rgba(10,44,44,0.95) 100%);
-  border-radius: 24px;
+  border-radius: 0 0 24px 24px;
   padding: 24px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
@@ -550,32 +581,29 @@ table.sched-table tbody tr:hover { background: rgba(236,253,245,0.4); }
 
   <!-- ===================== HEADER ===================== -->
   <header class="header">
-    <div class="header-logo-moaeen">
-      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
-    </div>
-    <div class="header-pill">
-      <span class="pill-line"></span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-      <span class="pill-star">⭐</span>
-      <span class="pill-line"></span>
-    </div>
-    <div class="header-seu-box">
-      <div class="seu-rect">
-        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-        <div class="seu-text">
-          <span class="seu-text-en">SEU_University</span>
+    <div class="header-main">
+      <div class="header-logo-moaeen">
+        <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+      </div>
+      <div class="header-pill">
+        <span class="pill-line"></span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+        <span class="pill-star">⭐</span>
+        <span class="pill-line"></span>
+      </div>
+      <div class="header-seu-box">
+        <img class="seu-logo-image" src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+        <div class="seu-rect">
+          <div class="seu-text">
+            <span class="seu-text-en">SEU</span>
+          </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <!-- Mobile pill -->
-  <div class="mobile-pill-bar">
-    <div class="mobile-pill">
-      <span class="pill-star">⭐</span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+    <div class="header-divider">
+      <button type="button" class="share-button" id="sharePageBtn" aria-label="مشاركة الصفحة"><i class="fas fa-share-nodes"></i><span>مشاركة</span></button>
     </div>
-  </div>
+  </header>
 
   <!-- ===================== BACK BAR ===================== -->
   <div class="back-bar">
@@ -632,6 +660,20 @@ table.sched-table tbody tr:hover { background: rgba(236,253,245,0.4); }
       <h3><i class="fas fa-plus"></i> إضافة محاضرة جديدة</h3>
 
       <div class="form-section">
+        <div class="form-section-title"><i class="fas fa-book"></i> تفاصيل المقرر</div>
+        <div class="grid-row grid-2">
+          <div class="field">
+            <label class="field-label">اسم المقرر <span class="req">*</span></label>
+            <input type="text" id="lecCourse" placeholder="مثال: مقدمة في الحاسب" class="input">
+          </div>
+          <div class="field">
+            <label class="field-label">رمز المقرر</label>
+            <input type="text" id="lecCode" placeholder="مثال: IT101" class="input">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
         <div class="form-section-title"><i class="fas fa-calendar-range"></i> موعد المحاضرة ونوعها</div>
         <div class="grid-row grid-3">
           <div class="field">
@@ -658,24 +700,10 @@ table.sched-table tbody tr:hover { background: rgba(236,253,245,0.4); }
           <div class="field">
             <label class="field-label">نوع المحاضرة</label>
             <div class="type-toggle">
-              <button type="button" class="type-btn active hifzi" data-type="حضوري"><i class="fas fa-building"></i> حضوري</button>
               <button type="button" class="type-btn online" data-type="عن بعد"><i class="fas fa-video"></i> عن بعد</button>
+              <button type="button" class="type-btn active hifzi" data-type="حضوري"><i class="fas fa-building"></i> حضوري</button>
             </div>
             <span class="field-hint" id="typeHint">سيطلب إدخال رقم القاعة</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <div class="form-section-title"><i class="fas fa-book"></i> تفاصيل المقرر</div>
-        <div class="grid-row grid-2">
-          <div class="field">
-            <label class="field-label">اسم المقرر <span class="req">*</span></label>
-            <input type="text" id="lecCourse" placeholder="مثال: مقدمة في الحاسب" class="input">
-          </div>
-          <div class="field">
-            <label class="field-label">رمز المقرر</label>
-            <input type="text" id="lecCode" placeholder="مثال: IT101" class="input">
           </div>
         </div>
       </div>
@@ -1016,6 +1044,20 @@ $('#lecClearBtn').addEventListener('click', function(){ if(getLectures().length=
 $('#lecPrintBtn').addEventListener('click', function(){ window.print(); });
 $('#lecImgBtn').addEventListener('click', function(){ if(typeof html2canvas==='undefined'){ showToast('تعذّر تحميل مكتبة التصدير'); return; } html2canvas($('#lecCapture'),{scale:2,useCORS:true,backgroundColor:'#ffffff'}).then(function(canvas){ var link=document.createElement('a'); link.download='weekly-lecture-schedule.png'; link.href=canvas.toDataURL('image/png'); link.click(); showToast('تم تحميل الصورة بنجاح'); }).catch(function(){ showToast('حدث خطأ أثناء التحميل'); }); });
 renderLectures();
+
+/* PAGE SHARE */
+$('#sharePageBtn').addEventListener('click', function(){
+  var shareData = { title: document.title, text: 'أدوات إنشاء الجداول - منصة معين التعليمية', url: window.location.href };
+  if (navigator.share) {
+    navigator.share(shareData).then(function(){ showToast('تمت مشاركة الصفحة'); }).catch(function(){});
+  } else if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(window.location.href).then(function(){ showToast('تم نسخ رابط الصفحة'); }).catch(function(){ showToast('تعذّرت مشاركة الصفحة'); });
+  } else {
+    var helper = document.createElement('input'); helper.value = window.location.href; document.body.appendChild(helper); helper.select();
+    try { document.execCommand('copy'); showToast('تم نسخ رابط الصفحة'); } catch(e) { showToast('تعذّرت مشاركة الصفحة'); }
+    document.body.removeChild(helper);
+  }
+});
 
 /* TOOL 2: TASK SCHEDULE */
 var TASK_KEY='study-schedule-tasks-v2';
