@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل خطوات عرض الجدول الدراسي - منصة معين</title>
-    <meta name="description" content="دليل خطوات عرض الجدول الدراسي عبر نظام البانر - منصة معين التعليمية">
+    <title>دليل عرض وشرح الجدول الدراسي - منصة معين</title>
+    <meta name="description" content="دليل شامل لعرض الجدول الدراسي عبر نظام البانر، وشرح تفصيلي لرموز الأيام وأنواع المحاضرات للطلاب المستجدين.">
 
     <!-- Google Fonts: Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,21 +17,18 @@
     <style>
         /* ===== متغيرات منصة معين ===== */
         :root {
-            /* الألوان الأساسية للقوالب السابقة */
             --bg-dark: #012727;
             --bg-dark-2: #0A2C2C;
             --bg-darker: #012020;
             --gold: #D4AF37;
             --gold-dark: #B8941F;
             --gold-light: #E5C158;
-            --gold-text: #be9632; /* أضيفت */
+            --gold-text: #be9632;
             --white: #FFFFFF;
-            --btn-bg: #074842;     /* لون زر العودة - أضيفت */
-            --btn-bg-hover: #053631; /* أضيفت */
-            --desc-color: #5F6C70; /* لون نص المسار - أضيفت */
-            --gray-light: #E2E8F0; /* لون الحواف - أضيفت */
-            
-            /* متغيرات إضافية */
+            --btn-bg: #074842;
+            --btn-bg-hover: #053631;
+            --desc-color: #5F6C70;
+            --gray-light: #E2E8F0;
             --whatsapp-green: #25D366;
             --whatsapp-dark: #1DA851;
             --telegram-blue: #0088CC;
@@ -43,6 +40,7 @@
             --transition: 0.3s ease;
             --radius-btn: 10px;
             --radius-card: 20px;
+            --icon-circle-bg: #EBF4F0;
         }
 
         /* ===== Reset & Base ===== */
@@ -76,7 +74,7 @@
             gap: 24px;
         }
 
-        /* ===== MAIN BANNER (Merged Header + Back Bar + Hero + Share) ===== */
+        /* ===== MAIN BANNER ===== */
         .main-banner {
             width: 100%;
             background: var(--bg-dark);
@@ -84,8 +82,8 @@
                               url('./assets/images/header-bg.jpg');
             background-size: cover;
             background-position: center;
-            border-radius: 0; /* إزالة الزوايا الدائرية */
-            padding: 18px 24px 24px 24px;
+            border-radius: 0;
+            padding: 18px 24px 36px 24px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
@@ -94,7 +92,7 @@
             overflow: hidden;
         }
 
-        /* ===== HEADER (Reset Styles) ===== */
+        /* ===== HEADER ===== */
         .header {
             background: transparent !important;
             border-radius: 0 !important;
@@ -120,7 +118,7 @@
         .mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
         .mobile-pill .pill-text { font-size: 12px; }
 
-        /* ===== BACK BAR (Reset Styles) ===== */
+        /* ===== BACK BAR ===== */
         .back-bar {
             width: 100%;
             background: var(--white);
@@ -141,7 +139,7 @@
         .breadcrumb .crumb-current { font-weight: 700; color: var(--gold-text); }
         .breadcrumb i { font-size: 10px; }
 
-        /* ===== SHARE BAR (Reset Styles) ===== */
+        /* ===== SHARE BAR ===== */
         .share-bar {
             width: 100%;
             display: flex;
@@ -169,7 +167,7 @@
         .share-option.telegram { background: #eff6ff; color: #1d4ed8; }
         .share-option.telegram:hover { background: #dbeafe; }
 
-        /* ===== HERO (Reset Styles) ===== */
+        /* ===== HERO ===== */
         .hero {
             background: transparent !important;
             border-radius: 0 !important;
@@ -184,14 +182,17 @@
         .hero-top { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
         .hero-top h1 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; color: var(--white); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .hero-top h1 i { color: var(--gold); }
-        
-        /* ===== HERO TABS (Inside Banner) ===== */
+        .hero-top p { color: rgba(255,255,255,0.85); max-width: 700px; font-size: 15px; line-height: 1.7; position: relative; z-index: 1; }
+
+        /* ===== HERO TABS ===== */
         .hero-tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
             justify-content: center;
             margin-top: 6px;
+            z-index: 1;
+            position: relative;
         }
         .tab-item {
             flex: 1 1 280px;
@@ -211,11 +212,11 @@
         .tab-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
         .tab-text h4 { color: var(--white); font-size: 17px; font-weight: 700; margin-bottom: 2px; }
         .tab-text p { color: #a0b4b8; font-size: 13px; font-weight: 400; }
-        .tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 8px 18px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; }
+        .tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 8px 18px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; text-decoration: none; }
         .tab-btn:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5); }
         .tab-btn i { font-size: 13px; }
 
-        /* ===== GUIDE TABS (Outside Banner) ===== */
+        /* ===== GUIDE TABS (Navigation) ===== */
         .guide-tabs-section {
             width: 100%;
             max-width: 1320px;
@@ -225,6 +226,8 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+            z-index: 10;
+            position: relative;
         }
         .guide-tab-card {
             flex: 1 1 300px;
@@ -239,17 +242,17 @@
             justify-content: space-between;
             transition: var(--transition);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
         .guide-tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1); }
+        .guide-tab-card.active { border-color: var(--gold); background: rgba(1, 42, 43, 0.95); }
         .guide-tab-info { display: flex; align-items: center; gap: 14px; }
         .guide-tab-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
         .guide-tab-text h4 { color: var(--white); font-size: 18px; font-weight: 700; margin-bottom: 2px; }
         .guide-tab-text p { color: #a0b4b8; font-size: 14px; font-weight: 400; }
         .guide-tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; }
-        .guide-tab-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
-        .guide-tab-btn i { font-size: 13px; }
 
-        /* ===== MAIN CONTENT (White Card) ===== */
+        /* ===== MAIN CONTENT ===== */
         .main-content {
             width: 95%;
             max-width: 1320px;
@@ -261,7 +264,16 @@
             box-sizing: border-box;
         }
 
-        /* ===== SECTION TITLES ===== */
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ----- Shared Styles: STEPS GUIDE ----- */
         .section-title {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
             color: #fff;
@@ -276,7 +288,6 @@
         }
         .section-title i { color: var(--gold); margin-left: 10px; }
 
-        /* ===== STEPS GRID (Vertical Layout) ===== */
         .steps-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -284,8 +295,6 @@
             max-width: 900px;
             margin: 0 auto;
         }
-
-        /* ===== STEP CARD ===== */
         .step-card {
             background: var(--card-bg);
             border-radius: var(--radius-card);
@@ -300,10 +309,8 @@
         .step-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
         .step-header { padding: 18px 22px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #f0f0f0; }
         .step-badge { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); }
-        .step-header h3 { margin: 0; font-size: 1.1rem; color: var(--text-main); line-height: 1.5; font-weight: 700; }
+        .step-header h3 { font-size: 1.1rem; color: var(--text-main); line-height: 1.5; font-weight: 700; }
         .step-header h3 i { color: var(--gold); margin-left: 8px; }
-        
-        /* Step Body */
         .step-body { padding: 20px 22px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px; }
         .link-box { background: #f1f5f9; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid #e2e8f0; direction: ltr; }
         .link-box .url-text { font-size: 0.85rem; color: var(--text-muted); word-break: break-all; flex: 1; font-weight: 600; direction: ltr; text-align: left; }
@@ -314,28 +321,78 @@
         .action-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
         .btn-go { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 22px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; transition: var(--transition); border: none; cursor: pointer; text-decoration: none; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
         .btn-go:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
-        .btn-go i { font-size: 1rem; }
-
-        /* Image Container */
         .image-container { padding: 0 22px 22px 22px; text-align: center; background-color: #fafbfc; display: flex; align-items: center; justify-content: center; width: 100%; }
         .step-image { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 12px; border: 1px solid #e2e8f0; cursor: pointer; transition: opacity 0.3s ease; background: #f1f5f9; }
         .step-image:hover { opacity: 0.85; }
 
-        /* ===== FOOTER NOTE ===== */
         .footer-note { background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%); color: #fff; text-align: center; padding: 20px 28px; border-radius: var(--radius-card); margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 1.2rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-right: 4px solid var(--gold); }
         .footer-note i { color: var(--gold); font-size: 2rem; }
 
-        /* ===== CTA SECTION ===== */
-        .cta-section { background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-color) 100%); border-radius: var(--radius-card); padding: 32px 40px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
-        .cta-section .cta-text { display: flex; align-items: center; gap: 16px; color: var(--white); }
-        .cta-section .cta-text i { font-size: 2.5rem; color: var(--gold); }
-        .cta-section .cta-text h3 { font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
-        .cta-section .cta-text p { font-size: 0.95rem; color: #a0b4b8; font-weight: 400; }
-        .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 14px 32px; border-radius: 50px; font-size: 1.1rem; font-weight: 800; transition: var(--transition); text-decoration: none; box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35); white-space: nowrap; }
-        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5); }
-        .cta-btn i { font-size: 1.1rem; }
+        /* ----- Shared Styles: EXPLANATION GUIDE ----- */
+        .guide-section {
+            background: var(--bg-section);
+            border-radius: var(--radius-card);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+            color: var(--text-main);
+        }
+        .guide-section:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
+        .guide-section h2 {
+            display: flex; align-items: center; gap: 12px; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--icon-circle-bg);
+        }
+        .guide-section h2 i { color: var(--gold); font-size: 1.5rem; }
+        .guide-section h3 { color: var(--primary-color); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .guide-section h3 i { color: var(--gold); }
+        .guide-image { width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 12px; border: 1px solid var(--gray-light); margin: 15px 0; background: #fff; }
+        
+        .info-box { background-color: #eff6ff; border-right: 4px solid #3b82f6; padding: 16px 20px; border-radius: 8px; margin: 15px 0; font-weight: 600; color: #1e3a8a; display: flex; align-items: flex-start; gap: 12px; }
+        .info-box.warning { background-color: #fef2f2; border-right-color: #ef4444; color: #991b1b; }
+        .info-box.success { background-color: #f0fdf4; border-right-color: #22c55e; color: #166534; }
+        .info-box.orange { background-color: #fff7ed; border-right-color: #f97316; color: #9a3412; }
+        .info-box i { font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
 
-        /* ===== FOOTER (No rounded corners) ===== */
+        .row-item { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; background: var(--white); color: var(--text-main); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--gray-light); transition: var(--transition); }
+        .row-item:hover { background: #f8fafc; border-color: var(--gold); }
+        .row-number { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); font-weight: 800; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        .days-legend { display: flex; flex-wrap: wrap; gap: 8px; background: var(--white); padding: 15px; border-radius: 12px; border: 1px solid var(--gray-light); margin-bottom: 15px; justify-content: center; }
+        .days-legend span { background: var(--bg-section); padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; }
+        .days-legend strong { color: var(--primary-color); }
+        .grid-days { display: flex; gap: 8px; flex-wrap: wrap; margin: 15px 0; direction: ltr; justify-content: center; }
+        .day-box { background: var(--white); border: 2px solid var(--gray-light); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; border-radius: 12px; color: var(--text-muted); transition: var(--transition); }
+        .day-box.active { background: #005b82; color: white; border-color: #005b82; box-shadow: 0 4px 12px rgba(0,91,130,0.3); transform: scale(1.05); }
+        .badge { background-color: var(--bg-dark); color: var(--white); padding: 3px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; display: inline-block; }
+        .badge.virtual { background: #3b82f6; }
+        .badge.class { background: #f97316; }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            width: 95%;
+            max-width: 1320px;
+            margin: 0 auto 20px;
+            background: var(--white);
+            border-radius: var(--radius-card);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+        .cta-section:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+        .cta-text { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 200px; }
+        .cta-text i { font-size: 2rem; color: var(--gold); }
+        .cta-text h4 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
+        .cta-text p { font-size: 0.9rem; color: var(--text-muted); }
+        .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); text-decoration: none; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+
+        /* ===== FOOTER ===== */
         .footer {
             width: 100%;
             background: var(--bg-dark);
@@ -401,41 +458,34 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { padding: 0; }
-            .main-banner { padding: 14px 16px 16px 16px; gap: 12px; }
+            .main-banner { padding: 14px 16px 24px 16px; gap: 12px; }
             .header { grid-template-columns: 1fr 1fr; gap: 10px; }
             .header .header-pill { display: none; }
             .mobile-pill-bar { display: block; }
             .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
-            .main-content { width: 98%; padding: 20px; margin: 0 auto; }
+            .main-content, .cta-section { width: 98%; padding: 20px; }
             .hero-top h1 { font-size: 24px; }
-            .hero-tabs { flex-wrap: wrap; }
-            .tab-item { flex: 1 1 200px; flex-direction: column; text-align: center; gap: 12px; }
-            .tab-info { flex-direction: column; }
-            .guide-tabs-section { flex-direction: column; align-items: stretch; padding: 0 10px; }
-            .guide-tab-card { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
-            .guide-tab-info { flex-direction: row; }
-            .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
-            .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
-            .step-image { max-height: 250px; }
+            .guide-tabs-section { flex-direction: column; align-items: stretch; }
+            .guide-tab-card { flex-direction: column; text-align: center; gap: 12px; }
+            .guide-tab-info { flex-direction: column; }
+            .step-image, .guide-image { max-height: 250px; }
             .link-box { flex-wrap: wrap; justify-content: center; }
             .link-box .url-text { text-align: center; width: 100%; }
             .footer-note { flex-direction: column; text-align: center; }
             .section-title { display: block; text-align: center; }
             .cta-section { flex-direction: column; text-align: center; }
-            .cta-section .cta-text { flex-direction: column; text-align: center; }
-            .cta-btn { width: 100%; justify-content: center; }
+            .cta-text { flex-direction: column; text-align: center; }
+            .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+            .close-lightbox { top: 10px; right: 20px; font-size: 35px; }
+            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
+            .footer-contact-compact { justify-content: center; }
         }
 
         @media (max-width: 480px) {
             .main-banner { padding: 12px; }
             .header-logo-moaeen img { width: 70px; }
             .seu-rect img { width: 38px; height: 38px; }
-            .hero-tabs { flex-direction: column; align-items: stretch; }
-            .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
-            .tab-info { flex-direction: row; }
-            .guide-tab-card { flex-direction: column; text-align: center; gap: 12px; }
-            .guide-tab-info { flex-direction: column; }
-            .step-image { max-height: 180px; }
+            .step-image, .guide-image { max-height: 180px; }
         }
     </style>
 </head>
@@ -443,13 +493,13 @@
 
 <div class="page-wrapper">
 
-    <!-- ===== MAIN BANNER (Merged) ===== -->
+    <!-- ===== MAIN BANNER ===== -->
     <div class="main-banner">
         
         <!-- HEADER -->
         <header class="header">
             <div class="header-logo-moaeen">
-                <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+                <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
             </div>
             <div class="header-pill">
                 <span class="pill-line"></span>
@@ -459,8 +509,8 @@
             </div>
             <div class="header-seu-box">
                 <div class="seu-rect">
-                    <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-                    <span class="seu-text-en">SEU</span>
+                    <img src="./assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+                    <span class="seu-text-en">SEU_University</span>
                 </div>
             </div>
         </header>
@@ -480,13 +530,13 @@
                 <i class="fas fa-chevron-left"></i>
                 <span>الأدوات التفاعلية</span>
                 <i class="fas fa-chevron-left"></i>
-                <span class="crumb-current">دليل عرض الجدول الدراسي</span>
+                <span class="crumb-current" id="crumbCurrent">دليل عرض وشرح الجدول الدراسي</span>
             </div>
         </div>
 
         <!-- SHARE BAR -->
         <div class="share-bar">
-            <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">دليل عرض الجدول الدراسي</span></span>
+            <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">دليل عرض وشرح الجدول الدراسي</span></span>
             <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
                 <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
                 <span>مشاركة الصفحة</span>
@@ -507,9 +557,9 @@
             <div class="hero-top">
                 <h1>
                     <i class="fa-solid fa-calendar-alt"></i>
-                    دليل خطوات عرض الجدول الدراسي
+                    دليل عرض وشرح الجدول الدراسي
                 </h1>
-                <p style="color: rgba(255,255,255,0.85); max-width: 700px; font-size: 15px; line-height: 1.7; position: relative; z-index: 1;">دليل شامل وخطوات تفصيلية للوصول إلى جدولك الدراسي عبر نظام البانر (الخدمات الذاتية).</p>
+                <p>دليل شامل وخطوات تفصيلية للوصول إلى جدولك الدراسي عبر نظام البانر، مع شرح وافٍ لرموز وأيقونات الجدول.</p>
             </div>
 
             <!-- التبويبات (القروبات) داخل الهيرو -->
@@ -538,10 +588,10 @@
         </section>
     </div>
 
-    <!-- ===== التبويبات الفرعية (خارج بطاقة الهيرو) ===== -->
+    <!-- ===== GUIDE NAVIGATION TABS ===== -->
     <section class="guide-tabs-section">
         <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
-        <div class="guide-tab-card">
+        <div class="guide-tab-card active" id="tabGuideBtn" onclick="switchGuideTab('guide')">
             <div class="guide-tab-info">
                 <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
                 <div class="guide-tab-text">
@@ -549,13 +599,11 @@
                     <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
                 </div>
             </div>
-            <a href="#main-content" class="guide-tab-btn">
-                <i class="fas fa-arrow-left"></i> استعراض الدليل
-            </a>
+            <button class="guide-tab-btn"><i class="fas fa-arrow-left"></i> استعراض الدليل</button>
         </div>
 
         <!-- التبويب الثاني: شرح الجدول الدراسي -->
-        <div class="guide-tab-card">
+        <div class="guide-tab-card" id="tabExplanationBtn" onclick="switchGuideTab('explanation')">
             <div class="guide-tab-info">
                 <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
                 <div class="guide-tab-text">
@@ -563,202 +611,287 @@
                     <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
                 </div>
             </div>
-            <a href="../tabexp/" class="guide-tab-btn" id="scheduleExplanationBtn">
-                <i class="fas fa-arrow-left"></i> استعراض الشرح
-            </a>
+            <button class="guide-tab-btn"><i class="fas fa-arrow-left"></i> استعراض الشرح</button>
         </div>
     </section>
 
-    <!-- ===== المحتوى الرئيسي (البطاقة البيضاء) ===== -->
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="main-content" id="main-content">
-
-        <!-- ===== القسم الأول ===== -->
-        <div class="section-title">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            الدخول الى بنر - الخدمات الذاتية (نظام الـ Banner)
-        </div>
-
-        <div class="steps-grid">
-
-            <!-- البطاقة الأولى: عبر موقع الجامعة -->
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">1</span>
-                    <h3><i class="fa-solid fa-globe"></i> عبر موقع الجامعة - الخدمات الإلكترونية</h3>
-                </div>
-                <div class="step-body">
-                    <div class="link-box">
-                        <span class="url-text" id="url1">https://eservice.seu.edu.sa/student/</span>
-                        <button class="copy-btn" data-target="url1">
-                            <i class="fa-regular fa-copy"></i> نسخ
-                        </button>
-                    </div>
-                    <div class="action-buttons">
-                        <a href="https://eservice.seu.edu.sa/student/" target="_blank" class="btn-go">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Services
-                        </a>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
-                        ثم الدخول على تبويب "بانر - الخدمات الذاتية" كما في الصورة أدناه
-                    </p>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep1.png" alt="الخطوة 1" class="step-image">
-                </div>
+        
+        <!-- ===== TAB 1: عرض الجدول ===== -->
+        <div class="tab-content active" id="tab-guide">
+            <div class="section-title">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                الدخول الى بنر - الخدمات الذاتية (نظام الـ Banner)
             </div>
 
-            <!-- البطاقة الثانية: الرابط المباشر -->
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">2</span>
-                    <h3><i class="fa-solid fa-link"></i> أو عن طريق الرابط المباشر</h3>
-                </div>
-                <div class="step-body">
-                    <div class="link-box">
-                        <span class="url-text" id="url2">https://bannservices.seu.edu.sa/StudentSelfService/</span>
-                        <button class="copy-btn" data-target="url2">
-                            <i class="fa-regular fa-copy"></i> نسخ
-                        </button>
+            <div class="steps-grid">
+                <!-- البطاقة الأولى: عبر موقع الجامعة -->
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h3><i class="fa-solid fa-globe"></i> عبر موقع الجامعة - الخدمات الإلكترونية</h3>
                     </div>
-                    <div class="action-buttons">
-                        <a href="https://bannservices.seu.edu.sa/StudentSelfService/" target="_blank" class="btn-go">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> الخدمات الذاتية
-                        </a>
+                    <div class="step-body">
+                        <div class="link-box">
+                            <span class="url-text" id="url1">https://eservice.seu.edu.sa/student/</span>
+                            <button class="copy-btn" data-target="url1">
+                                <i class="fa-regular fa-copy"></i> نسخ
+                            </button>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://eservice.seu.edu.sa/student/" target="_blank" class="btn-go">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Services
+                            </a>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
+                            ثم الدخول على تبويب "بانر - الخدمات الذاتية" كما في الصورة أدناه
+                        </p>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep1.png" alt="الخطوة 1" class="step-image">
                     </div>
                 </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep2.png" alt="الخطوة 2" class="step-image">
+
+                <!-- البطاقة الثانية: الرابط المباشر -->
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h3><i class="fa-solid fa-link"></i> أو عن طريق الرابط المباشر</h3>
+                    </div>
+                    <div class="step-body">
+                        <div class="link-box">
+                            <span class="url-text" id="url2">https://bannservices.seu.edu.sa/StudentSelfService/</span>
+                            <button class="copy-btn" data-target="url2">
+                                <i class="fa-regular fa-copy"></i> نسخ
+                            </button>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://bannservices.seu.edu.sa/StudentSelfService/" target="_blank" class="btn-go">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> الخدمات الذاتية
+                            </a>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep2.png" alt="الخطوة 2" class="step-image">
+                    </div>
                 </div>
             </div>
 
+            <div class="section-title">
+                <i class="fa-solid fa-list-check"></i>
+                بعد الدخول على البانر
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h3><i class="fa-solid fa-bars"></i> اضغط على أيقونة القائمة في الزاوية العليا اليمنى</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep3.png" alt="الخطوة 3" class="step-image">
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h3><i class="fa-solid fa-building-columns"></i> اختر الـ Banner</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep4.png" alt="الخطوة 4" class="step-image">
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h3><i class="fa-solid fa-user-graduate"></i> اختر خيار "الطالب"</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep5.png" alt="الخطوة 5" class="step-image">
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h3><i class="fa-solid fa-pen-to-square"></i> ثم خيار "التسجيل"</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep6.png" alt="الخطوة 6" class="step-image">
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h3><i class="fa-solid fa-table"></i> ثم خيار "جدول الطالب"</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep7.png" alt="الخطوة 7" class="step-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <i class="fa-solid fa-eye"></i>
+                ستفتح معك صفحة الجدول
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-header">
+                        <i class="fa-solid fa-magnifying-glass" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                        <h3>إذا كنت في ترم غير الترم الظاهر في خانة الفصل الدراسي</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep8.png" alt="الخطوة 9" class="step-image">
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-header">
+                        <i class="fa-solid fa-list-ul" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                        <h3>اضغط على خيار تفاصيل الجدول ليتم عرض الجدول</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep9.png" alt="الخطوة 8" class="step-image">
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <i class="fa-solid fa-arrows-up-down" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
+                        <h3>يمكنك الضغط على السهم للأعلى لتوسيع خانة عرض الجدول</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="./assets/images/ltabstep10.png" alt="الخطوة 10" class="step-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>باتباع هذه الخطوات يمكنك الوصول إلى جدولك الدراسي بسهولة ومتابعة مقرراتك وأوقاتها.</span>
+            </div>
         </div>
 
-        <!-- ===== القسم الثاني ===== -->
-        <div class="section-title">
-            <i class="fa-solid fa-list-check"></i>
-            بعد الدخول على البانر
-        </div>
-
-        <div class="steps-grid">
-
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">1</span>
-                    <h3><i class="fa-solid fa-bars"></i> اضغط على أيقونة القائمة في الزاوية العليا اليمنى</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep3.png" alt="الخطوة 3" class="step-image">
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">2</span>
-                    <h3><i class="fa-solid fa-building-columns"></i> اختر الـ Banner</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep4.png" alt="الخطوة 4" class="step-image">
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">3</span>
-                    <h3><i class="fa-solid fa-user-graduate"></i> اختر خيار "الطالب"</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep5.png" alt="الخطوة 5" class="step-image">
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">4</span>
-                    <h3><i class="fa-solid fa-pen-to-square"></i> ثم خيار "التسجيل"</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep6.png" alt="الخطوة 6" class="step-image">
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-header">
-                    <span class="step-badge">5</span>
-                    <h3><i class="fa-solid fa-table"></i> ثم خيار "جدول الطالب"</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep7.png" alt="الخطوة 7" class="step-image">
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ===== القسم الثالث ===== -->
-        <div class="section-title">
-            <i class="fa-solid fa-eye"></i>
-            ستفتح معك صفحة الجدول
-        </div>
-
-        <div class="steps-grid">
-
-            <div class="step-card">
-                <div class="step-header">
-                    <i class="fa-solid fa-magnifying-glass" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
-                    <h3>إذا كنت في ترم غير الترم الظاهر في خانة الفصل الدراسي</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep8.png" alt="الخطوة 9" class="step-image">
-                </div>
-            </div>
+        <!-- ===== TAB 2: شرح الجدول ===== -->
+        <div class="tab-content" id="tab-explanation">
             
-            <div class="step-card">
-                <div class="step-header">
-                    <i class="fa-solid fa-list-ul" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
-                    <h3>اضغط على خيار تفاصيل الجدول ليتم عرض الجدول</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep9.png" alt="الخطوة 8" class="step-image">
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-header">
-                    <i class="fa-solid fa-arrows-up-down" style="color: var(--gold); font-size: 1.5rem; margin-left: 12px;"></i>
-                    <h3>يمكنك الضغط على السهم للأعلى لتوسيع خانة عرض الجدول</h3>
-                </div>
-                <div class="image-container">
-                    <img src="../assets/images/ltabstep10.png" alt="الخطوة 10" class="step-image">
+            <!-- القسم الأول: فهم الجدول -->
+            <div class="guide-section">
+                <h2><i class="fas fa-table"></i> فهم هيكل الجدول الدراسي</h2>
+                <p>يتكون الجدول الدراسي من عدة خانات (حسب عدد المقررات). كل خانة عبارة عن جدول صغير يحتوي على 4 صفوف أفقية، وكل صف له دلالة محددة.</p>
+                
+                <img src="./assets/images/tabexp1.png" alt="توضيح خانات الجدول" class="guide-image">
+                
+                <div class="info-box orange">
+                    <i class="fas fa-lightbulb"></i>
+                    <div><strong>ملاحظة:</strong> هناك اختلاف بسيط في دلالة صفوف الجدول لمقرر اللغة الإنجليزية عن بقية المواد الأخرى.</div>
                 </div>
             </div>
 
-        </div>
+            <!-- القسم الثاني: تحليل الخانات -->
+            <div class="guide-section">
+                <h2><i class="fas fa-layer-group"></i> تحليل دلالة صفوف الجدول</h2>
+                
+                <h3><i class="fas fa-book" style="color:var(--gold);"></i> المواد العامة (حاسب، مهارات، رياضيات)</h3>
+                <div class="row-item"><div class="row-number">1</div> <div>الصف الأول والثاني: يشيران إلى مواعيد المحاضرتين (يومين مختلفين).</div></div>
+                <div class="info-box success"><i class="fas fa-check-circle"></i> <div>لكل مقرر محاضرتين في الأسبوع، مقسمة على يومين.</div></div>
+                <div class="row-item"><div class="row-number">3</div> <div>الصف الثالث: موعد اختبار الميد (Mid-term).</div></div>
+                <div class="row-item"><div class="row-number">4</div> <div>الصف الرابع: موعد الاختبار النهائي (Final).</div></div>
+                <img src="./assets/images/tabexp2.png" alt="صفوف المواد العامة" class="guide-image">
 
-        <!-- ===== تذييل الملاحظة ===== -->
-        <div class="footer-note">
-            <i class="fa-solid fa-lightbulb"></i>
-            <span>باتباع هذه الخطوات يمكنك الوصول إلى جدولك الدراسي بسهولة ومتابعة مقرراتك وأوقاتها.</span>
-        </div>
+                <hr style="border: 1px solid var(--gray-light); margin: 30px 0;">
 
-        <!-- ===== زر التوجيه لأداة إنشاء الجدول ===== -->
-        <div class="cta-section">
-            <div class="cta-text">
-                <i class="fa-solid fa-calendar-plus"></i>
-                <div>
-                    <h3>استخدم أداة إنشاء جدول مواعيد المحاضرات</h3>
-                    <p>لترتيب مواعيد محاضراتك بسهولة واحترافية</p>
+                <h3><i class="fas fa-language" style="color:var(--gold);"></i> مقرر اللغة الإنجليزية</h3>
+                <div class="info-box"><i class="fas fa-info-circle"></i> <div>جميع الصفوف الأربعة تشير إلى مواعيد المحاضرات. لا يحتوي على مواعيد اختبارات ميد أو فاينل.</div></div>
+                <div class="row-item"><div class="row-number">1</div> <div>اليوم الأول - المحاضرة الأولى</div></div>
+                <div class="row-item"><div class="row-number">2</div> <div>اليوم الأول - المحاضرة الثانية</div></div>
+                <div class="row-item"><div class="row-number">3</div> <div>اليوم الثاني - المحاضرة الأولى</div></div>
+                <div class="row-item"><div class="row-number">4</div> <div>اليوم الثاني - المحاضرة الثانية</div></div>
+                <div class="info-box success"><i class="fas fa-check-circle"></i> <div>4 محاضرات في الأسبوع، موزعة على يومين (محاضرتان في كل يوم).</div></div>
+                <img src="./assets/images/tabexp3.png" alt="صفوف مقرر الإنجليزي" class="guide-image">
+            </div>
+
+            <!-- القسم الثالث: رموز الأيام -->
+            <div class="guide-section">
+                <h2><i class="fas fa-calendar-week"></i> فك رموز أيام الأسبوع</h2>
+                <p>تستخدم الجداول أحرفاً مختصرة للدلالة على أيام الأسبوع:</p>
+                <img src="./assets/images/tabexp4.png" alt="رموز الأيام" class="guide-image">
+                
+                <div class="days-legend">
+                    <span><strong>ح:</strong> الأحد</span>
+                    <span><strong>ن:</strong> الاثنين</span>
+                    <span><strong>ث:</strong> الثلاثاء</span>
+                    <span><strong>ر:</strong> الأربعاء</span>
+                    <span><strong>خ:</strong> الخميس</span>
+                    <span><strong>ج:</strong> الجمعة</span>
+                    <span><strong>س:</strong> السبت</span>
+                </div>
+
+                <div class="info-box" style="background-color: #e1f5fe; border-right-color: #0288d1; color: #01579b;">
+                    <i class="fas fa-paint-brush"></i> <div>الخانة المظللة باللون الأزرق الغامق تعني أن لديك محاضرة في ذلك اليوم.</div>
+                </div>
+                
+                <div class="grid-days">
+                    <div class="day-box">س</div>
+                    <div class="day-box">ج</div>
+                    <div class="day-box">خ</div>
+                    <div class="day-box">ر</div>
+                    <div class="day-box">ث</div>
+                    <div class="day-box">ن</div>
+                    <div class="day-box active">ح</div>
                 </div>
             </div>
-            <a href="#" class="cta-btn">
-                <i class="fa-solid fa-arrow-left"></i> استكشف الأداة
-            </a>
+
+            <!-- القسم الرابع: التوقيت والنوع -->
+            <div class="guide-section">
+                <h2><i class="fas fa-clock"></i> التوقيت، النوع، والمدة</h2>
+                <img src="./assets/images/tabexp5.png" alt="تفاصيل الوقت والنوع" class="guide-image">
+                
+                <div class="row-item"><i class="fas fa-clock" style="color:var(--gold); font-size:1.2rem;"></i> <div><strong>التوقيت:</strong> يظهر بعد اسم اليوم (مثال: 06:00 مساءً - 06:50 مساءً).</div></div>
+                
+                <h3>نوع المحاضرة:</h3>
+                <div class="row-item">
+                    <span class="badge virtual"><i class="fas fa-globe"></i> Virtual Class</span>
+                    <div>محاضرة افتراضية عن بعد (Online).</div>
+                </div>
+                <div class="row-item">
+                    <span class="badge class"><i class="fas fa-users"></i> Class</span>
+                    <div>محاضرة حضورية (تجدها في مرحلة التخصص).</div>
+                </div>
+
+                <h3>مدة المحاضرة (فترة التحضيري):</h3>
+                <div class="row-item"><strong>50 دقيقة</strong> <span style="color:var(--text-muted);">للمواد: الحاسب، الرياضيات، مهارات الاتصال، المهارات الأكاديمية.</span></div>
+                <div class="row-item"><strong>ساعة و 50 دقيقة</strong> <span style="color:var(--text-muted);">لمقرر اللغة الإنجليزية.</span></div>
+
+                <h3>الفترة الدراسية:</h3>
+                <div class="info-box" style="background-color: #f3e5f5; border-right-color: #8e24aa; color: #4a148c;">
+                    <i class="fas fa-moon"></i> <div>الدراسة تكون <strong>مسائية</strong>، من الساعة 3:00 عصراً حتى 9:00 مساءً.</div>
+                </div>
+            </div>
         </div>
 
+    </div>
+
+    <!-- ===== CTA SECTION ===== -->
+    <div class="cta-section">
+        <div class="cta-text">
+            <i class="fa-solid fa-calendar-plus"></i>
+            <div>
+                <h4>استخدم أداة إنشاء جدول مواعيد المحاضرات</h4>
+                <p>لترتيب مواعيد محاضراتك بسهولة واحترافية</p>
+            </div>
+        </div>
+        <a href="#" class="cta-btn">
+            <i class="fas fa-arrow-left"></i> استكشف الأداة
+        </a>
     </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-brand-compact">
-            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
             <div class="brand-name">
                 <h3>منصة معين التعليمية</h3>
                 <span>MOAEEN PLATFORM</span>
@@ -813,7 +946,7 @@
         // ===== 2. تحديث روابط المشاركة =====
         function updateShareLinks() {
             var url = window.location.href.split('#')[0];
-            var title = 'دليل عرض الجدول الدراسي - منصة معين التعليمية';
+            var title = 'دليل عرض وشرح الجدول الدراسي - منصة معين التعليمية';
             if(shareWhatsApp) {
                 shareWhatsApp.href = 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + url);
             }
@@ -871,7 +1004,7 @@
         const lightbox = document.getElementById('imageLightbox');
         const lightboxImg = document.getElementById('expandedImg');
         const closeBtn = document.querySelector('.close-lightbox');
-        const images = document.querySelectorAll('.step-image');
+        const images = document.querySelectorAll('.step-image, .guide-image');
 
         images.forEach(img => {
             img.addEventListener('click', function() {
@@ -905,14 +1038,36 @@
             }
         });
 
-        // ===== 5. زر التبويب الثاني (شرح الجدول) مؤقت =====
-        const explanationBtn = document.getElementById('scheduleExplanationBtn');
-        if (explanationBtn) {
-            explanationBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('سيتم إضافة محتوى شرح الجدول الدراسي قريباً. يرجى المتابعة!');
+        // ===== 5. تبديل التبويبات بين (دليل الجدول) و (شرح الجدول) =====
+        window.switchGuideTab = function(tabId) {
+            // إخفاء كافة المحتويات
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
             });
-        }
+            // إزالة الفعالية من أزرار التبويبات
+            document.querySelectorAll('.guide-tab-card').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // إظهار المحتوى المطلوب
+            var contentEl = document.getElementById('tab-' + tabId);
+            if (contentEl) contentEl.classList.add('active');
+
+            // تنشيط التبويب
+            var btnEl = document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + 'Btn');
+            if (btnEl) btnEl.classList.add('active');
+
+            // تحديث نص المسار الصغير في شريط المشاركة
+            var currentHash = document.getElementById('currentHashLabel');
+            if (tabId === 'guide') {
+                currentHash.textContent = 'دليل عرض الجدول الدراسي';
+            } else {
+                currentHash.textContent = 'شرح الجدول الدراسي';
+            }
+
+            // تمرير الصفحة إلى بداية المحتوى بسلاسة
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
     });
 </script>
 
