@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>روابط مباشرة إلى صفحات الخدمات - منصة معين</title>
-    <meta name="description" content="روابط مباشرة لصفحات الخدمات الجامعية - منصة معين التعليمية">
+    <meta name="description" content="روابط مباشرة لصفحات الخدمات الجامعية - منصة معين التعليمية" />
 
     <!-- Google Fonts: Cairo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
         /* ===== متغيرات منصة معين ===== */
@@ -33,6 +33,7 @@
             --primary-color: #0f3057;
             --transition: 0.3s ease;
             --radius-card: 20px;
+            --bg-body: #edf3ef;
         }
 
         /* ===== Reset & Base ===== */
@@ -44,116 +45,125 @@
 
         body {
             font-family: 'Cairo', Tahoma, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            background-image: url('./assets/images/body-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: var(--white);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
         }
 
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         .page-wrapper {
             width: 100%;
-            max-width: 1320px;
+            max-width: 1400px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 0;
+            padding: 0;
         }
 
-        /* ===== HEADER ===== */
-        .header {
+        /* ===== HEADER + HERO مُدمجان ===== */
+        .header-hero {
             width: 100%;
             background: var(--bg-dark);
-            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
-                              url('./assets/images/header-bg.jpg');
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.96) 0%, rgba(10, 44, 44, 0.92) 100%),
+                url('./assets/images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
-            border-radius: 30px;
-            padding: 20px 30px;
+            border-radius: 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: visible;
+            padding: 18px 30px 0 30px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== صف الشعارات (معكوس: معين يسار، الجامعة يمين) ===== */
+        .header-logos {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            padding: 4px 0 12px 0;
+            flex-wrap: wrap;
+            gap: 12px 20px;
             position: relative;
-            overflow: hidden;
+            z-index: 5;
         }
 
+        /* شعار معين في أقصى اليسار (تم عكس الترتيب) */
         .header-brand {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+            order: 0; /* يسار */
         }
-
         .header-brand img {
             width: 130px;
-            height: auto;
+            height: 90px;
+            object-fit: contain;
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
             transition: var(--transition);
         }
-
         .header-brand img:hover {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
-        .header-brand .brand-name {
+        /* شعار الجامعة في أقصى اليمين (تم عكس الترتيب) */
+        .header-seu-box {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            gap: 4px;
+            order: 2; /* يمين */
         }
-
-        .header-brand .brand-name h3 {
-            color: var(--gold);
-            font-size: 26px;
-            font-weight: 800;
-            line-height: 1.2;
+        .header-seu-logo {
+            width: 130px;
+            height: 90px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
         }
+        /* تم إزالة كبسولة SEU */
 
-        .header-brand .brand-name span {
-            color: var(--gold-light);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
+        /* ===== الخط الذهبي الفاصل (بدون زر) ===== */
+        .gold-divider {
             width: 100%;
-            background: var(--bg-dark);
-            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
-                              url('./assets/images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), var(--gold), rgba(212, 175, 55, 0.15));
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+            margin: 6px 0 10px 0;
+            flex-shrink: 0;
+        }
+
+        /* ===== محتوى الهيرو ===== */
+        .hero-inner {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 10px;
+            padding: 6px 0 12px 0;
+            position: relative;
         }
 
         .hero-top {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
             text-align: center;
         }
-
         .hero-top h1 {
-            font-size: clamp(28px, 3.5vw, 44px);
+            font-size: clamp(24px, 3vw, 40px);
             font-weight: 800;
             color: var(--white);
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
@@ -163,47 +173,154 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-
         .hero-top h1 i {
             color: var(--gold);
         }
 
-        .hero-actions {
+        /* ===== تبويبات القروب والقناة (أشرطة مضغوطة) ===== */
+        .hero-tabs {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            gap: 10px;
             justify-content: center;
-            gap: 16px;
-            margin-top: 6px;
+            margin-top: 2px;
         }
 
-        .share-dropdown {
+        .tab-item {
+            flex: 1 1 280px;
+            max-width: 450px;
+            background: rgba(1, 32, 32, 0.55);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-radius: 14px;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+            min-height: 52px;
+            gap: 8px;
+        }
+        .tab-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .tab-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+        .tab-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            flex-shrink: 0;
+        }
+        .tab-text {
+            min-width: 0;
+            line-height: 1.2;
+        }
+        .tab-text h4 {
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tab-text p {
+            color: #a0b4b8;
+            font-size: 10px;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 4px 11px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .tab-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 16px rgba(212, 175, 55, 0.5);
+        }
+        .tab-btn i {
+            font-size: 10px;
+        }
+
+        /* ===== شريط التبويبات الرمادي + زر المشاركة في أعلاه ===== */
+        .subtabs-nav-wrapper {
+            width: calc(100% + 60px);
+            margin: 0 -30px 0 -30px;
+            padding: 10px 30px;
+            background: #e8eef3;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid #d0dae2;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        /* صف زر المشاركة (فوق شريط التبويبات) */
+        .share-row {
+            display: flex;
+            justify-content: flex-end; /* في RTL هذا يجعله في اليسار */
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .share-dropdown-on-gold {
             position: relative;
             display: inline-block;
         }
 
-        .share-btn {
+        .share-btn-gold {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            color: var(--white);
-            padding: 12px 24px;
+            background: var(--gold);
+            border: 1.5px solid var(--gold-light);
+            color: var(--bg-dark);
+            padding: 5px 16px;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+        .share-btn-gold:hover {
+            background: var(--gold-light);
+            transform: scale(1.03);
         }
 
-        .share-btn:hover {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--gold);
-        }
-
-        .share-dropdown-content {
+        .share-dropdown-content-gold {
             display: none;
             position: absolute;
             top: calc(100% + 8px);
@@ -217,8 +334,7 @@
             z-index: 100;
             padding: 8px 0;
         }
-
-        .share-dropdown-content a {
+        .share-dropdown-content-gold a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -228,155 +344,84 @@
             transition: var(--transition);
             font-size: 15px;
         }
-
-        .share-dropdown-content a:hover {
+        .share-dropdown-content-gold a:hover {
             background: rgba(212, 175, 55, 0.15);
         }
-
-        .share-dropdown-content a i {
+        .share-dropdown-content-gold a i {
             font-size: 20px;
             width: 28px;
             text-align: center;
         }
-
-        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
-        .share-dropdown-content a .fa-telegram { color: var(--telegram-blue); }
-
-        .share-dropdown.active .share-dropdown-content {
+        .share-dropdown-content-gold a .fa-whatsapp {
+            color: var(--whatsapp-green);
+        }
+        .share-dropdown-content-gold a .fa-telegram {
+            color: var(--telegram-blue);
+        }
+        .share-dropdown-gold-active .share-dropdown-content-gold {
             display: block;
         }
 
-        .help-btn {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--whatsapp-green);
-            color: var(--white);
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: var(--transition);
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-            line-height: 1.3;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-
-        .help-btn:hover {
-            background: var(--whatsapp-dark);
-            transform: scale(1.03);
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
-        }
-
-        .help-btn .main-text {
-            font-size: 15px;
-        }
-
-        .help-btn .sub-text {
-            font-size: 12px;
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        .hero-tabs {
+        .subtabs-nav {
             display: flex;
+            gap: 10px;
             flex-wrap: wrap;
-            gap: 16px;
             justify-content: center;
-            margin-top: 6px;
         }
-
-        .tab-item {
-            flex: 1 1 280px;
-            max-width: 450px;
-            background: rgba(1, 32, 32, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-
-        .tab-item:hover {
-            border-color: var(--gold);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .tab-info {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .tab-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--gold);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            flex-shrink: 0;
-        }
-
-        .tab-text h4 {
-            color: var(--white);
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .tab-text p {
-            color: #a0b4b8;
-            font-size: 13px;
-            font-weight: 400;
-        }
-
-        .tab-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--bg-dark);
-            padding: 8px 18px;
-            border-radius: 50px;
+        .subtab-btn {
+            flex: 0 1 auto;
+            min-width: 140px;
+            padding: 12px 18px;
+            border: 1px solid transparent;
+            border-radius: 11px;
+            background: transparent;
+            color: var(--primary-color);
+            font-family: inherit;
             font-size: 14px;
-            font-weight: 700;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-            white-space: nowrap;
-            border: none;
+            font-weight: 800;
+            line-height: 1.45;
             cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
         }
-
-        .tab-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+        .subtab-btn:hover {
+            background: rgba(255, 255, 255, 0.75);
         }
-
-        .tab-btn i {
-            font-size: 13px;
+        .subtab-btn.active {
+            color: var(--bg-dark);
+            background: var(--gold);
+            border-color: var(--gold-dark);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
         }
 
         /* ===== المحتوى الرئيسي ===== */
         .main-content {
             width: 100%;
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 40px 40px 50px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            background: var(--bg-body);
+            padding: 30px 30px 40px 30px;
+            border-radius: 0;
+            box-shadow: none;
         }
 
-        /* ===== شبكة البطاقات (عمودي) ===== */
+        .subtab-panel {
+            display: none;
+            animation: subtabFade 0.25s ease;
+        }
+        .subtab-panel.active {
+            display: block;
+        }
+        @keyframes subtabFade {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== شبكة البطاقات ===== */
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -396,13 +441,11 @@
             flex-direction: column;
             color: var(--text-main);
         }
-
         .service-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* ===== رقم البطاقة ===== */
         .card-number {
             position: absolute;
             top: -22px;
@@ -417,7 +460,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            border: 4px solid #f8fafc;
+            border: 4px solid var(--bg-body);
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
         }
 
@@ -428,14 +471,12 @@
             margin-top: 6px;
             margin-bottom: 12px;
         }
-
         .card-header .card-icon {
             color: var(--gold);
             font-size: 1.8rem;
             width: 40px;
             text-align: center;
         }
-
         .card-title {
             font-size: 1.3rem;
             font-weight: 700;
@@ -447,26 +488,22 @@
             font-size: 1rem;
             line-height: 1.8;
             margin-bottom: 16px;
-            padding-right: 52px; /* محاذاة مع الأيقونة */
+            padding-right: 52px;
         }
-
         .card-desc .highlight {
             color: var(--primary-color);
             font-weight: 700;
         }
-
         .card-desc .step-list {
             list-style: none;
             padding-right: 0;
             margin-top: 6px;
         }
-
         .card-desc .step-list li {
             position: relative;
             padding-right: 24px;
             margin-bottom: 4px;
         }
-
         .card-desc .step-list li::before {
             content: '\f100';
             font-family: 'Font Awesome 6 Free';
@@ -476,13 +513,11 @@
             color: var(--gold);
             font-size: 0.8rem;
         }
-
         .card-desc .step-list li .icon-down {
             color: var(--gold);
             margin: 0 4px;
         }
 
-        /* ===== أزرار البطاقة ===== */
         .card-actions {
             display: flex;
             align-items: center;
@@ -491,7 +526,6 @@
             margin-top: 6px;
             padding-right: 52px;
         }
-
         .click-indicator {
             display: inline-flex;
             align-items: center;
@@ -504,18 +538,15 @@
             border-radius: 50px;
             border: 1px solid #e2e8f0;
         }
-
         .click-indicator i {
             color: var(--gold);
             font-size: 1.1rem;
         }
-
         .arrow-gold {
             color: var(--gold);
             font-size: 1.5rem;
             font-weight: 300;
         }
-
         .btn-link {
             display: inline-flex;
             align-items: center;
@@ -527,21 +558,17 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: var(--transition);
-            text-decoration: none;
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
-
         .btn-link:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
-
         .btn-link i {
             font-size: 1rem;
         }
-
         .btn-copy {
             display: inline-flex;
             align-items: center;
@@ -557,39 +584,171 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(15, 48, 87, 0.3);
         }
-
         .btn-copy:hover {
             background: var(--bg-dark);
             transform: scale(1.05);
         }
-
         .btn-copy.copied {
             background: var(--whatsapp-green);
+        }
+
+        /* ===== إيميلات الجامعة ===== */
+        .email-categories {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .email-category-card {
+            padding: 26px 24px 22px;
+        }
+        .email-category-card .card-title {
+            font-size: 1.15rem;
+        }
+        .email-category-card .card-desc {
+            padding-right: 0;
+            margin-bottom: 14px;
+            font-size: 0.92rem;
+        }
+        .email-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .email-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 9px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+        .email-row-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+        }
+        .email-row-label {
+            color: var(--primary-color);
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .email-row a {
+            color: #0f5d78;
+            font-size: 12px;
+            direction: ltr;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+        .email-row .btn-copy {
+            flex-shrink: 0;
+            padding: 6px 10px;
+            font-size: 11px;
+            border-radius: 8px;
+        }
+
+        /* ===== تبويب الانسحاب ===== */
+        .withdrawal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .withdrawal-card {
+            min-height: 100%;
+        }
+        .warning-card {
+            margin-bottom: 24px;
+            padding: 20px 24px;
+            border: 2px solid #dc2626;
+            border-radius: var(--radius-card);
+            background: #fff7f7;
+            color: #991b1b;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .warning-card-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+        }
+        .warning-card-content i {
+            color: #dc2626;
+            font-size: 24px;
+            margin-top: 3px;
+        }
+        .warning-card h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        .warning-card p {
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .warning-card .btn-link {
+            background: #dc2626;
+            color: #fff;
+        }
+        .warning-card .btn-link:hover {
+            background: #b91c1c;
+        }
+        .danger-note {
+            color: #b91c1c;
+            font-weight: 800;
+            background: #fff1f2;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            padding: 9px 11px;
+            margin: 0 0 14px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+        .resource-url {
+            display: block;
+            margin-top: 10px;
+            padding: 9px 11px;
+            border-radius: 9px;
+            background: #f1f5f9;
+            color: #0f5d78;
+            direction: ltr;
+            text-align: left;
+            font-size: 11px;
+            overflow-wrap: anywhere;
+        }
+        .resource-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
         }
 
         /* ===== FOOTER ===== */
         .footer {
             width: 100%;
-            max-width: 1320px;
             background: var(--bg-dark);
-            border-radius: 24px;
-            overflow: hidden;
+            border-radius: 0;
             padding: 30px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: 0;
         }
-
         .footer-brand-compact {
             display: flex;
             align-items: center;
             gap: 16px;
         }
-
         .footer-brand-compact img {
             width: 60px;
             height: 60px;
@@ -599,33 +758,28 @@
             background: var(--bg-dark);
             object-fit: contain;
         }
-
         .footer-brand-compact .brand-name {
             display: flex;
             flex-direction: column;
         }
-
         .footer-brand-compact .brand-name h3 {
             color: var(--gold);
             font-size: 20px;
             font-weight: 800;
             line-height: 1.2;
         }
-
         .footer-brand-compact .brand-name span {
             color: var(--gold-light);
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-
         .footer-contact-compact {
             display: flex;
             align-items: center;
             gap: 30px;
             flex-wrap: wrap;
         }
-
         .footer-phone {
             display: flex;
             align-items: center;
@@ -635,17 +789,14 @@
             font-weight: 700;
             direction: ltr;
         }
-
         .footer-phone i {
             color: var(--gold);
             font-size: 20px;
         }
-
         .footer-social-compact {
             display: flex;
             gap: 12px;
         }
-
         .footer-social-compact a {
             width: 40px;
             height: 40px;
@@ -658,16 +809,21 @@
             color: var(--white);
             font-size: 18px;
         }
-
         .footer-social-compact a:hover {
             transform: translateY(-3px) scale(1.1);
             border-color: var(--gold);
             background: rgba(212, 175, 55, 0.1);
         }
-
-        .footer-social-compact a.x:hover { background: #000; }
-        .footer-social-compact a.telegram:hover { background: var(--telegram-blue); }
-        .footer-social-compact a.snapchat:hover { background: #FFFC00; color: #000; }
+        .footer-social-compact a.x:hover {
+            background: #000;
+        }
+        .footer-social-compact a.telegram:hover {
+            background: var(--telegram-blue);
+        }
+        .footer-social-compact a.snapchat:hover {
+            background: #FFFC00;
+            color: #000;
+        }
 
         /* ===== Floating WhatsApp ===== */
         .float-wa {
@@ -688,50 +844,142 @@
             transition: var(--transition);
             animation: float-pulse 2s infinite;
         }
-
         .float-wa:hover {
             transform: scale(1.05);
             background: var(--whatsapp-dark);
             animation: none;
         }
-
         .float-wa svg {
             width: 28px;
             height: 28px;
             fill: var(--white);
         }
-
         @keyframes float-pulse {
-            0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); }
+            0%,
+            100% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0);
+            }
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .header { flex-wrap: wrap; justify-content: center; text-align: center; }
-            .header-brand { flex-direction: column; align-items: center; }
-            .header-brand .brand-name { align-items: center; }
-            .hero { padding: 35px 25px; }
-            .tab-item { flex: 1 1 240px; }
+            .header-logos {
+                justify-content: space-between;
+            }
+            .header-brand {
+                order: 0 !important;
+            }
+            .header-seu-box {
+                order: 2 !important;
+            }
+            .header-hero {
+                padding: 16px 20px 0 20px;
+            }
+            .subtabs-nav-wrapper {
+                width: calc(100% + 40px);
+                margin: 0 -20px 0 -20px;
+                padding: 10px 20px;
+            }
+            .main-content {
+                padding: 24px 20px 30px;
+            }
+            .email-categories,
+            .withdrawal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-item {
+                flex: 1 1 240px;
+                min-height: 50px;
+                padding: 6px 11px;
+            }
+            .tab-text h4 {
+                font-size: 12px;
+            }
+            .tab-text p {
+                font-size: 10px;
+            }
+            .tab-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+            }
+            .tab-btn {
+                font-size: 10px;
+                padding: 4px 9px;
+            }
         }
 
         @media (max-width: 768px) {
-            body { padding: 12px; }
-            .header { border-radius: 24px; padding: 16px; }
-            .header-brand img { width: 100px; }
-            .header-brand .brand-name h3 { font-size: 22px; }
-            .main-content { padding: 20px; }
-            .hero-actions { flex-direction: column; align-items: stretch; }
-            .share-dropdown { width: 100%; }
-            .share-btn { width: 100%; justify-content: center; }
-            .help-btn { width: 100%; }
-            .hero-tabs { flex-direction: row; flex-wrap: wrap; }
-            .tab-item { flex: 1 1 200px; min-width: 160px; flex-direction: column; text-align: center; gap: 12px; }
-            .tab-info { flex-direction: column; }
-            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
-            .footer-contact-compact { justify-content: center; }
-            .float-wa { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 14px; }
+            .header-hero {
+                padding: 12px 14px 0 14px;
+            }
+            .header-brand img {
+                width: 80px;
+                height: 70px;
+            }
+            .header-seu-logo {
+                width: 80px;
+                height: 70px;
+            }
 
+            .hero-top h1 {
+                font-size: 20px;
+            }
+
+            .hero-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tab-item {
+                flex: 1 1 auto;
+                max-width: 100%;
+                min-height: 48px;
+                padding: 6px 10px;
+                flex-direction: row;
+                text-align: right;
+            }
+            .tab-info {
+                flex-direction: row;
+                gap: 6px;
+            }
+            .tab-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .tab-text h4 {
+                font-size: 12px;
+            }
+            .tab-text p {
+                font-size: 9px;
+            }
+            .tab-btn {
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+
+            .subtabs-nav-wrapper {
+                width: calc(100% + 28px);
+                margin: 0 -14px 0 -14px;
+                padding: 10px 14px;
+            }
+            .subtabs-nav {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .subtab-btn {
+                width: 100%;
+                min-width: unset;
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+            .main-content {
+                padding: 18px 14px 24px;
+            }
             .service-card {
                 padding: 28px 18px 20px;
             }
@@ -757,37 +1005,120 @@
                 font-size: 0.85rem;
                 padding: 4px 12px;
             }
-            .btn-link, .btn-copy {
+            .btn-link,
+            .btn-copy {
                 padding: 8px 16px;
                 font-size: 0.85rem;
             }
             .arrow-gold {
                 font-size: 1.2rem;
             }
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 24px 20px;
+            }
+            .footer-contact-compact {
+                justify-content: center;
+            }
+            .float-wa {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            .email-row {
+                align-items: flex-start;
+            }
+            .email-row .btn-copy {
+                align-self: center;
+            }
+            .warning-card {
+                align-items: stretch;
+            }
+            .warning-card .btn-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-logos {
+                justify-content: space-between !important;
+            }
+            .header-brand {
+                order: 0 !important;
+            }
+            .header-seu-box {
+                order: 2 !important;
+            }
         }
 
         @media (max-width: 480px) {
-            .header-brand img { width: 80px; }
-            .header-brand .brand-name h3 { font-size: 18px; }
-            .header-brand .brand-name span { font-size: 11px; }
-            .hero-tabs { flex-direction: column; align-items: stretch; }
-            .tab-item { flex: 1 1 auto; max-width: 100%; flex-direction: row; text-align: right; }
-            .tab-info { flex-direction: row; }
-            .footer-brand-compact .brand-name h3 { font-size: 17px; }
-            .footer-phone { font-size: 15px; }
+            .header-hero {
+                padding: 8px 10px 0 10px;
+            }
+            .header-brand img,
+            .header-seu-logo {
+                width: 60px;
+                height: 54px;
+            }
+
+            .hero-top h1 {
+                font-size: 17px;
+            }
+
+            .tab-item {
+                padding: 5px 8px;
+                min-height: 42px;
+                gap: 5px;
+            }
+            .tab-info {
+                gap: 5px;
+            }
+            .tab-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
+            }
+            .tab-text h4 {
+                font-size: 11px;
+            }
+            .tab-text p {
+                font-size: 8px;
+            }
+            .tab-btn {
+                font-size: 9px;
+                padding: 2px 7px;
+            }
+            .tab-btn i {
+                font-size: 8px;
+            }
+
+            .subtabs-nav-wrapper {
+                width: calc(100% + 20px);
+                margin: 0 -10px 0 -10px;
+                padding: 8px 10px;
+            }
+            .subtab-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            .main-content {
+                padding: 14px 10px 18px;
+            }
             .card-number {
-                width: 38px;
-                height: 38px;
-                font-size: 1.1rem;
-                top: -18px;
-                right: 14px;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+                top: -17px;
+                right: 12px;
             }
             .card-header .card-icon {
-                font-size: 1.4rem;
-                width: 32px;
+                font-size: 1.3rem;
+                width: 28px;
             }
             .card-title {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             .card-actions {
                 flex-direction: column;
@@ -799,283 +1130,558 @@
             .arrow-gold {
                 display: none;
             }
-            .btn-link, .btn-copy {
+            .btn-link,
+            .btn-copy {
                 justify-content: center;
+            }
+            .footer-brand-compact .brand-name h3 {
+                font-size: 17px;
+            }
+            .footer-phone {
+                font-size: 14px;
+            }
+            .email-categories {
+                grid-template-columns: 1fr;
+            }
+            .withdrawal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-logos {
+                justify-content: space-between !important;
+                gap: 6px;
+            }
+            .header-brand {
+                order: 0 !important;
+            }
+            .header-seu-box {
+                order: 2 !important;
+            }
+            .share-row {
+                justify-content: flex-end;
+            }
+            .share-btn-gold {
+                padding: 4px 12px;
+                font-size: 12px;
             }
         }
 
-        ::selection { background: var(--gold); color: var(--bg-dark); }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-darker); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+        ::selection {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+
+        /* ===== أيقونات صغيرة للكليات ===== */
+        .college-icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            color: var(--gold);
+            font-size: 14px;
+            margin-left: 6px;
+        }
+        .college-divider {
+            border: 0;
+            border-top: 1.5px dashed #d0dae2;
+            margin: 10px 0 12px 0;
+        }
+
+        /* ===== تعديلات إضافية للتوافق ===== */
+        .share-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        /* في RTL، flex-end يضع العنصر في البداية (اليسار) */
+        /* نريد زر المشاركة في الجهة اليسرى، لذا نستخدم justify-content: flex-end */
+        /* ولكن في RTL، flex-end = left */
+        /* هذا يحقق المطلوب */
+        @media (max-width: 768px) {
+            .share-row {
+                justify-content: flex-end;
+            }
+        }
+        @media (max-width: 480px) {
+            .share-row {
+                justify-content: flex-end;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="page-wrapper">
+    <div class="page-wrapper">
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="header-brand">
-            <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
-            <div class="brand-name">
-                <h3>مُعين</h3>
-                <span>MOAEEN PLATFORM</span>
+        <!-- ===== HEADER + HERO مُدمجان ===== -->
+        <header class="header-hero">
+
+            <!-- صف الشعارات (معين في اليسار، الجامعة في اليمين) -->
+            <div class="header-logos">
+                <!-- شعار معين (أقصى اليسار) -->
+                <div class="header-brand">
+                    <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2224%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
+                    <!-- تم إزالة اسم الموقع والنص الإنجليزي -->
+                </div>
+
+                <!-- شعار الجامعة (أقصى اليمين) - تم إزالة كبسولة SEU -->
+                <div class="header-seu-box">
+                    <img class="header-seu-logo" src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2250%22 y=%2260%22 font-size=%2220%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'" />
+                </div>
             </div>
-        </div>
-    </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="hero-top">
-            <h1>
-                <i class="fa-solid fa-link"></i>
-                روابط مباشرة إلى صفحات الخدمات
-            </h1>
+            <!-- الخط الذهبي الفاصل (بدون زر) -->
+            <div class="gold-divider"></div>
 
-            <div class="hero-actions">
-                <div class="share-dropdown" id="shareDropdown">
-                    <button class="share-btn" id="shareToggle">
-                        <i class="fa-solid fa-share-nodes"></i>
-                        <span>مشاركة الصفحة</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
-                    </button>
-                    <div class="share-dropdown-content">
-                        <a href="https://api.whatsapp.com/send?text=روابط%20مباشرة%20إلى%20صفحات%20الخدمات%20-%20منصة%20معين%20https://example.com" target="_blank">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            مشاركة عبر واتساب
-                        </a>
-                        <a href="https://t.me/share/url?url=https://example.com&text=روابط%20مباشرة%20إلى%20صفحات%20الخدمات%20-%20منصة%20معين" target="_blank">
-                            <i class="fa-brands fa-telegram"></i>
-                            مشاركة عبر تليجرام
-                        </a>
+            <!-- محتوى الهيرو -->
+            <div class="hero-inner">
+
+                <div class="hero-top">
+                    <h1>
+                        <i class="fa-solid fa-link"></i>
+                        روابط مباشرة إلى صفحات الخدمات
+                    </h1>
+                </div>
+
+                <!-- تبويبات القروب والقناة (أشرطة مضغوطة) -->
+                <div class="hero-tabs">
+                    <div class="tab-item">
+                        <div class="tab-info">
+                            <div class="tab-icon"><i class="fas fa-users"></i></div>
+                            <div class="tab-text">
+                                <h4>قروب تجمع طلبة التحضيري</h4>
+                                <p>انضم إلى زملائك في السنة التحضيرية</p>
+                            </div>
+                        </div>
+                        <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+                    </div>
+                    <div class="tab-item">
+                        <div class="tab-info">
+                            <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                            <div class="tab-text">
+                                <h4>قناة أخبار و إعلامات التحضيري</h4>
+                                <p>آخر المستجدات والإعلانات الرسمية</p>
+                            </div>
+                        </div>
+                        <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
                     </div>
                 </div>
 
-                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
-                    <span class="main-text">للمساعدة والإستفسار</span>
-                    <span class="sub-text">تواصل مع فريق مُعين</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="hero-tabs">
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-users"></i></div>
-                    <div class="tab-text">
-                        <h4>قروب تجمع طلبة التحضيري</h4>
-                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+                <!-- شريط التبويبات الرمادي + زر المشاركة في أعلاه -->
+                <div class="subtabs-nav-wrapper">
+                    <!-- صف زر المشاركة (فوق التبويبات) -->
+                    <div class="share-row">
+                        <div class="share-dropdown-on-gold" id="shareDropdownGold">
+                            <button class="share-btn-gold" id="shareToggleGold">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                <span>مشاركة</span>
+                                <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+                            </button>
+                            <div class="share-dropdown-content-gold">
+                                <a href="https://api.whatsapp.com/send?text=روابط%20مباشرة%20إلى%20صفحات%20الخدمات%20-%20منصة%20معين%20https://example.com" target="_blank" rel="noopener">
+                                    <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
+                                </a>
+                                <a href="https://t.me/share/url?url=https://example.com&text=روابط%20مباشرة%20إلى%20صفحات%20الخدمات%20-%20منصة%20معين" target="_blank" rel="noopener">
+                                    <i class="fa-brands fa-telegram"></i> مشاركة عبر تليجرام
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
+                    <nav class="subtabs-nav" aria-label="تبويبات روابط الخدمات">
+                        <button class="subtab-btn active" type="button" data-subtab="direct-links">روابط مباشرة إلى صفحات الخدمات</button>
+                        <button class="subtab-btn" type="button" data-subtab="university-emails">إيميلات الجامعة</button>
+                        <button class="subtab-btn" type="button" data-subtab="withdrawal-links">روابط تحتاجها بعد الإنسحاب</button>
+                    </nav>
                 </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
-            </div>
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
-                    <div class="tab-text">
-                        <h4>قناة أخبار و إعلامات التحضيري</h4>
-                        <p>آخر المستجدات والإعلانات الرسمية</p>
+
+            </div><!-- /hero-inner -->
+        </header>
+
+        <!-- ===== المحتوى الرئيسي ===== -->
+        <div class="main-content">
+
+            <!-- ===== التبويب 1: روابط مباشرة ===== -->
+            <section class="subtab-panel active" id="subtab-direct-links">
+                <div class="cards-grid">
+
+                    <!-- البطاقة 1 -->
+                    <div class="service-card">
+                        <div class="card-number">1</div>
+                        <div class="card-header">
+                            <i class="fa-solid fa-calendar-days card-icon"></i>
+                            <h2 class="card-title">رابط صفحة عرض الجدول الدراسي</h2>
+                        </div>
+                        <div class="card-desc">
+                            بعد الدخول على الرابط وتسجيل الدخول :
+                            <ul class="step-list">
+                                <li>من خانة الفصل الدراسي <span class="icon-down">🔻</span> حدد الفصل <span class="highlight">_term</span> الحالي</li>
+                                <li>واستعرض الجدول بالضغط على خيار <span class="highlight">تفاصيل الجدول</span></li>
+                            </ul>
+                        </div>
+                        <div class="card-actions">
+                            <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
+                            <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
+                            <a href="https://bannservices.seu.edu.sa/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory" target="_blank" class="btn-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
+                            </a>
+                            <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory">
+                                <i class="fa-regular fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
                     </div>
+
+                    <!-- البطاقة 2 -->
+                    <div class="service-card">
+                        <div class="card-number">2</div>
+                        <div class="card-header">
+                            <i class="fa-solid fa-clipboard-check card-icon"></i>
+                            <h2 class="card-title">رابط صفحة عرض الحضور والغيابات</h2>
+                        </div>
+                        <div class="card-desc">
+                            بعد الدخول على الرابط وتسجيل الدخول <span style="color:#28a745;">✔️</span> سيفتح معك قائمة <span class="highlight">تتبع الحضور والغياب</span> 》قائمة المقررات.
+                        </div>
+                        <div class="card-actions">
+                            <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
+                            <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
+                            <a href="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /" target="_blank" class="btn-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
+                            </a>
+                            <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /">
+                                <i class="fa-regular fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- البطاقة 3 -->
+                    <div class="service-card">
+                        <div class="card-number">3</div>
+                        <div class="card-header">
+                            <i class="fa-solid fa-star card-icon"></i>
+                            <h2 class="card-title">رابط صفحة عرض التقديرات</h2>
+                        </div>
+                        <div class="card-desc">
+                            بعد الدخول على الرابط وتسجيل الدخول <span style="color:#28a745;">✔️</span> سيفتح معك صفحة درجات الطالب :
+                            <ul class="step-list">
+                                <li>"اختر الفصل الدراسي" <span class="icon-down">🔻</span> حدد الفصل الدراسي الذي تريده او اختر كل الفصول الدراسية.</li>
+                                <li>"إختيار المرحلة" <span class="icon-down">🔻</span> حدد خيار <span class="highlight">Undergraduate</span>.</li>
+                            </ul>
+                        </div>
+                        <div class="card-actions">
+                            <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
+                            <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
+                            <a href="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /" target="_blank" class="btn-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
+                            </a>
+                            <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /">
+                                <i class="fa-regular fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- البطاقة 4 -->
+                    <div class="service-card">
+                        <div class="card-number">4</div>
+                        <div class="card-header">
+                            <i class="fa-solid fa-server card-icon"></i>
+                            <h2 class="card-title">رابط صفحة الخدمات الإلكترونية</h2>
+                        </div>
+                        <div class="card-desc">
+                            بعد الدخول على الرابط وتسجيل الدخول <span style="color:#28a745;">✔️</span> سيفتح معك صفحة الخدمات الطلابية.
+                        </div>
+                        <div class="card-actions">
+                            <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
+                            <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
+                            <a href="https://eservice.seu.edu.sa/services/center/" target="_blank" class="btn-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
+                            </a>
+                            <button class="btn-copy" data-url="https://eservice.seu.edu.sa/services/center/">
+                                <i class="fa-regular fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+            </section>
+
+            <!-- ===== التبويب 2: إيميلات الجامعة ===== -->
+            <section class="subtab-panel" id="subtab-university-emails">
+                <div class="service-card" style="margin-bottom:24px; border-top-color:var(--primary-color);">
+                    <div class="card-header"><i class="fa-solid fa-envelope-open-text card-icon"></i><h2 class="card-title">إيميلات الجامعة</h2></div>
+                    <div class="card-desc">إيميلات الجامعة مهمة جداً؛ احتفظوا بها فقد تحتاجونها في التحضيري أو التخصص.</div>
+                </div>
+                <div class="email-categories">
+
+                    <!-- 1. العمادات -->
+                    <article class="service-card email-category-card">
+                        <div class="card-header"><i class="fa-solid fa-building-columns card-icon"></i><h2 class="card-title">العمادات</h2></div>
+                        <div class="card-desc">إيميلات القبول والتسجيل والسنة التحضيرية والعمادات الأكاديمية.</div>
+                        <div class="email-list">
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عمادة القبول وشؤون الطلاب — القبول</span><a href="mailto:Admissions@seu.edu.sa">Admissions@seu.edu.sa</a></div><button class="btn-copy" data-url="Admissions@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">قسم التسجيل</span><a href="mailto:Registration@seu.edu.sa">Registration@seu.edu.sa</a></div><button class="btn-copy" data-url="Registration@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الخريجين</span><a href="mailto:graduation@seu.edu.sa">graduation@seu.edu.sa</a></div><button class="btn-copy" data-url="graduation@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الأنشطة الطلابية</span><a href="mailto:S.affairs@seu.edu.sa">S.affairs@seu.edu.sa</a></div><button class="btn-copy" data-url="S.affairs@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عمادة السنة التحضيرية</span><a href="mailto:pyc@seu.edu.sa">pyc@seu.edu.sa</a></div><button class="btn-copy" data-url="pyc@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطالبات</span><a href="mailto:py_female@seu.edu.sa">py_female@seu.edu.sa</a></div><button class="btn-copy" data-url="py_female@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">معادلة اللغة الإنجليزية</span><a href="mailto:epw@seu.edu.sa">epw@seu.edu.sa</a></div><button class="btn-copy" data-url="epw@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عمادة الدراسات العليا</span><a href="mailto:dgs@seu.edu.sa">dgs@seu.edu.sa</a></div><button class="btn-copy" data-url="dgs@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عمادة البحث العلمي</span><a href="mailto:dsr@seu.edu.sa">dsr@seu.edu.sa</a></div><button class="btn-copy" data-url="dsr@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عمادة تقنية المعلومات</span><a href="mailto:itdean@seu.edu.sa">itdean@seu.edu.sa</a></div><button class="btn-copy" data-url="itdean@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">معهد البحوث</span><a href="mailto:rc@seu.edu.sa">rc@seu.edu.sa</a></div><button class="btn-copy" data-url="rc@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                        </div>
+                    </article>
+
+                    <!-- 2. الإدارات -->
+                    <article class="service-card email-category-card">
+                        <div class="card-header"><i class="fa-solid fa-gears card-icon"></i><h2 class="card-title">الإدارات</h2></div>
+                        <div class="card-desc">قنوات التواصل مع الإدارات والخدمات المركزية.</div>
+                        <div class="email-list">
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الإدارة المالية</span><a href="mailto:afd@seu.edu.sa">afd@seu.edu.sa</a></div><button class="btn-copy" data-url="afd@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">إدارة المصادر المعرفية</span><a href="mailto:dl@seu.edu.sa">dl@seu.edu.sa</a></div><button class="btn-copy" data-url="dl@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الرد المباشر</span><a href="mailto:care@seu.edu.sa">care@seu.edu.sa</a></div><button class="btn-copy" data-url="care@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">نظام البانر</span><a href="mailto:bs@seu.edu.sa">bs@seu.edu.sa</a></div><button class="btn-copy" data-url="bs@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                        </div>
+                    </article>
+
+                    <!-- 3. الكليات (مع فواصل وأيقونات) -->
+                    <article class="service-card email-category-card">
+                        <div class="card-header"><i class="fa-solid fa-school card-icon"></i><h2 class="card-title">الكليات</h2></div>
+                        <div class="card-desc">إيميلات الكليات وشؤون الطلاب والبرامج الأكاديمية.</div>
+                        <div class="email-list">
+
+                            <!-- كلية العلوم الإدارية والمالية -->
+                            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                                <i class="fa-solid fa-building-columns college-icon"></i>
+                                <span style="font-weight:700;color:var(--primary-color);font-size:14px;">كلية العلوم الإدارية والمالية</span>
+                            </div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الكلية</span><a href="mailto:caf@seu.edu.sa">caf@seu.edu.sa</a></div><button class="btn-copy" data-url="caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطلاب</span><a href="mailto:caf.msa@seu.edu.sa">caf.msa@seu.edu.sa</a></div><button class="btn-copy" data-url="caf.msa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطالبات</span><a href="mailto:caf.fsa@seu.edu.sa">caf.fsa@seu.edu.sa</a></div><button class="btn-copy" data-url="caf.fsa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">قسم التجارة الإلكترونية</span><a href="mailto:ecom-dep-caf@seu.edu.sa">ecom-dep-caf@seu.edu.sa</a></div><button class="btn-copy" data-url="ecom-dep-caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">إدارة الأعمال</span><a href="mailto:mgt-dep-caf@seu.edu.sa">mgt-dep-caf@seu.edu.sa</a></div><button class="btn-copy" data-url="mgt-dep-caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">المحاسبة</span><a href="mailto:acc-dep-caf@seu.edu.sa">acc-dep-caf@seu.edu.sa</a></div><button class="btn-copy" data-url="acc-dep-caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الإدارة المالية والاقتصاد</span><a href="mailto:fin-dep-caf@seu.edu.sa">fin-dep-caf@seu.edu.sa</a></div><button class="btn-copy" data-url="fin-dep-caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الماجستير</span><a href="mailto:mba-caf@seu.edu.sa">mba-caf@seu.edu.sa</a></div><button class="btn-copy" data-url="mba-caf@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">التدريب التعاوني</span><a href="mailto:caf.coop@seu.edu.sa">caf.coop@seu.edu.sa</a></div><button class="btn-copy" data-url="caf.coop@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الخريجين</span><a href="mailto:caf-alumni@seu.edu.sa">caf-alumni@seu.edu.sa</a></div><button class="btn-copy" data-url="caf-alumni@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+
+                            <hr class="college-divider" />
+
+                            <!-- كلية الحوسبة والمعلوماتية -->
+                            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                                <i class="fa-solid fa-laptop-code college-icon"></i>
+                                <span style="font-weight:700;color:var(--primary-color);font-size:14px;">كلية الحوسبة والمعلوماتية</span>
+                            </div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الكلية</span><a href="mailto:cci@seu.edu.sa">cci@seu.edu.sa</a></div><button class="btn-copy" data-url="cci@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطلاب</span><a href="mailto:cci.msa@seu.edu.sa">cci.msa@seu.edu.sa</a></div><button class="btn-copy" data-url="cci.msa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطالبات</span><a href="mailto:cci.fsa@seu.edu.sa">cci.fsa@seu.edu.sa</a></div><button class="btn-copy" data-url="cci.fsa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">التدريب الصيفي</span><a href="mailto:cci.spt@seu.edu.sa">cci.spt@seu.edu.sa</a></div><button class="btn-copy" data-url="cci.spt@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+
+                            <hr class="college-divider" />
+
+                            <!-- كلية العلوم الصحية -->
+                            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                                <i class="fa-solid fa-heart-pulse college-icon"></i>
+                                <span style="font-weight:700;color:var(--primary-color);font-size:14px;">كلية العلوم الصحية</span>
+                            </div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الكلية</span><a href="mailto:chs@seu.edu.sa">chs@seu.edu.sa</a></div><button class="btn-copy" data-url="chs@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطلاب</span><a href="mailto:chs.msa@seu.edu.sa">chs.msa@seu.edu.sa</a></div><button class="btn-copy" data-url="chs.msa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">شؤون الطالبات</span><a href="mailto:chs.fsa@seu.edu.sa">chs.fsa@seu.edu.sa</a></div><button class="btn-copy" data-url="chs.fsa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">برنامج الماجستير</span><a href="mailto:chs.gsa@seu.edu.sa">chs.gsa@seu.edu.sa</a></div><button class="btn-copy" data-url="chs.gsa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+
+                            <hr class="college-divider" />
+
+                            <!-- كلية العلوم والدراسات النظرية -->
+                            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                                <i class="fa-solid fa-flask college-icon"></i>
+                                <span style="font-weight:700;color:var(--primary-color);font-size:14px;">كلية العلوم والدراسات النظرية</span>
+                            </div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الكلية</span><a href="mailto:sac@seu.edu.sa">sac@seu.edu.sa</a></div><button class="btn-copy" data-url="sac@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                        </div>
+                    </article>
+
+                    <!-- 4. إدارة الكلية : العلوم والدراسات النظرية -->
+                    <article class="service-card email-category-card">
+                        <div class="card-header"><i class="fa-solid fa-address-card card-icon"></i><h2 class="card-title">إدارة الكلية : العلوم والدراسات النظرية</h2></div>
+                        <div class="card-desc">بيانات التواصل الإدارية والأكاديمية لكلية العلوم والدراسات النظرية.</div>
+                        <div class="email-list">
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">عميد الكلية المكلّف — د. شروق المغلوث</span><a href="mailto:Sa.almaghlouth@seu.edu.sa">Sa.almaghlouth@seu.edu.sa</a></div><button class="btn-copy" data-url="Sa.almaghlouth@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">رئيس قسم الإعلام — د. عمر الشايع</span><a href="mailto:o.alshaya@seu.edu.sa">o.alshaya@seu.edu.sa</a></div><button class="btn-copy" data-url="o.alshaya@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">وكيل الكلية للشؤون التعليمية — د. ريهام الأحمدي</span><a href="mailto:r.alhmadi@seu.edu.sa">r.alhmadi@seu.edu.sa</a></div><button class="btn-copy" data-url="r.alhmadi@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">رئيس قسم العلوم الإنسانية — د. سعود العصيمي</span><a href="mailto:s.alosimi@seu.edu.sa">s.alosimi@seu.edu.sa</a></div><button class="btn-copy" data-url="s.alosimi@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                        </div>
+                    </article>
+
+                    <!-- 5. بقية البطاقات : إدارة الجامعة -->
+                    <article class="service-card email-category-card">
+                        <div class="card-header"><i class="fa-solid fa-university card-icon"></i><h2 class="card-title">إدارة الجامعة</h2></div>
+                        <div class="card-desc">مكاتب الإدارة العليا ووكالات الجامعة.</div>
+                        <div class="email-list">
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">مكتب مدير الجامعة</span><a href="mailto:presidentoffice@seu.edu.sa">presidentoffice@seu.edu.sa</a></div><button class="btn-copy" data-url="presidentoffice@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">مكتب وكيل الجامعة</span><a href="mailto:aaa@seu.edu.sa">aaa@seu.edu.sa</a></div><button class="btn-copy" data-url="aaa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">الشؤون التعليمية</span><a href="mailto:aa@seu.edu.sa">aa@seu.edu.sa</a></div><button class="btn-copy" data-url="aa@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                            <div class="email-row"><div class="email-row-info"><span class="email-row-label">المشرفة العامة على أقسام الطالبات</span><a href="mailto:GSO@seu.edu.sa">GSO@seu.edu.sa</a></div><button class="btn-copy" data-url="GSO@seu.edu.sa"><i class="fa-regular fa-copy"></i> نسخ</button></div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ===== التبويب 3: روابط تحتاجها بعد الإنسحاب ===== -->
+            <section class="subtab-panel" id="subtab-withdrawal-links">
+
+                <!-- تنبيه -->
+                <div class="warning-card">
+                    <div class="warning-card-content">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div>
+                            <h3>تنبيه مهم للطلبة المطوي قيدهم أو المنسحبين</h3>
+                            <p>روابط الخدمات التالية خاصة فقط للطلبة المطوي قيدهم أو المنسحبين ومن عليهم مستحقات.</p>
+                        </div>
+                    </div>
+                    <a class="btn-link" href="https://seu.edu.sa/ar/deanships/admission-and-registration-deanship/students-e-services/" target="_blank" rel="noopener"><i class="fa-solid fa-building-columns"></i> اذهب لمصدر الجامعة</a>
+                </div>
+
+                <div class="withdrawal-grid">
+                    <!-- خدمة إخلاء طرف -->
+                    <article class="service-card withdrawal-card">
+                        <div class="card-header"><i class="fa-solid fa-file-circle-check card-icon"></i><h2 class="card-title">خدمة إخلاء طرف</h2></div>
+                        <div class="card-desc">تحتاجها بعد الانسحاب أو طي القيد لإخلاء طرفك من الجامعة.</div>
+                        <span class="resource-url">https://apps.seu.edu.sa/eservices/dis_print/disc/get_disc</span>
+                        <div class="resource-actions">
+                            <a class="btn-link" href="https://apps.seu.edu.sa/eservices/dis_print/disc/get_disc" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح الخدمة</a>
+                            <button class="btn-copy" data-url="https://apps.seu.edu.sa/eservices/dis_print/disc/get_disc"><i class="fa-regular fa-copy"></i> نسخ الرابط</button>
+                        </div>
+                    </article>
+
+                    <!-- خدمة سداد الرسوم -->
+                    <article class="service-card withdrawal-card">
+                        <div class="card-header"><i class="fa-solid fa-money-bill-wave card-icon"></i><h2 class="card-title">خدمة سداد الرسوم الدراسية</h2></div>
+                        <p class="danger-note">فقط للطلاب المطوي قيدهم / المنسحبين وعليهم رسوم.</p>
+                        <div class="card-desc">تحقق من الرسوم المستحقة وأكمل إجراءات السداد من خلال الخدمة الرسمية.</div>
+                        <span class="resource-url">https://apps.seu.edu.sa/fees/is/check</span>
+                        <div class="resource-actions">
+                            <a class="btn-link" href="https://apps.seu.edu.sa/fees/is/check" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح الخدمة</a>
+                            <button class="btn-copy" data-url="https://apps.seu.edu.sa/fees/is/check"><i class="fa-regular fa-copy"></i> نسخ الرابط</button>
+                        </div>
+                    </article>
+                </div>
+
+            </section>
+
+        </div><!-- /main-content -->
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="footer-brand-compact">
+                <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%23D4AF37%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
+                <div class="brand-name">
+                    <h3>منصة معين التعليمية</h3>
+                    <span>MOAEEN PLATFORM</span>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== المحتوى الرئيسي ===== -->
-    <div class="main-content">
-
-        <div class="cards-grid">
-
-            <!-- ===== البطاقة 1: عرض الجدول الدراسي ===== -->
-            <div class="service-card">
-                <div class="card-number">1</div>
-                <div class="card-header">
-                    <i class="fa-solid fa-calendar-days card-icon"></i>
-                    <h2 class="card-title">رابط صفحة عرض الجدول الدراسي</h2>
+            <div class="footer-contact-compact">
+                <div class="footer-phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+966 53 600 4199</span>
                 </div>
-                <div class="card-desc">
-                    بعد الدخول على الرابط وتسجيل الدخول :
-                    <ul class="step-list">
-                        <li>من خانة الفصل الدراسي <span class="icon-down">🔻</span> حدد الفصل <span class="highlight">_term</span> الحالي</li>
-                        <li>واستعرض الجدول بالضغط على خيار <span class="highlight">تفاصيل الجدول</span></li>
-                    </ul>
-                </div>
-                <div class="card-actions">
-                    <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
-                    <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
-                    <a href="https://bannservices.seu.edu.sa/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory" target="_blank" class="btn-link">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
-                    </a>
-                    <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory">
-                        <i class="fa-regular fa-copy"></i> نسخ الرابط
-                    </button>
+                <div class="footer-social-compact">
+                    <a href="#" class="x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" class="snapchat" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
                 </div>
             </div>
+        </footer>
 
-            <!-- ===== البطاقة 2: عرض الحضور والغيابات ===== -->
-            <div class="service-card">
-                <div class="card-number">2</div>
-                <div class="card-header">
-                    <i class="fa-solid fa-clipboard-check card-icon"></i>
-                    <h2 class="card-title">رابط صفحة عرض الحضور والغيابات</h2>
-                </div>
-                <div class="card-desc">
-                    بعد الدخول على الرابط وتسجيل الدخول <span style="color: #28a745;">✔️</span> سيفتح معك قائمة <span class="highlight">تتبع الحضور والغياب</span> 》قائمة المقررات.
-                </div>
-                <div class="card-actions">
-                    <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
-                    <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
-                    <a href="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /" target="_blank" class="btn-link">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
-                    </a>
-                    <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /">
-                        <i class="fa-regular fa-copy"></i> نسخ الرابط
-                    </button>
-                </div>
-            </div>
+        <!-- ===== Floating WhatsApp ===== -->
+        <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>تواصل معنا</span>
+        </a>
 
-            <!-- ===== البطاقة 3: عرض التقديرات ===== -->
-            <div class="service-card">
-                <div class="card-number">3</div>
-                <div class="card-header">
-                    <i class="fa-solid fa-star card-icon"></i>
-                    <h2 class="card-title">رابط صفحة عرض التقديرات</h2>
-                </div>
-                <div class="card-desc">
-                    بعد الدخول على الرابط وتسجيل الدخول <span style="color: #28a745;">✔️</span> سيفتح معك صفحة درجات الطالب :
-                    <ul class="step-list">
-                        <li>"اختر الفصل الدراسي" <span class="icon-down">🔻</span> حدد الفصل الدراسي الذي تريده او اختر كل الفصول الدراسية.</li>
-                        <li>"إختيار المرحلة" <span class="icon-down">🔻</span> حدد خيار <span class="highlight">Undergraduate</span>.</li>
-                    </ul>
-                </div>
-                <div class="card-actions">
-                    <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
-                    <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
-                    <a href="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /" target="_blank" class="btn-link">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
-                    </a>
-                    <button class="btn-copy" data-url="https://bannservices.seu.edu.sa/StudentSelfService/ssb/studentAttendanceTracking#! /">
-                        <i class="fa-regular fa-copy"></i> نسخ الرابط
-                    </button>
-                </div>
-            </div>
+    </div><!-- /page-wrapper -->
 
-            <!-- ===== البطاقة 4: صفحة الخدمات الإلكترونية ===== -->
-            <div class="service-card">
-                <div class="card-number">4</div>
-                <div class="card-header">
-                    <i class="fa-solid fa-server card-icon"></i>
-                    <h2 class="card-title">رابط صفحة الخدمات الإلكترونية</h2>
-                </div>
-                <div class="card-desc">
-                    بعد الدخول على الرابط وتسجيل الدخول <span style="color: #28a745;">✔️</span> سيفتح معك صفحة الخدمات الطلابية.
-                </div>
-                <div class="card-actions">
-                    <span class="click-indicator"><i class="fa-solid fa-hand-pointer"></i> اضغط هنا</span>
-                    <span class="arrow-gold"><i class="fa-solid fa-arrow-left"></i></span>
-                    <a href="https://eservice.seu.edu.sa/services/center/" target="_blank" class="btn-link">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح رابط الصفحة
-                    </a>
-                    <button class="btn-copy" data-url="https://eservice.seu.edu.sa/services/center/">
-                        <i class="fa-regular fa-copy"></i> نسخ الرابط
-                    </button>
-                </div>
-            </div>
+    <!-- ===== Script ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-        </div>
+            // ===== القائمة المنسدلة للمشاركة =====
+            const shareToggleGold = document.getElementById('shareToggleGold');
+            const shareDropdownGold = document.getElementById('shareDropdownGold');
+            if (shareToggleGold && shareDropdownGold) {
+                shareToggleGold.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    shareDropdownGold.classList.toggle('share-dropdown-gold-active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!shareDropdownGold.contains(e.target)) {
+                        shareDropdownGold.classList.remove('share-dropdown-gold-active');
+                    }
+                });
+            }
 
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="footer-brand-compact">
-            <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" />
-            <div class="brand-name">
-                <h3>منصة معين التعليمية</h3>
-                <span>MOAEEN PLATFORM</span>
-            </div>
-        </div>
-        <div class="footer-contact-compact">
-            <div class="footer-phone">
-                <i class="fas fa-phone-alt"></i>
-                <span>+966 53 600 4199</span>
-            </div>
-            <div class="footer-social-compact">
-                <a href="#" class="x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                <a href="#" class="snapchat" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ===== Floating WhatsApp ===== -->
-    <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        <span>تواصل معنا</span>
-    </a>
-
-</div>
-
-<!-- ===== Script ===== -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // ===== القائمة المنسدلة للمشاركة =====
-        const shareToggle = document.getElementById('shareToggle');
-        const shareDropdown = document.getElementById('shareDropdown');
-
-        if (shareToggle && shareDropdown) {
-            shareToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                shareDropdown.classList.toggle('active');
+            // ===== زر نسخ الرابط =====
+            const copyButtons = document.querySelectorAll('.btn-copy');
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const url = this.getAttribute('data-url');
+                    if (url) {
+                        navigator.clipboard.writeText(url).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
+                            this.classList.add('copied');
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('copied');
+                            }, 2000);
+                        }).catch(() => {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = url;
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
+                            this.classList.add('copied');
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('copied');
+                            }, 2000);
+                        });
+                    }
+                });
             });
 
-            document.addEventListener('click', function(e) {
-                if (!shareDropdown.contains(e.target)) {
-                    shareDropdown.classList.remove('active');
-                }
+            // ===== التبويبات الفرعية =====
+            const subtabButtons = document.querySelectorAll('.subtab-btn');
+            const subtabPanels = document.querySelectorAll('.subtab-panel');
+            subtabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.getAttribute('data-subtab');
+                    subtabButtons.forEach(item => item.classList.toggle('active', item === this));
+                    subtabPanels.forEach(panel => panel.classList.toggle('active', panel.id === 'subtab-' +
+                        target));
+                });
             });
-        }
 
-        // ===== زر نسخ الرابط =====
-        const copyButtons = document.querySelectorAll('.btn-copy');
-
-        copyButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    navigator.clipboard.writeText(url).then(() => {
-                        const originalText = this.innerHTML;
-                        this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
-                        this.classList.add('copied');
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.classList.remove('copied');
-                        }, 2000);
-                    }).catch(err => {
-                        // طريقة بديلة للنسخ
-                        const textArea = document.createElement('textarea');
-                        textArea.value = url;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        const originalText = this.innerHTML;
-                        this.innerHTML = '<i class="fa-regular fa-check"></i> تم النسخ';
-                        this.classList.add('copied');
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            this.classList.remove('copied');
-                        }, 2000);
-                    });
-                }
-            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>
