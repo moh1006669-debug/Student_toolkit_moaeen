@@ -411,6 +411,26 @@ body { align-items: stretch; background: var(--bg-section); }
 .header .tool-title-text {
   text-align: right;
 }
+
+/* ===== SEMESTER GPA RATING: RESULT ONLY ===== */
+.gpa-rating { display: inline-block; margin-right: 8px; color: var(--btn-bg); font-size: 13px; font-weight: 800; }
+
+/* ===== HIJRI DATE PICKER: DATE CONVERTER ONLY ===== */
+#dcInput[hidden], #dcHijriPicker[hidden] { display: none !important; }
+.hijri-picker-trigger { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; text-align: right; }
+.hijri-picker-trigger .hijri-picker-value { color: #9ca3af; font-size: 14px; }
+.hijri-picker-trigger.has-value .hijri-picker-value { color: #1e293b; }
+.hijri-picker-trigger i { color: var(--btn-bg); font-size: 16px; flex-shrink: 0; }
+.hijri-dialog { width: min(430px, calc(100% - 32px)); border: 0; border-radius: var(--radius-card); padding: 0; background: var(--white); color: var(--title-color); box-shadow: 0 20px 60px rgba(0,0,0,0.28); }
+.hijri-dialog::backdrop { background: rgba(1,39,39,0.48); backdrop-filter: blur(2px); }
+.hijri-dialog-inner { padding: 20px; }
+.hijri-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px dashed var(--gold); }
+.hijri-dialog-header h4 { color: var(--title-color); font-size: 16px; font-weight: 800; }
+.hijri-dialog-header i { color: var(--gold-dark); }
+.hijri-dialog-fields { display: grid; grid-template-columns: minmax(0,0.8fr) minmax(0,1.5fr) minmax(0,1fr); gap: 8px; }
+.hijri-dialog-fields .field-label { font-size: 12px; }
+.hijri-dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+@media (max-width: 480px) { .hijri-dialog-fields { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -504,7 +524,7 @@ body { align-items: stretch; background: var(--bg-section); }
             <div class="result-box result-primary">
               <div class="result-label"><i class="fas fa-award"></i> المعدل الفصلي</div>
               <p class="result-value" id="sgGpa">0.00</p>
-              <p class="result-sub">من 4.00</p>
+              <p class="result-sub">من 4.00 <span id="sgGpaRating" class="gpa-rating">—</span></p>
             </div>
             <div class="result-box result-secondary">
               <div class="result-label"><i class="fas fa-book"></i> إجمالي الساعات</div>
@@ -604,8 +624,24 @@ body { align-items: stretch; background: var(--bg-section); }
       <div class="form-section-title"><i class="fas fa-calendar-check"></i> اختيار التاريخ من التقويم</div>
           <div class="field">
             <label class="field-label" id="dcInputLabel">التاريخ الميلادي</label>
-            <input type="date" id="dcInput" class="input date-picker-input" dir="ltr" inputmode="none" autocomplete="off" aria-label="اختر التاريخ من التقويم">
-            <span class="field-hint" id="dcHint">اضغط على خانة التاريخ لفتح التقويم واختيار التاريخ</span>
+            <input type="date" id="dcInput" class="input date-picker-input" dir="ltr" inputmode="none" autocomplete="off" aria-label="اختر التاريخ الميلادي من التقويم">
+            <input type="hidden" id="dcHijriValue" value="">
+            <button type="button" id="dcHijriPicker" class="input hijri-picker-trigger" hidden aria-haspopup="dialog" aria-controls="dcHijriDialog">
+              <span class="hijri-picker-value" id="dcHijriDisplay">اضغط لاختيار التاريخ الهجري</span>
+              <i class="fas fa-calendar-days"></i>
+            </button>
+            <span class="field-hint" id="dcHint">اضغط على خانة التاريخ لفتح التقويم واختيار التاريخ الميلادي</span>
+            <dialog id="dcHijriDialog" class="hijri-dialog" aria-labelledby="dcHijriDialogTitle">
+              <div class="hijri-dialog-inner">
+                <div class="hijri-dialog-header"><h4 id="dcHijriDialogTitle">اختيار التاريخ الهجري</h4><i class="fas fa-moon"></i></div>
+                <div class="hijri-dialog-fields">
+                  <div class="field"><label class="field-label" for="dcHijriDay">اليوم</label><select id="dcHijriDay" class="input"></select></div>
+                  <div class="field"><label class="field-label" for="dcHijriMonth">الشهر</label><select id="dcHijriMonth" class="input"></select></div>
+                  <div class="field"><label class="field-label" for="dcHijriYear">السنة</label><select id="dcHijriYear" class="input"></select></div>
+                </div>
+                <div class="hijri-dialog-actions"><button type="button" class="btn btn-ghost btn-sm" id="dcHijriCancel">إلغاء</button><button type="button" class="btn btn-primary btn-sm" id="dcHijriApply"><i class="fas fa-check"></i> اختيار التاريخ</button></div>
+              </div>
+            </dialog>
           </div>
           <button class="btn btn-primary btn-block btn-sm" id="dcConvertBtn" style="margin-top:12px;"><i class="fas fa-arrows-left-right"></i> تحويل</button>
         </div>
@@ -807,14 +843,27 @@ $$('.tab-btn').forEach(function(btn){
 
 /* ===== GRADE DATA (SEU scale) ===== */
 var GRADES={"A+":4.0,"A":4.0,"A-":3.75,"B+":3.5,"B":3.0,"B-":2.75,"C+":2.5,"C":2.0,"C-":1.75,"D+":1.5,"D":1.0,"F":0};
+var SEMESTER_GRADES={"A+":4.0,"A":3.75,"B+":3.5,"B":3.0,"C+":2.5,"C":2.0,"D+":1.5,"D":1.0,"F":0};
 var GRADE_LABELS={"A+":"ممتاز","A":"ممتاز","A-":"ممتاز جداً","B+":"جيد جداً","B":"جيد","B-":"جيد","C+":"مقبول","C":"مقبول","C-":"مقبول ضعيف","D+":"ضعيف","D":"ضعيف جداً","F":"راسب"};
 function gpaColorClass(g){if(g>=3.5)return 'gpa-excellent';if(g>=2.5)return 'gpa-good';if(g>=1.5)return 'gpa-weak';return 'gpa-fail';}
+function semesterGpaArabicRating(g){
+  if(g>=4.0)return 'ممتاز مرتفع';
+  if(g>=3.75)return 'ممتاز';
+  if(g>=3.5)return 'جيد جدًا مرتفع';
+  if(g>=3.0)return 'جيد جدًا';
+  if(g>=2.5)return 'جيد مرتفع';
+  if(g>=2.0)return 'جيد';
+  if(g>=1.5)return 'مقبول مرتفع';
+  if(g>=1.0)return 'مقبول';
+  return 'راسب';
+}
 
 /* ===== TOOL 1a: SEMESTER GPA ===== */
 var SG_KEY='semester-gpa-courses';
 var sgCourses=[];
 try{sgCourses=JSON.parse(localStorage.getItem(SG_KEY))||[];}catch(e){}
 if(sgCourses.length===0)sgCourses=[{id:1,name:'',grade:'',hours:''}];
+sgCourses.forEach(function(c){if(c.grade&&!Object.prototype.hasOwnProperty.call(SEMESTER_GRADES,c.grade))c.grade='';});
 
 function sgSave(){localStorage.setItem(SG_KEY,JSON.stringify(sgCourses));}
 function sgRender(){
@@ -824,7 +873,7 @@ function sgRender(){
     row.className='course-row';
     row.innerHTML='<input type="text" class="input course-name-input" placeholder="اسم المقرر" value="'+esc(c.name)+'" data-idx="'+i+'" data-field="name">'+
       '<select class="input grade-select" data-idx="'+i+'" data-field="grade"><option value="">التقدير</option>'+
-      Object.keys(GRADES).map(function(g){return '<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+g+'</option>';}).join('')+
+      Object.keys(SEMESTER_GRADES).map(function(g){return '<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+g+'</option>';}).join('')+
       '</select>'+
       '<input type="number" class="input hours-input" placeholder="ساعات" min="0" max="10" value="'+esc(c.hours)+'" data-idx="'+i+'" data-field="hours">'+
       '<button class="btn btn-ghost btn-icon sg-del" data-idx="'+i+'"'+(sgCourses.length<=1?' disabled':'')+'><i class="fas fa-trash"></i></button>';
@@ -848,16 +897,18 @@ function sgRender(){
 function sgCalc(){
   var tp=0,tc=0;
   sgCourses.forEach(function(c){
-    var g=GRADES[c.grade],h=parseFloat(c.hours);
+    var g=SEMESTER_GRADES[c.grade],h=parseFloat(c.hours);
     if(g!==undefined&&h>0){tp+=g*h;tc+=h;}
   });
   if(tc>0){
     var gpa=tp/tc;
     $('#sgGpa').textContent=gpa.toFixed(2);
     $('#sgGpa').className='result-value '+gpaColorClass(gpa);
+    $('#sgGpaRating').textContent='— '+semesterGpaArabicRating(gpa);
     $('#sgCredits').textContent=tc;
     $('#sgResult').style.display='block';
   }else{
+    $('#sgGpaRating').textContent='—';
     $('#sgResult').style.display='none';
   }
 }
@@ -866,7 +917,7 @@ $('#sgAddBtn').addEventListener('click',function(){
   sgSave();sgRender();
 });
 // Grade scale
-(function(){var wrap=$('#sgGradeScale');Object.keys(GRADES).forEach(function(g){var p=GRADES[g];var cls=p>=3.5?'high':p>=2.5?'mid':p>=1.0?'low':'fail';var div=document.createElement('div');div.className='grade-chip '+cls;div.textContent=g+' = '+p.toFixed(1);wrap.appendChild(div);});})();
+(function(){var wrap=$('#sgGradeScale');Object.keys(SEMESTER_GRADES).forEach(function(g){var p=SEMESTER_GRADES[g];var cls=p>=3.5?'high':p>=2.5?'mid':p>=1.0?'low':'fail';var div=document.createElement('div');div.className='grade-chip '+cls;div.textContent=g+' = '+(g==='F'?'—':p.toFixed(2));wrap.appendChild(div);});})();
 sgRender();
 
 /* ===== TOOL 1b: CUMULATIVE GPA ===== */
@@ -967,18 +1018,18 @@ function gregorianToHijri(gDate){
   return {day:Math.max(1,hD),month:HIJRI_MONTHS[Math.min(hM-1,11)],year:hY};
 }
 function hijriToGregorian(hD,hM,hY){
-  var jd=Math.floor((11*hY+3)/30)+354*hY+30*hM-Math.floor((hM-1)/2)+hD+1948439.5-385;
+  /* تحويل تقويمي ثابت من التاريخ الهجري المدني إلى التاريخ الميلادي */
+  var jd=Math.floor((11*hY+3)/30)+354*hY+30*hM-Math.floor((hM-1)/2)+hD+1948055;
   var z=Math.floor(jd+0.5);
-  var a=z-1867216.25;
-  var alpha=Math.floor(a/36524.25);
-  a=a+1+alpha-Math.floor(alpha/4);
-  var b=a+1524;
-  var c=Math.floor((b-122.1)/365.25);
-  var d=Math.floor(365.25*c);
-  var e=Math.floor((b-d)/30.6001);
-  var gD=b-d-Math.floor(30.6001*e);
-  var gM=e<14?e-1:e-13;
-  var gY=gM>2?c-4716:c-4715;
+  var a=z+32044;
+  var b=Math.floor((4*a+3)/146097);
+  var c=a-Math.floor(146097*b/4);
+  var d=Math.floor((4*c+3)/1461);
+  var e=c-Math.floor(1461*d/4);
+  var m=Math.floor((5*e+2)/153);
+  var gD=e-Math.floor((153*m+2)/5)+1;
+  var gM=m+3-12*Math.floor(m/10);
+  var gY=100*b+d-4800+Math.floor(m/10);
   return {day:gD,month:GREG_MONTHS[gM-1],year:gY};
 }
 $$('.mode-btn').forEach(function(b){
@@ -1005,8 +1056,43 @@ $$('.mode-btn').forEach(function(b){
 $('#dcInput').addEventListener('click',function(){
   if(typeof this.showPicker==='function'){ try{ this.showPicker(); }catch(e){} }
 });
+
+/* ===== CUSTOM HIJRI DATE PICKER FOR DATE CONVERTER ONLY ===== */
+(function(){
+  var input=$('#dcInput'), hijriValue=$('#dcHijriValue'), picker=$('#dcHijriPicker'), display=$('#dcHijriDisplay'), dialog=$('#dcHijriDialog');
+  var daySelect=$('#dcHijriDay'), monthSelect=$('#dcHijriMonth'), yearSelect=$('#dcHijriYear');
+  var hijriMonths=['محرم','صفر','ربيع الأول','ربيع الثاني','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
+  for(var day=1;day<=30;day++) daySelect.insertAdjacentHTML('beforeend','<option value="'+day+'">'+day+'</option>');
+  hijriMonths.forEach(function(month,index){monthSelect.insertAdjacentHTML('beforeend','<option value="'+(index+1)+'">'+month+'</option>');});
+  var currentHijriYear=new Date().getFullYear()-579;
+  for(var year=1350;year<=1500;year++) yearSelect.insertAdjacentHTML('beforeend','<option value="'+year+'">'+year+'</option>');
+  yearSelect.value=String(currentHijriYear);
+
+  function clearDateState(){
+    input.value=''; hijriValue.value=''; display.textContent='اضغط لاختيار التاريخ الهجري'; picker.classList.remove('has-value');
+    $('#dcResult').style.display='none'; $('#dcError').style.display='none';
+  }
+  function syncPicker(mode){
+    var hijri=mode==='h2g';
+    input.hidden=hijri; picker.hidden=!hijri;
+    $('#dcInputLabel').textContent=hijri?'التاريخ الهجري':'التاريخ الميلادي';
+    $('#dcHint').textContent=hijri?'اضغط على خانة التاريخ لفتح التقويم الهجري واختيار اليوم والشهر والسنة':'اضغط على خانة التاريخ لفتح التقويم الميلادي واختيار التاريخ';
+    clearDateState();
+  }
+  $$('.mode-btn').forEach(function(button){button.addEventListener('click',function(){syncPicker(dcMode);});});
+  picker.addEventListener('click',function(){if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');});
+  $('#dcHijriCancel').addEventListener('click',function(){if(dialog.close)dialog.close();else dialog.removeAttribute('open');});
+  $('#dcHijriApply').addEventListener('click',function(){
+    var day=daySelect.value,month=monthSelect.value,year=yearSelect.value;
+    hijriValue.value=year+'-'+String(month).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    display.textContent=day+' '+hijriMonths[Number(month)-1]+' '+year+' هـ'; picker.classList.add('has-value');
+    if(dialog.close)dialog.close();else dialog.removeAttribute('open');
+  });
+  syncPicker(dcMode);
+})();
+
 $('#dcConvertBtn').addEventListener('click',function(){
-  var input=$('#dcInput').value.trim();
+  var input=(dcMode==='h2g'?$('#dcHijriValue').value:$('#dcInput').value).trim();
   $('#dcError').style.display='none';
   $('#dcResult').style.display='none';
   if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(input)){
