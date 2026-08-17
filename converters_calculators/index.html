@@ -306,6 +306,111 @@ input[type="number"].input { text-align: center; }
 .footer-slogan .star { color: var(--gold); }
 .footer-made { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.7); }
 .footer-made .heart { color: #10b981; }
+
+/* ===== REQUESTED HEADER / HERO / CONTENT LAYOUT ===== */
+body { align-items: stretch; background: var(--bg-section); }
+.page-wrapper { width: 100%; max-width: none; padding: 12px 0 0; gap: 20px; }
+.header {
+  width: 100%; display: block; padding: 0; border-radius: 24px 24px 0 0;
+  overflow: hidden; position: relative; background-image: linear-gradient(135deg, rgba(1,42,43,0.97), rgba(10,44,44,0.94));
+}
+.header-top-row { position: relative; min-height: 104px; display: flex; align-items: center; justify-content: center; padding: 16px 24px 14px; }
+.header-logo-moaeen { position: absolute; right: 24px; top: 16px; z-index: 2; }
+.header-logo-moaeen img { width: 90px; height: 72px; object-fit: contain; }
+.header-seu-box { position: absolute; left: 24px; top: 16px; z-index: 2; }
+  .seu-rect { gap: 0; direction: ltr; }
+.seu-rect img { width: 90px; height: 72px; object-fit: contain; }
+.seu-text-en { display: inline-flex; align-items: center; justify-content: center; margin-left: 0; padding: 6px 12px; min-width: 48px; color: var(--white); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.32); border-radius: 999px; backdrop-filter: blur(10px); font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+.header-pill { max-width: min(52vw, 520px); min-width: 240px; padding: 10px 18px; border-width: 1px; }
+.header-gold-divider { position: relative; height: 2px; margin: 0 24px; background: linear-gradient(90deg, rgba(212,175,55,0.2), var(--gold), rgba(212,175,55,0.2)); box-shadow: 0 0 8px rgba(212,175,55,0.35); }
+  .header-share-line { direction: ltr; position: relative; min-height: 42px; margin: -21px 24px 0; display: flex; align-items: center; justify-content: flex-start; border-top: 0; z-index: 3; }
+.header-share-line .share-btn { padding: 6px 12px; border-radius: 9px; background: var(--gold); color: var(--bg-dark); border-color: var(--gold-glow); font-size: 12px; }
+  .header-share-line .share-dropdown-content { display: none; position: absolute; top: calc(100% + 6px); left: 0; min-width: 190px; padding: 8px 0; background: var(--bg-dark); border: 1px solid rgba(212,175,55,0.35); border-radius: 12px; box-shadow: 0 10px 24px rgba(0,0,0,0.35); z-index: 20; overflow: hidden; }
+  .header-share-line .share-dropdown-content.active { display: block; }
+  .header-share-line .share-dropdown-content a { display: flex; align-items: center; gap: 8px; padding: 9px 12px; color: var(--white); font-size: 12px; white-space: nowrap; }
+  .header-share-line .share-dropdown-content a:hover { background: rgba(212,175,55,0.16); color: var(--gold-glow); }
+.header .back-bar, .header .tool-title-bar, .header .tabs-strip { width: 100%; border-radius: 0; box-shadow: none; }
+.header .back-bar { padding: 10px 24px; background: rgba(255,255,255,0.08); color: var(--white); }
+.header .breadcrumb { color: rgba(255,255,255,0.78); }
+.header .breadcrumb .crumb-home { color: var(--gold-glow); }
+.header .breadcrumb .crumb-current { color: var(--white); }
+.header .back-btn { background: var(--gold); color: var(--bg-dark); }
+.header .tool-title-bar { padding: 18px 24px; background: #EBEDED; }
+.header .tool-title-icon { background: #ffffff; }
+.header .tool-title-icon i, .header .tool-title-text h1 { color: #000000; }
+.header .tool-title-text p { color: #333333; }
+.header .tabs-strip { padding: 10px 24px 14px; background: rgba(1,32,32,0.72); }
+.header .tab-btn { flex: 1 1 0; justify-content: center; min-width: 0; }
+.tool-panel, .helper-note { width: calc(100% - 40px); max-width: 1180px; margin-inline: auto; }
+.tool-card, .form-card, .progress-card { min-width: 0; }
+.input, select.input, textarea.input { min-width: 0; width: 100%; }
+.form-section-title, .tool-card-header h3, .form-section, .field-label, .field-hint { overflow-wrap: anywhere; }
+.footer { width: 100%; border-radius: 0; margin: 0; }
+@media (min-width: 769px) { .header-top-row .header-pill { display: flex; } .mobile-pill-bar { display: none !important; } }
+@media (max-width: 768px) {
+  .header-top-row { min-height: 112px; padding-inline: 16px; }
+  .header-logo-moaeen { right: 16px; top: 12px; }
+  .header-seu-box { left: 16px; top: 12px; }
+  .header-logo-moaeen img, .seu-rect img { width: 70px; height: 62px; }
+  .seu-text-en { font-size: 11px; min-width: 42px; padding: 5px 8px; }
+  .header-pill { display: flex; max-width: calc(100% - 180px); min-width: 160px; padding: 8px 10px; }
+  .pill-text { font-size: 12px; }
+  .header-gold-divider, .header-share-line { margin-inline: 16px; }
+  .header .back-bar, .header .tool-title-bar { padding-inline: 16px; }
+  .header .tabs-strip { padding-inline: 16px; }
+  .header .tab-btn { padding-inline: 10px; }
+}
+@media (max-width: 480px) {
+  .header-top-row { min-height: 174px; align-items: flex-start; }
+  .header-pill { display: flex; position: absolute; top: 102px; left: 16px; right: 16px; max-width: none; width: auto; min-width: 0; }
+  .header-logo-moaeen img, .seu-rect img { width: 64px; height: 56px; }
+  .seu-text-en { font-size: 10px; min-width: 38px; padding: 4px 7px; }
+  .tool-panel, .helper-note { width: calc(100% - 24px); }
+  .header .back-bar { flex-direction: column; align-items: stretch; }
+  .header .back-btn { justify-content: center; }
+  .header .tabs-strip { overflow-x: visible; flex-direction: column; }
+  .header .tab-btn { width: 100%; justify-content: flex-start; }
+}
+/* ===== FORM LEGIBILITY AND DATE PICKER ===== */
+.tool-panel { padding-bottom: 4px; }
+.tool-card, .form-card, .progress-card { overflow: visible; }
+.tool-card-header { flex-wrap: wrap; }
+.tool-card-header h3 { line-height: 1.7; }
+.form-section { min-width: 0; overflow: visible; }
+.field { min-width: 0; }
+.field-label { line-height: 1.7; }
+.input, select.input, textarea.input { min-height: 42px; font-size: 14px; }
+.date-picker-input { color-scheme: light; cursor: pointer; padding-inline-end: 12px; }
+.date-picker-input::-webkit-calendar-picker-indicator { opacity: 0.9; cursor: pointer; width: 20px; height: 20px; }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-row.grid-1-2-2 { grid-template-columns: minmax(0,1fr) minmax(0,2fr) minmax(0,2fr); }
+  .course-row { min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(96px,0.8fr) 70px 36px; gap: 8px; }
+  .course-row .input { min-width: 0; width: 100%; }
+  .course-name-input { flex: none; }
+  .grade-select, .hours-input { flex-shrink: 1; }
+@media (max-width: 900px) {
+  .grid-3, .grid-row.grid-1-2-2 { grid-template-columns: 1fr 1fr; }
+  .grid-row.grid-1-2-2 > :first-child { grid-column: 1 / -1; }
+  .tool-card, .form-card { padding: 20px; }
+}
+@media (max-width: 640px) {
+  .tool-card, .form-card { padding: 16px; }
+  .form-section { padding: 13px; }
+  .grid-2, .grid-3, .grid-row.grid-1-2-2 { grid-template-columns: 1fr; }
+  .grid-row.grid-1-2-2 > :first-child { grid-column: auto; }
+  .course-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(88px,0.8fr) 78px 36px; gap: 6px; }
+  .course-name-input, .grade-select, .hours-input { width: 100%; }
+  .mode-toggle { grid-template-columns: 1fr; }
+  .result-value { font-size: 24px; }
+}
+  .header .tool-title-bar {
+  justify-content: center;
+  text-align: center;
+}
+
+.header .tool-title-text {
+  text-align: right;
+}
 </style>
 </head>
 <body>
@@ -314,66 +419,71 @@ input[type="number"].input { text-align: center; }
 
   <!-- HEADER -->
   <header class="header">
-    <div class="header-logo-moaeen">
-      <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
-    </div>
-    <div class="header-pill">
-      <span class="pill-line"></span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-      <span class="pill-star">⭐</span>
-      <span class="pill-line"></span>
-    </div>
-    <div class="header-seu-box">
-      <div class="seu-rect">
-        <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-        <span class="seu-text-en">SEU_University</span>
+    <div class="header-top-row">
+      <div class="header-logo-moaeen">
+        <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
+      </div>
+      <div class="header-pill">
+        <span class="pill-line"></span>
+        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+        <span class="pill-star">⭐</span>
+        <span class="pill-line"></span>
+      </div>
+      <div class="header-seu-box">
+        <div class="seu-rect">
+          <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
+          <span class="seu-text-en">SEU</span>
+        </div>
       </div>
     </div>
+    <div class="header-gold-divider"></div>
+    <div class="header-share-line">
+      <div class="share-dropdown">
+        <button class="share-btn" id="headerShareToggle"><i class="fas fa-share-nodes"></i> مشاركة</button>
+        <div class="share-dropdown-content" id="headerShareDropdown">
+          <a href="https://api.whatsapp.com/send?text=منصة%20معين%20التعليمية" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> مشاركة عبر واتساب</a>
+          <a href="https://t.me/share/url?url=https://example.com&text=منصة%20معين" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> مشاركة عبر تليجرام</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK BAR -->
+    <div class="back-bar">
+      <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
+      <div class="breadcrumb">
+        <span class="crumb-home">الرئيسية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span>الأدوات التفاعلية</span>
+        <i class="fas fa-chevron-left"></i>
+        <span class="crumb-current" id="crumbCurrent">حاسبات المعدل</span>
+      </div>
+    </div>
+
+    <!-- TOOL TITLE -->
+    <div class="tool-title-bar">
+      <span class="tool-title-icon"><i class="fas fa-calculator" id="toolTitleIcon"></i></span>
+      <div class="tool-title-text">
+        <h1 id="toolTitleText">المحولات والحاسبات</h1>
+        <p id="toolTitleDesc">مجموعة أدوات لحساب المعدل وتحويل التواريخ وحساب الوقت المتبقي</p>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <nav class="tabs-strip">
+      <button class="tab-btn active" data-tab="gpa">
+        <i class="fas fa-graduation-cap"></i>
+        <span class="tab-text"><span class="tab-label">حاسبات المعدل</span><span class="tab-desc">فصلي وتراكمي</span></span>
+      </button>
+      <button class="tab-btn" data-tab="dates">
+        <i class="fas fa-calendar-days"></i>
+        <span class="tab-text"><span class="tab-label">أدوات التاريخ</span><span class="tab-desc">تحويل وفرق</span></span>
+      </button>
+      <button class="tab-btn" data-tab="deadline">
+        <i class="fas fa-clock"></i>
+        <span class="tab-text"><span class="tab-label">الوقت المتبقي</span><span class="tab-desc">عدّاد التسليم</span></span>
+      </button>
+    </nav>
   </header>
-
-  <div class="mobile-pill-bar">
-    <div class="mobile-pill">
-      <span class="pill-star">⭐</span>
-      <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-    </div>
-  </div>
-
-  <!-- BACK BAR -->
-  <div class="back-bar">
-    <a href="../" class="back-btn"><i class="fas fa-arrow-right"></i><span>العودة للأدوات</span></a>
-    <div class="breadcrumb">
-      <span class="crumb-home">الرئيسية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span>الأدوات التفاعلية</span>
-      <i class="fas fa-chevron-left"></i>
-      <span class="crumb-current" id="crumbCurrent">حاسبات المعدل</span>
-    </div>
-  </div>
-
-  <!-- TOOL TITLE -->
-  <div class="tool-title-bar">
-    <span class="tool-title-icon"><i class="fas fa-calculator" id="toolTitleIcon"></i></span>
-    <div class="tool-title-text">
-      <h1 id="toolTitleText">المحولات والحاسبات</h1>
-      <p id="toolTitleDesc">مجموعة أدوات لحساب المعدل وتحويل التواريخ وحساب الوقت المتبقي</p>
-    </div>
-  </div>
-
-  <!-- TABS -->
-  <nav class="tabs-strip">
-    <button class="tab-btn active" data-tab="gpa">
-      <i class="fas fa-graduation-cap"></i>
-      <span class="tab-text"><span class="tab-label">حاسبات المعدل</span><span class="tab-desc">فصلي وتراكمي</span></span>
-    </button>
-    <button class="tab-btn" data-tab="dates">
-      <i class="fas fa-calendar-days"></i>
-      <span class="tab-text"><span class="tab-label">أدوات التاريخ</span><span class="tab-desc">تحويل وفرق</span></span>
-    </button>
-    <button class="tab-btn" data-tab="deadline">
-      <i class="fas fa-clock"></i>
-      <span class="tab-text"><span class="tab-label">الوقت المتبقي</span><span class="tab-desc">عدّاد التسليم</span></span>
-    </button>
-  </nav>
 
   <!-- ===== TAB 1: GPA CALCULATORS ===== -->
   <section class="tool-panel active" id="panel-gpa">
@@ -490,12 +600,12 @@ input[type="number"].input { text-align: center; }
           </div>
         </div>
 
-        <div class="form-section">
-          <div class="form-section-title"><i class="fas fa-keyboard"></i> إدخال التاريخ</div>
+    <div class="form-section">
+      <div class="form-section-title"><i class="fas fa-calendar-check"></i> اختيار التاريخ من التقويم</div>
           <div class="field">
             <label class="field-label" id="dcInputLabel">التاريخ الميلادي</label>
-            <input type="text" id="dcInput" class="input" dir="ltr" placeholder="مثال: 2025-01-15">
-            <span class="field-hint" id="dcHint">الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)</span>
+            <input type="date" id="dcInput" class="input date-picker-input" dir="ltr" inputmode="none" autocomplete="off" aria-label="اختر التاريخ من التقويم">
+            <span class="field-hint" id="dcHint">اضغط على خانة التاريخ لفتح التقويم واختيار التاريخ</span>
           </div>
           <button class="btn btn-primary btn-block btn-sm" id="dcConvertBtn" style="margin-top:12px;"><i class="fas fa-arrows-left-right"></i> تحويل</button>
         </div>
@@ -519,12 +629,12 @@ input[type="number"].input { text-align: center; }
           <div class="grid-row grid-2">
             <div class="field">
               <label class="field-label">التاريخ الأول</label>
-              <input type="date" id="ddStart" class="input" dir="ltr">
+              <input type="date" id="ddStart" class="input date-picker-input" dir="ltr" inputmode="none" autocomplete="off" aria-label="اختر التاريخ الأول من التقويم">
               <span class="field-hint" id="ddStartInfo"></span>
             </div>
             <div class="field">
               <label class="field-label">التاريخ الثاني</label>
-              <input type="date" id="ddEnd" class="input" dir="ltr">
+              <input type="date" id="ddEnd" class="input date-picker-input" dir="ltr" inputmode="none" autocomplete="off" aria-label="اختر التاريخ الثاني من التقويم">
               <span class="field-hint" id="ddEndInfo"></span>
             </div>
           </div>
@@ -596,7 +706,7 @@ input[type="number"].input { text-align: center; }
         <div class="form-section-title"><i class="fas fa-plus"></i> إضافة موعد تسليم جديد</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <input type="text" id="dlTitle" class="input" placeholder="اسم المهمة..." style="flex:1;min-width:160px;">
-          <input type="date" id="dlDate" class="input" style="width:160px;flex-shrink:0;">
+          <input type="date" id="dlDate" class="input date-picker-input" style="width:160px;flex-shrink:0;" inputmode="none" autocomplete="off" aria-label="اختر موعد التسليم من التقويم">
           <button class="btn btn-primary btn-icon" id="dlAddBtn"><i class="fas fa-plus"></i></button>
         </div>
       </div>
@@ -686,6 +796,14 @@ $$('.tab-btn').forEach(function(btn){
     $('#toolTitleDesc').textContent=info.desc;
   });
 });
+
+/* ===== HEADER SHARE ===== */
+(function(){
+  var toggle=$('#headerShareToggle'), menu=$('#headerShareDropdown');
+  if(!toggle||!menu)return;
+  toggle.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('active');});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target)&&e.target!==toggle)menu.classList.remove('active');});
+})();
 
 /* ===== GRADE DATA (SEU scale) ===== */
 var GRADES={"A+":4.0,"A":4.0,"A-":3.75,"B+":3.5,"B":3.0,"B-":2.75,"C+":2.5,"C":2.0,"C-":1.75,"D+":1.5,"D":1.0,"F":0};
@@ -873,16 +991,19 @@ $$('.mode-btn').forEach(function(b){
     $('#dcError').style.display='none';
     if(dcMode==='g2h'){
       $('#dcInputLabel').textContent='التاريخ الميلادي';
-      $('#dcInput').placeholder='مثال: 2025-01-15';
-      $('#dcHint').textContent='الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)';
+      $('#dcInput').setAttribute('aria-label','اختر التاريخ الميلادي من التقويم');
+      $('#dcHint').textContent='اضغط على خانة التاريخ لفتح التقويم واختيار التاريخ الميلادي';
       $('#dcResultLabel').textContent='التاريخ الهجري';
     }else{
       $('#dcInputLabel').textContent='التاريخ الهجري';
-      $('#dcInput').placeholder='مثال: 1446-07-15';
-      $('#dcHint').textContent='الصيغة: السنة-الشهر-اليوم (YYYY-MM-DD)';
+      $('#dcInput').setAttribute('aria-label','اختر التاريخ الهجري من التقويم');
+      $('#dcHint').textContent='اختر التاريخ من نافذة التقويم ثم اضغط تحويل';
       $('#dcResultLabel').textContent='التاريخ الميلادي';
     }
   });
+});
+$('#dcInput').addEventListener('click',function(){
+  if(typeof this.showPicker==='function'){ try{ this.showPicker(); }catch(e){} }
 });
 $('#dcConvertBtn').addEventListener('click',function(){
   var input=$('#dcInput').value.trim();
