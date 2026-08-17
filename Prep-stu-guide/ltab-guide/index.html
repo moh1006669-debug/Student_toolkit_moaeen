@@ -71,7 +71,7 @@
             max-width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: clamp(16px, 2vw, 28px);
         }
 
         /* ===== MAIN BANNER ===== */
@@ -99,24 +99,24 @@
             box-shadow: none !important;
             padding: 0 !important;
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             align-items: center;
-            gap: 20px;
+            gap: clamp(12px, 3vw, 48px);
+            width: 100%;
         }
-        .header-logo-moaeen { display: flex; align-items: center; justify-content: flex-start; }
+        .header-logo-moaeen,
+        .header-seu-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-width: 0;
+        }
+        .header-logo-moaeen { justify-content: flex-start; }
         .header-logo-moaeen img { width: 90px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); transition: var(--transition); }
         .header-logo-moaeen img:hover { transform: scale(1.05); }
-        .header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
-        .pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
-        .pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
-        .pill-star { color: var(--gold); font-size: 18px; }
-        .header-seu-box { display: flex; align-items: center; justify-content: center; }
-        .seu-rect { display: flex; align-items: center; gap: 12px; }
-        .seu-rect img { width: 44px; height: 44px; object-fit: contain; }
-        .seu-text-en { color: var(--white); font-size: 12px; font-weight: 600; }
-        .mobile-pill-bar { display: none; width: 100%; background: transparent !important; }
-        .mobile-pill { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(1,32,32,0.6); border: 1px solid rgba(212,175,55,0.6); border-radius: 50px; padding: 8px 16px; }
-        .mobile-pill .pill-text { font-size: 12px; }
+        .header-seu-box { justify-content: flex-end; }
+        .seu-rect { display: flex; align-items: center; }
+        .seu-rect img { width: 90px; height: auto; object-fit: contain; }
 
         /* ===== BACK BAR ===== */
         .back-bar {
@@ -153,8 +153,6 @@
         .share-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--btn-bg); padding: 10px 20px; border-radius: var(--radius-btn); font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: var(--transition); border: 1px solid var(--gray-light); }
         .share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(7,72,66,0.18); border-color: var(--gold); }
         .share-btn svg { width: 18px; height: 18px; fill: var(--btn-bg); flex-shrink: 0; }
-        .share-current-hash { font-size: 12px; color: var(--desc-color); background: var(--white); padding: 6px 14px; border-radius: 50px; border: 1px dashed var(--gray-light); display: inline-flex; align-items: center; gap: 6px; }
-        .share-current-hash i { color: var(--gold); font-size: 11px; }
         .share-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); padding: 10px; display: none; flex-direction: column; gap: 6px; min-width: 220px; z-index: 60; border: 1px solid var(--gray-light); }
         .share-dropdown.open { display: flex; animation: dropIn 0.2s ease; }
         @keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
@@ -184,81 +182,164 @@
         .hero-top h1 i { color: var(--gold); }
         .hero-top p { color: rgba(255,255,255,0.85); max-width: 700px; font-size: 15px; line-height: 1.7; position: relative; z-index: 1; }
 
-        /* ===== HERO TABS ===== */
+        /* ===== HERO TABS - نفس تنسيق الصفحة الأولى ===== */
         .hero-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 6px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: stretch;
+            gap: clamp(12px, 2vw, 24px);
+            margin-top: 0;
             z-index: 1;
             position: relative;
         }
-        .tab-item {
-            flex: 1 1 280px;
-            max-width: 450px;
-            background: rgba(1, 32, 32, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(212, 175, 55, 0.35);
-            border-radius: 20px;
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-        .tab-item:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
-        .tab-info { display: flex; align-items: center; gap: 14px; }
-        .tab-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
-        .tab-text h4 { color: var(--white); font-size: 17px; font-weight: 700; margin-bottom: 2px; }
-        .tab-text p { color: #a0b4b8; font-size: 13px; font-weight: 400; }
-        .tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 8px 18px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; text-decoration: none; }
-        .tab-btn:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5); }
-        .tab-btn i { font-size: 13px; }
 
-        /* ===== GUIDE TABS (Navigation) ===== */
+.tab-item {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    background: rgba(1, 32, 32, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(212, 175, 55, 0.35);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    gap: 12px;
+}
+
+.tab-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tab-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--gold);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    flex-shrink: 0;
+}
+
+.tab-text h4 {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.tab-text p {
+    color: #a0b4b8;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(
+        135deg,
+        var(--gold) 0%,
+        var(--gold-dark) 100%
+    );
+    color: var(--bg-dark);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tab-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+}
+
+.tab-btn i {
+    font-size: 12px;
+}
+        /* ===== GUIDE TABS (شريط تبويبات أفقي) ===== */
         .guide-tabs-section {
-            width: 100%;
-            max-width: 1320px;
-            padding: 0 20px;
+            width: min(96%, 1680px);
+            max-width: 1680px;
+            padding: 0;
             box-sizing: border-box;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
             justify-content: center;
             z-index: 10;
             position: relative;
+            margin: 0 auto;
         }
-        .guide-tab-card {
-            flex: 1 1 300px;
-            max-width: 550px;
+        .guide-tabs-bar {
+            display: flex;
+            width: 100%;
+            max-width: none;
             background: rgba(1, 42, 43, 0.85);
             backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            border-radius: 24px;
-            padding: 22px 28px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 0px;
+            padding: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            gap: 8px;
+            flex-wrap: nowrap;
+            justify-content: stretch;
+            margin: 0;
+        }
+        .guide-tab-btn {
+            flex: 1 1 0;
+            min-width: 0;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: transparent;
+            color: #a0b4b8;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            transition: var(--transition);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
         }
-        .guide-tab-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1); }
-        .guide-tab-card.active { border-color: var(--gold); background: rgba(1, 42, 43, 0.95); }
-        .guide-tab-info { display: flex; align-items: center; gap: 14px; }
-        .guide-tab-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0; }
-        .guide-tab-text h4 { color: var(--white); font-size: 18px; font-weight: 700; margin-bottom: 2px; }
-        .guide-tab-text p { color: #a0b4b8; font-size: 14px; font-weight: 400; }
-        .guide-tab-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-dark); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: var(--transition); box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3); white-space: nowrap; border: none; cursor: pointer; }
+        .guide-tab-btn:hover { color: var(--white); background: rgba(212, 175, 55, 0.1); }
+        .guide-tab-btn.active {
+            background: var(--gold);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+        }
+        .guide-tab-btn i { font-size: 16px; }
 
         /* ===== MAIN CONTENT ===== */
         .main-content {
-            width: 95%;
-            max-width: 1320px;
+            width: min(96%, 1680px);
+            max-width: 1680px;
             background: #f8fafc;
             border-radius: 24px;
-            padding: 40px 40px 50px;
+            padding: clamp(28px, 3vw, 56px) clamp(24px, 4vw, 64px) clamp(36px, 4vw, 64px);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             margin: 0 auto;
             box-sizing: border-box;
@@ -290,10 +371,15 @@
 
         .steps-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 28px;
-            max-width: 900px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: clamp(20px, 2vw, 32px);
+            width: 100%;
+            max-width: none;
+            margin: 0;
+        }
+        .step-card,
+        .step-header h3 {
+            min-width: 0;
         }
         .step-card {
             background: var(--card-bg);
@@ -357,8 +443,8 @@
 
         /* ===== CTA SECTION ===== */
         .cta-section {
-            width: 95%;
-            max-width: 1320px;
+            width: min(96%, 1680px);
+            max-width: 1680px;
             margin: 0 auto 20px;
             background: var(--white);
             border-radius: var(--radius-card);
@@ -447,15 +533,14 @@
         @media (max-width: 768px) {
             body { padding: 0; }
             .main-banner { padding: 14px 16px 24px 16px; gap: 12px; }
-            .header { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .header .header-pill { display: none; }
-            .mobile-pill-bar { display: block; }
+            .header { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
             .back-bar { flex-direction: column; align-items: stretch; gap: 10px; }
-            .main-content, .cta-section { width: 98%; padding: 20px; }
+            .main-content, .cta-section { width: calc(100% - 24px); padding: 20px; }
             .hero-top h1 { font-size: 24px; }
-            .guide-tabs-section { flex-direction: column; align-items: stretch; }
-            .guide-tab-card { flex-direction: column; text-align: center; gap: 12px; }
-            .guide-tab-info { flex-direction: column; }
+            .hero-tabs { grid-template-columns: 1fr; }
+            .guide-tabs-section { width: calc(100% - 24px); }
+            .guide-tabs-bar { flex-direction: column; align-items: stretch; }
+            .guide-tab-btn { min-width: 0; justify-content: center; }
             .step-image { max-height: 250px; }
             .link-box { flex-wrap: wrap; justify-content: center; }
             .link-box .url-text { text-align: center; width: 100%; }
@@ -472,10 +557,13 @@
             .info-box { flex-direction: column; text-align: center; align-items: center; }
         }
 
+        @media (max-width: 900px) {
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 480px) {
             .main-banner { padding: 12px; }
-            .header-logo-moaeen img { width: 70px; }
-            .seu-rect img { width: 38px; height: 38px; }
+            .header-logo-moaeen img, .seu-rect img { width: 70px; }
             .step-image { max-height: 180px; }
         }
     </style>
@@ -492,26 +580,13 @@
             <div class="header-logo-moaeen">
                 <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2228%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'">
             </div>
-            <div class="header-pill">
-                <span class="pill-line"></span>
-                <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-                <span class="pill-star">⭐</span>
-                <span class="pill-line"></span>
-            </div>
             <div class="header-seu-box">
                 <div class="seu-rect">
                     <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22><circle cx=%2225%22 cy=%2225%22 r=%2224%22 fill=%22%231B2A6B%22/><text x=%2225%22 y=%2230%22 font-size=%2210%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'">
-                    <span class="seu-text-en">SEU_University</span>
                 </div>
             </div>
         </header>
 
-        <div class="mobile-pill-bar">
-            <div class="mobile-pill">
-                <span class="pill-star">⭐</span>
-                <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-            </div>
-        </div>
 
         <!-- BACK BAR -->
         <div class="back-bar">
@@ -527,7 +602,6 @@
 
         <!-- SHARE BAR -->
         <div class="share-bar">
-            <span class="share-current-hash"><i class="fas fa-link"></i> <span id="currentHashLabel">دليل عرض وشرح الجدول الدراسي</span></span>
             <button class="share-btn" id="shareBtn" aria-haspopup="true" aria-expanded="false">
                 <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M402.3 344.9l32-32c5.6-5.6 13.5-7.2 20.7-4.2s11.8 9.9 11.8 17.7V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h192c7.8 0 14.8 4.6 17.7 11.8s1.4 15.1-4.2 20.7l-32 32c-5.5 5.5-13.4 7.1-20.6 4.2-.6-.2-1.2-.4-1.8-.5H64v320h320V364.9c0-3.6 1.2-7.1 3.4-9.9.4-.5.8-1 1.3-1.4zM504.4 96.5L313.7 287.2c-4.6 4.6-10.9 7.1-17.4 7.1H224c-13.3 0-24-10.7-24-24v-72.3c0-6.5 2.6-12.8 7.1-17.4L397.8 14.6c11.3-11.3 29.5-11.3 40.8 0l65.8 65.8c11.3 11.3 11.3 29.5 0 40.8z"/></svg>
                 <span>مشاركة الصفحة</span>
@@ -579,32 +653,19 @@
         </section>
     </div>
 
-    <!-- ===== GUIDE NAVIGATION TABS ===== -->
-    <section class="guide-tabs-section">
-        <!-- التبويب الأول: دليل عرض الجدول الدراسي -->
-        <div class="guide-tab-card active" id="tabGuideBtn" onclick="switchGuideTab('guide')">
-            <div class="guide-tab-info">
-                <div class="guide-tab-icon"><i class="fas fa-calendar-days"></i></div>
-                <div class="guide-tab-text">
-                    <h4>دليل عرض الجدول الدراسي</h4>
-                    <p>خطوات الوصول إلى جدولك الدراسي عبر نظام البانر</p>
-                </div>
-            </div>
-            <button class="guide-tab-btn"><i class="fas fa-arrow-left"></i> استعراض الدليل</button>
+    <!-- ===== GUIDE NAVIGATION TABS (شريط أفقي) ===== -->
+    <div class="guide-tabs-section">
+        <div class="guide-tabs-bar">
+            <button class="guide-tab-btn active" id="tabGuideBtn" onclick="switchGuideTab('guide')">
+                <i class="fas fa-calendar-days"></i>
+                <span>دليل عرض الجدول الدراسي</span>
+            </button>
+            <button class="guide-tab-btn" id="tabExplanationBtn" onclick="switchGuideTab('explanation')">
+                <i class="fas fa-circle-info"></i>
+                <span>شرح الجدول الدراسي</span>
+            </button>
         </div>
-
-        <!-- التبويب الثاني: شرح الجدول الدراسي -->
-        <div class="guide-tab-card" id="tabExplanationBtn" onclick="switchGuideTab('explanation')">
-            <div class="guide-tab-info">
-                <div class="guide-tab-icon"><i class="fas fa-circle-info"></i></div>
-                <div class="guide-tab-text">
-                    <h4>شرح الجدول الدراسي</h4>
-                    <p>تعرف على رموز وأيقونات الجدول الدراسي</p>
-                </div>
-            </div>
-            <button class="guide-tab-btn"><i class="fas fa-arrow-left"></i> استعراض الشرح</button>
-        </div>
-    </section>
+    </div>
 
     <!-- ===== MAIN CONTENT ===== -->
     <div class="main-content" id="main-content">
@@ -765,7 +826,7 @@
             </div>
         </div>
 
-        <!-- ===== TAB 2: شرح الجدول (تم توحيد الهيكل مع التبويب الأول) ===== -->
+        <!-- ===== TAB 2: شرح الجدول ===== -->
         <div class="tab-content" id="tab-explanation">
             
             <div class="section-title">
@@ -1080,7 +1141,7 @@
                 el.classList.remove('active');
             });
             // إزالة الفعالية من أزرار التبويبات
-            document.querySelectorAll('.guide-tab-card').forEach(el => {
+            document.querySelectorAll('.guide-tab-btn').forEach(el => {
                 el.classList.remove('active');
             });
 
@@ -1091,14 +1152,6 @@
             // تنشيط التبويب
             var btnEl = document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + 'Btn');
             if (btnEl) btnEl.classList.add('active');
-
-            // تحديث نص المسار الصغير في شريط المشاركة
-            var currentHash = document.getElementById('currentHashLabel');
-            if (tabId === 'guide') {
-                currentHash.textContent = 'دليل عرض الجدول الدراسي';
-            } else {
-                currentHash.textContent = 'شرح الجدول الدراسي';
-            }
 
             // تمرير الصفحة إلى بداية المحتوى بسلاسة
             document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
