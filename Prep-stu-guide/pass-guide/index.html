@@ -1153,81 +1153,224 @@
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+        /* ===== FINAL REQUESTED LAYOUT OVERRIDES ===== */
+        body { padding: 20px 0 0; gap: 24px; overflow-x: hidden; }
+        .page-wrapper { width: 100%; max-width: none; gap: 24px; }
+        .header {
+            width: 100%;
+            min-height: 0;
+            margin: 0;
+            padding: 20px 40px 0;
+            display: block;
+            border-radius: 30px 30px 0 0;
+            overflow: visible;
+            z-index: 5;
+            background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%), url('./assets/images/header-bg.jpg');
+        }
+        .header-brand {
+            position: absolute;
+            right: 40px;
+            top: 20px;
+            z-index: 4;
+            display: block;
+        }
+        .header-brand img { width: 130px; height: 90px; object-fit: contain; }
+        .header-brand .brand-name { display: none; }
+        .header-seu-box {
+            position: absolute;
+            left: 40px;
+            top: 20px;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .header-seu-logo { width: 130px; height: 90px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); }
+        .header-seu-pill {
+            position: relative;
+            z-index: 2;
+            margin-top: -10px;
+            min-width: 64px;
+            padding: 5px 13px;
+            color: var(--white);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.34);
+            border-radius: 999px;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .hero {
+            width: 100%;
+            margin: 0;
+            padding: 126px 40px 52px;
+            border-radius: 0;
+            background-image: linear-gradient(135deg, rgba(1,42,43,0.93) 0%, rgba(10,44,44,0.9) 100%), url('./assets/images/hero-bg.jpg');
+            box-shadow: none;
+            gap: 24px;
+            position: relative;
+        }
+        .gold-line-bar {
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 36px;
+            padding: 5px 0 7px;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid rgba(212,175,55,0.18);
+            box-shadow: 0 -4px 12px rgba(212,175,55,0.08);
+        }
+        .gold-line-bar .share-btn,
+        .gold-line-bar .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 28px;
+            padding: 5px 11px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .gold-line-bar .share-btn { background: var(--gold); color: var(--bg-dark); border: 1px solid var(--gold-light); }
+        .gold-line-bar .share-btn:hover { background: var(--gold-light); }
+        .gold-line-bar .back-btn { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(212,175,55,0.65); }
+        .gold-line-bar .back-btn:hover { background: rgba(212,175,55,0.22); }
+        .gold-line-bar .share-dropdown { position: relative; }
+        .gold-line-bar .share-dropdown-content { top: calc(100% + 7px); left: 0; right: auto; }
+        .hero-top { padding: 0; }
+        .hero-actions { display: none; }
+        .help-btn {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 8;
+            width: auto !important;
+            max-width: 135px;
+            padding: 6px 10px 6px 8px;
+            border-radius: 0 12px 0 0;
+            background: var(--gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--gold-light);
+            box-shadow: 0 -2px 12px rgba(212,175,55,0.22);
+            line-height: 1.15;
+        }
+        .help-btn:hover { background: var(--gold-light); color: var(--bg-dark); transform: none; }
+        .help-btn .main-text { font-size: 10px; }
+        .help-btn .sub-text { font-size: 8px; }
+        .hero-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 0; padding: 0; }
+        .tab-item { min-width: 0; max-width: none; padding: 9px 12px; border-radius: 12px; gap: 8px; }
+        .tab-info { min-width: 0; gap: 8px; }
+        .tab-icon { width: 32px; height: 32px; font-size: 15px; }
+        .tab-text { min-width: 0; }
+        .tab-text h4 { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .tab-text p { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .tab-btn { padding: 5px 9px; font-size: 10px; }
+        .main-content { width: 100%; min-width: 0; }
+        .steps-row, .steps-row.grid-2, .step-card, .step-card-horizontal, .success-card-horizontal { min-width: 0; }
+        .step-image, .step-card-horizontal .step-image, .success-card-horizontal .success-image { width: auto; max-width: 100%; height: auto; max-height: none; aspect-ratio: auto; object-fit: contain; }
+        .step-image-wrapper, .step-card-horizontal .step-image-wrapper, .success-card-horizontal .success-image-wrapper { min-width: 0; }
+        .footer { width: 100%; max-width: none; margin: 0; border-radius: 0; }
+        @media (min-width: 1100px) {
+            .header-brand img, .header-seu-logo { width: 150px; height: 104px; }
+            .header-seu-box { left: 48px; top: 18px; }
+            .header-brand { right: 48px; top: 18px; }
+            .header-seu-pill { font-size: 16px; }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 12px; }
+            .header { padding: 16px 16px 0; }
+            .header-brand { right: 16px; top: 12px; }
+            .header-brand img, .header-seu-logo { width: 82px; height: 70px; }
+            .header-seu-box { left: 16px; top: 12px; }
+            .header-seu-pill { min-width: 54px; padding: 4px 9px; font-size: 12px; margin-top: -8px; }
+            .hero { padding: 100px 16px 48px; }
+            .gold-line-bar { margin-top: 3px; }
+            .hero-top h1 { font-size: clamp(22px, 6vw, 32px); }
+            .hero-tabs { grid-template-columns: 1fr; }
+            .tab-item { width: 100%; }
+            .help-btn { max-width: 120px; padding: 5px 8px 5px 6px; }
+            .help-btn .main-text { font-size: 9px; }
+            .help-btn .sub-text { font-size: 7px; }
+            .main-content { padding-left: 20px; padding-right: 20px; }
+        }
+        @media (max-width: 480px) {
+            .header-brand img, .header-seu-logo { width: 68px; height: 60px; }
+            .header-seu-box { left: 10px; top: 10px; }
+            .header-brand { right: 10px; top: 10px; }
+            .header-seu-pill { min-width: 48px; font-size: 11px; padding: 3px 8px; margin-top: -7px; }
+            .hero { padding-left: 10px; padding-right: 10px; }
+            .gold-line-bar .share-btn, .gold-line-bar .back-btn { font-size: 10px; padding: 4px 8px; }
+            .main-content { padding-left: 12px; padding-right: 12px; }
+            .step-image, .step-card-horizontal .step-image, .success-card-horizontal .success-image { width: auto; max-width: 100%; height: auto; }
+        }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===== HEADER + HERO (UNIFIED CARD) ===== -->
     <header class="header">
         <div class="header-brand">
-            <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
-            <div class="brand-name">
-                <h3>مُعين</h3>
-                <span>MOAEEN PLATFORM</span>
-            </div>
+            <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2224%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
         </div>
-    </header>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="hero-top">
-            <h1>
-                <i class="fa-solid fa-lock"></i>
-                خطوات إعادة تعيين كلمة المرور
-                <img src="../assets/images/safeicon.png" alt="أيقونة الأمان" class="safe-icon">
-            </h1>
-
-            <div class="hero-actions">
+        <div class="header-seu-box">
+            <img class="header-seu-logo" src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2250%22 y=%2260%22 font-size=%2220%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'" />
+            <span class="header-seu-pill">SEU</span>
+        </div>
+        <section class="hero">
+            <div class="gold-line-bar">
                 <div class="share-dropdown" id="shareDropdown">
                     <button class="share-btn" id="shareToggle">
                         <i class="fa-solid fa-share-nodes"></i>
-                        <span>مشاركة الصفحة</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                        <span>مشاركة</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
                     </button>
                     <div class="share-dropdown-content">
-                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20إعادة%20تعيين%20كلمة%20المرور%20-%20منصة%20معين%20https://example.com" target="_blank">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            مشاركة عبر واتساب
-                        </a>
-                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20إعادة%20تعيين%20كلمة%20المرور%20-%20منصة%20معين" target="_blank">
-                            <i class="fa-brands fa-telegram"></i>
-                            مشاركة عبر تليجرام
-                        </a>
+                        <a href="https://api.whatsapp.com/send?text=رابط%20دليل%20إعادة%20تعيين%20كلمة%20المرور%20-%20منصة%20معين%20https://example.com" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب</a>
+                        <a href="https://t.me/share/url?url=https://example.com&text=دليل%20إعادة%20تعيين%20كلمة%20المرور%20-%20منصة%20معين" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> مشاركة عبر تليجرام</a>
                     </div>
                 </div>
-
-                <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" class="help-btn">
-                    <span class="main-text">للمساعدة والإستفسار</span>
-                    <span class="sub-text">تواصل مع فريق مُعين</span>
-                </a>
+                <a href="../" class="back-btn"><i class="fa-solid fa-arrow-right"></i><span>العودة للأدوات</span></a>
             </div>
-        </div>
-
-        <div class="hero-tabs">
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-users"></i></div>
-                    <div class="tab-text">
-                        <h4>قروب تجمع طلبة التحضيري</h4>
-                        <p>انضم إلى زملائك في السنة التحضيرية</p>
+            <div class="hero-top">
+                <h1>
+                    <i class="fa-solid fa-lock"></i>
+                    خطوات إعادة تعيين كلمة المرور
+                    <img src="../assets/images/safeicon.png" alt="أيقونة الأمان" class="safe-icon">
+                </h1>
+                <div class="hero-actions" aria-hidden="true"></div>
+            </div>
+            <div class="hero-tabs">
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-users"></i></div>
+                        <div class="tab-text"><h4>قروب تجمع طلبة التحضيري</h4><p>انضم إلى زملائك في السنة التحضيرية</p></div>
                     </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
                 </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
-            </div>
-            <div class="tab-item">
-                <div class="tab-info">
-                    <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
-                    <div class="tab-text">
-                        <h4>قناة أخبار و إعلامات التحضيري</h4>
-                        <p>آخر المستجدات والإعلانات الرسمية</p>
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                        <div class="tab-text"><h4>قناة أخبار و إعلامات التحضيري</h4><p>آخر المستجدات والإعلانات الرسمية</p></div>
                     </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
                 </div>
-                <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
             </div>
-        </div>
-    </section>
+            <a href="https://api.whatsapp.com/send?phone=966536004199&text=مرحباً فريق معين، أود المساعدة/الاستفسار عن:" target="_blank" rel="noopener" class="help-btn">
+                <span class="main-text">للمساعدة والإستفسار</span>
+                <span class="sub-text">تواصل مع فريق مُعين</span>
+            </a>
+        </section>
+    </header>
 
     <!-- ===== المحتوى الرئيسي ===== -->
     <div class="main-content">
