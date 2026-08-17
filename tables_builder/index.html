@@ -1004,6 +1004,22 @@ var lecType = 'عن بعد';
 function getLectures(){ try{ return JSON.parse(localStorage.getItem(LEC_KEY))||[]; }catch(e){ return []; } }
 function saveLectures(l){ localStorage.setItem(LEC_KEY, JSON.stringify(l)); }
 function sortLectures(l){ return l.slice().sort(function(a,b){ var da=DAY_ORDER.indexOf(a.day), db=DAY_ORDER.indexOf(b.day); if(da!==db) return da-db; return (a.start||'').localeCompare(b.start||''); }); }
+  function formatTime12(time) {
+  if (!time || !time.includes(':')) return time;
+
+  var parts = time.split(':');
+  var hour = parseInt(parts[0], 10);
+  var minute = parts[1];
+
+  if (isNaN(hour)) return time;
+
+  var period = hour >= 12 ? 'م' : 'ص';
+  var hour12 = hour % 12;
+
+  if (hour12 === 0) hour12 = 12;
+
+  return hour12 + ':' + minute + '\u00A0' + period;
+}
 function renderLectures(){
   var lectures = sortLectures(getLectures());
   var body = $('#lecBody'); body.innerHTML = '';
@@ -1014,7 +1030,13 @@ function renderLectures(){
       var tr = document.createElement('tr');
       var hallCell = lc.type==='عن بعد' ? '<span style="color:#0284c7;display:inline-flex;align-items:center;gap:4px;"><i class="fas fa-video" style="font-size:11px;"></i> أونلاين</span>' : esc(lc.hall||'—');
       tr.innerHTML = '<td><span class="day-badge">'+esc(lc.day)+'</span></td>'+
-        '<td class="time-cell"><i class="fas fa-clock"></i> '+esc(lc.start)+' - '+esc(lc.end)+'</td>'+
+        '<td class="time-cell"><i class="fas fa-clock"></i> '+
+'<span class="time-range" dir="rtl" style="direction:rtl;unicode-bidi:isolate;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;">'+
+'<span dir="ltr" style="direction:ltr;unicode-bidi:isolate;">'+formatTime12(lc.start)+'</span>'+
+'<span aria-hidden="true"> - </span>'+
+'<span dir="ltr" style="direction:ltr;unicode-bidi:isolate;">'+formatTime12(lc.end)+'</span>'+
+'</span>'+
+'</td>'+
         '<td><div class="course-name">'+esc(lc.course)+'</div>'+(lc.code?'<div class="course-code">'+esc(lc.code)+'</div>':'')+'</td>'+
         '<td><span class="type-badge '+(lc.type==='حضوري'?'hifzi':'online')+'"><i class="fas fa-'+(lc.type==='حضوري'?'building':'video')+'"></i> '+esc(lc.type)+'</span></td>'+
         '<td class="hide-lg" style="font-size:12px;color:var(--desc-color);">'+hallCell+'</td>'+
