@@ -823,6 +823,23 @@
             .main-content { padding-left: 12px; padding-right: 12px; }
             .step-image, .step-card .step-image, .success-card-horizontal .success-image { width: auto; max-width: 100%; height: auto; }
         }
+
+        /* ===== ADAPTIVE HERO LINK BARS ONLY ===== */
+        .hero-tabs { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+        .hero-tabs.stack-tabs { grid-template-columns: 1fr !important; }
+        .hero-tabs .tab-item { display: flex !important; flex-direction: row !important; align-items: center; justify-content: space-between; min-width: 0; text-align: right !important; }
+        .hero-tabs .tab-info { display: flex !important; flex-direction: row !important; align-items: center; min-width: 0; }
+        .hero-tabs .tab-text { min-width: 0; }
+        .hero-tabs .tab-text h4 { white-space: normal; overflow: visible; text-overflow: clip; }
+        .hero-tabs .tab-text p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (max-width: 420px) {
+            .hero-tabs { column-gap: 8px; }
+            .hero-tabs .tab-item { padding: 8px 9px; }
+            .hero-tabs .tab-info { gap: 6px; }
+            .hero-tabs .tab-icon { width: 30px; height: 30px; font-size: 14px; }
+            .hero-tabs .tab-text h4 { font-size: 11px; }
+            .hero-tabs .tab-btn { padding: 5px 7px; font-size: 9px; }
+        }
     </style>
 </head>
 <body>
@@ -1047,6 +1064,39 @@
         });
     });
 </script>
+
+    <script>
+    (function () {
+        function titleWraps(title) {
+            if (!title) return false;
+            const range = document.createRange();
+            range.selectNodeContents(title);
+            const rects = Array.from(range.getClientRects()).filter(function (rect) {
+                return rect.width > 0 && rect.height > 0;
+            });
+            return rects.length > 1;
+        }
+
+        function syncHeroBarLayout() {
+            document.querySelectorAll('.hero-tabs').forEach(function (tabs) {
+                tabs.classList.remove('stack-tabs');
+                const titles = Array.from(tabs.querySelectorAll('.tab-text h4'));
+                const mustStack = titles.some(titleWraps);
+                if (mustStack) tabs.classList.add('stack-tabs');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            syncHeroBarLayout();
+            window.addEventListener('resize', function () {
+                window.requestAnimationFrame(syncHeroBarLayout);
+            });
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncHeroBarLayout);
+            }
+        });
+    }());
+    </script>
 
 </body>
 </html>
