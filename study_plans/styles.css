@@ -1048,7 +1048,7 @@ table.courses-table td:nth-child(4) { width: 36%; }
 }
 @media (max-width: 768px) {
   .main-banner .header {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
     grid-template-areas: 'seu pill moaeen' !important;
     gap: 10px;
   }
