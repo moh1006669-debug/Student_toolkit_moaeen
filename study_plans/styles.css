@@ -883,3 +883,189 @@ table.courses-table td:nth-child(4) { width: 36%; }
   .admin-course-item { align-items: flex-start; }
   .admin-item-actions button span { display: none; }
 }
+
+
+/* ===== Requested study-plans header identity update only ===== */
+.main-banner .header {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) !important;
+  grid-template-areas: 'seu pill moaeen' !important;
+  direction: ltr !important;
+}
+.main-banner .header-logo-moaeen {
+  grid-area: moaeen !important;
+  justify-self: end !important;
+  direction: rtl;
+}
+.main-banner .header-seu-box {
+  grid-area: seu !important;
+  justify-self: start !important;
+  direction: ltr;
+}
+.main-banner .header-pill {
+  grid-area: pill !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  direction: rtl;
+}
+.main-banner .header-logo-moaeen img,
+.main-banner .seu-rect img {
+  width: clamp(82px, 9vw, 130px) !important;
+  height: clamp(82px, 9vw, 130px) !important;
+  object-fit: contain;
+}
+.main-banner .seu-rect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.main-banner .seu-text {
+  align-items: center;
+  text-align: center;
+}
+.main-banner .seu-text-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  margin-top: -12px;
+  padding: 1px 11px;
+  min-height: 24px;
+  border: 1px solid rgba(255,255,255,.34);
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.main-banner .mobile-pill-bar {
+  display: none !important;
+}
+.main-banner .gold-nav-line {
+  position: relative;
+  width: 100%;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  direction: ltr;
+  z-index: 5;
+}
+.main-banner .gold-nav-line::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,.96) 12%, rgba(229,193,88,.92) 50%, rgba(212,175,55,.96) 88%, transparent 100%);
+  box-shadow: 0 0 7px rgba(212,175,55,.32);
+  pointer-events: none;
+}
+.main-banner .gold-nav-line .gold-nav-share,
+.main-banner .gold-nav-line > .header-back-btn {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+}
+.main-banner .gold-nav-line .gold-nav-share {
+  direction: rtl;
+}
+.main-banner .gold-nav-line .share-btn,
+.main-banner .gold-nav-line .header-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 7px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-dark);
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+.main-banner .gold-nav-line .share-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.main-banner .gold-nav-line .header-back-btn {
+  direction: rtl;
+}
+.main-banner .gold-nav-line .share-btn:hover,
+.main-banner .gold-nav-line .header-back-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.main-banner .gold-nav-line .share-dropdown {
+  top: calc(100% + 8px);
+  left: 0;
+  right: auto;
+}
+
+/* Keep the capsule between the logos until its measured content no longer fits. */
+.main-banner .header.pill-stacked {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: 'seu moaeen' 'pill pill' !important;
+  row-gap: 10px;
+}
+.main-banner .header.pill-stacked .header-pill {
+  width: min(100%, 420px);
+  justify-self: center;
+}
+.main-banner .header.pill-stacked .pill-text {
+  white-space: nowrap;
+}
+@media (min-width: 769px) {
+  .main-banner .header-logo-moaeen img,
+  .main-banner .seu-rect img {
+    width: clamp(108px, 9vw, 138px) !important;
+    height: clamp(108px, 9vw, 138px) !important;
+  }
+}
+@media (max-width: 768px) {
+  .main-banner .header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) !important;
+    grid-template-areas: 'seu pill moaeen' !important;
+    gap: 10px;
+  }
+  .main-banner .header.pill-stacked {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-areas: 'seu moaeen' 'pill pill' !important;
+  }
+  .main-banner .header-logo-moaeen img,
+  .main-banner .seu-rect img {
+    width: clamp(70px, 16vw, 104px) !important;
+    height: clamp(70px, 16vw, 104px) !important;
+  }
+  .main-banner .gold-nav-line {
+    min-height: 38px;
+  }
+  .main-banner .gold-nav-line .share-btn,
+  .main-banner .gold-nav-line .header-back-btn {
+    min-height: 28px;
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}
+@media (max-width: 430px) {
+  .main-banner .header-logo-moaeen img,
+  .main-banner .seu-rect img {
+    width: 82px !important;
+    height: 82px !important;
+  }
+}
