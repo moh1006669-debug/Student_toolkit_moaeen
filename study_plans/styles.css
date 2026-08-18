@@ -931,6 +931,8 @@ table.courses-table td:nth-child(4) { width: 36%; }
   max-width: 100%;
   min-width: 0;
   direction: rtl;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .main-banner .header-logo-moaeen img,
 .main-banner .seu-rect img {
