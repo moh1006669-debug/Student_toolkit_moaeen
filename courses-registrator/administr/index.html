@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>نظام تسجيل المقررات – كلية العلوم الإدارية والمالية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/moaeen-theme.css">
     <style>
         /* ─── Reset & Base ─── */
         * {
@@ -812,32 +817,148 @@
         }
         .text-muted { color: #64748b; }
         .mt-1 { margin-top: 0.5rem; }
+
+        /* ===== REQUESTED HEADER IDENTITY UPDATE ONLY ===== */
+        .moaeen-brand-row {
+            grid-template-areas: 'brand pill seu';
+            direction: rtl;
+        }
+        .moaeen-brand-row .moaeen-brand-head {
+            grid-area: brand;
+            justify-self: end;
+            position: relative;
+            z-index: 1;
+        }
+        .moaeen-brand-row .moaeen-seu-head {
+            grid-area: seu;
+            justify-self: start;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .moaeen-brand-row .moaeen-brand-head img,
+        .moaeen-brand-row .moaeen-seu-head img {
+            width: clamp(82px, 9vw, 130px);
+            height: clamp(82px, 9vw, 130px);
+            object-fit: contain;
+        }
+        .moaeen-brand-row .moaeen-seu-head .seu-text-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            margin-top: -12px;
+            padding: 1px 11px;
+            min-height: 24px;
+            border: 1px solid rgba(255,255,255,.34);
+            border-radius: 999px;
+            background: rgba(255,255,255,.14);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        @media (min-width: 981px) {
+            .moaeen-brand-row .moaeen-brand-head img,
+            .moaeen-brand-row .moaeen-seu-head img {
+                width: clamp(108px, 9vw, 138px);
+                height: clamp(108px, 9vw, 138px);
+            }
+        }
+        @media (max-width: 760px) {
+            .moaeen-brand-row {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: 'brand seu' 'pill pill';
+            }
+            .moaeen-brand-row .moaeen-brand-head img,
+            .moaeen-brand-row .moaeen-seu-head img {
+                width: clamp(70px, 16vw, 104px);
+                height: clamp(70px, 16vw, 104px);
+            }
+        }
+        @media (max-width: 430px) {
+            .moaeen-brand-row .moaeen-brand-head img,
+            .moaeen-brand-row .moaeen-seu-head img {
+                width: 82px;
+                height: 82px;
+            }
+        }
+
     </style>
 </head>
-<body>
+<body class="planner-page">
     <div class="container" id="app">
 
         <!-- Header with department selector and search -->
-        <header class="header" id="mainHeader">
-            <h1>
-                🏛️ نظام تسجيل المقررات
-                <span>العلوم الإدارية والمالية</span>
-            </h1>
-            <div class="header-controls">
-                <select id="deptSelector">
+        <div class="moaeen-planner-shell" id="plannerShell">
+        <div class="moaeen-brand-row" aria-label="هوية منصة مُعين">
+            <a class="moaeen-brand-head" href="../" aria-label="العودة إلى أدوات منصة مُعين">
+                <img src="../assets/images/logo-moaeen.png" alt="شعار منصة مُعين التعليمية">
+            </a>
+            <div class="moaeen-header-pill">
+                <span class="pill-line"></span>
+                <span class="pill-text">مساعدك الأكاديمي _ معين</span>
+                <span class="pill-star">★</span>
+                <span class="pill-line"></span>
+            </div>
+            <div class="moaeen-seu-head">
+                <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية">
+                <span class="seu-text-pill">SEU</span>
+            </div>
+        </div>
+
+        <div class="moaeen-shell-divider" aria-hidden="true">
+            <span class="moaeen-divider-line"></span>
+            <button class="moaeen-share-btn" id="sharePageBtn" type="button" aria-label="مشاركة الصفحة">
+                <i class="fa-solid fa-share-nodes"></i><span>مشاركة الصفحة</span>
+            </button>
+        </div>
+
+        <section class="moaeen-hero-area" aria-labelledby="plannerHeroTitle">
+            <div class="moaeen-hero-heading">
+                <h1 id="plannerHeroTitle">كلية العلوم الإدارية والمالية</h1>
+                </div>
+
+            <div class="moaeen-specialty-selector">
+                <label for="deptSelector"><i class="fa-solid fa-compass"></i><span class="moaeen-selector-title">ابدأ باختيار تخصصك</span><small class="moaeen-selector-subtitle">ثم تابع تقدمك واكتشف المقررات المتاحة للتسجيل</small></label>
+                <div class="moaeen-select-frame"><select id="deptSelector">
                     <option value="business">إدارة الأعمال</option>
                     <option value="accounting">المحاسبة</option>
                     <option value="ecommerce">التجارة الإلكترونية</option>
                     <option value="finance">المالية</option>
-                </select>
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="ابحث برمز المقرر" />
-                    <button>🔍</button>
-                </div>
-                <div class="header-badge">🎓 اختر المواد التي درستها</div>
+                </select></div>
             </div>
-        </header>
 
+            <div class="moaeen-journey">
+                <div class="moaeen-specialty-visual" aria-live="polite">
+                    <div class="moaeen-specialty-icon"><i data-specialty-icon class="fa-solid fa-chart-line"></i></div>
+                    <strong data-specialty-name>التخصص المختار</strong>
+                </div>
+                <div class="moaeen-steps" aria-label="خطوات استخدام الأداة">
+                    <div class="moaeen-step-card"><span class="moaeen-step-number">1</span><div><strong>تصفح/تعرف على مقررات كل ترم</strong><small>راجع المقررات بحسب المستوى الدراسي.</small></div></div>
+                    <div class="moaeen-step-card"><span class="moaeen-step-number">2</span><div><strong>حدد المقررات التي أنجزتها كـ «مكتملة»</strong><small>اضغط على المقرر المتاح لتحديث تقدمك.</small></div></div>
+                    <div class="moaeen-step-card"><span class="moaeen-step-number">3</span><div><strong>تصفح المقررات المتاحة لك للتسجيل</strong><small>تظهر بناءً على فرز المتطلبات المكتملة.</small></div></div>
+                </div>
+            </div>
+
+            <div class="moaeen-hero-search">
+                <label for="searchInput"><i class="fa-solid fa-magnifying-glass"></i><span>ابحث داخل مقررات التخصص</span></label>
+                <div class="moaeen-search-box">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث باسم المقرر أو رمزه" aria-label="ابحث باسم المقرر أو رمزه">
+                    <button type="button" aria-label="بحث">بحث</button>
+                </div>
+            </div>
+        </section>
+    </div>
         <!-- Stats -->
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card purple">
@@ -930,7 +1051,7 @@
         <!-- Footer: Moaeen Platform -->
         <footer class="moaeen-footer">
             <div class="brand">
-                <img src="88672.png" alt="شعار منصة معين" />
+                <img src="../assets/images/footer_logo.png" alt="شعار منصة مُعين" />
                 <div class="brand-text">
                     <span class="title">إعداد / منصة مُعين التعليمية</span>
                     <span class="sub">خدمات تعليمية ومساعدة طلابية</span>
@@ -944,6 +1065,8 @@
             </a>
         </footer>
 
+
+        <a class="moaeen-float-wa" href="https://wa.me/966536004199" target="_blank" rel="noopener" aria-label="تواصل مع منصة معين عبر واتساب"><i class="fab fa-whatsapp"></i><span>تواصل مع مُعين</span></a>
         <div style="margin-top:1.5rem;text-align:center;font-size:0.75rem;color:#94a3b8;border-top:1px solid #e9edf4;padding-top:1.2rem;">
             ⚡ يتم تحديث البيانات تلقائياً عند أي تغيير
         </div>
@@ -967,6 +1090,7 @@
         </div>
     </div>
 
+    <script src="../assets/moaeen-share.js"></script>
     <script>
         // ─────────────────────────────────────────────────────────────
         //  🔐 ADMIN CREDENTIALS (Change these to customize)
