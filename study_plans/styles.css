@@ -71,7 +71,14 @@ input, select, textarea { font-family: inherit; }
 .header-logo-moaeen img:hover { transform: scale(1.05); }
 .header-pill { display: flex; align-items: center; justify-content: center; gap: 14px; background: rgba(1,32,32,0.6); border: 2px solid var(--gold); border-radius: 50px; padding: 12px 28px; box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.15), inset 0 0 20px rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
 .pill-line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border-radius: 2px; flex-shrink: 0; }
-.pill-text { color: var(--white); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.pill-text {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 0;
+  flex-shrink: 1;
+}
 .pill-star { color: var(--gold); font-size: 18px; }
 .header-seu-box { display: flex; align-items: center; justify-content: center; }
 .seu-rect { display: flex; align-items: center; gap: 12px; }
@@ -887,7 +894,7 @@ table.courses-table td:nth-child(4) { width: 36%; }
 
 /* ===== Requested study-plans header identity update only ===== */
 .main-banner .header {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) !important;
+  grid-template-columns: auto minmax(0, 1fr) auto !important;
   grid-template-areas: 'seu pill moaeen' !important;
   direction: ltr !important;
 }
@@ -906,7 +913,9 @@ table.courses-table td:nth-child(4) { width: 36%; }
   display: flex !important;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
   min-width: 0;
   direction: rtl;
 }
