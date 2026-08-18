@@ -887,35 +887,26 @@ table.courses-table td:nth-child(4) { width: 36%; }
 
 /* ===== Requested study-plans header identity update only ===== */
 .main-banner .header {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(220px, 2fr)
-    minmax(0, 1fr);
-  grid-template-areas: "seu pill moaeen";
-  align-items: center;
-  gap: clamp(12px, 2vw, 28px);
-  padding: 20px clamp(18px, 4vw, 46px) !important;
-  direction: ltr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) !important;
+  grid-template-areas: 'seu pill moaeen' !important;
+  direction: ltr !important;
 }
 .main-banner .header-logo-moaeen {
-  grid-area: moaeen;
-  justify-self: end;
+  grid-area: moaeen !important;
+  justify-self: end !important;
   direction: rtl;
 }
 .main-banner .header-seu-box {
-  grid-area: seu;
-  justify-self: start;
+  grid-area: seu !important;
+  justify-self: start !important;
   direction: ltr;
 }
 .main-banner .header-pill {
-  grid-area: pill;
-  display: flex;
+  grid-area: pill !important;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  width: min(100%, clamp(260px, 44vw, 620px));
-  justify-self: center;
+  width: 100%;
   min-width: 0;
   direction: rtl;
 }
@@ -1024,6 +1015,20 @@ table.courses-table td:nth-child(4) { width: 36%; }
   top: calc(100% + 8px);
   left: 0;
   right: auto;
+}
+
+/* Keep the capsule between the logos until its measured content no longer fits. */
+.main-banner .header.pill-stacked {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: 'seu moaeen' 'pill pill' !important;
+  row-gap: 10px;
+}
+.main-banner .header.pill-stacked .header-pill {
+  width: min(100%, 420px);
+  justify-self: center;
+}
+.main-banner .header.pill-stacked .pill-text {
+  white-space: nowrap;
 }
 @media (min-width: 769px) {
   .main-banner .header-logo-moaeen img,
