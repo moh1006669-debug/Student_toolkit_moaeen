@@ -182,8 +182,22 @@ document.addEventListener('click',function(e){
     const text = pill?.querySelector('.pill-text');
     if (!row || !pill || !text) return;
     row.classList.remove('pill-stacked');
-    const needsStack = text.scrollWidth > text.clientWidth + 1 || pill.scrollWidth > pill.clientWidth + 1;
-    row.classList.toggle('pill-stacked', needsStack);
+
+const availableWidth = row.clientWidth;
+const seu = row.querySelector('.header-seu-box');
+const moaeen = row.querySelector('.header-logo-moaeen');
+
+const reservedWidth =
+  (seu?.offsetWidth || 0) +
+  (moaeen?.offsetWidth || 0) +
+  40;
+
+const availablePillWidth = availableWidth - reservedWidth;
+
+const needsStack =
+  pill.scrollWidth > availablePillWidth + 1;
+
+row.classList.toggle('pill-stacked', needsStack);
   };
   const scheduleSync = () => window.requestAnimationFrame(syncHeaderPillLayout);
   window.addEventListener('resize', scheduleSync, { passive: true });
