@@ -1051,6 +1051,130 @@
       }
     }
 
+
+    /* ===== REQUESTED HEADER UPDATE ONLY ===== */
+    .brand-hero-card > .header {
+      grid-template-columns: auto minmax(220px, 1fr) auto;
+      grid-template-areas: "seu pill moaeen";
+      direction: ltr;
+    }
+    .brand-hero-card > .header .header-seu-box {
+      grid-area: seu;
+      justify-self: start;
+      direction: rtl;
+    }
+    .brand-hero-card > .header .header-logo-moaeen {
+      grid-area: moaeen;
+      justify-self: end;
+      direction: rtl;
+    }
+    .brand-hero-card > .header .header-pill {
+      grid-area: pill;
+      justify-self: center;
+    }
+    .brand-hero-card > .header .header-logo-moaeen img,
+    .brand-hero-card > .header .seu-rect img {
+      width: clamp(82px, 9vw, 130px);
+      height: clamp(82px, 9vw, 130px);
+    }
+    .brand-hero-card > .header .seu-rect {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .brand-hero-card > .header .seu-text {
+      align-items: center;
+      text-align: center;
+    }
+    .brand-hero-card > .header .seu-text-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      margin-top: -12px;
+      padding: 1px 11px;
+      min-height: 24px;
+      border: 1px solid rgba(255,255,255,0.34);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .brand-hero-card > .header-hero-divider {
+      direction: ltr;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand-hero-card > .header-hero-divider .share-page-btn {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+    .brand-hero-card > .header-hero-divider .header-back-btn {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 30px;
+      padding: 5px 13px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-dark);
+      font: 800 11px/1.2 'Cairo', Tahoma, Arial, sans-serif;
+      transition: var(--transition);
+      direction: rtl;
+    }
+    .brand-hero-card > .header-hero-divider .header-back-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(212,175,55,0.35);
+    }
+    @media (max-width: 992px) {
+      .brand-hero-card > .header {
+        grid-template-columns: auto minmax(160px, 1fr) auto;
+        grid-template-areas: "seu pill moaeen";
+      }
+    }
+    @media (max-width: 768px) {
+      .brand-hero-card > .header {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "seu moaeen" "pill pill";
+        gap: 10px 14px;
+      }
+      .brand-hero-card > .header .header-pill {
+        width: min(100%, 360px);
+      }
+      .brand-hero-card > .header .header-logo-moaeen img,
+      .brand-hero-card > .header .seu-rect img {
+        width: clamp(70px, 16vw, 104px);
+        height: clamp(70px, 16vw, 104px);
+      }
+      .brand-hero-card > .header-hero-divider .share-page-btn,
+      .brand-hero-card > .header-hero-divider .header-back-btn {
+        min-height: 28px;
+        padding: 4px 10px;
+        font-size: 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      .brand-hero-card > .header .header-pill {
+        max-width: calc(100% - 4px);
+      }
+      .brand-hero-card > .header .header-logo-moaeen img,
+      .brand-hero-card > .header .seu-rect img {
+        width: 82px;
+        height: 82px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1066,26 +1190,30 @@
       </div>
       <div class="header-pill">
         <span class="pill-line"></span>
-        <span class="pill-text">مساعد التحضيري _مُعين</span>
+        <span class="pill-text">مساعدك الأكاديمي _ معين</span>
         <span class="pill-star">⭐</span>
         <span class="pill-line"></span>
       </div>
       <div class="header-seu-box">
         <div class="seu-rect">
           <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
-          <div class="seu-text">
-            <span class="seu-text-en">SEU_University</span>
+            <div class="seu-text">
+            <span class="seu-text-en seu-text-pill">SEU</span>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="header-hero-divider" aria-hidden="false">
-      <span class="header-hero-divider-line"></span>
+    <div class="header-hero-divider" aria-label="التنقل والمشاركة">
+      <span class="header-hero-divider-line" aria-hidden="true"></span>
       <button class="share-page-btn" id="sharePageBtn" type="button" aria-label="مشاركة الصفحة">
         <i class="fas fa-share-nodes" aria-hidden="true"></i>
         <span>مشاركة الصفحة</span>
       </button>
+      <a href="../" class="header-back-btn" aria-label="العودة للأدوات">
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        <span>العودة للأدوات</span>
+      </a>
     </div>
 
     <!-- ============================================================
