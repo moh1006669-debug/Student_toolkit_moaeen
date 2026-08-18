@@ -1,3048 +1,2350 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة معين التعليمية | الرئيسية</title>
-  <meta name="description" content="منصة معين التعليمية - مكتبة أدوات الطالب. كل الأدوات التي تحتاجها في مكان واحد." />
-
-  <!-- ============ Google Fonts: Cairo ============ -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- ============ Font Awesome for icons ============ -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <style>
-    :root {
-      --bg-card: #FFFFFF;
-      --bg-dark: #012727;
-      --bg-dark-2: #0A2C2C;
-      --bg-darker: #012020;
-      --bg-section: #F2F7F8;
-      --btn-bg: #074842;
-      --btn-bg-hover: #053631;
-      --desc-color: #5F6C70;
-      --gold: #D4AF37;
-      --gold-dark: #B8941F;
-      --gold-glow: #E5C158;
-      --gold-light: #E5C158;
-      --gold-text: #be9632;
-      --gray-light: #E2E8F0;
-      --icon-circle-bg: #EBF4F0;
-      --placeholder-color: #E2E8F0;
-      --radius-btn: 10px;
-      --radius-card: 20px;
-      --radius-search: 30px;
-      --search-bg: #528482;
-      --search-bg-hover: #44736F;
-      --seu-blue: #1B2A6B;
-      --seu-blue-dark: #0F1A4C;
-      --snapchat-yellow: #FFFC00;
-      --telegram-blue: #0088CC;
-      --title-color: #0B3B3C;
-      --transition: 0.3s ease;
-      --whatsapp-dark: #1DA851;
-      --whatsapp-green: #25D366;
-      --white: #FFFFFF;
-      --x-black: #000000;
-    }
-
-
-    /* ==========================================================
-       CSS Variables - لوحة الألوان
-       ========================================================== */
-    
-
-    /* ==========================================================
-       Reset & Base
-       ========================================================== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Cairo', Tahoma, Arial, sans-serif;
-      background-color: var(--bg-dark);
-      background-image: url('./assets/images/body-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      color: var(--white);
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .page-wrapper {
-      width: 100%;
-      max-width: 1320px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    /* ==========================================================
-       HEADER - الشريط العلوي
-       ========================================================== */
-    .header {
-      width: 100%;
-      background: var(--bg-dark);
-      background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
-                        url('./assets/images/header-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 30px;
-      padding: 20px 30px;
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      align-items: center;
-      gap: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* ===== العمود الأيمن: شعار منصة معين ===== */
-    .header-logo-moaeen {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .header-logo-moaeen img {
-      width: 130px;
-      height: auto;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-      transition: var(--transition);
-    }
-
-    .header-logo-moaeen img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== العمود الأوسط: الكبسولة (العبارة) ===== */
-    .header-pill {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      background: rgba(1, 32, 32, 0.6);
-      border: 2px solid var(--gold);
-      border-radius: 50px;
-      padding: 16px 36px;
-      box-shadow:
-        0 0 20px rgba(212, 175, 55, 0.3),
-        0 0 40px rgba(212, 175, 55, 0.15),
-        inset 0 0 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
-      transition: var(--transition);
-    }
-
-    .header-pill:hover {
-      box-shadow:
-        0 0 30px rgba(212, 175, 55, 0.4),
-        0 0 60px rgba(212, 175, 55, 0.2),
-        inset 0 0 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* الخطوط الذهبية الأفقية على الجانبين */
-    .pill-line {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      border-radius: 2px;
-      flex-shrink: 0;
-      box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
-    }
-
-    .pill-text {
-      color: var(--white);
-      font-size: 20px;
-      font-weight: 700;
-      white-space: nowrap;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-      letter-spacing: 0.3px;
-    }
-
-    .pill-star {
-      color: var(--gold);
-      font-size: 22px;
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
-      flex-shrink: 0;
-    }
-
-    /* ===== العمود الأيسر: شعار الجامعة (بدون صندوق أبيض) ===== */
-    .header-seu-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .seu-rect {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: none;
-      transition: var(--transition);
-      max-width: 100%;
-    }
-
-    .seu-rect:hover {
-      transform: translateY(-2px);
-      box-shadow: none;
-    }
-
-    .seu-rect img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .seu-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .seu-text-ar {
-      color: var(--seu-blue);
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .seu-text-en {
-      color: var(--white);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
-    }
-
-    /* ==========================================================
-       HERO SECTION - قسم البطل
-       ========================================================== */
-    .hero {
-      width: 100%;
-      background: var(--bg-dark);
-      background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
-                        url('./assets/images/hero-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 30px;
-      padding: 60px 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 50px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* ===== العمود الأيسر: الصورة ===== */
-    .hero-image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      order: 2;
-    }
-
-    .hero-image img {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
-      transition: var(--transition);
-    }
-
-    .hero-image img:hover {
-      transform: scale(1.02) translateY(-5px);
-    }
-
-    /* ===== العمود الأيمن: النصوص ===== */
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      order: 1;
-      text-align: center;
-      align-items: center;
-    }
-
-    /* الشارة العلوية */
-    .hero-badge {
-      display: inline-flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      gap: 8px;
-      background: rgba(1, 32, 32, 0.5);
-      border: 1.5px solid var(--gold);
-      border-radius: 50px;
-      padding: 10px 24px;
-      width: fit-content;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 16px rgba(212, 175, 55, 0.2);
-    }
-
-    .hero-badge-star {
-      color: var(--gold);
-      font-size: 18px;
-      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
-    }
-
-    .hero-badge-text {
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-    }
-
-    /* العنوان الرئيسي */
-    .hero-heading {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
-    }
-
-    .hero-heading-line1 {
-      display: block;
-      color: var(--white);
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-      margin-bottom: 14px;
-    }
-
-    .hero-heading-line2 {
-      display: block;
-      color: var(--gold);
-      text-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.4),
-        0 0 24px rgba(212, 175, 55, 0.3);
-    }
-
-    /* النص الوصفي */
-    .hero-subheading {
-      color: #e2e8f0;
-      font-size: clamp(16px, 1.5vw, 20px);
-      font-weight: 400;
-      line-height: 1.8;
-      max-width: 520px;
-    }
-
-    /* الديكور السفلي - ثلاث نقاط ذهبية */
-    .hero-decoration {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .hero-decoration .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-    }
-
-    .hero-decoration .line {
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      border-radius: 2px;
-    }
-
-    /* ==========================================================
-       RESPONSIVE - التجاوب
-       ========================================================== */
-
-    /* الأجهزة اللوحية (992px وأقل) */
-    @media (max-width: 992px) {
-      .header {
-        grid-template-columns: 1fr 1fr;
-        padding: 18px 24px;
-        gap: 16px;
-      }
-
-      /* نقل شعار الجامعة ليكون فوق الجميع */
-      .header-seu-box {
-        order: -1;
-        grid-column: 1 / -1;
-        justify-content: center;
-      }
-
-      .header-pill {
-        grid-column: 1 / -1;
-        order: 0;
-      }
-
-      .header-logo-moaeen {
-        grid-column: 1 / -1;
-        order: 1;
-        justify-content: center;
-      }
-
-      .pill-text {
-        font-size: 18px;
-      }
-
-      .pill-line {
-        width: 40px;
-      }
-
-      .hero {
-        padding: 40px 30px;
-        gap: 30px;
-      }
-
-      .hero-heading {
-        font-size: clamp(32px, 4.5vw, 48px);
-      }
-
-      .hero-subheading {
-        font-size: 16px;
-      }
-    }
-
-    /* الهواتف (768px وأقل) */
-    @media (max-width: 768px) {
-      body {
-        padding: 12px;
-      }
-
-      .header {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 16px;
-        gap: 12px;
-        border-radius: 24px;
-      }
-
-      /* شعار منصة معين: أقصى اليمين (الترتيب الأول في RTL) */
-      .header-logo-moaeen {
-        order: 1;
-        flex: 0 0 auto;
-        justify-content: flex-start;
-      }
-
-      .header-logo-moaeen img {
-        width: 110px;
-      }
-
-      /* شعار الجامعة: أقصى اليسار (الترتيب الثاني في RTL) */
-      .header-seu-box {
-        order: 2;
-        flex: 0 0 auto;
-        justify-content: flex-end;
-      }
-
-      /* شعار الجامعة: النص ينزل أسفل الشعار ويتمركز */
-      .seu-rect {
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        gap: 6px;
-      }
-
-      .seu-text {
-        align-items: center;
-        text-align: center;
-      }
-
-      /* الكبسولة: تنزل للصف الثاني وتتمركز */
-      .header-pill {
-        order: 3;
-        flex-basis: 100%;
-        width: fit-content;
-        max-width: 90%;
-        margin: 12px auto 0;
-        padding: 8px 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-      }
-
-      .pill-text {
-        font-size: 15px;
-        white-space: normal;
-        text-align: center;
-      }
-
-      .pill-line {
-        width: 30px;
-      }
-
-      .pill-star {
-        font-size: 18px;
-      }
-
-      .seu-rect img {
-        width: 40px;
-        height: 40px;
-      }
-
-      .seu-text-ar {
-        font-size: 12px;
-      }
-
-      .seu-text-en {
-        font-size: 10px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 30px 20px;
-        gap: 30px;
-        border-radius: 24px;
-      }
-
-      /* في الموبايل: الصورة فوق النص */
-      .hero-image {
-        order: 1;
-      }
-
-      .hero-image img {
-        max-width: 70%;
-        width: 70%;
-        margin: 0 auto;
-      }
-
-      .hero-content {
-        order: 2;
-        text-align: center;
-        align-items: center;
-      }
-
-      .hero-badge {
-        margin: 0 auto;
-      }
-
-      .hero-heading {
-        font-size: clamp(28px, 6vw, 38px);
-      }
-
-      .hero-subheading {
-        font-size: 15px;
-        text-align: center;
-      }
-
-      .hero-decoration {
-        justify-content: center;
-      }
-    }
-
-    /* الهواتف الصغيرة (480px وأقل) */
-    @media (max-width: 480px) {
-      .header-logo-moaeen img {
-        width: 90px;
-      }
-
-      .pill-text {
-        font-size: 13px;
-      }
-
-      .pill-line {
-        width: 20px;
-      }
-
-      /* في الشاشات الصغيرة جداً: تصغير حشو مربع شعار الجامعة وضمان عدم التجاوز */
-      .seu-rect {
-        padding: 0;
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: center;
-      }
-
-      .seu-rect img {
-        width: 36px;
-        height: 36px;
-      }
-
-      .hero-heading {
-        font-size: 26px;
-      }
-
-      .hero-subheading {
-        font-size: 14px;
-      }
-    }
-
-    /* ==========================================================
-       Selection & Scrollbar
-       ========================================================== */
-    ::selection {
-      background: var(--gold);
-      color: var(--bg-dark);
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-darker);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--gold-light);
-    }
-  
-
-
-    /* ==========================================================
-       CSS Variables - لوحة الألوان (مقاسة من التصميم)
-       ========================================================== */
-    
-
-    
-
-    /* ==========================================================
-       TOOLS SECTION - قسم البطاقات
-       ========================================================== */
-    .tools-section {
-      width: 100%;
-      padding: 50px 30px;
-      background: #FFFFFF;
-      border-radius: 24px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    /* ===== شريط البحث ===== */
-    .search-container {
-      max-width: 700px;
-      margin: 0 auto 50px;
-      position: relative;
-    }
-
-    .search-bar {
-      width: 100%;
-      background: var(--search-bg);
-      border-radius: var(--radius-search);
-      padding: 18px 60px 18px 24px;  /* top, left (for text), right (for icon), bottom */
-      color: var(--placeholder-color);
-      font-size: 16px;
-      font-family: inherit;
-      font-weight: 500;
-      border: none;
-      outline: none;
-      transition: var(--transition);
-      box-shadow: 0 4px 20px rgba(82, 132, 130, 0.25);
-      text-align: right;
-    }
-
-    .search-bar::placeholder {
-      color: var(--placeholder-color);
-      opacity: 0.9;
-    }
-
-    .search-bar:focus {
-      background: var(--search-bg-hover);
-      box-shadow: 0 6px 28px rgba(82, 132, 130, 0.35);
-    }
-
-    /* أيقونة العدسة على اليسار (في RTL تكون على اليسار = نهاية النص) */
-    .search-icon {
-      position: absolute;
-      left: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--bg-card);
-      font-size: 20px;
-      pointer-events: none;
-    }
-
-    /* ===== شبكة البطاقات ===== */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    /* ===== البطاقة الواحدة ===== */
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      padding: 36px 24px 24px;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      overflow: visible;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
-    }
-
-    /* ===== الشارة الذهبية (Ribbon) ===== */
-    .card-ribbon {
-      position: absolute;
-      top: 0;
-      left: 20px;
-      width: 36px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      /* شكل راية تتدلى للأسفل مع مثلث في الأسفل */
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 8px;
-      box-shadow: 0 2px 8px rgba(233, 164, 36, 0.3);
-      z-index: 2;
-    }
-
-    .card-ribbon i {
-      color: var(--bg-card);
-      font-size: 14px;
-    }
-
-    /* ===== دائرة الأيقونة ===== */
-    .card-icon-circle {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: var(--icon-circle-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .card:hover .card-icon-circle {
-      transform: scale(1.05);
-      background: #DDEDE7;
-    }
-
-    /* مساحة الأيقونة - المطور سيضع الصورة هنا لاحقاً */
-    .card-icon-circle img,
-    .card-icon-circle .icon-placeholder {
-      width: 68px;
-      height: 68px;
-      object-fit: contain;
-    }
-
-    .card-icon-circle .icon-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--search-bg);
-      font-size: 34px;
-    }
-
-    /* ===== عنوان البطاقة ===== */
-    .card-title {
-      color: var(--title-color);
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      line-height: 1.4;
-    }
-
-    .card-title .title-icon {
-      font-size: 16px;
-      /* الأيقونة الصغيرة بجانب العنوان */
-    }
-
-    /* ===== الوصف ===== */
-    .card-desc {
-      color: var(--desc-color);
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.75;
-      margin-bottom: 24px;
-      min-height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* ===== الزر ===== */
-    .card-btn {
-      width: 100%;
-      background: var(--btn-bg);
-      color: var(--bg-card);
-      padding: 13px 20px;
-      border-radius: var(--radius-btn);
-      font-size: 15px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: var(--transition);
-      margin-top: auto;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .card-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-      transition: 0.5s;
-    }
-
-    .card-btn:hover::before {
-      right: 100%;
-    }
-
-    .card-btn:hover {
-      background: var(--btn-bg-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(7, 72, 66, 0.3);
-    }
-
-    .card-btn i {
-      font-size: 14px;
-      /* السهم متجه لليسار في RTL */
-    }
-
-    /* ==========================================================
-       RESPONSIVE - التجاوب
-       ========================================================== */
-
-    /* الأجهزة اللوحية (992px وأقل) - بطاقتان في الصف */
-    @media (max-width: 992px) {
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-
-      .tools-section {
-        padding: 30px 0;
-      }
-    }
-
-    /* الهواتف (768px وأقل) - بطاقة واحدة في الصف */
-    @media (max-width: 768px) {
-
-      .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .search-container {
-        max-width: 100%;
-        margin-bottom: 36px;
-      }
-
-      .search-bar {
-        padding: 16px 56px 16px 20px;
-        font-size: 15px;
-      }
-
-      .search-icon {
-        left: 20px;
-        font-size: 18px;
-      }
-
-      .card {
-        padding: 32px 20px 20px;
-      }
-
-      .card-icon-circle {
-        width: 95px;
-        height: 95px;
-      }
-
-      .card-icon-circle img,
-      .card-icon-circle .icon-placeholder {
-        width: 58px;
-        height: 58px;
-      }
-
-      .card-title {
-        font-size: 17px;
-      }
-
-      .card-desc {
-        font-size: 14.5px;
-      }
-
-      .card-btn {
-        font-size: 14px;
-        padding: 12px 16px;
-      }
-    }
-
-    /* الهواتف الصغيرة (480px وأقل) */
-    @media (max-width: 480px) {
-      .tools-section {
-        padding: 20px 0;
-      }
-
-      .search-container {
-        margin-bottom: 28px;
-      }
-
-      .card {
-        padding: 28px 16px 18px;
-      }
-
-      .card-icon-circle {
-        width: 85px;
-        height: 85px;
-      }
-
-      .card-icon-circle img,
-      .card-icon-circle .icon-placeholder {
-        width: 52px;
-        height: 52px;
-      }
-
-      .card-title {
-        font-size: 16px;
-      }
-
-      .card-desc {
-        font-size: 13.5px;
-        min-height: 48px;
-      }
-    }
-
-    /* ==========================================================
-       Selection & Scrollbar
-       ========================================================== */
-    
-
-    
-
-    
-
-    
-  
-
-
-    /* ==========================================================
-       CSS Variables - لوحة الألوان
-       ========================================================== */
-    
-
-    
-
-    /* ==========================================================
-       FOOTER CONTAINER
-       ========================================================== */
-    .footer {
-      width: 100%;
-      max-width: 1320px;
-      background: var(--bg-dark);
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    /* ==========================================================
-       TOP SECTION - الصندوق العلوي بإطار ذهبي
-       ========================================================== */
-    .footer-top {
-      border: 2px solid var(--gold);
-      border-radius: 20px;
-      margin: 16px;
-      padding: 36px 40px;
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 40px;
-      position: relative;
-      background: linear-gradient(135deg, rgba(2, 53, 53, 0.5) 0%, rgba(1, 39, 39, 0.8) 100%);
-    }
-
-    /* ===== العمود الأيمن: معلومات المنصة ===== */
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .brand-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand-logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 3px solid var(--gold);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-logo::before {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border-radius: 50%;
-      background: var(--bg-dark);
-      border: 2px solid var(--gold);
-    }
-
-    .brand-logo svg {
-      width: 40px;
-      height: 40px;
-      fill: var(--gold);
-      position: relative;
-      z-index: 1;
-    }
-
-    img.brand-logo {
-      width: 50px !important;
-      height: 50px !important;
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
-      border-radius: 50%;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      overflow: visible !important;
-    }
-
-    .brand-title {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .brand-title h2 {
-      color: var(--gold);
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .brand-title p {
-      color: var(--gold-light);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    /* زر "لخدمات المساعدة الطلابية" */
-    .brand-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      color: var(--bg-dark);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 700;
-      width: fit-content;
-      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
-      transition: var(--transition);
-    }
-
-    .brand-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.5);
-    }
-
-    .brand-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--bg-dark);
-    }
-
-    /* الفقرات */
-    .brand-desc {
-      color: var(--white);
-      font-size: 15px;
-      line-height: 1.9;
-      font-weight: 400;
-    }
-
-    .brand-desc p {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .brand-desc p:last-child {
-      margin-bottom: 0;
-    }
-
-    .brand-desc .icon {
-      color: var(--gold);
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
-
-    .brand-desc .icon svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--gold);
-    }
-
-    /* ===== العمود الأيسر: بيانات الاتصال ===== */
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    /* عنوان قسم التواصل */
-    .contact-title {
-      color: var(--gold);
-      font-size: 18px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .contact-title svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--gold);
-    }
-
-    .contact-title .arrows {
-      color: var(--gold);
-      font-size: 16px;
-    }
-
-    /* محتوى الاتصال: QR + WhatsApp */
-    .contact-content {
-      display: grid;
-      grid-template-columns: auto 1px 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-
-    /* الخط العمودي الذهبي الفاصل */
-    .contact-divider {
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(180deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
-      min-height: 180px;
-    }
-
-    /* قسم QR Code */
-    .qr-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .qr-code {
-      width: 120px;
-      height: 120px;
-      background: var(--white);
-      border-radius: 14px;
-      padding: 8px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      border: 2px solid var(--gold);
-      position: relative;
-    }
-
-    .qr-code svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* زر "امسح للتواصل" */
-    .qr-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      color: var(--bg-dark);
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-      transition: var(--transition);
-    }
-
-    .qr-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
-    }
-
-    .qr-btn svg {
-      width: 14px;
-      height: 14px;
-      fill: var(--bg-dark);
-    }
-
-    /* قسم WhatsApp */
-    .whatsapp-section {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    /* زر WhatsApp */
-    .wa-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--whatsapp-green);
-      color: var(--white);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
-      transition: var(--transition);
-    }
-
-    .wa-btn:hover {
-      background: var(--whatsapp-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.5);
-    }
-
-    .wa-btn svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--white);
-    }
-
-    /* رقم الهاتف */
-    .phone-number {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--gold);
-      font-size: 26px;
-      font-weight: 800;
-      direction: ltr;
-      letter-spacing: 0.5px;
-    }
-
-    .phone-number svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--gold);
-    }
-
-    /* أيقونات التواصل الاجتماعي */
-    .social-icons {
-      display: flex;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      border: 2px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .social-icon:hover {
-      transform: translateY(-3px) scale(1.1);
-      border-color: var(--gold);
-    }
-
-    .social-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--white);
-    }
-
-    .social-icon.x {
-      background: var(--x-black);
-    }
-
-    .social-icon.telegram {
-      background: var(--telegram-blue);
-    }
-
-    .social-icon.snapchat {
-      background: var(--snapchat-yellow);
-    }
-
-    .social-icon.snapchat svg {
-      fill: var(--x-black);
-    }
-
-    /* ==========================================================
-       BOTTOM SECTION - شريط الحقوق
-       ========================================================== */
-    .footer-bottom {
-      border-top: 2px solid var(--gold);
-      padding: 24px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 30px;
-      position: relative;
-    }
-
-    /* خطوط ذهبية زخرفية */
-    .footer-bottom::before,
-    .footer-bottom::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.3;
-    }
-
-    .footer-bottom::before { top: 8px; }
-    .footer-bottom::after { bottom: 8px; }
-
-    /* العمود الأيمن: حقوق النشر */
-    .copyright {
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 500;
-      text-align: right;
-    }
-
-    /* العمود الأوسط: الشعار */
-    .slogan {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      justify-self: center;
-      gap: 14px;
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .slogan .footer-line {
-      width: 50px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    .slogan .star {
-      color: var(--gold);
-      font-size: 18px;
-    }
-
-    .slogan .gold-text {
-      color: var(--gold);
-    }
-
-    /* العمود الأيسر: صنع بـ */
-    .made-with {
-      color: var(--gold);
-      font-size: 14px;
-      font-weight: 600;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      justify-content: flex-end;
-    }
-
-    .made-with .heart {
-      color: #4CAF50;
-      animation: heartbeat 1.5s ease infinite;
-      display: inline-block;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    /* ==========================================================
-       FLOATING WHATSAPP BUTTON
-       ========================================================== */
-    .float-wa {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--whatsapp-green);
-      color: var(--white);
-      padding: 14px 24px 14px 18px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
-      z-index: 1000;
-      transition: var(--transition);
-      animation: float-pulse 2s infinite;
-    }
-
-    .float-wa:hover {
-      transform: scale(1.05);
-      background: var(--whatsapp-dark);
-      animation: none;
-    }
-
-    .float-wa svg {
-      width: 28px;
-      height: 28px;
-      fill: var(--white);
-    }
-
-    @keyframes float-pulse {
-      0%, 100% {
-        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
-      }
-      50% {
-        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0);
-      }
-    }
-
-    /* ==========================================================
-       RESPONSIVE
-       ========================================================== */
-    @media (max-width: 1024px) {
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 28px 24px;
-      }
-
-      .contact-content {
-        grid-template-columns: auto 1px 1fr;
-        gap: 20px;
-      }
-
-      .footer-bottom {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        text-align: center;
-      }
-
-      .copyright, .made-with {
-        text-align: center;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-
-      .footer-top {
-        padding: 24px 18px;
-        margin: 12px;
-      }
-
-      .brand-header {
-        flex-direction: row;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .brand-btn {
-        margin: 0 auto;
-      }
-
-      .contact-content {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .contact-divider {
-        width: 100%;
-        height: 1px;
-        min-height: 1px;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      }
-
-      .qr-section, .whatsapp-section {
-        align-items: center;
-        text-align: center;
-      }
-
-      .phone-number {
-        justify-content: center;
-        font-size: 22px;
-      }
-
-      .social-icons {
-        justify-content: center;
-      }
-
-      .footer-bottom {
-        padding: 20px 18px;
-      }
-
-      /* إفساح مساحة لزر الواتساب العائم حتى لا يحجب محتوى التذييل */
-      .footer {
-        padding-bottom: 80px;
-      }
-
-      .slogan .footer-line {
-        width: 30px;
-      }
-
-      .float-wa {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px 12px 16px;
-        font-size: 14px;
-      }
-
-      .float-wa svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      /* في الشاشات الصغيرة جداً: تصغير حشو مربع شعار الجامعة وضمان عدم التجاوز */
-      .seu-rect {
-        padding: 8px 12px;
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: center;
-      }
-
-      .brand-logo {
-        width: 64px;
-        height: 64px;
-      }
-
-      .brand-logo svg {
-        width: 32px;
-        height: 32px;
-      }
-
-      img.brand-logo {
-        width: 42px !important;
-        height: 42px !important;
-      }
-
-      .brand-title h2 {
-        font-size: 20px;
-      }
-
-      .qr-code {
-        width: 100px;
-        height: 100px;
-      }
-
-      .phone-number {
-        font-size: 18px;
-      }
-
-      .float-wa span {
-        display: none;
-      }
-
-      .float-wa {
-        padding: 16px;
-        border-radius: 50%;
-      }
-    }
-
-    /* Selection */
-    
-
-    /* Scrollbar */
-    
-    
-    
-  
-
-    /* ==========================================================
-       TRUST BADGES BAR - شريط شارات الثقة
-       ========================================================== */
-    .trust-badges-container {
-      width: 100%;
-      background: #0A4542;
-      border-radius: 30px;
-      padding: 24px 30px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3),
-                  0 0 0 1px rgba(212, 175, 55, 0.1);
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 20px;
-      border-right: 1px solid rgba(212, 175, 55, 0.35);
-      transition: var(--transition);
-    }
-
-    /* إزالة الخط الفاصل من آخر عنصر */
-    .trust-item:last-child {
-      border-right: none;
-    }
-
-    .trust-item:hover {
-      background: rgba(212, 175, 55, 0.08);
-      border-radius: 16px;
-    }
-
-    .trust-item-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .trust-item-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.3));
-      transition: var(--transition);
-    }
-
-    .trust-item:hover .trust-item-icon img {
-      transform: scale(1.1);
-    }
-
-    .trust-item-text {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .trust-item-title {
-      color: #D4AF37;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .trust-item-desc {
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.4;
-    }
-
-    /* Responsive: 2x2 grid on mobile */
-    @media (max-width: 768px) {
-      .trust-badges-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 20px 16px;
-      }
-
-      .trust-item {
-        padding: 12px 14px;
-        border-right: none;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-      }
-
-      /* العنصران في الصف الأول لهما حد سفلي */
-      .trust-item:nth-child(1),
-      .trust-item:nth-child(2) {
-        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
-      }
-
-      /* العنصران في الصف الثاني بدون حد سفلي */
-      .trust-item:nth-child(3),
-      .trust-item:nth-child(4) {
-        border-bottom: none;
-      }
-
-      /* العنصر الأول والثالث (بداية كل صف) بدون حد يميني */
-      .trust-item:nth-child(odd) {
-        border-right: none;
-      }
-
-      /* العنصر الثاني والرابع (نهاية كل صف) - خط فاصل عمودي */
-      .trust-item:nth-child(even) {
-        border-right: none;
-      }
-
-      /* إضافة خط فاصل عمودي بين العنصرين في نفس الصف */
-      .trust-item:nth-child(odd) {
-        position: relative;
-      }
-
-      .trust-item:nth-child(odd)::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 15%;
-        height: 70%;
-        width: 1px;
-        background: rgba(212, 175, 55, 0.35);
-      }
-
-      .trust-item-icon {
-        width: 42px;
-        height: 42px;
-      }
-
-      .trust-item-title {
-        font-size: 16px;
-      }
-
-      .trust-item-desc {
-        font-size: 13px;
-      }
-    }
-
-
-
-    /* ==========================================================
-       RESPONSIVE FLOW FIX — preserve visual design, remove fixed canvas behavior
-       ========================================================== */
-    html {
-      width: 100%;
-      min-width: 0;
-    }
-
-    body {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      margin: 0;
-      padding: clamp(10px, 1.5vw, 20px);
-      align-items: stretch;
-      overflow-x: clip;
-    }
-
-    .page-wrapper {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      margin-inline: 0;
-    }
-
-    .page-wrapper > * {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-    }
-
-    body > .footer {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      margin-inline: 0;
-    }
-
-    .header,
-    .hero,
-    .tools-section,
-    .trust-badges-container,
-    .footer,
-    .footer-top,
-    .footer-bottom,
-    .cards-grid,
-    .hero-content,
-    .hero-image {
-      min-width: 0;
-    }
-
-    .header > *,
-    .hero > *,
-    .tools-section > *,
-    .footer > *,
-    .cards-grid > * {
-      min-width: 0;
-    }
-
-    .search-container {
-      width: min(100%, 700px);
-      max-width: min(700px, 100%);
-      min-width: 0;
-    }
-
-    .cards-grid {
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    }
-
-    @media (max-width: 768px) {
-      .page-wrapper {
-        gap: 16px;
-      }
-
-      .header,
-      .hero,
-      .tools-section,
-      .footer {
-        width: 100%;
-      }
-    }
-
-    /* ==========================================================
-       HEADER / HERO REQUESTED REFINEMENTS
-       ========================================================== */
-    .header {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
-      grid-template-rows: auto auto;
-      border-radius: 30px 30px 0 0;
-      padding-bottom: 12px;
-      overflow: visible;
-    }
-
-    .header-logo-moaeen {
-      grid-column: 1;
-      grid-row: 1;
-      justify-content: flex-start;
-      min-width: 0;
-    }
-
-    .header-logo-moaeen img {
-      width: clamp(140px, 10vw, 175px);
-      max-width: 100%;
-      height: auto;
-    }
-
-    .header-pill {
-      grid-column: 2;
-      grid-row: 1;
-      width: 100%;
-      min-width: 0;
-      justify-self: stretch;
-      padding-inline: clamp(12px, 2vw, 36px);
-    }
-
-    .pill-text {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .header-seu-box {
-      grid-column: 3;
-      grid-row: 1;
-      justify-content: flex-end;
-      min-width: 0;
-    }
-
-    .seu-visual {
-      position: relative;
-      width: clamp(140px, 10vw, 175px);
-      min-height: clamp(94px, 9vw, 122px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .seu-logo-image {
-      width: clamp(140px, 10vw, 175px);
-      max-width: 100%;
-      height: auto;
-      max-height: 112px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-    }
-
-    .seu-rect {
-      position: absolute;
-      left: 50%;
-      bottom: -2px;
-      transform: translateX(-50%);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: auto;
-      min-width: 54px;
-      padding: 3px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 14px rgba(0, 0, 0, 0.12);
-      backdrop-filter: blur(10px);
-      z-index: 2;
-    }
-
-    .seu-rect:hover {
-      transform: translateX(-50%) translateY(-2px);
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    .seu-text-en {
-      color: var(--white);
-      font-size: clamp(11px, 1vw, 14px);
-      font-weight: 800;
-      letter-spacing: 1px;
-      line-height: 1.1;
-      white-space: nowrap;
-    }
-
-    .header-divider {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      position: relative;
-      width: 100%;
-      height: 26px;
-      margin-top: 2px;
-    }
-
-    .header-divider::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.25), var(--gold), rgba(212, 175, 55, 0.25));
-      box-shadow: 0 0 7px rgba(212, 175, 55, 0.32);
-    }
-
-    .share-button {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 11px;
-      color: var(--bg-dark);
-      background: var(--gold);
-      border: 1px solid var(--gold-glow);
-      border-radius: 8px;
-      font: inherit;
-      font-size: 11px;
-      font-weight: 800;
-      line-height: 1;
-      cursor: pointer;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
-      transition: var(--transition);
-      z-index: 3;
-    }
-
-    .share-button:hover {
-      background: var(--gold-glow);
-      transform: translateY(-50%) translateY(-2px);
-    }
-
-    .share-button i {
-      font-size: 11px;
-    }
-
-    .hero {
-      border-radius: 0;
-      padding-bottom: clamp(84px, 8vw, 108px);
-    }
-
-    .hero-help-button {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: calc(100% - 12px);
-      padding: 11px 16px 11px 13px;
-      color: var(--bg-dark);
-      background: var(--gold);
-      border: 1px solid var(--gold-glow);
-      border-radius: 0 16px 0 0;
-      font-size: clamp(10px, 1.1vw, 14px);
-      font-weight: 800;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.18);
-      transition: var(--transition);
-      z-index: 4;
-    }
-
-    .hero-help-button:hover {
-      color: var(--bg-dark);
-      background: var(--gold-glow);
-      transform: translateY(-2px);
-    }
-
-    .hero-help-button i {
-      flex-shrink: 0;
-      font-size: 0.9em;
-    }
-
-    .header.pill-stacked {
-      grid-template-rows: auto auto auto;
-    }
-
-    .header.pill-stacked .header-pill {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      width: min(100%, 760px);
-      justify-self: center;
-      margin-top: 4px;
-    }
-
-    .header.pill-stacked .header-divider {
-      grid-row: 3;
-    }
-
-    @media (max-width: 992px) {
-      .header {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
-      }
-
-      .header-logo-moaeen,
-      .header-pill,
-      .header-seu-box {
-        grid-column: auto;
-        grid-row: 1;
-      }
-
-      .header-logo-moaeen {
-        justify-content: flex-start;
-      }
-
-      .header-pill {
-        width: 100%;
-        margin: 0;
-      }
-
-      .header-seu-box {
-        justify-content: flex-end;
-      }
-
-      .pill-text {
-        font-size: clamp(12px, 1.8vw, 18px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header {
-        display: grid;
-        flex-wrap: initial;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
-        grid-template-rows: auto auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header {
-        grid-template-columns: minmax(76px, auto) minmax(0, 1fr) minmax(76px, auto);
-        grid-template-rows: auto auto;
-        padding-inline: 8px;
-      }
-
-      .header-logo-moaeen {
-        grid-column: 1;
-        grid-row: 1;
-      }
-
-      .header-seu-box {
-        grid-column: 3;
-        grid-row: 1;
-      }
-
-      .header-pill {
-        grid-column: 2;
-        grid-row: 1;
-        width: 100%;
-        max-width: none;
-        margin-top: 0;
-        padding: 7px 8px;
-        gap: 5px;
-      }
-
-      .header-divider {
-        grid-column: 1 / -1;
-        grid-row: 2;
-      }
-
-      .header.pill-stacked {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-rows: auto auto auto;
-      }
-
-      .header.pill-stacked .header-logo-moaeen {
-        grid-column: 1;
-        grid-row: 1;
-      }
-
-      .header.pill-stacked .header-seu-box {
-        grid-column: 2;
-        grid-row: 1;
-      }
-
-      .header-pill,
-      .header.pill-stacked .header-pill {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        width: 100%;
-        max-width: none;
-        margin-top: 6px;
-      }
-
-      .header.pill-stacked .header-divider {
-        grid-column: 1 / -1;
-        grid-row: 3;
-      }
-
-      .header-logo-moaeen img,
-      .seu-logo-image {
-        width: clamp(76px, 22vw, 108px);
-      }
-
-      .seu-visual {
-        width: clamp(76px, 22vw, 108px);
-        min-height: clamp(66px, 18vw, 86px);
-      }
-
-      .pill-text {
-        font-size: clamp(10px, 2.8vw, 13px);
-        text-align: center;
-      }
-
-      .pill-line {
-        width: clamp(12px, 4vw, 22px);
-      }
-
-      .seu-rect {
-        bottom: -1px;
-        padding: 3px 9px;
-      }
-
-      .hero-help-button {
-        max-width: calc(100% - 8px);
-        padding: 10px 12px 10px 10px;
-        gap: 5px;
-        font-size: 10px;
-      }
-    }
-
-    /* ==========================================================
-       LATEST HEADER / HERO / FOOTER POSITIONING REFINEMENTS
-       ========================================================== */
-    .header {
-      border-radius: 30px 30px 0 0;
-      padding-bottom: 5px;
-    }
-
-    .header-seu-box {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: clamp(140px, 10vw, 175px);
-      justify-content: flex-start;
-      transform: translateY(-50%);
-      z-index: 4;
-    }
-
-    .seu-visual {
-      width: 100%;
-      min-width: 0;
-      margin-inline-start: 0;
-      justify-content: flex-start;
-    }
-
-    .header-seu-box .seu-logo-image {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .seu-rect {
-      bottom: -2px;
-    }
-
-    .header-divider {
-      position: relative;
-      display: block;
-      grid-column: auto;
-      grid-row: auto;
-      width: 100%;
-      height: 24px;
-      margin: 16px 0;
-      transform: none;
-      z-index: 5;
-    }
-
-    .header-divider::before {
-      height: 2px;
-    }
-
-    .share-button {
-      padding: 7px 14px;
-      font-size: 13px;
-      gap: 8px;
-    }
-
-    .share-button i {
-      font-size: 13px;
-    }
-
-    .hero {
-      margin-top: 24px;
-    }
-
-    .hero .float-wa {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: calc(100% - 12px);
-      padding: 11px 16px 11px 13px;
-      color: var(--white);
-      background: var(--whatsapp-green);
-      border: 1px solid rgba(37, 211, 102, 0.8);
-      border-radius: 16px 0 0 0;
-      font-size: clamp(10px, 1.1vw, 14px);
-      font-weight: 800;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-shadow: 0 -3px 14px rgba(37, 211, 102, 0.35);
-      z-index: 4;
-      animation: float-pulse 2s infinite;
-    }
-
-    .hero .float-wa:hover {
-      color: var(--white);
-      background: var(--whatsapp-dark);
-      transform: translateY(-2px);
-      animation: none;
-    }
-
-    .hero .float-wa svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      fill: var(--white);
-    }
-
-    .footer {
-      border-radius: 0 0 24px 24px;
-    }
-
-    .brand-logo,
-    img.brand-logo {
-      width: 68px !important;
-      height: 68px !important;
-    }
-
-    .trust-badges-container {
-      border-radius: 0;
-    }
-
-    @media (max-width: 768px) {
-      .header-seu-box {
-        left: 0;
-        width: clamp(76px, 22vw, 108px);
-        transform: translateY(-50%);
-      }
-
-      .header-divider {
-        height: 22px;
-        margin: 10px 0;
-        transform: none;
-      }
-
-      .hero {
-        margin-top: 18px;
-      }
-
-      .hero .float-wa {
-        max-width: calc(100% - 8px);
-        padding: 10px 12px 10px 10px;
-        gap: 5px;
-        font-size: 10px;
-      }
-
-      .hero .float-wa svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .brand-logo,
-      img.brand-logo {
-        width: 62px !important;
-        height: 62px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header-seu-box {
-        left: 0;
-        width: clamp(76px, 22vw, 108px);
-        transform: translateY(-50%);
-      }
-
-      .header-divider {
-        height: 20px;
-        margin: 7px 0;
-        transform: none;
-      }
-
-      .hero {
-        margin-top: 14px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>منصة معين التعليمية | الرئيسية</title>
+    <meta name="description" content="منصة معين التعليمية - مكتبة أدوات الطالب. كل الأدوات التي تحتاجها في مكان واحد." />
+
+    <!-- ============ Google Fonts: Cairo ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- ============ Font Awesome for icons ============ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        :root {
+            --bg-card: #FFFFFF;
+            --bg-dark: #012727;
+            --bg-dark-2: #0A2C2C;
+            --bg-darker: #012020;
+            --bg-section: #F2F7F8;
+            --btn-bg: #074842;
+            --btn-bg-hover: #053631;
+            --desc-color: #5F6C70;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --gold-glow: #E5C158;
+            --gold-light: #E5C158;
+            --gold-text: #be9632;
+            --gray-light: #E2E8F0;
+            --icon-circle-bg: #EBF4F0;
+            --placeholder-color: #E2E8F0;
+            --radius-btn: 10px;
+            --radius-card: 20px;
+            --radius-search: 30px;
+            --search-bg: #528482;
+            --search-bg-hover: #44736F;
+            --seu-blue: #1B2A6B;
+            --seu-blue-dark: #0F1A4C;
+            --snapchat-yellow: #FFFC00;
+            --telegram-blue: #0088CC;
+            --title-color: #0B3B3C;
+            --transition: 0.3s ease;
+            --whatsapp-dark: #1DA851;
+            --whatsapp-green: #25D366;
+            --white: #FFFFFF;
+            --x-black: #000000;
+        }
+
+        /* ==========================================================
+           Reset & Base
+           ========================================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            min-width: 0;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: url('./assets/images/body-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: clamp(10px, 1.5vw, 20px);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 24px;
+            overflow-x: clip;
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1320px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        .page-wrapper>* {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+        }
+
+        /* ==========================================================
+           MERGED CARD (Header + Hero)
+           ========================================================== */
+        .merged-card {
+            width: 100%;
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* ==========================================================
+           HEADER - الشريط العلوي (inside merged card)
+           ========================================================== */
+        .header {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
+                url('./assets/images/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px 30px 0 0;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+            flex-wrap: wrap;
+        }
+
+        /* ===== شعار منصة معين (يمين - start in RTL) ===== */
+        .header-logo-moaeen {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-shrink: 0;
+        }
+
+        .header-logo-moaeen img {
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+            transition: var(--transition);
+        }
+
+        .header-logo-moaeen img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== الكبسولة (العبارة) ===== */
+        .header-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: rgba(1, 32, 32, 0.6);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            padding: 16px 36px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+            flex: 0 1 auto;
+            min-width: 0;
+        }
+
+        .header-pill:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pill-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 2px;
+            flex-shrink: 0;
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+        }
+
+        .pill-text {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 700;
+            white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.3px;
+        }
+
+        .pill-star {
+            color: var(--gold);
+            font-size: 22px;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+            flex-shrink: 0;
+        }
+
+        /* ===== شعار الجامعة (يسار - end in RTL) ===== */
+        .header-seu-box {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            /* ملاصق للحد الأيسر للبطاقة */
+            margin-left: -30px;
+            padding-left: 30px;
+        }
+
+        .seu-rect {
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            box-shadow: none;
+            transition: var(--transition);
+            max-width: 100%;
+        }
+
+        .seu-rect:hover {
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+
+        .seu-rect img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================
+           DIVIDER - خط ذهبي فاصل مع زر المشاركة
+           ========================================================== */
+        .header-hero-divider {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    margin: 8px 0;
+    background: linear-gradient(90deg, var(--gold) 20%, var(--gold) 80%, transparent);
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+        /* زر مشاركة الصفحة - على يسار الخط الذهبي (نهاية الخط في RTL) */
+        .share-btn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+            transition: var(--transition);
+            white-space: nowrap;
+            z-index: 2;
+            font-family: inherit;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .share-btn i {
+            font-size: 12px;
+        }
+
+        /* ==========================================================
+           HERO - قسم البطل (inside merged card)
+           ========================================================== */
+        .hero {
+            width: 100%;
+            background: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
+                url('./assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;
+            /* زوايا حادة */
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            overflow: visible;
+            min-width: 0;
+        }
+
+        /* ===== العمود الأيسر: الصورة ===== */
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            order: 2;
+            min-width: 0;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
+            transition: var(--transition);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        /* ===== العمود الأيمن: النصوص ===== */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            order: 1;
+            text-align: center;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            gap: 8px;
+            background: rgba(1, 32, 32, 0.5);
+            border: 1.5px solid var(--gold);
+            border-radius: 50px;
+            padding: 10px 24px;
+            width: fit-content;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-badge-star {
+            color: var(--gold);
+            font-size: 18px;
+            filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
+        }
+
+        .hero-badge-text {
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-heading {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-heading-line1 {
+            display: block;
+            color: var(--white);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            margin-bottom: 14px;
+        }
+
+        .hero-heading-line2 {
+            display: block;
+            color: var(--gold);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 0 24px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-subheading {
+            color: #e2e8f0;
+            font-size: clamp(16px, 1.5vw, 20px);
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 520px;
+        }
+
+        .hero-decoration {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .hero-decoration .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        .hero-decoration .line {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        /* ==========================================================
+           أزرار الزوايا داخل الهيرو
+           ========================================================== */
+
+        /* ---- زر خدمات المساعدات الطلابية (الزاوية السفلية اليسرى) ---- */
+        .student-assist-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+            transition: var(--transition);
+            /* الزوايا الملامسة للحدود حادة */
+            border-radius: 0 20px 0 0;
+            /* أعلى-يمين دائرية */
+            z-index: 5;
+            white-space: nowrap;
+        }
+
+        .student-assist-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
+        }
+
+        .student-assist-btn i {
+            font-size: 16px;
+        }
+
+        /* ---- زر واتساب العائم (الزاوية السفلية اليمنى) ---- */
+        .hero-wa-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            /* الزوايا الملامسة للحدود حادة */
+            border-radius: 20px 0 0 0;
+            /* أعلى-يسار دائرية */
+            z-index: 5;
+            white-space: nowrap;
+        }
+
+        .hero-wa-btn:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .hero-wa-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================
+           TOOLS SECTION - قسم البطاقات (بدون تغيير)
+           ========================================================== */
+        .tools-section {
+            width: 100%;
+            padding: 50px 30px;
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            min-width: 0;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            position: relative;
+            width: min(100%, 700px);
+            max-width: min(700px, 100%);
+            min-width: 0;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: var(--search-bg);
+            border-radius: var(--radius-search);
+            padding: 18px 60px 18px 24px;
+            color: var(--placeholder-color);
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(82, 132, 130, 0.25);
+            text-align: right;
+        }
+
+        .search-bar::placeholder {
+            color: var(--placeholder-color);
+            opacity: 0.9;
+        }
+
+        .search-bar:focus {
+            background: var(--search-bg-hover);
+            box-shadow: 0 6px 28px rgba(82, 132, 130, 0.35);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--bg-card);
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 28px;
+            min-width: 0;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            padding: 36px 24px 24px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: visible;
+            min-width: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-ribbon {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 36px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 8px;
+            box-shadow: 0 2px 8px rgba(233, 164, 36, 0.3);
+            z-index: 2;
+        }
+
+        .card-ribbon i {
+            color: var(--bg-card);
+            font-size: 14px;
+        }
+
+        .card-icon-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--icon-circle-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-icon-circle {
+            transform: scale(1.05);
+            background: #DDEDE7;
+        }
+
+        .card-icon-circle img,
+        .card-icon-circle .icon-placeholder {
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
+        }
+
+        .card-icon-circle .icon-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--search-bg);
+            font-size: 34px;
+        }
+
+        .card-title {
+            color: var(--title-color);
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            line-height: 1.4;
+        }
+
+        .card-title .title-icon {
+            font-size: 16px;
+        }
+
+        .card-desc {
+            color: var(--desc-color);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .card-btn {
+            width: 100%;
+            background: var(--btn-bg);
+            color: var(--bg-card);
+            padding: 13px 20px;
+            border-radius: var(--radius-btn);
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .card-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+
+        .card-btn:hover::before {
+            right: 100%;
+        }
+
+        .card-btn:hover {
+            background: var(--btn-bg-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(7, 72, 66, 0.3);
+        }
+
+        .card-btn i {
+            font-size: 14px;
+        }
+
+        /* ==========================================================
+           TRUST BADGES - شريط شارات الثقة (بدون زوايا دائرية)
+           ========================================================== */
+        .trust-badges-container {
+            width: 100%;
+            background: #0A4542;
+            border-radius: 0;
+            /* زوايا حادة */
+            padding: 24px 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1);
+            min-width: 0;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 20px;
+            border-right: 1px solid rgba(212, 175, 55, 0.35);
+            transition: var(--transition);
+        }
+
+        .trust-item:last-child {
+            border-right: none;
+        }
+
+        .trust-item:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 16px;
+        }
+
+        .trust-item-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-item-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.3));
+            transition: var(--transition);
+        }
+
+        .trust-item:hover .trust-item-icon img {
+            transform: scale(1.1);
+        }
+
+        .trust-item-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .trust-item-title {
+            color: #D4AF37;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .trust-item-desc {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ==========================================================
+           FOOTER - التذييل (زوايا علوية حادة، شعار مكبر)
+           ========================================================== */
+        .footer {
+            width: 100%;
+            max-width: 1320px;
+            background: var(--bg-dark);
+            border-radius: 0 0 24px 24px;
+            /* زوايا علوية حادة، سفلية دائرية */
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            min-width: 0;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            border: 2px solid var(--gold);
+            border-radius: 0 0 20px 20px;
+            /* علوية حادة، سفلية دائرية */
+            margin: 16px 16px 0 16px;
+            padding: 36px 40px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(2, 53, 53, 0.5) 0%, rgba(1, 39, 39, 0.8) 100%);
+            min-width: 0;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* شعار مكبر في الفوتر */
+        .brand-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            object-fit: contain;
+        }
+
+        .brand-logo::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--gold);
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            border-radius: 50%;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .brand-title h2 {
+            color: var(--gold);
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .brand-title p {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .brand-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            width: fit-content;
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .brand-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(212, 175, 55, 0.5);
+        }
+
+        .brand-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--bg-dark);
+        }
+
+        .brand-desc {
+            color: var(--white);
+            font-size: 15px;
+            line-height: 1.9;
+            font-weight: 400;
+        }
+
+        .brand-desc p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .brand-desc p:last-child {
+            margin-bottom: 0;
+        }
+
+        .brand-desc .icon {
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .brand-desc .icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--gold);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0;
+        }
+
+        .contact-title {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-title svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--gold);
+        }
+
+        .contact-title .arrows {
+            color: var(--gold);
+            font-size: 16px;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: auto 1px 1fr;
+            gap: 30px;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+            min-height: 180px;
+        }
+
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .qr-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .qr-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .qr-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--bg-dark);
+        }
+
+        .whatsapp-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp-green);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .wa-btn:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .wa-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+        }
+
+        .phone-number {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            font-size: 26px;
+            font-weight: 800;
+            direction: ltr;
+            letter-spacing: 0.5px;
+        }
+
+        .phone-number svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            border-color: var(--gold);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .social-icon.x {
+            background: var(--x-black);
+        }
+
+        .social-icon.telegram {
+            background: var(--telegram-blue);
+        }
+
+        .social-icon.snapchat {
+            background: var(--snapchat-yellow);
+        }
+
+        .social-icon.snapchat svg {
+            fill: var(--x-black);
+        }
+
+        .footer-bottom {
+            border-top: 2px solid var(--gold);
+            padding: 24px 40px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .footer-bottom::before,
+        .footer-bottom::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-bottom::before {
+            top: 8px;
+        }
+        .footer-bottom::after {
+            bottom: 8px;
+        }
+
+        .copyright {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .slogan {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            justify-self: center;
+            gap: 14px;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .slogan .footer-line {
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .slogan .star {
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .slogan .gold-text {
+            color: var(--gold);
+        }
+
+        .made-with {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .made-with .heart {
+            color: #4CAF50;
+            animation: heartbeat 1.5s ease infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ==========================================================
+           Selection & Scrollbar
+           ========================================================== */
+        ::selection {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+
+        /* ==========================================================
+           RESPONSIVE
+           ========================================================== */
+
+        /* الأجهزة اللوحية (992px وأقل) */
+        @media (max-width: 992px) {
+            .header {
+                padding: 18px 24px;
+                gap: 12px;
+            }
+
+            .header-logo-moaeen img {
+                width: 140px;
+            }
+            .seu-rect img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .header-pill {
+                padding: 14px 28px;
+            }
+            .pill-text {
+                font-size: 18px;
+            }
+            .pill-line {
+                width: 40px;
+            }
+
+            .header-seu-box {
+                margin-left: -24px;
+                padding-left: 24px;
+            }
+
+            .hero {
+                padding: 40px 30px;
+                gap: 30px;
+            }
+            .hero-heading {
+                font-size: clamp(32px, 4.5vw, 48px);
+            }
+            .hero-subheading {
+                font-size: 16px;
+            }
+
+            .student-assist-btn,
+            .hero-wa-btn {
+                padding: 12px 22px;
+                font-size: 14px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 28px 24px;
+            }
+            .contact-content {
+                grid-template-columns: auto 1px 1fr;
+                gap: 20px;
+            }
+            .footer-bottom {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                text-align: center;
+            }
+            .copyright,
+            .made-with {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        /* الهواتف (768px وأقل) */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            .page-wrapper {
+                gap: 16px;
+            }
+
+            .header {
+                padding: 14px 16px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .header-logo-moaeen {
+                order: 1;
+                flex: 0 0 auto;
+            }
+            .header-logo-moaeen img {
+                width: 110px;
+            }
+
+            .header-seu-box {
+                order: 2;
+                flex: 0 0 auto;
+                margin-left: -16px;
+                padding-left: 16px;
+            }
+            .seu-rect img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .header-pill {
+                order: 3;
+                flex-basis: 100%;
+                width: fit-content;
+                max-width: 90%;
+                margin: 8px auto 0;
+                padding: 8px 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+            }
+            .pill-text {
+                font-size: 15px;
+                white-space: normal;
+                text-align: center;
+            }
+            .pill-line {
+                width: 30px;
+            }
+            .pill-star {
+                font-size: 18px;
+            }
+
+            .header-hero-divider {
+                height: 2px;
+            }
+            .share-btn {
+                padding: 4px 14px;
+                font-size: 12px;
+                left: 0;
+            }
+            .share-btn i {
+                font-size: 11px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 30px 20px 80px 20px;
+                /* مساحة للأزرار في الأسفل */
+                gap: 30px;
+            }
+            .hero-image {
+                order: 1;
+            }
+            .hero-image img {
+                max-width: 70%;
+                width: 70%;
+                margin: 0 auto;
+            }
+            .hero-content {
+                order: 2;
+                text-align: center;
+                align-items: center;
+            }
+            .hero-badge {
+                margin: 0 auto;
+            }
+            .hero-heading {
+                font-size: clamp(28px, 6vw, 38px);
+            }
+            .hero-subheading {
+                font-size: 15px;
+                text-align: center;
+            }
+            .hero-decoration {
+                justify-content: center;
+            }
+
+            .student-assist-btn,
+            .hero-wa-btn {
+                padding: 10px 18px;
+                font-size: 13px;
+                gap: 6px;
+                white-space: nowrap;
+            }
+            .student-assist-btn {
+                border-radius: 0 16px 0 0;
+            }
+            .hero-wa-btn {
+                border-radius: 16px 0 0 0;
+            }
+            .hero-wa-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .trust-badges-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 20px 16px;
+            }
+            .trust-item {
+                padding: 12px 14px;
+                border-right: none;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            }
+            .trust-item:nth-child(1),
+            .trust-item:nth-child(2) {
+                border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+            }
+            .trust-item:nth-child(3),
+            .trust-item:nth-child(4) {
+                border-bottom: none;
+            }
+            .trust-item:nth-child(odd) {
+                border-right: none;
+                position: relative;
+            }
+            .trust-item:nth-child(odd)::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 15%;
+                height: 70%;
+                width: 1px;
+                background: rgba(212, 175, 55, 0.35);
+            }
+            .trust-item:nth-child(even) {
+                border-right: none;
+            }
+            .trust-item-icon {
+                width: 42px;
+                height: 42px;
+            }
+            .trust-item-title {
+                font-size: 16px;
+            }
+            .trust-item-desc {
+                font-size: 13px;
+            }
+
+            .footer-top {
+                padding: 24px 18px;
+                margin: 12px 12px 0 12px;
+                border-radius: 0 0 16px 16px;
+            }
+            .brand-header {
+                flex-direction: row;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+            }
+            .brand-logo {
+                width: 90px;
+                height: 90px;
+            }
+            .brand-title h2 {
+                font-size: 20px;
+            }
+            .brand-btn {
+                margin: 0 auto;
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .contact-divider {
+                width: 100%;
+                height: 1px;
+                min-height: 1px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            }
+            .qr-section,
+            .whatsapp-section {
+                align-items: center;
+                text-align: center;
+            }
+            .phone-number {
+                justify-content: center;
+                font-size: 22px;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .footer-bottom {
+                padding: 20px 18px;
+            }
+            .slogan .footer-line {
+                width: 30px;
+            }
+        }
+
+        /* الهواتف الصغيرة (480px وأقل) */
+        @media (max-width: 480px) {
+            .header-logo-moaeen img {
+                width: 80px;
+            }
+            .seu-rect img {
+                width: 80px;
+                height: 80px;
+            }
+            .pill-text {
+                font-size: 13px;
+            }
+            .pill-line {
+                width: 20px;
+            }
+            .header-pill {
+                padding: 6px 12px;
+            }
+
+            .hero {
+                padding: 24px 14px 70px 14px;
+            }
+            .hero-heading {
+                font-size: 26px;
+            }
+            .hero-subheading {
+                font-size: 14px;
+            }
+
+            .student-assist-btn,
+            .hero-wa-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+                gap: 4px;
+            }
+            .student-assist-btn {
+                border-radius: 0 12px 0 0;
+            }
+            .hero-wa-btn {
+                border-radius: 12px 0 0 0;
+            }
+            .hero-wa-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .brand-logo {
+                width: 72px;
+                height: 72px;
+            }
+            .brand-title h2 {
+                font-size: 18px;
+            }
+            .qr-code {
+                width: 100px;
+                height: 100px;
+            }
+            .phone-number {
+                font-size: 18px;
+            }
+
+            .share-btn {
+                padding: 3px 10px;
+                font-size: 10px;
+            }
+            .share-btn i {
+                font-size: 9px;
+            }
+        }
+
+        /* ==========================================================
+           تجاوب إضافي - تصحيح التدفق
+           ========================================================== */
+        .merged-card,
+        .header,
+        .hero,
+        .tools-section,
+        .trust-badges-container,
+        .footer,
+        .footer-top,
+        .footer-bottom,
+        .cards-grid,
+        .hero-content,
+        .hero-image {
+            min-width: 0;
+        }
+
+        .header>*,
+        .hero>*,
+        .tools-section>*,
+        .footer>*,
+        .cards-grid>* {
+            min-width: 0;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                gap: 16px;
+            }
+            .merged-card,
+            .header,
+            .hero,
+            .tools-section,
+            .footer {
+                width: 100%;
+            }
+        }
+
+        /* ==========================================================
+           RESPONSIVE FLOW ARCHITECTURE - FINAL
+           إزالة سلوك الـ centered fixed canvas مع الحفاظ على التصميم الداخلي
+           ========================================================== */
+        html {
+            width: 100%;
+            min-width: 0;
+        }
+
+        body {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+            margin: 0;
+            align-items: stretch;
+            overflow-x: clip;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+            margin-inline: 0;
+        }
+
+        .page-wrapper > * {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+        }
+
+        .merged-card,
+        .header,
+        .header-hero-divider,
+        .hero,
+        .tools-section,
+        .trust-badges-container,
+        .footer,
+        .footer-top,
+        .footer-bottom,
+        .cards-grid,
+        .hero-content,
+        .hero-image {
+            min-width: 0;
+        }
+
+        .footer {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+            margin-inline: 0;
+        }
+
+        .header > *,
+        .hero > *,
+        .tools-section > *,
+        .footer > *,
+        .footer-top > *,
+        .footer-bottom > *,
+        .cards-grid > * {
+            min-width: 0;
+        }
+
+        .header-pill,
+        .hero-subheading,
+        .search-container {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .header-pill {
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                gap: 16px;
+            }
+
+            .header,
+            .hero,
+            .tools-section,
+            .trust-badges-container,
+            .footer {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="page-wrapper">
+    <div class="page-wrapper">
+
+        <!-- ============================================================
+        MERGED CARD (Header + Hero)
+        ============================================================ -->
+        <div class="merged-card">
+
+            <!-- ===== HEADER ===== -->
+            <header class="header">
+
+                <!-- شعار منصة معين (يمين - RTL start) -->
+                <div class="header-logo-moaeen">
+                    <img src="./assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" />
+                </div>
+
+                <!-- الكبسولة -->
+                <div class="header-pill">
+                    <span class="pill-line"></span>
+                    <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
+                    <span class="pill-star">⭐</span>
+                    <span class="pill-line"></span>
+                </div>
+
+                <!-- شعار الجامعة (يسار - RTL end) ملاصق للحد -->
+                <div class="header-seu-box">
+                    <div class="seu-rect">
+                        <img src="./assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
+                    </div>
+                </div>
+
+            </header>
+
+            <!-- ===== DIVIDER: خط ذهبي + زر مشاركة ===== -->
+            <div class="header-hero-divider">
+                <button class="share-btn" onclick="sharePage()">
+                    <i class="fas fa-share-alt"></i>
+                    <span>مشاركة الصفحة</span>
+                </button>
+            </div>
+
+            <!-- ===== HERO ===== -->
+            <section class="hero">
+
+                <!-- الصورة (يسار) -->
+                <div class="hero-image">
+                    <img src="./assets/images/hero-illustration.png" alt="لابتوب مع كتب وقبعة تخرج ونبتة - منصة معين التعليمية" />
+                </div>
+
+                <!-- النصوص (يمين) -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-star">⭐</span>
+                        <span class="hero-badge-text">مكتبة أدوات الطالب - مُعين</span>
+                    </div>
+                    <h1 class="hero-heading">
+                        <span class="hero-heading-line1">كل الأدوات التي تحتاجها</span>
+                        <span class="hero-heading-line2">في مكان واحد</span>
+                    </h1>
+                    <p class="hero-subheading">
+                        مجموعة متكاملة من الأدوات الذكية المصممة لمساعدتك في رحلتك الجامعية بكل سهولة وكفاءة.
+                    </p>
+                    <div class="hero-decoration">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+
+                <!-- ===== زر خدمات المساعدات الطلابية (الزاوية السفلية اليسرى) ===== -->
+                <button class="student-assist-btn" onclick="openStudentAssist()">
+                    <span>خدمات المساعدات الطلابية</span>
+                    <i class="fas fa-hand-pointer"></i>
+                </button>
+
+                <!-- ===== زر واتساب العائم (الزاوية السفلية اليمنى) ===== -->
+                <a href="https://wa.me/966536004199" class="hero-wa-btn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <span>تواصل معنا</span>
+                </a>
+
+            </section>
+
+        </div>
+        <!-- ===== نهاية merged-card ===== -->
+
+
+        <!-- ============================================================
+        TOOLS CARDS SECTION - قسم بطاقات الأدوات
+        ============================================================ -->
+        <section class="tools-section">
+
+            <!-- ===== شريط البحث ===== -->
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="ابحث عن أداة..." aria-label="ابحث عن أداة" />
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+            </div>
+
+            <!-- ===== شبكة البطاقات ===== -->
+            <div class="cards-grid">
+
+                <!-- ===== البطاقة: دليل وتعليمات الطالب المستجد ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <i class="fas fa-user-graduate" style="font-size: 48px; color: var(--gold);"></i>
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>دليل وتعليمات الطالب المستجد</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">تحضيري_SEU</span>
+                    </h3>
+                    <p class="card-desc">
+                        كل ما يحتاجه الطالب المستجد من تعليمات
+                    </p>
+                    <a href="./Prep-stu-guide/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 1: كتب ومصادر اللغة الإنجليزية ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-books.png" alt="كتب ومصادر اللغة الإنجليزية" />
+                    </div>
+                    <h3 class="card-title">
+                        <span>كتب ومصادر اللغة الإنجليزية</span>
+                        <span class="title-icon">📚</span>
+                    </h3>
+                    <p class="card-desc">
+                        كتب ومراجع وملفات شاملة لمستوى Level 2
+                    </p>
+                    <a href="./Eng_Level_2_books/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 2: أداة تسجيل المقررات ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-registration.png" alt="أداة تسجيل المقررات" />
+                    </div>
+                    <h3 class="card-title">
+                        <span>أداة تسجيل المقررات</span>
+                        <span class="title-icon">✏️</span>
+                    </h3>
+                    <p class="card-desc">
+                        أداة ذكية لمساعدتك في تسجيل مقرراتك الجامعية بسهولة
+                    </p>
+                    <a href="./course-registration/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 3: حاسبة المعدل + محول التواريخ ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-gpa.png" alt="حاسبة المعدل ومحول التواريخ" />
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>حاسبة المعدل</span>
+                        <span style="font-size: 0.95rem; font-weight: 700; color: var(--gold);">محول التواريخ</span>
+                        <span style="font-size: 0.65rem; font-weight: 400; color: #5F6C70;">احسب معدلك وحوّل التواريخ بسهولة</span>
+                    </h3>
+                    <p class="card-desc">
+                        أدوات حسابية متكاملة للمعدل والتحويل بين التواريخ
+                    </p>
+                    <a href="./converters_calculators/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 4: أدوات إنشاء جدول ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-schedule.png" alt="أدوات إنشاء جدول" />
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>أدوات إنشاء جدول</span>
+                        <span style="font-size: 0.7rem; font-weight: 400; color: #5F6C70;">(محاضرات + المهام)</span>
+                    </h3>
+                    <p class="card-desc">
+                        خطط جدولك الدراسي ونظم مهامك ومواعيدك
+                    </p>
+                    <a href="./tables_builder/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 5: مستودع الملفات ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-files.png" alt="مستودع الملفات" />
+                    </div>
+                    <h3 class="card-title">
+                        <span>المكتبة الرقمية</span>
+                        <span class="title-icon">📁</span>
+                    </h3>
+                    <p class="card-desc">
+                        تصفح الكتب والأقسام التجد مقرراتك والمواد الدراسية في مكان واحد
+                    </p>
+                    <a href="https://moaeenhelp.space-z.ai/library" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>تصفح المكتبة </span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 6: مرجع مواعيد English (إستثنائي) ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-schedule.png" alt="مرجع مواعيد English" />
+                    </div>
+                    <h3 class="card-title">
+                        <span>مرجع مواعيد English (إستثنائي)</span>
+                        <span class="title-icon">📅</span>
+                    </h3>
+                    <p class="card-desc">
+                        متابعة مواعيد الكويزات والميد والفاينل مع مؤقت للعد التنازلي.
+                    </p>
+                    <a href="./eng-exceptional-dates/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 7: مرجع مواعيد المهام ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-schedule.png" alt="مرجع مواعيد المهام" />
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>مرجع مواعيد - المهام📅</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(تحضيري/تخصص_SEU)</span>
+                    </h3>
+                    <p class="card-desc">
+                        متابعة مواعيد الكويزات والميد والفاينل مع مؤقت للعد التنازلي.
+                    </p>
+                    <a href="./seu_events/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 8: أدوات الكتابة ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-writing.png" alt="أدوات الكتابة والتنسيق" />
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>أدوات الكتابة</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(لكتابة أكاديمية _ علمية)</span>
+                    </h3>
+                    <p class="card-desc">
+                        أدوات مساعدة في الكتابة و التنسيق و المراجع
+                    </p>
+                    <a href="./writing_tools/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 9: أدوات البحث العلمي ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <img src="./assets/images/icon-research.png" alt="أدوات البحث العلمي" />
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>أدوات البحث العلمي</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(لكتابة أكاديمية _ علمية)</span>
+                    </h3>
+                    <p class="card-desc">
+                        محركات البحث وأدوات الباحث الأكاديمي الذكية
+                    </p>
+                    <a href="./research_tools/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 10: نصائح_الباحث الأكاديمي ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <i class="fas fa-lightbulb" style="font-size: 48px; color: var(--gold);"></i>
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>نصائح_الباحث الأكاديمي</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(بانر إرشادي لبحث ذكي و آمن "خطوات - نصائح - محاذير وتنبيهات")</span>
+                    </h3>
+                    <p class="card-desc">
+                        دليل إرشادي متكامل للباحث الأكاديمي
+                    </p>
+                    <a href="./Acad-guide/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 11: الخطط الدراسيه / جميع التخصصات ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <i class="fas fa-graduation-cap" style="font-size: 48px; color: var(--gold);"></i>
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>الخطط الدراسيه</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(جميع التخصصات)</span>
+                    </h3>
+                    <p class="card-desc">
+                        خطط دراسية متكاملة لجميع التخصصات الجامعية
+                    </p>
+                    <a href="./study_plans/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 12: دليل اختيار اللابتوب ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <i class="fas fa-laptop" style="font-size: 48px; color: var(--gold);"></i>
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>دليل اختيار اللابتوب</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(متطلبات/مواصفات وتوصيات)</span>
+                    </h3>
+                    <p class="card-desc">
+                        اللابتوب المناسب لتخصصك وميزانيتك
+                    </p>
+                    <a href="./laptop_guide/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+                <!-- ===== البطاقة 13: دليل الاختبارات الإلكترونية "المحوسبة" ===== -->
+                <div class="card">
+                    <div class="card-ribbon">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-icon-circle">
+                        <i class="fas fa-laptop-code" style="font-size: 48px; color: var(--gold);"></i>
+                    </div>
+                    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
+                        <span>دليل الاختبارات الإلكترونية "المحوسبة"</span>
+                        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(المتطلبات تقنية - تعليمات - نصائح و إرشادات)</span>
+                    </h3>
+                    <p class="card-desc">
+                        دليل متكامل للاختبارات الإلكترونية المحوسبة
+                    </p>
+                    <a href="./exam_guide/" class="card-btn">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>استكشف الأداة</span>
+                    </a>
+                </div>
+
+            </div>
+            <!-- ===== نهاية .cards-grid ===== -->
+
+        </section>
+
+
+        <!-- ============================================================
+        TRUST BADGES BAR - شريط شارات الثقة (بدون زوايا دائرية)
+        ============================================================ -->
+        <section class="trust-badges-container">
+
+            <div class="trust-item">
+                <div class="trust-item-icon">
+                    <img src="./assets/images/trust-secure.png" alt="آمن وموثوق" />
+                </div>
+                <div class="trust-item-text">
+                    <span class="trust-item-title">آمن وموثوق</span>
+                    <span class="trust-item-desc">بياناتك محمية بالكامل</span>
+                </div>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-item-icon">
+                    <img src="./assets/images/trust-easy.png" alt="سهل الاستخدام" />
+                </div>
+                <div class="trust-item-text">
+                    <span class="trust-item-title">سهل الاستخدام</span>
+                    <span class="trust-item-desc">واجهة بسيطة وسريعة</span>
+                </div>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-item-icon">
+                    <img src="./assets/images/trust-support.png" alt="دعم مستمر" />
+                </div>
+                <div class="trust-item-text">
+                    <span class="trust-item-title">دعم مستمر</span>
+                    <span class="trust-item-desc">نحن هنا لمساعدتك</span>
+                </div>
+            </div>
+
+            <div class="trust-item">
+                <div class="trust-item-icon">
+                    <img src="./assets/images/trust-free.png" alt="100% مجاني" />
+                </div>
+                <div class="trust-item-text">
+                    <span class="trust-item-title">100% مجاني</span>
+                    <span class="trust-item-desc">جميع الأدوات مجانية</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================
+        FOOTER - التذييل (زوايا علوية حادة، شعار مكبر)
+        ============================================================ -->
+        <footer class="footer">
+
+            <div class="footer-top">
+                <!-- العمود الأيمن: معلومات المنصة -->
+                <div class="footer-brand">
+                    <div class="brand-header">
+                        <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" class="brand-logo" />
+                        <div class="brand-title">
+                            <h2>منصة معين التعليمية</h2>
+                            <p>MOAEEN PLATFORM</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="brand-btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span>لخدمات المساعدة الطلابية</span>
+                    </a>
+
+                    <div class="brand-desc">
+                        <p>
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </span>
+                            <span>شريكك الأكاديمي نحو التفوق.. نقدم حلولاً تعليمية وخدمات أكاديمية متكاملة للطالب الجامعي بجودة واحترافية عالية.</span>
+                        </p>
+                        <p>
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            </span>
+                            <span>لنكون عوناً لك في مشوارك الأكاديمي.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- العمود الأيسر: بيانات الاتصال -->
+                <div class="footer-contact">
+                    <div class="contact-title">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <span>للتواصل و طلب خدماتنا أو الإستفسار</span>
+                        <span class="arrows">◄◄</span>
+                    </div>
+
+                    <div class="contact-content">
+
+                        <div class="qr-section">
+                            <div class="qr-code">
+                                <img src="./assets/images/qr-code.png" alt="QR Code للتواصل" />
+                            </div>
+                            <a href="#" class="qr-btn">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>امسح للتواصل</span>
+                            </a>
+                        </div>
+
+                        <div class="contact-divider"></div>
+
+                        <div class="whatsapp-section">
+                            <a href="https://wa.me/966536004199" class="wa-btn" target="_blank" rel="noopener">
+                                <span>WhatsApp</span>
+                                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </a>
+
+                            <div class="phone-number">
+                                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                <span>+966 53 600 4199</span>
+                            </div>
+
+                            <div class="social-icons">
+                                <a href="#" class="social-icon x" aria-label="X">
+                                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </a>
+                                <a href="#" class="social-icon telegram" aria-label="Telegram">
+                                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                                </a>
+                                <a href="#" class="social-icon snapchat" aria-label="Snapchat">
+                                    <svg viewBox="0 0 24 24"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.27-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.123-.78-1.722-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.553-.404-.061-.193-.105-.389-.135-.553-.044-.18-.105-.48-.164-.569-1.873-.27-2.906-.69-3.146-1.272-.03-.074-.045-.149-.045-.224-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.272.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.299 1.104.299.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.434-.015h.045z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    منصة معين التعليمية © 2025 جميع الحقوق محفوظة
+                </div>
+                <div class="slogan">
+                    <span class="footer-line"></span>
+                    <span>معك ... نحو تفوقك بخطوات ثابتة !</span>
+                    <span class="star">★</span>
+                    <span class="footer-line"></span>
+                </div>
+                <div class="made-with">
+                    <span>صنع بـ</span>
+                    <span class="heart">💚</span>
+                    <span>للطالب</span>
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+    <!-- ===== نهاية .page-wrapper ===== -->
 
     <!-- ============================================================
-         HEADER - الشريط العلوي
-         ============================================================ -->
-    <header class="header">
-
-      <!-- العمود الأيمن: شعار منصة معين -->
-      <div class="header-logo-moaeen">
-        <img src="./assets/images/logo-moaeen.png"
-             alt="شعار منصة معين التعليمية" />
-      </div>
-
-      <!-- العمود الأوسط: الكبسولة (العبارة) -->
-      <div class="header-pill">
-        <span class="pill-line"></span>
-        <span class="pill-text">معك ... نحو تفوقك بخطوات ثابتة !</span>
-        <span class="pill-star">⭐</span>
-        <span class="pill-line"></span>
-      </div>
-
-      <!-- العمود الأيسر: شعار الجامعة (مستطيل أبيض) -->
-      <div class="header-seu-box">
-        <div class="seu-visual">
-          <img class="seu-logo-image" src="./assets/images/seu-logo.png"
-               alt="شعار الجامعة السعودية الإلكترونية" />
-          <div class="seu-rect" aria-label="SEU">
-            <span class="seu-text-en">SEU</span>
-          </div>
-        </div>
-      </div>
-
-    </header>
-
-    <div class="header-divider" aria-hidden="true">
-      <button type="button" class="share-button" id="sharePageBtn" aria-label="مشاركة الصفحة">
-        <i class="fas fa-share-nodes" aria-hidden="true"></i>
-        <span>مشاركة الصفحة</span>
-      </button>
-    </div>
-
-    <!-- ============================================================
-         HERO SECTION - قسم البطل
-         ============================================================ -->
-    <section class="hero">
-
-      <!-- العمود الأيسر: الصورة -->
-      <div class="hero-image">
-        <img src="./assets/images/hero-illustration.png"
-             alt="لابتوب مع كتب وقبعة تخرج ونبتة - منصة معين التعليمية" />
-      </div>
-
-      <!-- العمود الأيمن: النصوص -->
-      <div class="hero-content">
-
-        <!-- الشارة العلوية -->
-        <div class="hero-badge">
-          <span class="hero-badge-star">⭐</span>
-          <span class="hero-badge-text">مكتبة أدوات الطالب - مُعين</span>
-        </div>
-
-        <!-- العنوان الرئيسي -->
-        <h1 class="hero-heading">
-          <span class="hero-heading-line1">كل الأدوات التي تحتاجها</span>
-          <span class="hero-heading-line2">في مكان واحد</span>
-        </h1>
-
-        <!-- النص الوصفي -->
-        <p class="hero-subheading">
-          مجموعة متكاملة من الأدوات الذكية المصممة لمساعدتك في رحلتك الجامعية بكل سهولة وكفاءة.
-        </p>
-
-        <!-- الديكور السفلي -->
-        <div class="hero-decoration">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="line"></span>
-        </div>
-
-        </div>
-
-        <a class="hero-help-button" href="https://wa.me/966536004199?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D9%81%D8%B1%D9%8A%D9%82%20%D9%85%D9%8F%D8%B9%D9%8A%D9%86%20%3A%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D8%A7%D9%84%D8%B7%D9%84%D8%A7%D8%A8%D9%8A%D9%87%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D9%82%D8%AF%D9%85%D9%88%D9%86%D9%87%D8%A7" target="_blank" rel="noopener" aria-label="خدمات المساعدات الطلابية عبر واتساب">
-          <span>خدمات المساعدات الطلابية</span>
-          <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-        </a>
-
-        <a href="https://wa.me/966536004199" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          <span>تواصل معنا</span>
-        </a>
-
-    </section>
-
-  
-
-    <!-- ============================================================
-         CARDS SECTION - قسم بطاقات الأدوات
-         ============================================================ -->
-<!-- ============================================================
-   TOOLS CARDS SECTION - قسم بطاقات الأدوات
-   ============================================================ -->
-<section class="tools-section">
-
-    <!-- ===== شريط البحث ===== -->
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="ابحث عن أداة..." aria-label="ابحث عن أداة" />
-        <i class="fas fa-search search-icon" aria-hidden="true"></i>
-    </div>
-
-    <!-- ===== شبكة البطاقات ===== -->
-    <div class="cards-grid">
-
-        <!-- ===== البطاقة: دليل وتعليمات الطالب المستجد ===== -->
-<div class="card">
-    <div class="card-ribbon">
-        <i class="fas fa-star" aria-hidden="true"></i>
-    </div>
-    <div class="card-icon-circle">
-        <i class="fas fa-user-graduate" style="font-size: 48px; color: var(--gold);"></i>
-    </div>
-    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-        <span>دليل وتعليمات الطالب المستجد</span>
-        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">تحضيري_SEU</span>
-    </h3>
-    <p class="card-desc">
-        كل ما يحتاجه الطالب المستجد من تعليمات
-    </p>
-    <a href="./Prep-stu-guide/" class="card-btn">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>استكشف الأداة</span>
-    </a>
-</div>
-		<!-- ===== البطاقة 1: كتب ومصادر اللغة الإنجليزية ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-books.png" alt="كتب ومصادر اللغة الإنجليزية" />
-            </div>
-            <h3 class="card-title">
-                <span>كتب ومصادر اللغة الإنجليزية</span>
-                <span class="title-icon">📚</span>
-            </h3>
-            <p class="card-desc">
-                كتب ومراجع وملفات شاملة لمستوى Level 2
-            </p>
-            <a href="./Eng_Level_2_books/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 2: أداة تسجيل المقررات ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-registration.png" alt="أداة تسجيل المقررات" />
-            </div>
-            <h3 class="card-title">
-                <span>أداة تسجيل المقررات</span>
-                <span class="title-icon">✏️</span>
-            </h3>
-            <p class="card-desc">
-                أداة ذكية لمساعدتك في تسجيل مقرراتك الجامعية بسهولة
-            </p>
-            <a href="./course-registration/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== 📚البطاقة 2: أداة تسجيل المقررات ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-registration.png" alt="أداة تسجيل المقررات" />
-            </div>
-            <h3 class="card-title">
-                <span>أداة تسجيل المقررات</span>
-                <span class="title-icon">✏️</span>
-            </h3>
-            <p class="card-desc">
-                أداة ذكية لمساعدتك في تسجيل مقرراتك الجامعية بسهولة
-            </p>
-            <a href="./courses-registrator/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-		<!-- ===== البطاقة 3: حاسبة المعدل + محول التواريخ ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-gpa.png" alt="حاسبة المعدل ومحول التواريخ" />
-            </div>
-            <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>حاسبة المعدل</span>
-                <span style="font-size: 0.95rem; font-weight: 700; color: var(--gold);">محول التواريخ</span>
-                <span style="font-size: 0.65rem; font-weight: 400; color: #5F6C70;">احسب معدلك وحوّل التواريخ بسهولة</span>
-            </h3>
-            <p class="card-desc">
-                أدوات حسابية متكاملة للمعدل والتحويل بين التواريخ
-            </p>
-            <a href="./converters_calculators/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 4: أدوات إنشاء جدول ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-schedule.png" alt="أدوات إنشاء جدول" />
-            </div>
-            <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>أدوات إنشاء جدول</span>
-                <span style="font-size: 0.7rem; font-weight: 400; color: #5F6C70;">(محاضرات + المهام)</span>
-            </h3>
-            <p class="card-desc">
-                خطط جدولك الدراسي ونظم مهامك ومواعيدك
-            </p>
-            <a href="./tables_builder/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 5: مستودع الملفات ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-files.png" alt="مستودع الملفات" />
-            </div>
-            <h3 class="card-title">
-                <span>المكتبة الرقمية</span>
-                <span class="title-icon">📁</span>
-            </h3>
-            <p class="card-desc">
-                تصفح الكتب والأقسام التجد مقرراتك والمواد الدراسية في مكان واحد
-            </p>
-            <a href="https://moaeenhelp.space-z.ai/library" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>تصفح المكتبة </span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 6: مرجع مواعيد English (إستثنائي) ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-schedule.png" alt="مرجع مواعيد English" />
-            </div>
-            <h3 class="card-title">
-                <span>مرجع مواعيد English (إستثنائي)</span>
-                <span class="title-icon">📅</span>
-            </h3>
-            <p class="card-desc">
-                متابعة مواعيد الكويزات والميد والفاينل مع مؤقت للعد التنازلي.
-            </p>
-            <a href="./eng-exceptional-dates/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-      <!-- ===== البطاقة 6: مرجع مواعيد المهام===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-schedule.png" alt="مرجع مواعيد English" />
-            </div>
-<h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>مرجع مواعيد - المهام📅 </span>
-		<span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(تحضيري/تخصص_SEU)</span>
-            </h3>
-            <p class="card-desc">
-                متابعة مواعيد الكويزات والميد والفاينل مع مؤقت للعد التنازلي.
-            </p>
-            <a href="./seu_events/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 7: أدوات الكتابة ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-writing.png" alt="أدوات الكتابة والتنسيق" />
-            </div>
-            <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>أدوات الكتابة</span>
-                <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(لكتابة أكاديمية _ علمية)</span>
-            </h3>
-            <p class="card-desc">
-                أدوات مساعدة في الكتابة و التنسيق و المراجع
-            </p>
-            <a href="./writing_tools/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 8: أدوات البحث العلمي ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <img src="./assets/images/icon-research.png" alt="أدوات البحث العلمي" />
-            </div>
-            <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>أدوات البحث العلمي</span>
-                <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(لكتابة أكاديمية _ علمية)</span>
-            </h3>
-            <p class="card-desc">
-                محركات البحث وأدوات الباحث الأكاديمي الذكية
-            </p>
-            <a href="./research_tools/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-
-        <!-- ===== البطاقة 9: نصائح_الباحث الأكاديمي ===== -->
-        <div class="card">
-            <div class="card-ribbon">
-                <i class="fas fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="card-icon-circle">
-                <i class="fas fa-lightbulb" style="font-size: 48px; color: var(--gold);"></i>
-            </div>
-            <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-                <span>نصائح_الباحث الأكاديمي</span>
-                <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(بانر إرشادي لبحث ذكي و آمن "خطوات - نصائح - محاذير وتنبيهات")</span>
-            </h3>
-            <p class="card-desc">
-                دليل إرشادي متكامل للباحث الأكاديمي
-            </p>
-            <a href="./Acad-guide/" class="card-btn">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                <span>استكشف الأداة</span>
-            </a>
-        </div>
-      <!-- ===== البطاقة 10: الخطط الدراسيه /جميع التخصصات ===== -->
-<div class="card">
-    <div class="card-ribbon">
-        <i class="fas fa-star" aria-hidden="true"></i>
-    </div>
-    <div class="card-icon-circle">
-        <i class="fas fa-graduation-cap" style="font-size: 48px; color: var(--gold);"></i>
-    </div>
-    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-        <span>الخطط الدراسيه</span>
-        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(جميع التخصصات)</span>
-    </h3>
-    <p class="card-desc">
-        خطط دراسية متكاملة لجميع التخصصات الجامعية
-    </p>
-    <a href="./study_plans/" class="card-btn">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>استكشف الأداة</span>
-    </a>
-</div>
-      
-<!-- ===== البطاقة 11: دليل اختيار اللابتوب ===== -->
-<div class="card">
-    <div class="card-ribbon">
-        <i class="fas fa-star" aria-hidden="true"></i>
-    </div>
-    <div class="card-icon-circle">
-        <i class="fas fa-laptop" style="font-size: 48px; color: var(--gold);"></i>
-    </div>
-    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-        <span>دليل اختيار اللابتوب</span>
-        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(متطلبات/مواصفات وتوصيات)</span>
-    </h3>
-    <p class="card-desc">
-        اللابتوب المناسب لتخصصك وميزانيتك
-    </p>
-    <a href="./laptop_guide/" class="card-btn">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>استكشف الأداة</span>
-    </a>
-</div>
-<!-- ===== البطاقة 12: دليل الاختبارات الإلكترونية "المحوسبة" ===== -->
-<div class="card">
-    <div class="card-ribbon">
-        <i class="fas fa-star" aria-hidden="true"></i>
-    </div>
-    <div class="card-icon-circle">
-        <i class="fas fa-laptop-code" style="font-size: 48px; color: var(--gold);"></i>
-    </div>
-    <h3 class="card-title" style="flex-direction: column; align-items: center; gap: 2px;">
-        <span>دليل الاختبارات الإلكترونية "المحوسبة"</span>
-        <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">(المتطلبات تقنية - تعليمات - نصائح و إرشادات)</span>
-    </h3>
-    <p class="card-desc">
-        دليل متكامل للاختبارات الإلكترونية المحوسبة
-    </p>
-    <a href="./exam_guide/" class="card-btn">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>استكشف الأداة</span>
-    </a>
-</div>
-
-    </div> <!-- ===== نهاية .cards-grid ===== -->
-
-</section>
-
-
-    <!-- ============================================================
-         FOOTER - التذييل
-         ============================================================ -->
-
-  <!-- ============================================================
-       TRUST BADGES BAR - شريط شارات الثقة
-       ============================================================ -->
-  <section class="trust-badges-container">
-
-    <!-- العمود 1 (أيمن): آمن وموثوق -->
-    <div class="trust-item">
-      <div class="trust-item-icon">
-        <img src="./assets/images/trust-secure.png" alt="آمن وموثوق" />
-      </div>
-      <div class="trust-item-text">
-        <span class="trust-item-title">آمن وموثوق</span>
-        <span class="trust-item-desc">بياناتك محمية بالكامل</span>
-      </div>
-    </div>
-
-    <!-- العمود 2: سهل الاستخدام -->
-    <div class="trust-item">
-      <div class="trust-item-icon">
-        <img src="./assets/images/trust-easy.png" alt="سهل الاستخدام" />
-      </div>
-      <div class="trust-item-text">
-        <span class="trust-item-title">سهل الاستخدام</span>
-        <span class="trust-item-desc">واجهة بسيطة وسريعة</span>
-      </div>
-    </div>
-
-    <!-- العمود 3: دعم مستمر -->
-    <div class="trust-item">
-      <div class="trust-item-icon">
-        <img src="./assets/images/trust-support.png" alt="دعم مستمر" />
-      </div>
-      <div class="trust-item-text">
-        <span class="trust-item-title">دعم مستمر</span>
-        <span class="trust-item-desc">نحن هنا لمساعدتك</span>
-      </div>
-    </div>
-
-    <!-- العمود 4 (أيسر): 100% مجاني -->
-    <div class="trust-item">
-      <div class="trust-item-icon">
-        <img src="./assets/images/trust-free.png" alt="100% مجاني" />
-      </div>
-      <div class="trust-item-text">
-        <span class="trust-item-title">100% مجاني</span>
-        <span class="trust-item-desc">جميع الأدوات مجانية</span>
-      </div>
-    </div>
-
-  </section>
-
-
-
-
-
-
-<!-- ============================================================
-       FOOTER - التذييل
-       ============================================================ -->
-  <footer class="footer">
-
-    <!-- ===== الجزء العلوي: صندوق الاتصال والمحتوى ===== -->
-    <div class="footer-top">
-
-      <!-- العمود الأيمن: معلومات المنصة -->
-      <div class="footer-brand">
-        <div class="brand-header">
-          <!-- شعار المنصة -->
-          <img src="./assets/images/footer_logo.png" alt="شعار منصة معين" class="brand-logo" />
-          <div class="brand-title">
-            <h2>منصة معين التعليمية</h2>
-            <p>MOAEEN PLATFORM</p>
-          </div>
-        </div>
-
-        <!-- زر الخدمات -->
-        <a href="#" class="brand-btn">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <span>لخدمات المساعدة الطلابية</span>
-        </a>
-
-        <!-- الفقرات -->
-        <div class="brand-desc">
-          <p>
-            <span class="icon">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            </span>
-            <span>شريكك الأكاديمي نحو التفوق.. نقدم حلولاً تعليمية وخدمات أكاديمية متكاملة للطالب الجامعي بجودة واحترافية عالية.</span>
-          </p>
-          <p>
-            <span class="icon">
-              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </span>
-            <span>لنكون عوناً لك في مشوارك الأكاديمي.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- العمود الأيسر: بيانات الاتصال -->
-      <div class="footer-contact">
-        <!-- عنوان القسم -->
-        <div class="contact-title">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          <span>للتواصل و طلب خدماتنا أو الإستفسار</span>
-          <span class="arrows">◄◄</span>
-        </div>
-
-        <!-- محتوى الاتصال -->
-        <div class="contact-content">
-
-          <!-- قسم QR Code -->
-          <div class="qr-section">
-            <div class="qr-code">
-              <img src="./assets/images/qr-code.png" alt="QR Code للتواصل" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;" />
-            </div>
-            <a href="#" class="qr-btn">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              <span>امسح للتواصل</span>
-            </a>
-          </div>
-
-          <!-- الخط العمودي الفاصل -->
-          <div class="contact-divider"></div>
-
-          <!-- قسم WhatsApp -->
-          <div class="whatsapp-section">
-            <!-- زر WhatsApp -->
-            <a href="https://wa.me/966536004199" class="wa-btn" target="_blank" rel="noopener">
-              <span>WhatsApp</span>
-              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            </a>
-
-            <!-- رقم الهاتف -->
-            <div class="phone-number">
-              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-              <span>+966 53 600 4199</span>
-            </div>
-
-            <!-- أيقونات التواصل الاجتماعي -->
-            <div class="social-icons">
-              <!-- X (Twitter) -->
-              <a href="#" class="social-icon x" aria-label="X">
-                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-              <!-- Telegram -->
-              <a href="#" class="social-icon telegram" aria-label="Telegram">
-                <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              </a>
-              <!-- Snapchat -->
-              <a href="#" class="social-icon snapchat" aria-label="Snapchat">
-                <svg viewBox="0 0 24 24"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.27-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.123-.78-1.722-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.553-.404-.061-.193-.105-.389-.135-.553-.044-.18-.105-.48-.164-.569-1.873-.27-2.906-.69-3.146-1.272-.03-.074-.045-.149-.045-.224-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.272.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.299 1.104.299.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.434-.015h.045z"/></svg>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ===== الجزء السفلي: شريط الحقوق ===== -->
-    <div class="footer-bottom">
-      <!-- العمود الأيمن: حقوق النشر -->
-      <div class="copyright">
-        منصة معين التعليمية © 2025 جميع الحقوق محفوظة
-      </div>
-
-      <!-- العمود الأوسط: الشعار -->
-      <div class="slogan">
-        <span class="footer-line"></span>
-        <span>معك ... نحو تفوقك بخطوات ثابتة !</span>
-        <span class="star">★</span>
-        <span class="footer-line"></span>
-      </div>
-
-      <!-- العمود الأيسر: صنع بـ -->
-      <div class="made-with">
-        <span>صنع بـ</span>
-        <span class="heart">💚</span>
-        <span>للطالب</span>
-      </div>
-    </div>
-
-  </footer>
-
-  </div>
-
-  <script>
-    (() => {
-      const header = document.querySelector('.header');
-      const pillText = document.querySelector('.pill-text');
-      const shareButton = document.getElementById('sharePageBtn');
-
-      function hasWrappedPillText() {
-        if (!pillText) return false;
-        const range = document.createRange();
-        range.selectNodeContents(pillText);
-        const rects = Array.from(range.getClientRects());
-        return rects.length > 1;
-      }
-
-      function updateHeaderPillLayout() {
-        if (!header || !pillText) return;
-        header.classList.remove('pill-stacked');
-        if (hasWrappedPillText()) {
-          header.classList.add('pill-stacked');
-        }
-      }
-
-      function scheduleHeaderLayoutCheck() {
-        requestAnimationFrame(updateHeaderPillLayout);
-      }
-
-      window.addEventListener('resize', scheduleHeaderLayoutCheck, { passive: true });
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(scheduleHeaderLayoutCheck);
-      }
-      window.addEventListener('load', scheduleHeaderLayoutCheck, { once: true });
-      scheduleHeaderLayoutCheck();
-
-      if (shareButton) {
-        shareButton.addEventListener('click', async () => {
-          const shareData = {
-            title: document.title,
-            text: 'منصة معين التعليمية',
-            url: window.location.href
-          };
-
-          try {
+    JavaScript
+    ============================================================ -->
+    <script>
+        /**
+         * مشاركة الصفحة
+         */
+        function sharePage() {
             if (navigator.share) {
-              await navigator.share(shareData);
-              return;
+                navigator.share({
+                    title: 'منصة معين التعليمية',
+                    text: 'منصة معين التعليمية - مكتبة أدوات الطالب',
+                    url: window.location.href
+                }).catch(function() {
+                    console.log('مشاركة ملغاة');
+                });
+            } else {
+                // نسخ الرابط للحالات التي لا تدعم Web Share API
+                var url = window.location.href;
+                var textarea = document.createElement('textarea');
+                textarea.value = url;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('تم نسخ رابط الصفحة!');
+                } catch (e) {
+                    alert('اضغط Ctrl+C لنسخ الرابط: ' + url);
+                }
+                document.body.removeChild(textarea);
             }
+        }
 
-            if (navigator.clipboard && window.isSecureContext) {
-              await navigator.clipboard.writeText(window.location.href);
-              shareButton.setAttribute('aria-label', 'تم نسخ رابط الصفحة');
-              return;
-            }
+        /**
+         * فتح محادثة واتساب مع رسالة محددة مسبقاً
+         */
+        function openStudentAssist() {
+            var phone = '966536004199';
+            var message = encodeURIComponent('مرحبا فريق مُعين : اريد الإستفسار عن خدمات المساعدة الطلابيه التي تقدمونها');
+            window.open('https://wa.me/' + phone + '?text=' + message, '_blank');
+        }
+    </script>
 
-            const helper = document.createElement('input');
-            helper.value = window.location.href;
-            helper.setAttribute('readonly', '');
-            helper.style.position = 'fixed';
-            helper.style.opacity = '0';
-            document.body.appendChild(helper);
-            helper.select();
-            document.execCommand('copy');
-            helper.remove();
-            shareButton.setAttribute('aria-label', 'تم نسخ رابط الصفحة');
-          } catch (error) {
-            // إلغاء نافذة المشاركة من المستخدم لا يعرض خطأ في الصفحة.
-          }
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
