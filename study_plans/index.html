@@ -73,6 +73,30 @@
   </div>
   <!-- ===== END MAIN BANNER ===== -->
 
+  <!-- ===== GUIDANCE TABS: GROUP + CHANNEL ===== -->
+  <section class="guidance-tabs" aria-label="قروب وقناة التحضيري">
+    <div class="tab-card">
+      <div class="tab-info">
+        <div class="tab-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+        <div class="tab-text">
+          <h4>قروب تجمع طلبة التحضيري</h4>
+          <p>انضم إلى زملائك في السنة التحضيرية</p>
+        </div>
+      </div>
+      <a href="#" class="tab-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i><span>انضمام</span></a>
+    </div>
+    <div class="tab-card">
+      <div class="tab-info">
+        <div class="tab-icon" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
+        <div class="tab-text">
+          <h4>قناة أخبار و إعلامات التحضيري</h4>
+          <p>آخر المستجدات والإعلانات الرسمية</p>
+        </div>
+      </div>
+      <a href="#" class="tab-btn"><i class="fas fa-arrow-left" aria-hidden="true"></i><span>عرض القناة</span></a>
+    </div>
+  </section>
+
   <!-- COLLEGES GRID -->
   <div class="colleges-grid" id="collegesGrid"></div>
 
@@ -204,6 +228,38 @@ row.classList.toggle('pill-stacked', needsStack);
   document.addEventListener('DOMContentLoaded', scheduleSync, { once: true });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleSync);
   scheduleSync();
+})();
+</script>
+
+
+
+<script>
+(() => {
+  const tabsContainer = document.querySelector('.guidance-tabs');
+  if (!tabsContainer) return;
+  const titleNodes = Array.from(tabsContainer.querySelectorAll('.tab-text h4'));
+  let pendingFrame = 0;
+
+  const titleIsWrapped = (title) => {
+    const range = document.createRange();
+    range.selectNodeContents(title);
+    return Array.from(range.getClientRects()).filter((rect) => rect.width > 0 && rect.height > 0).length > 1;
+  };
+
+  const measureGuidanceTabs = () => {
+    cancelAnimationFrame(pendingFrame);
+    pendingFrame = requestAnimationFrame(() => {
+      tabsContainer.classList.remove('stack-tabs');
+      tabsContainer.classList.toggle('stack-tabs', titleNodes.some(titleIsWrapped));
+    });
+  };
+
+  window.addEventListener('resize', measureGuidanceTabs, { passive: true });
+  window.addEventListener('load', measureGuidanceTabs, { once: true });
+  document.addEventListener('DOMContentLoaded', measureGuidanceTabs, { once: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureGuidanceTabs, measureGuidanceTabs);
+  if ('ResizeObserver' in window) new ResizeObserver(measureGuidanceTabs).observe(tabsContainer);
+  measureGuidanceTabs();
 })();
 </script>
 
