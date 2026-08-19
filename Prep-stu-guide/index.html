@@ -911,6 +911,480 @@
     ::-webkit-scrollbar-track { background: var(--bg-darker); }
     ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+    /* ==========================================================
+       RESPONSIVE FLOW ARCHITECTURE - FINAL
+       معالجة الـ centered fixed canvas دون تغيير التصميم الداخلي
+       ========================================================== */
+    html {
+      width: 100%;
+      min-width: 0;
+    }
+
+    body {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      align-items: stretch;
+      overflow-x: clip;
+      padding: clamp(10px, 1.5vw, 20px);
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin-inline: 0;
+    }
+
+    .page-wrapper > * {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+    }
+
+    .merged-card,
+    .header,
+    .hero,
+    .guidance-tabs,
+    .tab-card,
+    .tools-section,
+    .search-container,
+    .cards-grid,
+    .card,
+    .trust-badges-container,
+    .footer,
+    .footer-brand-compact,
+    .footer-contact-compact,
+    .hero-content,
+    .hero-image,
+    .tab-info,
+    .tab-text {
+      min-width: 0;
+    }
+
+    .header > *,
+    .hero > *,
+    .guidance-tabs > *,
+    .tools-section > *,
+    .cards-grid > *,
+    .trust-badges-container > *,
+    .footer > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .header-pill,
+    .hero-subheading,
+    .search-container {
+      max-width: 100%;
+    }
+
+    .footer {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin-inline: 0;
+    }
+
+    .cards-grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    }
+
+    @media (max-width: 768px) {
+      .page-wrapper {
+        gap: 16px;
+      }
+
+      .header,
+      .hero,
+      .guidance-tabs,
+      .tools-section,
+      .trust-badges-container,
+      .footer {
+        width: 100%;
+      }
+
+      .header-pill {
+        width: min(100%, 90%);
+      }
+
+      .tab-card {
+        width: 100%;
+      }
+    }
+
+    /* ==========================================================
+       HEADER + HERO / BUTTONS / CARD CORNERS FINAL REFINEMENT
+       ========================================================== */
+    .page-wrapper > .header {
+      margin-bottom: -24px;
+    }
+
+    .page-wrapper > .header-hero-divider {
+      margin: 0 0 -24px;
+    }
+
+    .page-wrapper > .hero {
+      margin-top: 0;
+    }
+
+    .header {
+      border-radius: 30px 30px 0 0;
+      z-index: 3;
+    }
+
+    .header-logo-moaeen img,
+    .seu-rect img {
+      width: clamp(90px, 12vw, 180px);
+      height: auto;
+      max-width: 100%;
+    }
+
+    .header-seu-box {
+      justify-content: flex-end;
+      margin-left: -30px;
+      padding-left: 30px;
+      min-width: 0;
+    }
+
+    .seu-rect {
+      gap: 0;
+      min-width: 0;
+    }
+
+    .header-hero-divider {
+      position: relative;
+      width: 100%;
+      height: 26px;
+      background: var(--bg-dark);
+      flex-shrink: 0;
+      z-index: 8;
+    }
+
+    .header-hero-divider::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      height: 2px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, var(--gold), var(--gold) 82%, transparent);
+      box-shadow: 0 0 6px rgba(212, 175, 55, .35);
+    }
+
+    .share-btn {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      color: var(--bg-dark);
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border: 0;
+      border-radius: 0 10px 10px 0;
+      font: 700 13px/1.2 inherit;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(212, 175, 55, .38);
+      z-index: 2;
+    }
+
+    .share-btn i { font-size: 13px; }
+
+    .hero {
+      border-radius: 0 0 0 0;
+      padding-bottom: 92px;
+    }
+
+    .student-assist-btn,
+    .hero-wa-btn {
+      position: absolute;
+      bottom: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 14px 28px;
+      border: 0;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      z-index: 6;
+      transition: var(--transition);
+    }
+
+    .student-assist-btn {
+      left: 0;
+      color: var(--bg-dark);
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 0 20px 0 0;
+      box-shadow: 0 4px 16px rgba(212, 175, 55, .35);
+    }
+
+    .student-assist-btn:hover { transform: translateY(-2px); }
+
+    .hero-wa-btn {
+      right: 0;
+      color: var(--white);
+      background: var(--whatsapp-green);
+      border-radius: 20px 0 0 0;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, .4);
+    }
+
+    .hero-wa-btn:hover {
+      color: var(--white);
+      background: var(--whatsapp-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-wa-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--white);
+      flex-shrink: 0;
+    }
+
+    .trust-badges-container {
+      border-radius: 0;
+    }
+
+    .footer {
+      border-radius: 0 0 24px 24px;
+    }
+
+    .footer-brand-compact img {
+      width: 82px;
+      height: 82px;
+    }
+
+    @media (max-width: 768px) {
+      .page-wrapper > .header,
+      .page-wrapper > .header-hero-divider {
+        margin-bottom: -16px;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: minmax(78px, 1fr) minmax(0, 2fr) minmax(78px, 1fr);
+        padding: 16px;
+        gap: 10px;
+      }
+
+      .header-logo-moaeen {
+        grid-column: 1;
+        grid-row: 1;
+        justify-content: flex-start;
+        order: initial;
+      }
+
+      .header-pill {
+        grid-column: 2;
+        grid-row: 1;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 8px 10px;
+        gap: 6px;
+        overflow: hidden;
+      }
+
+      .header-seu-box {
+        grid-column: 3;
+        grid-row: 1;
+        justify-content: flex-end;
+        margin-left: -16px;
+        padding-left: 16px;
+        order: initial;
+      }
+
+      .header-logo-moaeen img,
+      .seu-rect img {
+        width: clamp(90px, 22vw, 120px);
+      }
+
+      .pill-text {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: center;
+      }
+
+      .hero {
+        padding-bottom: 80px;
+      }
+
+      .student-assist-btn,
+      .hero-wa-btn {
+        min-height: 46px;
+        padding: 10px 18px;
+        gap: 6px;
+        font-size: 13px;
+      }
+
+      .student-assist-btn { border-radius: 0 16px 0 0; }
+      .hero-wa-btn { border-radius: 16px 0 0 0; }
+      .hero-wa-btn svg { width: 18px; height: 18px; }
+      .share-btn { padding: 6px 12px; font-size: 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .header-logo-moaeen img,
+      .seu-rect img {
+        width: 90px;
+      }
+
+      .header-pill { padding-inline: 7px; }
+      .pill-line { width: 20px; }
+      .pill-text { font-size: 13px; }
+      .pill-star { font-size: 18px; }
+      .footer-brand-compact img { width: 76px; height: 76px; }
+    }
+
+    /* ==========================================================
+       DYNAMIC GUIDANCE TABS - title-wrap driven layout only
+       ========================================================== */
+    .guidance-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 24px;
+      min-width: 0;
+    }
+
+    .guidance-tabs.stack-tabs {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .guidance-tabs .tab-card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .guidance-tabs .tab-info {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: row;
+      align-items: center;
+      min-width: 0;
+      gap: 16px;
+    }
+
+    .guidance-tabs .tab-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .guidance-tabs .tab-text h4 {
+      min-width: 0;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .guidance-tabs .tab-btn {
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .guidance-tabs {
+        gap: 12px;
+      }
+
+      .guidance-tabs .tab-card {
+        gap: 10px;
+        padding-inline: 16px;
+      }
+
+      .guidance-tabs .tab-info {
+        gap: 10px;
+      }
+    }
+
+    /* ==========================================================
+       COMPACT GUIDANCE STRIPS - القروب والقناة فقط
+       ========================================================== */
+    .guidance-tabs {
+      gap: 6px;
+    }
+
+    .guidance-tabs .tab-card {
+      min-height: 72px;
+      padding: 12px 16px;
+      gap: 10px;
+      border-radius: 16px;
+    }
+
+    .guidance-tabs .tab-info {
+      gap: 10px;
+    }
+
+    .guidance-tabs .tab-icon {
+      width: 38px;
+      height: 38px;
+      font-size: 18px;
+    }
+
+    .guidance-tabs .tab-text h4 {
+      margin-bottom: 5px;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .guidance-tabs .tab-text p {
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .guidance-tabs .tab-btn {
+      padding: 7px 13px;
+      gap: 5px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .guidance-tabs {
+        gap: 8px;
+      }
+
+      .guidance-tabs .tab-card {
+        min-height: 60px;
+        padding: 8px 10px;
+        gap: 7px;
+        border-radius: 13px;
+      }
+
+      .guidance-tabs .tab-info {
+        gap: 7px;
+      }
+
+      .guidance-tabs .tab-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+
+      .guidance-tabs .tab-text h4 {
+        font-size: 12px;
+      }
+
+      .guidance-tabs .tab-text p {
+        font-size: 9px;
+      }
+
+      .guidance-tabs .tab-btn {
+        padding: 6px 9px;
+        font-size: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -932,12 +1406,17 @@
       <div class="header-seu-box">
         <div class="seu-rect">
           <img src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" />
-          <div class="seu-text">
-            <span class="seu-text-en">SEU_University</span>
-          </div>
         </div>
       </div>
     </header>
+
+    <!-- ===== الخط الذهبي الفاصل + مشاركة الصفحة ===== -->
+    <div class="header-hero-divider" aria-hidden="false">
+      <button class="share-btn" type="button" onclick="sharePage()" aria-label="مشاركة الصفحة">
+        <i class="fas fa-share-alt" aria-hidden="true"></i>
+        <span>مشاركة الصفحة</span>
+      </button>
+    </div>
 
     <!-- ============================================================
          HERO SECTION
@@ -965,6 +1444,16 @@
           <span class="line"></span>
         </div>
       </div>
+
+      <!-- ===== أزرار الزوايا داخل الهيرو ===== -->
+      <a class="student-assist-btn" href="https://wa.me/966536004199?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D9%81%D8%B1%D9%8A%D9%82%20%D9%85%D9%8F%D8%B9%D9%8A%D9%86%20%3A%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D8%A7%D9%84%D8%B7%D9%84%D8%A7%D8%A8%D9%8A%D9%87%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D9%82%D8%AF%D9%85%D9%88%D9%86%D9%87%D8%A7" target="_blank" rel="noopener" aria-label="خدمات المساعدات الطلابية عبر واتساب">
+        <span>خدمات المساعدات الطلابية</span>
+        <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+      </a>
+      <a class="hero-wa-btn" href="https://wa.me/966536004199" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+      </a>
     </section>
 
     <!-- ============================================================
@@ -1152,14 +1641,60 @@
       </div>
     </footer>
 
-    <!-- ============================================================
-         FLOATING WHATSAPP
-         ============================================================ -->
-    <a href="https://wa.me/966536004199" class="float-wa" target="_blank" rel="noopener" aria-label="تواصل معنا عبر WhatsApp">
-      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-      <span>تواصل معنا</span>
-    </a>
+
 
   </div>
+  <script>
+    (() => {
+      const tabsContainer = document.querySelector('.guidance-tabs');
+      if (!tabsContainer) return;
+
+      const titleNodes = Array.from(tabsContainer.querySelectorAll('.tab-text h4'));
+      let pendingFrame = 0;
+
+      const titleIsWrapped = (title) => {
+        const range = document.createRange();
+        range.selectNodeContents(title);
+        const rects = Array.from(range.getClientRects()).filter((rect) => rect.width > 0 && rect.height > 0);
+        return rects.length > 1;
+      };
+
+      const measureGuidanceTabs = () => {
+        cancelAnimationFrame(pendingFrame);
+        pendingFrame = requestAnimationFrame(() => {
+          // احسب الحالة الأساسية أولاً حتى لا تؤثر حالة التكديس السابقة على القياس الجديد.
+          tabsContainer.classList.remove('stack-tabs');
+          const shouldStack = titleNodes.some(titleIsWrapped);
+          tabsContainer.classList.toggle('stack-tabs', shouldStack);
+        });
+      };
+
+      window.addEventListener('resize', measureGuidanceTabs, { passive: true });
+      window.addEventListener('load', measureGuidanceTabs, { once: true });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measureGuidanceTabs, measureGuidanceTabs);
+      }
+
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(measureGuidanceTabs).observe(tabsContainer);
+      }
+
+      measureGuidanceTabs();
+    })();
+
+    function sharePage() {
+      const shareData = {
+        title: document.title,
+        text: 'دليل وتعليمات الطالب المستجد - منصة معين',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href).catch(() => {});
+      }
+    }
+  </script>
 </body>
 </html>
