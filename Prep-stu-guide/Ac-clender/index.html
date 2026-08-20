@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقويم الجامعي للعام الدراسي 1448هـ - منصة معين</title>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== متغيرات منصة معين ===== */
+        :root {
+            --bg-dark: #012727;
+            --bg-dark-2: #0A2C2C;
+            --bg-darker: #012020;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --gold-light: #E5C158;
+            --white: #FFFFFF;
+            --whatsapp-green: #25D366;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --primary-color: #0f3057;
+            --accent-green: #198754;
+            --accent-red: #dc3545;
+            --transition: 0.3s ease;
+            --radius-card: 20px;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1320px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            width: 100%;
+            min-height: 0;
+            margin: 0;
+            padding: 20px 40px 0;
+            display: block;
+            border-radius: 30px 30px 0 0;
+            overflow: visible;
+            z-index: 5;
+            background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%), url('./assets/images/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* شعار معين (يمين) - أصبح زر الإدارة */
+        .header-brand {
+            position: absolute;
+            right: 40px;
+            top: 20px;
+            z-index: 4;
+            display: block;
+            cursor: pointer; /* مؤشر الفأرة */
+        }
+        .header-brand img { width: 130px; height: 90px; object-fit: contain; pointer-events: none; } /* منع تفاعل الصورة وحدها */
+        .header-brand .brand-name { display: none; }
+
+        /* شعار الجامعة (يسار) */
+        .header-seu-box {
+            position: absolute;
+            left: 40px;
+            top: 20px;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .header-seu-logo { width: 130px; height: 90px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); }
+        .header-seu-pill {
+            position: relative;
+            z-index: 2;
+            margin-top: -10px;
+            min-width: 64px;
+            padding: 5px 13px;
+            color: var(--white);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.34);
+            border-radius: 999px;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            width: 100%;
+            margin: 0;
+            padding: 126px 40px 52px;
+            border-radius: 0;
+            background-image: linear-gradient(135deg, rgba(1,42,43,0.93) 0%, rgba(10,44,44,0.9) 100%), url('./assets/images/hero-bg.jpg');
+            box-shadow: none;
+            gap: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gold-line-bar {
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 36px;
+            padding: 5px 0 7px;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid rgba(212,175,55,0.18);
+            box-shadow: 0 -4px 12px rgba(212,175,55,0.08);
+        }
+        .gold-line-bar .share-btn, .gold-line-bar .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 28px;
+            padding: 5px 11px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .gold-line-bar .share-btn { background: var(--gold); color: var(--bg-dark); border: 1px solid var(--gold-light); }
+        .gold-line-bar .back-btn { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(212,175,55,0.65); }
+        .gold-line-bar .share-btn:hover { background: var(--gold-light); }
+        .gold-line-bar .back-btn:hover { background: rgba(212,175,55,0.22); }
+        
+        .share-dropdown { position: relative; display: inline-block; }
+        .share-dropdown-content {
+            display: none;
+            position: absolute;
+            top: calc(100% + 7px);
+            left: 0;
+            background: var(--bg-dark);
+            min-width: 200px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            z-index: 100;
+            padding: 8px 0;
+        }
+        .share-dropdown.active .share-dropdown-content { display: block; }
+        .share-dropdown-content a {
+            display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+            color: var(--white); font-weight: 600; transition: var(--transition); font-size: 15px;
+        }
+        .share-dropdown-content a:hover { background: rgba(212, 175, 55, 0.15); }
+        .share-dropdown-content a i { font-size: 20px; width: 28px; text-align: center; }
+        .share-dropdown-content a .fa-whatsapp { color: var(--whatsapp-green); }
+        .share-dropdown-content a .fa-telegram { color: #0088CC; }
+
+        .hero-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+        .hero-top h1 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            color: var(--white);
+            display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+        }
+        .hero-top h1 i { color: var(--gold); }
+
+        .help-btn {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 8;
+            width: auto !important;
+            max-width: 135px;
+            padding: 6px 10px 6px 8px;
+            border-radius: 0 12px 0 0;
+            background: var(--gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--gold-light);
+            box-shadow: 0 -2px 12px rgba(212,175,55,0.22);
+            line-height: 1.15;
+            display: flex; flex-direction: column; align-items: center;
+            transition: var(--transition);
+        }
+        .help-btn:hover { background: var(--gold-light); color: var(--bg-dark); transform: none; }
+        .help-btn .main-text { font-size: 10px; font-weight: 700; }
+        .help-btn .sub-text { font-size: 8px; font-weight: 600; opacity: 0.9; }
+
+        .hero-tabs {
+            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 0; padding: 0;
+        }
+        .tab-item {
+            min-width: 0; max-width: none; padding: 9px 12px; border-radius: 12px; gap: 8px;
+            background: rgba(1, 32, 32, 0.6); backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            display: flex; align-items: center; justify-content: space-between; transition: var(--transition);
+        }
+        .tab-item:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .tab-info { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        .tab-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--gold); flex-shrink: 0; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .tab-text { min-width: 0; }
+        .tab-text h4 { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--white); }
+        .tab-text p { font-size: 10px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #a0b4b8; }
+        .tab-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--bg-dark); padding: 5px 9px; border-radius: 50px; font-size: 10px; font-weight: 700; transition: var(--transition); cursor: pointer; white-space: nowrap; border: none;
+        }
+        .tab-btn:hover { transform: scale(1.05); }
+
+        /* ===== المحتوى الرئيسي (Main Content) ===== */
+        .main-content {
+            width: 100%;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 40px 40px 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            min-width: 0;
+        }
+
+        /* ---- التقويم الجامعي ---- */
+        .stats {
+            display: flex; gap: 20px; padding: 15px 20px; margin-bottom: 30px;
+            background: white; border-radius: var(--radius-card);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); justify-content: center;
+            color: var(--text-main); border-top: 5px solid var(--gold);
+        }
+        .stat-item { display: flex; flex-direction: column; align-items: center; }
+        .stat-number { font-size: 1.3rem; font-weight: bold; }
+        .stat-number.green { color: #28a745; }
+        .stat-number.yellow { color: #ffc107; }
+        .stat-number.red { color: #dc3545; }
+        .stat-label { font-size: 0.75rem; color: #666; }
+
+        .event-item {
+            display: flex; align-items: center; padding: 18px 20px; border-bottom: 1px solid #f1f1f1;
+            background: white; border-radius: 12px; margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: var(--transition);
+            position: relative; color: var(--text-main);
+        }
+        .event-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .event-status {
+            width: 10px; height: 10px; border-radius: 50%; margin-left: 12px; flex-shrink: 0;
+        }
+        .event-status.grey { background: #6c757d; }
+        .event-status.yellow { background: #ffc107; }
+        .event-status.red { background: #dc3545; }
+        .event-status.green { background: #28a745; }
+        
+        .event-content { flex-grow: 1; width: 100%; } /* تم إضافة العرض لضمان ملء الفراغ */
+        .event-title { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.4; font-weight: 700; color: var(--primary-color); }
+        .status-text {
+            font-size: 0.75rem; color: #6c757d; margin-bottom: 12px;
+            display: inline-block; padding: 2px 12px; border-radius: 20px; background: #eee;
+        }
+        
+        /* التواريخ: ممتدة بالتساوي */
+        .dates-container {
+            display: flex;
+            gap: 15px;
+            width: 100%; /* تمتد لأقصى عرض */
+        }
+        .date-box-wrapper {
+            flex: 1; /* تتسع بالتساوي */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .date-label {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 6px;
+            text-align: center;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .date-label i { font-size: 0.85rem; }
+        
+        .date-box {
+            background: white; border-radius: 8px; padding: 6px 10px;
+            border: 1px solid #e9ecef; width: 100%; text-align: center;
+        }
+        .date-box.open { border-color: #28a745; background: #e9f7ef; }
+        .date-box.close { border-color: #dc3545; background: #f8d7da; } /* اللون الوردي */
+        
+        .date-hijri { font-size: 0.85rem; font-weight: bold; margin-bottom: 2px; }
+        .date-hijri.open { color: #28a745; }
+        .date-hijri.close { color: #dc3545; }
+        .date-gregorian { font-size: 0.75rem; color: #666; }
+
+        /* عناصر التحكم الإدارية */
+        .admin-controls {
+            display: none; gap: 5px; margin-right: 15px; flex-shrink: 0;
+        }
+        .control-btn {
+            background: white; border: 1px solid #ddd; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; transition: var(--transition);
+        }
+        .control-btn.edit { color: #17a2b8; border-color: #17a2b8; }
+        .control-btn.edit:hover { background: #17a2b8; color: white; }
+        .control-btn.delete { color: #dc3545; border-color: #dc3545; }
+        .control-btn.delete:hover { background: #dc3545; color: white; }
+        
+        /* وضع الإدارة */
+        .admin-mode .admin-controls { display: flex; }
+        .admin-mode .event-item { padding-left: 20px; } 
+
+        .add-event-container {
+            display: none; padding: 20px; text-align: center; margin-top: 20px;
+        }
+        .admin-mode .add-event-container { display: block; }
+        .btn-add-event {
+            background: white; border: 2px dashed #007bff; color: #007bff;
+            padding: 12px 20px; border-radius: 12px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; transition: var(--transition);
+        }
+        .btn-add-event:hover { background: #f0f8ff; }
+
+        /* ---- Modals ---- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; visibility: hidden; transition: 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: white; padding: 30px; border-radius: 20px;
+            width: 90%; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            color: var(--text-main); border-top: 6px solid var(--gold);
+        }
+        .modal-title { margin-bottom: 20px; text-align: center; font-size: 1.2rem; font-weight: bold; color: var(--primary-color); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; color: #444; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; background: #fcfcfc;
+        }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; }
+        .modal-actions button { padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; font-size: 0.95rem; transition: var(--transition); }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-primary:hover { background: #0056b3; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            width: 100%; max-width: 1320px; background: var(--bg-dark); border-radius: 0;
+            overflow: hidden; padding: 30px 40px; display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .footer-brand-compact { display: flex; align-items: center; gap: 16px; }
+        .footer-brand-compact img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); padding: 4px; background: var(--bg-dark); object-fit: contain; }
+        .footer-brand-compact .brand-name { display: flex; flex-direction: column; }
+        .footer-brand-compact .brand-name h3 { color: var(--gold); font-size: 20px; font-weight: 800; line-height: 1.2; }
+        .footer-brand-compact .brand-name span { color: var(--gold-light); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+        .footer-contact-compact { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .footer-phone { display: flex; align-items: center; gap: 10px; color: var(--white); font-size: 18px; font-weight: 700; direction: ltr; }
+        .footer-phone i { color: var(--gold); font-size: 20px; }
+        .footer-social-compact { display: flex; gap: 12px; }
+        .footer-social-compact a {
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); border: 2px solid rgba(212, 175, 55, 0.3); color: var(--white); font-size: 18px;
+        }
+        .footer-social-compact a:hover { transform: translateY(-3px) scale(1.1); border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+
+        /* ===== Upcoming Event Countdown ===== */
+        .upcoming-event-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 18px;
+            margin: 0 0 24px;
+            padding: 18px 22px;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #fffdf4 0%, #ffffff 100%);
+            border: 1px solid rgba(212, 175, 55, 0.42);
+            border-top: 4px solid var(--gold);
+            border-radius: var(--radius-card);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .upcoming-event-copy { min-width: 0; }
+        .upcoming-event-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 5px;
+            color: var(--gold-dark);
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+        .upcoming-event-title {
+            margin-bottom: 3px;
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+        .upcoming-event-category {
+            color: var(--text-muted);
+            font-size: 0.76rem;
+        }
+        .upcoming-event-countdown {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(44px, 1fr));
+            gap: 7px;
+            min-width: 250px;
+        }
+        .countdown-unit {
+            min-width: 0;
+            padding: 7px 6px;
+            color: var(--white);
+            background: var(--bg-dark);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .countdown-value { display: block; font-size: 1.15rem; font-weight: 800; line-height: 1.2; }
+        .countdown-label { display: block; color: var(--gold-light); font-size: 0.62rem; }
+        .upcoming-event-card.empty { display: block; }
+        .upcoming-event-card.empty .upcoming-event-title { margin: 0; }
+
+        /* ===== Header / Hero final layout ===== */
+        .page-wrapper { max-width: 1320px; }
+        .header { position: relative; }
+        .header-brand {
+            right: 40px;
+            left: auto;
+            top: 20px;
+            z-index: 6;
+        }
+        .header-seu-box {
+            left: 40px;
+            right: auto;
+            top: 20px;
+            z-index: 6;
+        }
+        .header-brand img,
+        .header-seu-logo {
+            width: 160px;
+            height: 110px;
+        }
+        .header-seu-box .header-seu-pill {
+            margin-top: -14px;
+            position: relative;
+            z-index: 7;
+        }
+        .header {
+            width: 100%;
+            max-width: none;
+            margin-inline: 0;
+            padding-inline: 0;
+        }
+        .hero {
+            width: 100%;
+            margin-inline: 0;
+            padding-inline: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding-inline: 0;
+                min-height: 150px;
+            }
+            .header-brand,
+            .header-seu-box {
+                position: absolute;
+                top: 14px;
+                float: none;
+                display: flex;
+                margin: 0;
+            }
+            .header-brand { right: 10px; left: auto; }
+            .header-seu-box { left: 10px; right: auto; }
+            .header-brand img,
+            .header-seu-logo {
+                width: clamp(96px, 24vw, 132px);
+                height: clamp(78px, 20vw, 96px);
+            }
+            .header-seu-box .header-seu-pill {
+                margin-top: -12px;
+                font-size: 12px;
+            }
+            .hero { padding-inline: 16px; }
+            .upcoming-event-card { grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+            .upcoming-event-countdown { min-width: 0; width: 100%; }
+        }
+
+        @media (max-width: 420px) {
+            .header-brand { right: 4px; }
+            .header-seu-box { left: 4px; }
+            .header-brand img,
+            .header-seu-logo { width: 100px; height: 78px; }
+            .upcoming-event-countdown { gap: 4px; }
+            .countdown-value { font-size: 1rem; }
+            .countdown-label { font-size: 0.56rem; }
+        }
+
+        /* ===== Semester tabs: Bachelor calendar ===== */
+        .semester-tabs {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin: 0 0 18px;
+            padding: 6px;
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.24);
+            border-radius: var(--radius-card);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .semester-tab {
+            min-width: 0;
+            padding: 11px 14px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            color: var(--text-muted);
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .semester-tab:hover { color: var(--primary-color); background: rgba(212,175,55,0.08); }
+        .semester-tab.active { color: var(--bg-dark); background: var(--gold); border-color: var(--gold-light); box-shadow: 0 3px 10px rgba(212,175,55,0.22); }
+        @media (max-width: 520px) {
+            .semester-tabs { gap: 6px; padding: 5px; }
+            .semester-tab { padding: 9px 7px; font-size: 0.75rem; }
+        }
+
+        /* ===== Floating WhatsApp ===== */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px; display: inline-flex; align-items: center; gap: 10px;
+            background: var(--whatsapp-green); color: var(--white); padding: 14px 24px 14px 18px; border-radius: 50px;
+            font-size: 15px; font-weight: 700; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5); z-index: 1000;
+            transition: var(--transition); animation: float-pulse 2s infinite; text-decoration: none;
+        }
+        .float-wa:hover { transform: scale(1.05); background: #1DA851; animation: none; }
+        .float-wa svg { width: 28px; height: 28px; fill: var(--white); }
+        @keyframes float-pulse { 0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4); } 50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5), 0 0 0 12px rgba(37, 211, 102, 0); } }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header { padding: 16px 16px 0; border-radius: 24px 24px 0 0; }
+            .header-brand, .header-seu-box { position: relative; top: auto; left: auto; right: auto; display: inline-block; }
+            .header-brand { float: left; margin-top: 10px; } /* معين يمين في الموبايل (عائم يسار في الـ RTL) */
+            .header-seu-box { float: right; margin-top: 10px; } /* جامعة يسار في الموبايل (عائم يمين في الـ RTL) */
+            .header-brand img, .header-seu-logo { width: 82px; height: 70px; }
+            .header-seu-pill { font-size: 12px; min-width: 54px; margin-top: -8px; padding: 4px 9px; }
+            .hero { padding: 20px 16px 48px; border-radius: 0; }
+            .hero-top h1 { font-size: clamp(20px, 5vw, 28px); }
+            .hero-tabs { grid-template-columns: 1fr; }
+            .tab-item { width: 100%; }
+            .main-content { padding: 20px; }
+            .stats { flex-wrap: wrap; gap: 10px; padding: 10px; }
+            .event-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .admin-controls { margin-right: 0; margin-top: 10px; width: 100%; justify-content: flex-end; }
+            .footer { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
+        }
+        /* ===== Final mobile logo direction and date readability fix ===== */
+        .date-box .date-hijri {
+            margin-bottom: 0;
+        }
+        .date-box .date-gregorian {
+            margin-top: 4px;
+            padding-top: 3px;
+            border-top: 1px solid rgba(100, 116, 139, 0.28);
+            color: #4b5563;
+            font-weight: 800;
+            line-height: 1.25;
+        }
+        .header-seu-box .header-seu-pill {
+            min-width: 50px;
+            padding: 3px 9px;
+            margin-top: -10px;
+            font-size: 11px;
+            line-height: 1.15;
+        }
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 0 0 !important;
+                min-height: 0;
+            }
+            .header-brand,
+            .header-seu-box {
+                position: absolute !important;
+                top: 14px !important;
+                left: auto !important;
+                right: auto !important;
+                float: none !important;
+                display: flex !important;
+                margin: 0 !important;
+            }
+            .header-brand { right: 10px !important; }
+            .header-seu-box { left: 10px !important; }
+            .header-brand img,
+            .header-seu-logo {
+                width: clamp(96px, 24vw, 132px) !important;
+                height: clamp(78px, 20vw, 96px) !important;
+            }
+            .header-seu-box .header-seu-pill {
+                min-width: 46px;
+                padding: 2px 7px;
+                margin-top: -9px;
+                font-size: 10px;
+                line-height: 1.1;
+            }
+            .header .hero {
+                padding-top: 118px !important;
+            }
+        }
+        /* ===== Official academic calendar source link ===== */
+        .official-calendar-source {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            padding: 7px 13px;
+            color: var(--primary-color);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.52);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            font-size: 0.78rem;
+            font-weight: 800;
+            line-height: 1.35;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .official-calendar-source:hover,
+        .official-calendar-source:focus-visible {
+            color: var(--primary-color);
+            background: rgba(212, 175, 55, 0.16);
+            border-color: var(--gold);
+            transform: translateY(-1px);
+        }
+        .official-calendar-source i {
+            color: var(--gold-dark);
+            font-size: 0.78rem;
+            flex: 0 0 auto;
+        }
+        @media (max-width: 420px) {
+            .official-calendar-source {
+                margin-bottom: 12px;
+                padding: 6px 10px;
+                font-size: 0.72rem;
+            }
+            .official-calendar-source i {
+                font-size: 0.72rem;
+            }
+            .header-brand { right: 4px !important; }
+            .header-seu-box { left: 4px !important; }
+            .header-brand img,
+            .header-seu-logo {
+                width: 100px !important;
+                height: 78px !important;
+            }
+            .header-seu-box .header-seu-pill {
+                min-width: 42px;
+                padding: 2px 6px;
+                margin-top: -8px;
+                font-size: 9px;
+            }
+            .header .hero {
+                padding-top: 106px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- ===== HEADER + HERO (UNIFIED) ===== -->
+    <header class="header">
+        <!-- 1. شعار معين (يمين) - عند الضغط عليه يفتح الإدارة -->
+        <div class="header-brand" id="adminBrandTrigger" title="الضغط هنا للدخول للوحة التحكم والإدارة">
+            <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2224%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
+        </div>
+
+        <!-- 2. شعار الجامعة + SEU (يسار) -->
+        <div class="header-seu-box">
+            <img class="header-seu-logo" src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2250%22 y=%2260%22 font-size=%2220%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'" />
+            <span class="header-seu-pill">SEU</span>
+        </div>
+
+        <section class="hero">
+            <div class="gold-line-bar">
+                <div class="share-dropdown" id="shareDropdown">
+                    <button class="share-btn" id="shareToggle">
+                        <i class="fa-solid fa-share-nodes"></i> <span>مشاركة</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+                    </button>
+                    <div class="share-dropdown-content">
+                        <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب</a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i> مشاركة عبر تليجرام</a>
+                    </div>
+                </div>
+                <a href="../" class="back-btn"><i class="fa-solid fa-arrow-right"></i><span>العودة للأدوات</span></a>
+            </div>
+            <div class="hero-top">
+                <h1>
+                    <i class="fa-solid fa-calendar-days"></i>
+                    التقويم الجامعي 1448هـ
+                </h1>
+            </div>
+            <div class="hero-tabs">
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-users"></i></div>
+                        <div class="tab-text"><h4>قروب تجمع طلبة التحضيري</h4><p>انضم إلى زملائك</p></div>
+                    </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> انضمام</a>
+                </div>
+                <div class="tab-item">
+                    <div class="tab-info">
+                        <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                        <div class="tab-text"><h4>قناة أخبار التحضيري</h4><p>آخر المستجدات</p></div>
+                    </div>
+                    <a href="#" class="tab-btn"><i class="fas fa-arrow-left"></i> عرض القناة</a>
+                </div>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=966536004199" target="_blank" class="help-btn">
+                <span class="main-text">للمساعدة والإستفسار</span>
+                <span class="sub-text">تواصل مع فريق مُعين</span>
+            </a>
+        </section>
+    </header>
+
+    <!-- ===== المحتوى الرئيسي (التقويم الجامعي) ===== -->
+    <div class="main-content" id="mainCalendarApp">
+
+        <a class="official-calendar-source"
+           href="https://www.seu.edu.sa/ar/academic-calendar/1448/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="فتح المصدر الرسمي للتقويم الجامعي في نافذة جديدة">
+            <span>المصدر الرسمي للتقويم الجامعي</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+
+        <!-- الحدث القادم ديناميكياً -->
+        <section class="upcoming-event-card" id="upcomingEventCard" aria-live="polite">
+            <div class="upcoming-event-copy">
+                <div class="upcoming-event-kicker"><i class="fa-solid fa-hourglass-half"></i><span>الحدث القادم</span></div>
+                <div class="upcoming-event-title" id="upcomingEventTitle">جاري تحميل أقرب حدث...</div>
+                <div class="upcoming-event-category" id="upcomingEventCategory">—</div>
+            </div>
+            <div class="upcoming-event-countdown" id="upcomingEventCountdown" aria-label="العد التنازلي للحدث القادم">
+                <div class="countdown-unit"><span class="countdown-value" data-unit="days">--</span><span class="countdown-label">يوم</span></div>
+                <div class="countdown-unit"><span class="countdown-value" data-unit="hours">--</span><span class="countdown-label">ساعة</span></div>
+                <div class="countdown-unit"><span class="countdown-value" data-unit="minutes">--</span><span class="countdown-label">دقيقة</span></div>
+                <div class="countdown-unit"><span class="countdown-value" data-unit="seconds">--</span><span class="countdown-label">ثانية</span></div>
+            </div>
+        </section>
+
+        <!-- تبويبا الفصلين الدراسيين للبكالوريوس -->
+        <div class="semester-tabs" id="semesterTabs" role="tablist" aria-label="الفصل الدراسي">
+            <button type="button" class="semester-tab active" data-semester="first" role="tab" aria-selected="true">الفصل الدراسي الأول</button>
+            <button type="button" class="semester-tab" data-semester="second" role="tab" aria-selected="false">الفصل الدراسي الثاني</button>
+        </div>
+
+        <!-- الإحصائيات -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number green" id="openCount">0</span>
+                <span class="stat-label">مفتوح</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number yellow" id="progressCount">0</span>
+                <span class="stat-label">جاري</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number red" id="closedCount">0</span>
+                <span class="stat-label">مقفلة</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" style="color:#0f3057;" id="totalCount">0</span>
+                <span class="stat-label">الكل</span>
+            </div>
+        </div>
+
+        <!-- قائمة الأحداث -->
+        <div id="eventsListContainer"></div>
+
+        <!-- زر إضافة حدث جديد (يظهر فقط للمدير) -->
+        <div class="add-event-container">
+            <button class="btn-add-event" id="addEventBtn">+ إضافة حدث جديد</button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-brand-compact">
+            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <div class="brand-name">
+                <h3>منصة معين التعليمية</h3>
+                <span>MOAEEN PLATFORM</span>
+            </div>
+        </div>
+        <div class="footer-contact-compact">
+            <div class="footer-phone"><i class="fas fa-phone-alt"></i><span>+966 53 600 4199</span></div>
+            <div class="footer-social-compact">
+                <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" aria-label="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== Floating WhatsApp ===== -->
+    <a href="https://api.whatsapp.com/send?phone=966536004199" class="float-wa" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>تواصل معنا</span>
+    </a>
+
+</div>
+
+<!-- ===== Modals ===== -->
+<div class="modal-overlay" id="loginModal">
+    <div class="modal">
+        <div class="modal-title">تسجيل الدخول للوحة التحكم</div>
+        <div class="form-group">
+            <label>اسم المستخدم</label>
+            <input type="text" id="loginUser" placeholder="Moaeen-admin">
+        </div>
+        <div class="form-group">
+            <label>كلمة المرور</label>
+            <input type="password" id="loginPass" placeholder="••••••••">
+        </div>
+        <p id="loginError" style="color:#dc3545; text-align:center; margin:10px 0; font-size:0.9rem; display:none;">بيانات الدخول غير صحيحة</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeLoginModal()">إلغاء</button>
+            <button class="btn-primary" onclick="handleLogin()">دخول</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="editModal">
+    <div class="modal">
+        <div class="modal-title" id="editModalTitle">تعديل الحدث</div>
+        <input type="hidden" id="editId">
+        <div class="form-group">
+            <label>عنوان الحدث</label>
+            <input type="text" id="editTitle">
+        </div>
+        <div style="display:flex; gap:10px;">
+            <div class="form-group" style="flex:1;">
+                <label>تاريخ البدء (هجري)</label>
+                <input type="text" id="editStartH" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label>تاريخ البدء (ميلادي)</label>
+                <input type="text" id="editStartG" placeholder="dd/mm/yyyy">
+            </div>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <div class="form-group" style="flex:1;">
+                <label>تاريخ النهاية (هجري)</label>
+                <input type="text" id="editEndH" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label>تاريخ النهاية (ميلادي)</label>
+                <input type="text" id="editEndG" placeholder="dd/mm/yyyy">
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeEditModal()">إلغاء</button>
+            <button class="btn-primary" onclick="saveEvent()">حفظ التغييرات</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // 1. البيانات الأولية و الحالة
+    // ==========================================
+    const semesterEvents = {
+        first: [
+      { id: 1, title: "خدمة طلب تأجيل الدراسة لا تحتسب رسوم دراسية", startH: "10/03/1448", startG: "23/08/2026", endH: "20/03/1448", endG: "02/09/2026" },
+      { id: 2, title: "تسجيل المقررات", startH: "10/03/1448", startG: "23/08/2026", endH: "16/03/1448", endG: "29/08/2026" },
+      { id: 3, title: "الاختبارات البديلة", startH: "10/03/1448", startG: "23/08/2026", endH: "16/03/1448", endG: "29/08/2026" },
+      { id: 4, title: "فترة سداد الرسوم الدراسية", startH: "10/03/1448", startG: "23/08/2026", endH: "01/04/1448", endG: "12/09/2026" },
+      { id: 5, title: "معادلة مقررات الكليات", startH: "10/03/1448", startG: "23/08/2026", endH: "16/03/1448", endG: "29/08/2026" },
+      { id: 6, title: "معادلة مقررات السنة الأولى المشتركة والفصل المشترك مع استرداد الرسوم", startH: "10/03/1448", startG: "23/08/2026", endH: "23/03/1448", endG: "05/09/2026" },
+      { id: 7, title: "معادلة مقرر اللغة الإنجليزية دون استرداد الرسوم", startH: "24/03/1448", startG: "06/09/2026", endH: "16/06/1448", endG: "26/11/2026" },
+      { id: 8, title: "بداية الدراسة للفصل الدراسي الأول", startH: "17/03/1448", startG: "30/08/2026", endH: "-", endG: "-" },
+      { id: 9, title: "الاعتذار عن الدراسة للفصل الدراسي مع عدم أحقية استرداد الرسوم الدراسية", startH: "24/03/1448", startG: "06/09/2026", endH: "16/06/1448", endG: "26/11/2026" },
+      { id: 10, title: "تقديم أعذار التغيب عن المحاضرات", startH: "24/03/1448", startG: "06/09/2026", endH: "02/06/1448", endG: "12/11/2026" },
+      { id: 11, title: "الانسحاب من مقرر مع عدم أحقية استرداد الرسوم الدراسية", startH: "24/03/1448", startG: "06/09/2026", endH: "16/06/1448", endG: "26/11/2026" },
+      { id: 12, title: "إجازة اليوم الوطني", startH: "12/04/1448", startG: "23/09/2026", endH: "15/04/1448", endG: "26/09/2026" },
+      { id: 13, title: "الاختبارات الفصلية لطلبة السنة الأولى المشتركة و الفصل المشترك", startH: "30/04/1448", startG: "11/10/2026", endH: "03/05/1448", endG: "14/10/2026" },
+      { id: 14, title: "الاختبارات الفصلية لمرحلة البكالوريوس", startH: "07/05/1448", startG: "18/10/2026", endH: "18/05/1448", endG: "29/10/2026" },
+      { id: 15, title: "تقديم أعذار التغيب عن الاختبارات الفصلية", startH: "30/04/1448", startG: "11/10/2026", endH: "22/05/1448", endG: "02/11/2026" },
+      { id: 16, title: "تغيير التخصص، تغيير الفرع، تغيير التخصص والفرع معاً، إعادة القيد", startH: "21/05/1448", startG: "01/11/2026", endH: "16/06/1448", endG: "26/11/2026" },
+      { id: 17, title: "الاختبارات النهائية لطلبة السنة الأولى المشتركة", startH: "04/07/1448", startG: "13/12/2026", endH: "07/07/1448", endG: "16/12/2026" },
+      { id: 18, title: "الاختبارات النهائية", startH: "04/07/1448", startG: "13/12/2026", endH: "22/07/1448", endG: "31/12/2026" },
+      { id: 19, title: "تقديم أعذار التغيب عن الاختبارات النهائية", startH: "04/07/1448", startG: "13/12/2026", endH: "27/07/1448", endG: "05/01/2027" },
+      { id: 20, title: "خدمة الاعتراض على نتيجة الاختبارات النهائية", startH: "18/07/1448", startG: "27/12/2026", endH: "27/07/1448", endG: "05/01/2027" },
+      { id: 21, title: "إغلاق الفصل الدراسي الأول بنهاية دوام", startH: "29/07/1448", startG: "07/01/2027", endH: "-", endG: "-" }
+        ],
+        second: [
+      { id: 1, title: "معادلة مقررات الكليات", startH: "02/08/1448", startG: "10/01/2027", endH: "13/08/1448", endG: "21/01/2027" },
+      { id: 2, title: "معادلة مقررات السنة الأولى المشتركة والفصل المشترك (مع استرداد الرسوم)", startH: "02/08/1448", startG: "10/01/2027", endH: "13/08/1448", endG: "21/01/2027" },
+      { id: 3, title: "خدمة طلب تأجيل الدراسة (لا تحتسب رسوم دراسية)", startH: "02/08/1448", startG: "10/01/2027", endH: "13/08/1448", endG: "21/01/2027" },
+      { id: 4, title: "بدء تسجيل المقررات", startH: "02/08/1448", startG: "10/01/2027", endH: "06/08/1448", endG: "14/01/2027" },
+      { id: 5, title: "الاختبارات البديلة", startH: "02/08/1448", startG: "10/01/2027", endH: "06/08/1448", endG: "14/01/2027" },
+      { id: 6, title: "فترة سداد الرسوم الدراسية", startH: "02/08/1448", startG: "10/01/2027", endH: "25/08/1448", endG: "02/02/2027" },
+      { id: 7, title: "بداية الدراسة للفصل الدراسي الثاني", startH: "09/08/1448", startG: "17/01/2027", endH: "-", endG: "-" },
+      { id: 8, title: "الاعتذار عن الدراسة للفصل الدراسي (مع عدم أحقية استرداد الرسوم الدراسية)", startH: "16/08/1448", startG: "24/01/2027", endH: "14/12/1448", endG: "20/05/2027" },
+      { id: 9, title: "تقديم أعذار التغيب عن المحاضرات", startH: "16/08/1448", startG: "24/01/2027", endH: "08/11/1448", endG: "15/04/2027" },
+      { id: 10, title: "الانسحاب من مقرر (مع عدم أحقية استرداد الرسوم الدراسية)", startH: "16/08/1448", startG: "24/01/2027", endH: "14/12/1448", endG: "20/05/2027" },
+      { id: 11, title: "معادلة مقرر اللغة الانجليزية دون استرداد الرسوم", startH: "16/08/1448", startG: "24/01/2027", endH: "14/12/1448", endG: "20/05/2027" },
+      { id: 12, title: "إجازة يوم التأسيس", startH: "12/09/1448", startG: "19/02/2027", endH: "15/09/1448", endG: "22/02/2027" },
+      { id: 13, title: "إجازة عيد الفطر المبارك", startH: "19/09/1448", startG: "26/02/2027", endH: "05/10/1448", endG: "13/03/2027" },
+      { id: 14, title: "خدمة تقديم أعذار التغيب عن الاختبارات الفصلية", startH: "06/10/1448", startG: "14/03/2027", endH: "29/10/1448", endG: "06/04/2027" },
+      { id: 15, title: "الاختبارات الفصلية لطلبة السنة الأولى المشتركة و الفصل المشترك", startH: "06/10/1448", startG: "14/03/2027", endH: "09/10/1448", endG: "17/03/2027" },
+      { id: 16, title: "الاختبارات الفصلية لمرحلة البكالوريوس", startH: "13/10/1448", startG: "21/03/2027", endH: "24/10/1448", endG: "01/04/2027" },
+      { id: 17, title: "تغيير التخصص، تغيير الفرع، تغيير التخصص والفرع معاً، إعادة القيد", startH: "13/10/1448", startG: "21/03/2027", endH: "08/11/1448", endG: "15/04/2027" },
+      { id: 18, title: "إجازة عيد الأضحى المبارك", startH: "01/12/1448", startG: "07/05/2027", endH: "16/12/1448", endG: "22/05/2027" },
+      { id: 19, title: "الاختبارات النهائية لطلبة السنة الأولى المشتركة", startH: "24/12/1448", startG: "30/05/2027", endH: "27/12/1448", endG: "02/06/2027" },
+      { id: 20, title: "فترة الاختبارات النهائية", startH: "24/12/1448", startG: "30/05/2027", endH: "12/01/1449", endG: "17/06/2027" },
+      { id: 21, title: "خدمة تقديم أعذار التغيب عن الاختبارات النهائية", startH: "24/12/1448", startG: "30/05/2027", endH: "17/01/1449", endG: "22/06/2027" },
+      { id: 22, title: "خدمة الاعتراض على الدرجة النهائية", startH: "08/01/1449", startG: "13/06/2027", endH: "17/01/1449", endG: "22/06/2027" },
+      { id: 23, title: "إغلاق الفصل الدراسي الثاني وإجازة نهاية العام الدراسي", startH: "19/01/1449", startG: "24/06/2027", endH: "-", endG: "-" }
+        ]
+    };
+
+    const initialEvents = semesterEvents.first;
+
+    let activeSemester = 'first';
+    let events = [];
+    let isAdmin = false;
+
+    // ==========================================
+    // 2. الوظائف المساعدة (المنطق الزمني)
+    // ==========================================
+    function displayHijriDate(dateStr) {
+        return dateStr && dateStr !== '-' ? `${dateStr} هـ` : '-';
+    }
+
+    function displayGregorianDate(dateStr) {
+        return dateStr && dateStr !== '-' ? `${dateStr} م` : '-';
+    }
+
+    function parseDate(dateStr) {
+        if (!dateStr || dateStr === '-') return null;
+        const parts = dateStr.split('/');
+        if (parts.length !== 3) return null;
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+
+    function getAutoStatus(startG, endG) {
+        const today = new Date(); today.setHours(0,0,0,0);
+        const startDate = parseDate(startG);
+        const endDate = parseDate(endG);
+        
+        if (!startDate || !endDate) return "غير متاح";
+        if (today < startDate) return "غير متاح";
+        if (today > endDate) return "مقفلة";
+        
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const daysUntilEnd = Math.ceil((endDate - today) / msPerDay);
+        if (daysUntilEnd <= 3 && daysUntilEnd >= 0) return "جاري";
+        
+        return "مفتوح";
+    }
+
+    // ==========================================
+    // 3. الإدارة الأساسية
+    // ==========================================
+    function getSemesterStorageKey() {
+        return `uniCalendarData_1448_${activeSemester}`;
+    }
+
+    function loadData() {
+        const stored = localStorage.getItem(getSemesterStorageKey());
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                events = Array.isArray(parsed) ? parsed : semesterEvents[activeSemester].map(event => ({ ...event }));
+            } catch {
+                events = semesterEvents[activeSemester].map(event => ({ ...event }));
+            }
+        } else {
+            events = semesterEvents[activeSemester].map(event => ({ ...event }));
+        }
+    }
+    function saveData() { localStorage.setItem(getSemesterStorageKey(), JSON.stringify(events)); }
+
+    function setActiveSemester(semester) {
+        if (!semesterEvents[semester]) return;
+        activeSemester = semester;
+        document.querySelectorAll('.semester-tab').forEach(tab => {
+            const active = tab.dataset.semester === semester;
+            tab.classList.toggle('active', active);
+            tab.setAttribute('aria-selected', String(active));
+        });
+        loadData();
+        renderEvents();
+        updateUpcomingEvent();
+    }
+
+    function renderEvents() {
+        const container = document.getElementById('eventsListContainer');
+        container.innerHTML = '';
+        events.sort((a,b) => a.id - b.id);
+
+        let openCount = 0, progressCount = 0, closedCount = 0;
+
+        events.forEach(event => {
+            const currentStatus = getAutoStatus(event.startG, event.endG);
+            if (currentStatus === 'مفتوح') openCount++;
+            else if (currentStatus === 'جاري') progressCount++;
+            else if (currentStatus === 'مقفلة') closedCount++;
+
+            let statusClass = 'grey';
+            if (currentStatus === 'مفتوح') statusClass = 'green';
+            else if (currentStatus === 'جاري') statusClass = 'yellow';
+            else if (currentStatus === 'مقفلة') statusClass = 'red';
+
+            const item = document.createElement('div');
+            item.className = 'event-item';
+            item.innerHTML = `
+                <div class="event-status ${statusClass}"></div>
+                <div class="event-content">
+                    <div class="event-title">${event.title}</div>
+                    <div class="status-text" style="background: ${statusClass === 'green' ? '#d4edda' : statusClass === 'yellow' ? '#fff3cd' : statusClass === 'red' ? '#f8d7da' : '#e2e3e5'};">
+                        ${currentStatus}
+                    </div>
+                    
+                    <!-- التواريخ ممتدة بالتساوي مع أيقونات -->
+                    <div class="dates-container">
+                        <div class="date-box-wrapper">
+                            <div class="date-label"><i class="fa-regular fa-calendar-check" style="color:#28a745;"></i> تاريخ الإتاحة</div>
+                            <div class="date-box open">
+                                <div class="date-hijri open">${displayHijriDate(event.startH)}</div>
+                                <div class="date-gregorian">${displayGregorianDate(event.startG)}</div>
+                            </div>
+                        </div>
+                        <div class="date-box-wrapper">
+                            <div class="date-label"><i class="fa-regular fa-calendar-xmark" style="color:#dc3545;"></i> تاريخ الإغلاق</div>
+                            <div class="date-box close">
+                                <div class="date-hijri close">${displayHijriDate(event.endH)}</div>
+                                <div class="date-gregorian">${displayGregorianDate(event.endG)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-controls">
+                    <button class="control-btn edit" onclick="openEditModal(${event.id})">✏️ تعديل</button>
+                    <button class="control-btn delete" onclick="deleteEvent(${event.id})">🗑️ حذف</button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        document.getElementById('totalCount').textContent = events.length;
+        document.getElementById('openCount').textContent = openCount;
+        document.getElementById('progressCount').textContent = progressCount;
+        document.getElementById('closedCount').textContent = closedCount;
+    }
+
+    // ==========================================
+    // 4. الإدارة (Login, Logout, CRUD)
+    // ==========================================
+    function handleLogin() {
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPass').value.trim();
+        if (user === "Moaeen-admin" && pass === "Moaeen-admin-2026") {
+            isAdmin = true;
+            document.getElementById('mainCalendarApp').classList.add('admin-mode');
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginError').style.display = 'none';
+        } else {
+            document.getElementById('loginError').style.display = 'block';
+        }
+    }
+    function logout() {
+        isAdmin = false;
+        document.getElementById('mainCalendarApp').classList.remove('admin-mode');
+    }
+    function closeLoginModal() {
+        document.getElementById('loginModal').classList.remove('active');
+        document.getElementById('loginError').style.display = 'none';
+    }
+    
+    function openEditModal(id = null) {
+        const modal = document.getElementById('editModal');
+        document.getElementById('editModalTitle').textContent = id ? 'تعديل الحدث' : 'إضافة حدث جديد';
+        document.getElementById('editId').value = id || '';
+        
+        const event = events.find(e => e.id === id);
+        document.getElementById('editTitle').value = event ? event.title : '';
+        document.getElementById('editStartH').value = event ? event.startH : '';
+        document.getElementById('editStartG').value = event ? event.startG : '';
+        document.getElementById('editEndH').value = event ? event.endH : '';
+        document.getElementById('editEndG').value = event ? event.endG : '';
+        
+        modal.classList.add('active');
+    }
+    function closeEditModal() { document.getElementById('editModal').classList.remove('active'); }
+
+    function saveEvent() {
+        const id = document.getElementById('editId').value;
+        const title = document.getElementById('editTitle').value.trim();
+        const startH = document.getElementById('editStartH').value.trim();
+        const startG = document.getElementById('editStartG').value.trim();
+        const endH = document.getElementById('editEndH').value.trim();
+        const endG = document.getElementById('editEndG').value.trim();
+
+        if (!title) return alert('يرجى كتابة عنوان للحدث.');
+        
+        if (id) {
+            const index = events.findIndex(e => e.id == id);
+            if(index !== -1) events[index] = { ...events[index], title, startH, startG, endH, endG };
+        } else {
+            const maxId = events.reduce((max, e) => e.id > max ? e.id : max, 0);
+            events.push({ id: maxId + 1, title, startH, startG, endH, endG });
+        }
+            saveData(); renderEvents(); updateUpcomingEvent(); closeEditModal();
+    }
+
+    function deleteEvent(id) {
+        if (confirm('هل أنت متأكد من حذف هذا الحدث؟')) {
+            events = events.filter(e => e.id !== id);
+            saveData(); renderEvents(); updateUpcomingEvent();
+        }
+    }
+
+    // ==========================================
+    // Upcoming Event Countdown - الحدث القادم ديناميكياً
+    // ==========================================
+    function getEventCategory(title) {
+        const value = String(title || '');
+        if (/اختبار|اختبارات|امتحان/.test(value)) return 'الاختبارات';
+        if (/دراس|الفصل|المحاضرات|بداية الدراسة/.test(value)) return 'الدراسة';
+        if (/رسوم|سداد/.test(value)) return 'الرسوم الدراسية';
+        if (/إجاز|اليوم الوطني/.test(value)) return 'الإجازات والمناسبات';
+        if (/معادل/.test(value)) return 'المعادلات الأكاديمية';
+        if (/تسجيل|تقديم|تخصيص|انسحاب|حذف|اعتذار|اعتراض/.test(value)) return 'الخدمات والإجراءات الأكاديمية';
+        return 'أحداث التقويم الجامعي';
+    }
+
+    function getUpcomingEventState(now = new Date()) {
+        const candidates = events.map(event => {
+            const start = parseDate(event.startG);
+            const end = parseDate(event.endG);
+            const dates = [start, end].filter(Boolean);
+            if (!dates.length) return null;
+            const first = new Date(Math.min(...dates.map(date => date.getTime())));
+            const last = new Date(Math.max(...dates.map(date => date.getTime())));
+            last.setHours(23, 59, 59, 999);
+            const target = now < first ? first : last;
+            if (last <= now) return null;
+            return { event, start: first, end: last, target, mode: now < first ? 'start' : 'end' };
+        }).filter(Boolean);
+
+        candidates.sort((a, b) => a.target - b.target || a.start - b.start || a.event.id - b.event.id);
+        return candidates[0] || null;
+    }
+
+    function formatCountdown(milliseconds) {
+        const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+        return {
+            days: Math.floor(totalSeconds / 86400),
+            hours: Math.floor((totalSeconds % 86400) / 3600),
+            minutes: Math.floor((totalSeconds % 3600) / 60),
+            seconds: totalSeconds % 60
+        };
+    }
+
+    function updateUpcomingEvent() {
+        const card = document.getElementById('upcomingEventCard');
+        const title = document.getElementById('upcomingEventTitle');
+        const category = document.getElementById('upcomingEventCategory');
+        const countdown = document.getElementById('upcomingEventCountdown');
+        if (!card || !title || !category || !countdown) return;
+
+        const current = getUpcomingEventState(new Date());
+        if (!current) {
+            card.classList.add('empty');
+            title.textContent = 'لا توجد أحداث قادمة في البيانات الحالية';
+            category.textContent = 'سيظهر الحدث تلقائياً عند إضافته إلى التقويم';
+            countdown.querySelectorAll('[data-unit]').forEach(unit => { unit.textContent = '—'; });
+            return;
+        }
+
+        card.classList.remove('empty');
+        title.textContent = current.event.title;
+        category.textContent = `${getEventCategory(current.event.title)} • ${current.mode === 'start' ? 'يبدأ خلال' : 'ينتهي خلال'}`;
+        const values = formatCountdown(current.target - new Date());
+        Object.entries(values).forEach(([unit, value]) => {
+            const node = countdown.querySelector(`[data-unit="${unit}"]`);
+            if (node) node.textContent = String(value).padStart(2, '0');
+        });
+    }
+
+    // ==========================================
+    // 5. التهيئة (Init)
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // التقويم
+        loadData();
+        renderEvents();
+        updateUpcomingEvent();
+        setInterval(renderEvents, 60000); // تحديث الحالة تلقائياً كل دقيقة
+        setInterval(updateUpcomingEvent, 1000); // تحديث العدّاد كل ثانية والانتقال التلقائي للحدث التالي
+
+        document.querySelectorAll('.semester-tab').forEach(tab => {
+            tab.addEventListener('click', () => setActiveSemester(tab.dataset.semester));
+        });
+
+        // زر الإدارة (شعار معين)
+        document.getElementById('adminBrandTrigger').addEventListener('click', function() {
+            if (isAdmin) logout();
+            else document.getElementById('loginModal').classList.add('active');
+        });
+        document.getElementById('addEventBtn').addEventListener('click', () => openEditModal(null));
+
+        // مشاركة
+        const shareToggle = document.getElementById('shareToggle');
+        const shareDropdown = document.getElementById('shareDropdown');
+        if (shareToggle && shareDropdown) {
+            shareToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                shareDropdown.classList.toggle('active');
+            });
+            document.addEventListener('click', function(e) {
+                if (!shareDropdown.contains(e.target)) shareDropdown.classList.remove('active');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
