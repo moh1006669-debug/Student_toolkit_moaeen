@@ -89,10 +89,11 @@
             width: 130px;
             height: 90px;
             cursor: pointer;
+            isolation: isolate;
         }
         .header-brand img {
             position: relative;
-            z-index: 2;
+            z-index:3;
             width: 130px;
             height: 90px;
             object-fit: contain;
@@ -1094,11 +1095,11 @@
             transition:var(--transition);
         }
         .event-card:hover { border-color:rgba(212,175,55,0.55); box-shadow:0 5px 14px rgba(0,0,0,0.08); transform:translateY(-1px); }
-        .event-card-body { flex:1; min-width:0; padding:14px 16px; direction:rtl; }
-        .event-card-countdown-wrap { width:205px; flex:0 0 205px; display:flex; flex-direction:column; justify-content:center; gap:7px; padding:12px; background:#f8fafc; border-right:1px solid #e8edef; direction:rtl; }
+        .event-card-body { flex:1 1 auto; min-width:0; overflow:hidden; padding:14px 16px; direction:rtl; }
+        .event-card-countdown-wrap { width:205px; flex:0 0 205px; min-width:0; overflow:hidden; display:flex; flex-direction:column; justify-content:center; gap:7px; padding:12px; background:#f8fafc; border-right:1px solid #e8edef; direction:rtl; }
         .event-card-countdown-label { color:var(--text-muted); font-size:0.68rem; font-weight:800; text-align:center; }
-        .event-card-countdown-wrap .countdown-row { min-width:0; gap:4px; }
-        .event-card-countdown-wrap .countdown-unit { padding:5px 3px; border-radius:8px; }
+        .event-card-countdown-wrap .countdown-row { width:100%; min-width:0; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+        .event-card-countdown-wrap .countdown-unit { min-width:0; padding:5px 2px; border-radius:8px; }
         .event-card-countdown-wrap .countdown-value { font-size:0.9rem; }
         .event-card-countdown-wrap .countdown-label { font-size:0.5rem; }
         .event-topline { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
@@ -1122,7 +1123,8 @@
         .event-footer { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:11px; }
         .event-tags { display:flex; gap:6px; flex-wrap:wrap; }
         .event-tag { padding:3px 7px; color:var(--text-muted); background:#f4f7f8; border-radius:6px; font-size:0.62rem; font-weight:700; }
-        .event-toggle { display:inline-flex; align-items:center; gap:6px; border:0; color:var(--primary-color); background:transparent; font-family:inherit; font-size:0.68rem; font-weight:800; cursor:pointer; }
+        .event-toggle { display:inline-flex; align-items:center; gap:7px; padding:5px 10px; border:1px solid rgba(212,175,55,0.48); border-radius:999px; color:var(--primary-color); background:rgba(212,175,55,0.12); font-family:inherit; font-size:0.72rem; font-weight:800; cursor:pointer; transition:var(--transition); }
+        .event-toggle:hover { color:var(--bg-dark); background:rgba(212,175,55,0.28); border-color:var(--gold); }
         .event-toggle i { color:var(--gold-dark); transition:transform 0.25s ease; }
         .event-toggle.open i { transform:rotate(180deg); }
         .event-details { display:none; margin-top:12px; padding-top:10px; border-top:1px solid #edf0f1; color:var(--text-light); font-size:0.72rem; line-height:1.9; }
@@ -1138,8 +1140,8 @@
         .empty-events i { display:block; margin-bottom:7px; color:var(--gold); font-size:1.35rem; }
         .admin-toggle-btn {
             position:absolute;
-            top:5px;
-            right:-8px;
+            top:50%;
+            right:50%;
             z-index:1;
             width:30px;
             height:30px;
@@ -1148,15 +1150,19 @@
             justify-content:center;
             padding:0;
             color:var(--gold-light);
-            background:rgba(1,32,32,0.88);
+            background:rgba(1,32,32,0.72);
             border:1px solid rgba(212,175,55,0.55);
             border-radius:50%;
             font-family:inherit;
             font-size:0.8rem;
             cursor:pointer;
+            pointer-events:none;
+            opacity:0.18;
+            transform:translate(50%,-50%);
             transition:var(--transition);
         }
-        .header-brand:hover .admin-toggle-btn { transform:rotate(24deg); }
+        .header-brand:hover .admin-toggle-btn { opacity:0.26; }
+        .header-brand.is-pressed .admin-toggle-btn { transform:translate(50%,-50%) scale(0.76); opacity:0.34; }
         .admin-toggle-btn.logged-in { color:var(--bg-dark); background:var(--gold); }
         .admin-overlay { position:fixed; inset:0; display:flex; justify-content:flex-start; align-items:stretch; background:rgba(0,0,0,0.48); opacity:0; visibility:hidden; transition:0.25s ease; z-index:9998; }
         .admin-overlay.open { opacity:1; visibility:visible; }
@@ -1184,9 +1190,11 @@
             .preparatory-plan-tabs { grid-template-columns:1fr; padding:7px 16px; }
             .hero-countdown-card { grid-template-columns:1fr; gap:12px; padding:15px; }
             .countdown-row { width:100%; min-width:0; }
-            .event-card-countdown-wrap { width:165px; flex-basis:165px; }
+            .event-card-countdown-wrap { width:165px; flex-basis:165px; min-width:165px; padding:10px 8px; }
+            .event-card-countdown-wrap .countdown-row { width:100%; min-width:0; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; }
+            .event-card-countdown-wrap .countdown-unit { padding-left:1px; padding-right:1px; }
             .event-card-body { padding:12px; }
-            .admin-toggle-btn { top:4px; right:-6px; width:27px; height:27px; font-size:0.72rem; }
+            .admin-toggle-btn { width:27px; height:27px; font-size:0.72rem; }
         }
         @media (max-width: 520px) {
             .page-navigation a { flex:1 1 100%; justify-content:center; }
@@ -1285,7 +1293,7 @@
     function countdownValues(target) { if (!target) return { days:'00', hours:'00', minutes:'00', seconds:'00' }; const diff = Math.max(0, target - Date.now()); const days = Math.floor(diff / 86400000); const hours = Math.floor((diff % 86400000) / 3600000); const minutes = Math.floor((diff % 3600000) / 60000); const seconds = Math.floor((diff % 60000) / 1000); return { days:String(days).padStart(2,'0'), hours:String(hours).padStart(2,'0'), minutes:String(minutes).padStart(2,'0'), seconds:String(seconds).padStart(2,'0') }; }
     function updateCountdown(container, target) { if (!container) return; const values = countdownValues(target); Object.entries(values).forEach(([unit,value]) => { const node = container.querySelector(`[data-unit="${unit}"]`); if (node) node.textContent = value; }); }
     function closestEvent(list) { const now = Date.now(); return list.filter(e => targetFor(e)).sort((a,b) => (targetFor(a)-now) - (targetFor(b)-now))[0] || null; }
-    function eventCard(event) { const status = getStatus(event); const planText = HAS_PLANS ? `خطة ${event.plan || 'A'}` : ''; const courseText = getCourseLabel(event); return `<article class="event-card" data-id="${event.id}"><div class="event-card-body"><div class="event-topline"><div class="event-title-group"><div class="event-icon"><i class="fa-solid ${event.icon || iconMap[event.type] || iconMap.other}"></i></div><div><div class="event-name">${event.name || 'حدث دراسي'}</div><div class="event-sub">${typeLabels[event.type] || 'أخرى'}${event.range ? ' · ' + event.range : ''}</div></div></div><span class="event-status ${status}">${getStatusLabel(status)}</span></div><div class="event-dates"><div class="event-date-box event-date-start"><span class="event-date-label">يفتح</span><strong class="event-date-day">${formatDateEnglish(event.startDate)}</strong><span class="event-date-time">${formatTimeEnglish(event.startDate)}</span></div><div class="event-date-box event-date-end"><span class="event-date-label"> يُغلق </span><strong class="event-date-day">${formatDateEnglish(event.endDate)}</strong><span class="event-date-time">${formatTimeEnglish(event.endDate)}</span></div></div><div class="event-footer"><div class="event-tags"><span class="event-tag">${courseText}</span>${planText ? `<span class="event-tag">${planText}</span>` : ''}</div><button class="event-toggle" type="button" aria-expanded="false">استعرض <i class="fa-solid fa-chevron-down"></i></button></div><div class="event-details"><div class="event-detail-line"><span class="event-detail-label">المدة</span><span>${event.duration || '—'}</span></div><div class="event-detail-line"><span class="event-detail-label">الدرجة</span><span>${event.weight ?? '—'}%</span></div><div class="event-detail-line"><span class="event-detail-label">التفاصيل</span><span>${event.details || '—'}</span></div></div><div class="event-admin-actions"><button class="event-edit" type="button" data-edit="${event.id}"><i class="fa-solid fa-pen"></i> تعديل</button><button class="event-delete" type="button" data-delete="${event.id}"><i class="fa-solid fa-trash"></i> حذف</button></div></div><div class="event-card-countdown-wrap"><span class="event-card-countdown-label">الوقت المتبقي</span><div class="countdown-row" data-countdown="${event.id}"><div class="countdown-unit"><span class="countdown-value" data-unit="days">--</span><span class="countdown-label">يوم</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="hours">--</span><span class="countdown-label">ساعة</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="minutes">--</span><span class="countdown-label">دقيقة</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="seconds">--</span><span class="countdown-label">ثانية</span></div></div></div></article>`; }
+    function eventCard(event) { const status = getStatus(event); const planText = HAS_PLANS ? `خطة ${event.plan || 'A'}` : ''; const courseText = getCourseLabel(event); return `<article class="event-card" data-id="${event.id}"><div class="event-card-body"><div class="event-topline"><div class="event-title-group"><div class="event-icon"><i class="fa-solid ${event.icon || iconMap[event.type] || iconMap.other}"></i></div><div><div class="event-name">${event.name || 'حدث دراسي'}</div><div class="event-sub">${typeLabels[event.type] || 'أخرى'}${event.range ? ' · ' + event.range : ''}</div></div></div><span class="event-status ${status}">${getStatusLabel(status)}</span></div><div class="event-dates"><div class="event-date-box event-date-start"><span class="event-date-label">يفتــح 🟢</span><strong class="event-date-day">${formatDateEnglish(event.startDate)}</strong><span class="event-date-time">${formatTimeEnglish(event.startDate)}</span></div><div class="event-date-box event-date-end"><span class="event-date-label">يُـغلـق 🔴</span><strong class="event-date-day">${formatDateEnglish(event.endDate)}</strong><span class="event-date-time">${formatTimeEnglish(event.endDate)}</span></div></div><div class="event-footer"><div class="event-tags"><span class="event-tag">${courseText}</span>${planText ? `<span class="event-tag">${planText}</span>` : ''}</div><button class="event-toggle" type="button" aria-expanded="false">إستعراض التفاصيل <i class="fa-solid fa-chevron-down"></i></button></div><div class="event-details"><div class="event-detail-line"><span class="event-detail-label">المدة</span><span>${event.duration || '—'}</span></div><div class="event-detail-line"><span class="event-detail-label">الدرجة</span><span>${event.weight ?? '—'}%</span></div><div class="event-detail-line"><span class="event-detail-label">التفاصيل</span><span>${event.details || '—'}</span></div></div><div class="event-admin-actions"><button class="event-edit" type="button" data-edit="${event.id}"><i class="fa-solid fa-pen"></i> تعديل</button><button class="event-delete" type="button" data-delete="${event.id}"><i class="fa-solid fa-trash"></i> حذف</button></div></div><div class="event-card-countdown-wrap"><span class="event-card-countdown-label">الوقت المتبقي</span><div class="countdown-row" data-countdown="${event.id}"><div class="countdown-unit"><span class="countdown-value" data-unit="days">--</span><span class="countdown-label">يوم</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="hours">--</span><span class="countdown-label">ساعة</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="minutes">--</span><span class="countdown-label">دقيقة</span></div><div class="countdown-unit"><span class="countdown-value" data-unit="seconds">--</span><span class="countdown-label">ثانية</span></div></div></div></article>`; }
     function renderList(container, list) { if (!container) return; if (!list.length) { container.innerHTML = '<div class="empty-events"><i class="fa-regular fa-calendar-xmark"></i>لا توجد أحداث مضافة لهذا التصنيف حالياً.</div>'; return; } container.innerHTML = list.map(eventCard).join(''); }
     function render() { const openDetailIds = [...document.querySelectorAll('.event-details.open')].map(node => node.closest('.event-card')?.dataset.id).filter(Boolean); if (HAS_PLANS) updateCourseSections(); const list = visibleEvents(); if (HAS_PLANS) { document.querySelectorAll('[data-course-list]').forEach(node => renderList(node, courseEvents(node.dataset.courseList))); } else renderList($('pageEventsList'), list); if (pageCount) pageCount.textContent = `${list.length} حدث`; const next = closestEvent(list); const heroName = $('heroEventName'), heroMeta = $('heroEventMeta'), heroCountdown = $('heroCountdown'); if (next) { heroName.textContent = next.name || 'حدث دراسي'; heroMeta.textContent = `${typeLabels[next.type] || 'أخرى'} · ${getCourseLabel(next)}${HAS_PLANS ? ` · خطة ${next.plan || 'A'}` : ''}`; updateCountdown(heroCountdown, targetFor(next)); } else { heroName.textContent = 'لا توجد أحداث قادمة في هذا القسم'; heroMeta.textContent = 'يمكن إضافة حدث جديد من لوحة التحكم'; updateCountdown(heroCountdown, null); } document.querySelectorAll('[data-countdown]').forEach(node => { const event = events.find(e => String(e.id) === node.dataset.countdown); if (event) updateCountdown(node, targetFor(event)); }); openDetailIds.forEach(id => { const card = document.querySelector(`.event-card[data-id="${id}"]`); const details = card?.querySelector('.event-details'); const toggle = card?.querySelector('.event-toggle'); if (details && toggle) { details.classList.add('open'); toggle.classList.add('open'); toggle.setAttribute('aria-expanded','true'); } }); document.body.classList.toggle('admin-mode', isAdmin); const adminToggle = $('adminToggle'); if (adminToggle) { adminToggle.classList.toggle('logged-in', isAdmin); adminToggle.innerHTML = isAdmin ? '<i class="fa-solid fa-user-shield"></i>' : '<i class="fa-solid fa-gear"></i>'; } }
     function load() { try { const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); events = Array.isArray(stored) && stored.length ? stored : JSON.parse(JSON.stringify(DEFAULT_EVENTS)); } catch (_) { events = JSON.parse(JSON.stringify(DEFAULT_EVENTS)); } render(); }
@@ -1296,7 +1304,7 @@
     function fillForm(event) { editingId = event.id; $('eventId').value=event.id; $('eventName').value=event.name||''; $('eventType').value=event.type||'other'; $('eventWeight').value=event.weight||0; $('eventStart').value=(event.startDate||'').slice(0,16); $('eventEnd').value=(event.endDate||'').slice(0,16); $('eventCategory').value=event.category||PAGE_CATEGORY; $('eventPlan').value=event.plan||'A'; $('eventCourse').value=event.course||'other'; $('eventDuration').value=event.duration||''; $('eventRange').value=event.range||''; $('eventDetails').value=event.details||''; }
     function saveEvent() { const name=$('eventName').value.trim(); const start=$('eventStart').value; const end=$('eventEnd').value; if(!name || !start || !end) { $('adminFormError').textContent='يرجى إدخال اسم الحدث وتاريخ البداية والنهاية.'; return; } const payload={id:editingId || Date.now(), name, type:$('eventType').value, icon:iconMap[$('eventType').value] || iconMap.other, startDate:new Date(start).toISOString(), endDate:new Date(end).toISOString(), weight:Number($('eventWeight').value||0), category:$('eventCategory').value, plan:$('eventPlan').value, course:$('eventCourse').value, courseLabel:courseLabels[$('eventCourse').value] || 'تصنيف عام', duration:$('eventDuration').value.trim(), range:$('eventRange').value.trim(), details:$('eventDetails').value.trim()}; const index=events.findIndex(e=>e.id===editingId); if(index>=0) events[index]=payload; else events.push(payload); save(); resetForm(); render(); }
     function setup() { if (HAS_PLANS) planTabs.forEach(tab => tab.addEventListener('click', () => { activePlan=tab.dataset.plan; planTabs.forEach(t=>{const active=t===tab;t.classList.toggle('active',active);t.setAttribute('aria-selected',String(active));}); render(); })); document.addEventListener('click', event => { const toggle=event.target.closest('.event-toggle'); if(toggle) { const card=toggle.closest('.event-card'); const details=card.querySelector('.event-details'); const open=details.classList.toggle('open'); toggle.classList.toggle('open',open); toggle.setAttribute('aria-expanded',String(open)); } const edit=event.target.closest('[data-edit]'); if(edit && isAdmin) { const item=events.find(e=>String(e.id)===edit.dataset.edit); if(item) { fillForm(item); openAdmin(); } } const del=event.target.closest('[data-delete]'); if(del && isAdmin) { events=events.filter(e=>String(e.id)!==del.dataset.delete); save(); render(); } });     $('adminToggle').addEventListener('click', (event) => { event.stopPropagation(); openAdmin(); });
-    $('headerBrand').addEventListener('click', openAdmin); $('adminClose').addEventListener('click', closeAdmin); $('adminOverlay').addEventListener('click', e=>{if(e.target.id==='adminOverlay')closeAdmin();}); $('adminLoginBtn').addEventListener('click', ()=>{ if($('adminUser').value==='Moaeen-admin' && $('adminPass').value==='Moaeen-admin-2026'){isAdmin=true;localStorage.setItem(AUTH_KEY,'true');$('adminLoginError').textContent='';render();}else $('adminLoginError').textContent='بيانات الدخول غير صحيحة.'; }); $('saveEventBtn').addEventListener('click', saveEvent); $('resetEventBtn').addEventListener('click', resetForm); $('logoutBtn').addEventListener('click', ()=>{isAdmin=false;localStorage.removeItem(AUTH_KEY);resetForm();render();}); setInterval(()=>{render();},1000); }
+    $('headerBrand').addEventListener('click', () => { const brand = $('headerBrand'); const adminToggle = $('adminToggle'); brand.classList.add('is-pressed'); if (adminToggle) adminToggle.click(); openAdmin(); setTimeout(() => brand.classList.remove('is-pressed'), 220); }); $('adminClose').addEventListener('click', closeAdmin); $('adminOverlay').addEventListener('click', e=>{if(e.target.id==='adminOverlay')closeAdmin();}); $('adminLoginBtn').addEventListener('click', ()=>{ if($('adminUser').value==='Moaeen-admin' && $('adminPass').value==='Moaeen-admin-2026'){isAdmin=true;localStorage.setItem(AUTH_KEY,'true');$('adminLoginError').textContent='';render();}else $('adminLoginError').textContent='بيانات الدخول غير صحيحة.'; }); $('saveEventBtn').addEventListener('click', saveEvent); $('resetEventBtn').addEventListener('click', resetForm); $('logoutBtn').addEventListener('click', ()=>{isAdmin=false;localStorage.removeItem(AUTH_KEY);resetForm();render();}); setInterval(()=>{render();},1000); }
     setup(); load();
 })();
 </script>
