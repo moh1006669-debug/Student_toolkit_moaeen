@@ -1303,7 +1303,71 @@
     function resetForm() { editingId = null; ['eventId','eventName','eventStart','eventEnd','eventDuration','eventRange','eventDetails'].forEach(id => { const node=$(id); if(node) node.value=''; }); if($('eventWeight')) $('eventWeight').value='0'; if($('eventCategory')) $('eventCategory').value=PAGE_CATEGORY; if($('eventPlan')) $('eventPlan').value='A'; if($('eventCourse')) $('eventCourse').value='academic'; if($('adminFormError')) $('adminFormError').textContent=''; }
     function fillForm(event) { editingId = event.id; $('eventId').value=event.id; $('eventName').value=event.name||''; $('eventType').value=event.type||'other'; $('eventWeight').value=event.weight||0; $('eventStart').value=(event.startDate||'').slice(0,16); $('eventEnd').value=(event.endDate||'').slice(0,16); $('eventCategory').value=event.category||PAGE_CATEGORY; $('eventPlan').value=event.plan||'A'; $('eventCourse').value=event.course||'other'; $('eventDuration').value=event.duration||''; $('eventRange').value=event.range||''; $('eventDetails').value=event.details||''; }
     function saveEvent() { const name=$('eventName').value.trim(); const start=$('eventStart').value; const end=$('eventEnd').value; if(!name || !start || !end) { $('adminFormError').textContent='يرجى إدخال اسم الحدث وتاريخ البداية والنهاية.'; return; } const payload={id:editingId || Date.now(), name, type:$('eventType').value, icon:iconMap[$('eventType').value] || iconMap.other, startDate:new Date(start).toISOString(), endDate:new Date(end).toISOString(), weight:Number($('eventWeight').value||0), category:$('eventCategory').value, plan:$('eventPlan').value, course:$('eventCourse').value, courseLabel:courseLabels[$('eventCourse').value] || 'تصنيف عام', duration:$('eventDuration').value.trim(), range:$('eventRange').value.trim(), details:$('eventDetails').value.trim()}; const index=events.findIndex(e=>e.id===editingId); if(index>=0) events[index]=payload; else events.push(payload); save(); resetForm(); render(); }
-    function setup() { if (HAS_PLANS) planTabs.forEach(tab => tab.addEventListener('click', () => { activePlan=tab.dataset.plan; planTabs.forEach(t=>{const active=t===tab;t.classList.toggle('active',active);t.setAttribute('aria-selected',String(active));}); render(); })); document.addEventListener('click', event => { const toggle=event.target.closest('.event-toggle'); if(toggle) { const card=toggle.closest('.event-card'); const details=card.querySelector('.event-details'); const open=details.classList.toggle('open'); toggle.classList.toggle('open',open); toggle.setAttribute('aria-expanded',String(open)); } const edit=event.target.closest('[data-edit]'); if(edit && isAdmin) { const item=events.find(e=>String(e.id)===edit.dataset.edit); if(item) { fillForm(item); openAdmin(); } } const del=event.target.closest('[data-delete]'); if(del && isAdmin) { events=events.filter(e=>String(e.id)!==del.dataset.delete); save(); render(); } });     $('adminToggle').addEventListener('click', (event) => { event.stopPropagation(); openAdmin(); });
+    function setup() { const shareToggle = $('shareToggle');
+const shareDropdown = $('shareDropdown');
+const shareWhatsApp = $('shareWhatsApp');
+const shareTelegram = $('shareTelegram');
+const copyPageLink = $('copyPageLink');
+
+if (shareToggle && shareDropdown) {
+
+    // فتح وإغلاق قائمة المشاركة
+    shareToggle.addEventListener('click', event => {
+        event.stopPropagation();
+        shareDropdown.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', event => {
+        if (!shareDropdown.contains(event.target)) {
+            shareDropdown.classList.remove('active');
+        }
+    });
+
+    // بيانات الصفحة الحالية
+    const pageUrl = window.location.href;
+    const pageTitle = document.title;
+
+    // مشاركة عبر واتساب
+    if (shareWhatsApp) {
+        shareWhatsApp.href =
+            'https://wa.me/?text=' +
+            encodeURIComponent(pageTitle + '\n' + pageUrl);
+    }
+
+    // مشاركة عبر تليجرام
+    if (shareTelegram) {
+        shareTelegram.href =
+            'https://t.me/share/url?url=' +
+            encodeURIComponent(pageUrl) +
+            '&text=' +
+            encodeURIComponent(pageTitle);
+    }
+
+    // نسخ رابط الصفحة
+    if (copyPageLink) {
+        copyPageLink.addEventListener('click', async event => {
+            event.preventDefault();
+
+            try {
+                await navigator.clipboard.writeText(pageUrl);
+
+                copyPageLink.innerHTML =
+                    '<i class="fa-solid fa-check"></i> تم نسخ الرابط';
+
+                setTimeout(() => {
+                    copyPageLink.innerHTML =
+                        '<i class="fa-solid fa-link"></i> نسخ الرابط';
+                }, 1800);
+
+                shareDropdown.classList.remove('active');
+
+            } catch (error) {
+                console.error('تعذر نسخ الرابط:', error);
+            }
+        });
+    }
+} if (HAS_PLANS) planTabs.forEach(tab => tab.addEventListener('click', () => { activePlan=tab.dataset.plan; planTabs.forEach(t=>{const active=t===tab;t.classList.toggle('active',active);t.setAttribute('aria-selected',String(active));}); render(); })); document.addEventListener('click', event => { const toggle=event.target.closest('.event-toggle'); if(toggle) { const card=toggle.closest('.event-card'); const details=card.querySelector('.event-details'); const open=details.classList.toggle('open'); toggle.classList.toggle('open',open); toggle.setAttribute('aria-expanded',String(open)); } const edit=event.target.closest('[data-edit]'); if(edit && isAdmin) { const item=events.find(e=>String(e.id)===edit.dataset.edit); if(item) { fillForm(item); openAdmin(); } } const del=event.target.closest('[data-delete]'); if(del && isAdmin) { events=events.filter(e=>String(e.id)!==del.dataset.delete); save(); render(); } });     $('adminToggle').addEventListener('click', (event) => { event.stopPropagation(); openAdmin(); });
     $('headerBrand').addEventListener('click', () => { const brand = $('headerBrand'); const adminToggle = $('adminToggle'); brand.classList.add('is-pressed'); if (adminToggle) adminToggle.click(); openAdmin(); setTimeout(() => brand.classList.remove('is-pressed'), 220); }); $('adminClose').addEventListener('click', closeAdmin); $('adminOverlay').addEventListener('click', e=>{if(e.target.id==='adminOverlay')closeAdmin();}); $('adminLoginBtn').addEventListener('click', ()=>{ if($('adminUser').value==='Moaeen-admin' && $('adminPass').value==='Moaeen-admin-2026'){isAdmin=true;localStorage.setItem(AUTH_KEY,'true');$('adminLoginError').textContent='';render();}else $('adminLoginError').textContent='بيانات الدخول غير صحيحة.'; }); $('saveEventBtn').addEventListener('click', saveEvent); $('resetEventBtn').addEventListener('click', resetForm); $('logoutBtn').addEventListener('click', ()=>{isAdmin=false;localStorage.removeItem(AUTH_KEY);resetForm();render();}); setInterval(()=>{render();},1000); }
     setup(); load();
 })();
