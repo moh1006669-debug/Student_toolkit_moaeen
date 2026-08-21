@@ -46,7 +46,7 @@
         body {
             font-family: 'Cairo', Tahoma, Arial, sans-serif;
             background-color: var(--bg-dark);
-            background-image: url('./assets/images/body-bg.jpg');
+            background-image: url('./assets/images/body-bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -77,7 +77,7 @@
             width: 100%;
             background: var(--bg-dark);
             background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.95) 0%, rgba(10, 44, 44, 0.95) 100%),
-                              url('./assets/images/header-bg.jpg');
+                              url('./assets/images/header-bg.webp');
             background-size: cover;
             background-position: center;
             border-radius: 30px;
@@ -132,7 +132,7 @@
             width: 100%;
             background: var(--bg-dark);
             background-image: linear-gradient(135deg, rgba(1, 42, 43, 0.92) 0%, rgba(10, 44, 44, 0.88) 100%),
-                              url('./assets/images/hero-bg.jpg');
+                              url('./assets/images/hero-bg.webp');
             background-size: cover;
             background-position: center;
             border-radius: 30px;
@@ -784,14 +784,14 @@
         /* ===== FINAL REQUESTED LAYOUT OVERRIDES ===== */
         body { padding: 20px 0 0; gap: 24px; overflow-x: hidden; }
         .page-wrapper { width: 100%; max-width: none; gap: 24px; }
-        .header { width: 100%; min-height: 0; margin: 0; padding: 20px 40px 0; display: block; border-radius: 30px 30px 0 0; overflow: visible; z-index: 5; background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%), url('./assets/images/header-bg.jpg'); }
+        .header { width: 100%; min-height: 0; margin: 0; padding: 20px 40px 0; display: block; border-radius: 30px 30px 0 0; overflow: visible; z-index: 5; background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%), url('./assets/images/header-bg.webp'); }
         .header-brand { position: absolute; right: 40px; top: 20px; z-index: 4; display: block; }
         .header-brand img { width: 130px; height: 90px; object-fit: contain; }
         .header-brand .brand-name { display: none; }
         .header-seu-box { position: absolute; left: 40px; top: 20px; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 0; }
         .header-seu-logo { width: 130px; height: 90px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); }
         .header-seu-pill { position: relative; z-index: 2; margin-top: -10px; min-width: 64px; padding: 5px 13px; color: var(--white); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.34); border-radius: 999px; backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18); font-size: 15px; font-weight: 800; letter-spacing: 1px; text-align: center; }
-        .hero { width: 100%; margin: 0; padding: 126px 40px 52px; border-radius: 0; background-image: linear-gradient(135deg, rgba(1,42,43,0.93) 0%, rgba(10,44,44,0.9) 100%), url('./assets/images/hero-bg.jpg'); box-shadow: none; gap: 24px; position: relative; }
+        .hero { width: 100%; margin: 0; padding: 126px 40px 52px; border-radius: 0; background-image: linear-gradient(135deg, rgba(1,42,43,0.93) 0%, rgba(10,44,44,0.9) 100%), url('./assets/images/hero-bg.webp'); box-shadow: none; gap: 24px; position: relative; }
         .gold-line-bar { direction: ltr; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; padding: 5px 0 7px; border-top: 1px solid var(--gold); border-bottom: 1px solid rgba(212,175,55,0.18); box-shadow: 0 -4px 12px rgba(212,175,55,0.08); }
         .gold-line-bar .share-btn, .gold-line-bar .back-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 5px 11px; border-radius: 8px; font-size: 11px; font-weight: 800; white-space: nowrap; }
         .gold-line-bar .share-btn { background: var(--gold); color: var(--bg-dark); border: 1px solid var(--gold-light); }
@@ -872,10 +872,10 @@
     <!-- ===== HEADER + HERO (UNIFIED CARD) ===== -->
     <header class="header">
         <div class="header-brand">
-            <img src="../assets/images/logo-moaeen.png" alt="شعار منصة معين التعليمية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2224%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
+            <img src="../assets/images/logo-moaeen.webp" alt="شعار منصة معين التعليمية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23D4AF37%22/><text x=%2250%22 y=%2258%22 font-size=%2224%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23012727%22>معين</text></svg>'" />
         </div>
         <div class="header-seu-box">
-            <img class="header-seu-logo" src="../assets/images/seu-logo.png" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2250%22 y=%2260%22 font-size=%2220%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'" />
+            <img class="header-seu-logo" src="../assets/images/seu-logo.webp" alt="شعار الجامعة السعودية الإلكترونية" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%231B2A6B%22/><text x=%2250%22 y=%2260%22 font-size=%2220%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>SEU</text></svg>'" />
             <span class="header-seu-pill">SEU</span>
         </div>
         <section class="hero">
@@ -929,7 +929,7 @@
                 <div class="step-number">1</div>
                 <h2><i class="fa-solid fa-bars"></i> الدخول للقائمة الجانبية</h2>
                 <p>الدخول على البلاك بورد ثم الضغط على شرطات عرض القائمة الجانبية.</p>
-                <img src="../assets/images/langstep1.png" alt="الخطوة 1" class="step-image">
+                <img src="../assets/images/langstep1.webp" alt="الخطوة 1" class="step-image">
             </div>
 
             <!-- الخطوة 2 -->
@@ -937,7 +937,7 @@
                 <div class="step-number">2</div>
                 <h2><i class="fa-solid fa-user-circle"></i> الضغط على البروفايل</h2>
                 <p>الضغط على اسم المستخدم (بروفايل الطالب) من القائمة الجانبية.</p>
-                <img src="../assets/images/langstep2.png" alt="الخطوة 2" class="step-image">
+                <img src="../assets/images/langstep2.webp" alt="الخطوة 2" class="step-image">
             </div>
 
             <!-- الخطوة 3 -->
@@ -945,7 +945,7 @@
                 <div class="step-number">3</div>
                 <h2><i class="fa-solid fa-globe"></i> اختيار اللغة</h2>
                 <p>بعد فتح البروفايل اضغط على خيار اللغة "Language".</p>
-                <img src="../assets/images/langstep3.png" alt="الخطوة 3" class="step-image">
+                <img src="../assets/images/langstep3.webp" alt="الخطوة 3" class="step-image">
             </div>
 
             <!-- الخطوة 4 -->
@@ -953,7 +953,7 @@
                 <div class="step-number">4</div>
                 <h2><i class="fa-solid fa-list-dropdown"></i> تحديد اللغة المطلوبة</h2>
                 <p>سيفتح مع قائمة إعدادات اللغة اضغط على حقل الخيارات وحدد اللغة التي تريدها.</p>
-                <img src="../assets/images/langstep4.png" alt="الخطوة 4" class="step-image">
+                <img src="../assets/images/langstep4.webp" alt="الخطوة 4" class="step-image">
             </div>
 
             <!-- الخطوة 5 -->
@@ -961,7 +961,7 @@
                 <div class="step-number">5</div>
                 <h2><i class="fa-solid fa-floppy-disk"></i> حفظ التغييرات</h2>
                 <p>الضغط على خيار الحفظ لتطبيق اللغة الجديدة على الواجهة.</p>
-                <img src="../assets/images/langstep5.png" alt="الخطوة 5" class="step-image">
+                <img src="../assets/images/langstep5.webp" alt="الخطوة 5" class="step-image">
             </div>
 
         </div>
@@ -979,7 +979,7 @@
          ============================================================ -->
     <footer class="footer">
         <div class="footer-brand-compact">
-            <img src="../assets/images/footer_logo.png" alt="شعار منصة معين" />
+            <img src="../assets/images/footer_logo.webp" alt="شعار منصة معين" />
             <div class="brand-name">
                 <h3>منصة معين التعليمية</h3>
                 <span>MOAEEN PLATFORM</span>
