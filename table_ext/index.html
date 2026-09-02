@@ -482,11 +482,32 @@ button { font-family: inherit; cursor: pointer; }
 /* ========================= Print ========================= */
 @media print {
   @page { size: A4 landscape; margin: 10mm; }
+  /* Hide everything by default. */
   body * { visibility: hidden !important; }
+  /* Show only the schedule and its descendants. */
   #printable-schedule, #printable-schedule * { visibility: visible !important; }
-  #printable-schedule { position: absolute !important; inset: 0 !important; width: 100% !important; }
-  .no-print { display: none !important; }
+  /* Position the schedule at the top of the page (no absolute, which
+     breaks pagination on mobile browsers). */
+  #printable-schedule {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* Force the schedule images to load before printing. */
+  #printable-schedule img {
+    max-height: 180px !important;
+    object-fit: contain !important;
+  }
+  /* Hide app chrome explicitly. */
+  .no-print, .maeen-header, .maeen-footer, .maeen-float-wa,
+  .maeen-help-btn, .maeen-community-grid, .maeen-video-card,
+  .upload-card, .notes-card, .results-bar, .stats-grid, .skip-note {
+    display: none !important;
+  }
   .schedule-table { font-size: 11px !important; }
+  /* Ensure the main wrapper doesn't add extra background/padding. */
+  .maeen-main { padding: 0 !important; background: #fff !important; box-shadow: none !important; }
 }
 </style>
 </head>
@@ -1274,42 +1295,103 @@ $("imgBtn").addEventListener("click", async () => {
   }
 });
 
-/* PNG export via SVG foreignObject + canvas (self-contained, no CDN). */
-async function nodeToPng(node, scale) {
-  scale = scale || 2;
+/* PNG export — uses html-to-image library (loaded from CDN with local fallback).
+ * The pure-SVG foreignObject approach fails on Chromium because rendering
+ * an SVG that contains <foreignObject> onto a canvas taints it, making
+ * toDataURL() throw SecurityError — even when all images are inlined as
+ * data URLs. html-to-image works around this by drawing nodes directly.
+ */
+let _htmlToImage = null;
+async function loadHtmlToImage() {
+  if (_htmlToImage) return _htmlToImage;
+  // Try loading from CDN.
+  try {
+    const mod = await import("https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/+esm");
+    _htmlToImage = mod;
+    return mod;
+  } catch (e) {
+    console.warn("CDN load failed, falling back to local method", e);
+  }
+  // Fallback: inline minimal implementation using foreignObject (may fail on
+  // some browsers, but better than nothing).
+  _htmlToImage = {
+    toPng: function(node, opts) {
+      opts = opts || {};
+      return nodeToPngSvg(node, opts.pixelRatio || 2);
+    }
+  };
+  return _htmlToImage;
+}
+
+/* Local fallback: SVG foreignObject approach (works on Firefox, may fail on Chromium). */
+async function nodeToPngSvg(node, scale) {
   const rect = node.getBoundingClientRect();
   const w = Math.ceil(rect.width);
   const h = Math.ceil(node.scrollHeight);
-  // Clone node, inline styles
   const clone = node.cloneNode(true);
-  clone.style.transform = "none";
-  const wrapper = document.createElement("div");
-  wrapper.appendChild(clone);
-  const htmlStr = wrapper.innerHTML;
-  const svgStr =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w * scale) + '" height="' + (h * scale) + '">' +
-    '<foreignObject x="0" y="0" width="100%" height="100%" transform="scale(' + scale + ')">' +
-    '<div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="width:' + w + 'px;height:' + h + 'px;font-family:Cairo,Tahoma,sans-serif;">' +
-    htmlStr +
-    "</div></foreignObject></svg>";
-  const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
-  const svgUrl = URL.createObjectURL(svgBlob);
+  const imgs = Array.from(clone.querySelectorAll("img"));
+  await Promise.all(imgs.map(async (img) => {
+    const src = img.getAttribute("src") || "";
+    if (!src || src.startsWith("data:")) return;
+    try {
+      const res = await fetch(src);
+      const blob = await res.blob();
+      const dataUrl = await new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = () => reject(new Error("read fail"));
+        r.readAsDataURL(blob);
+      });
+      img.setAttribute("src", dataUrl);
+    } catch (e) { img.remove(); }
+  }));
+  const xs = new XMLSerializer();
+  let htmlStr = "";
+  for (const c of clone.childNodes) htmlStr += xs.serializeToString(c);
+  const svgStr = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w*scale) + '" height="' + (h*scale) + '"><foreignObject x="0" y="0" width="100%" height="100%" transform="scale(' + scale + ')"><div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="width:' + w + 'px;height:' + h + 'px;font-family:Cairo,Tahoma,sans-serif;">' + htmlStr + '</div></foreignObject></svg>';
+  const svgUrl = URL.createObjectURL(new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" }));
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement("canvas");
-      canvas.width = w * scale;
-      canvas.height = h * scale;
+      canvas.width = w * scale; canvas.height = h * scale;
       const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff"; ctx.fillRect(0,0,canvas.width,canvas.height);
       ctx.drawImage(img, 0, 0);
       URL.revokeObjectURL(svgUrl);
       try { resolve(canvas.toDataURL("image/png")); }
-      catch (e) { reject(new Error("تعذّر تصدير الصورة (قد يكون بسبب قيود الأمان على الصور المضمّنة). جرّب زر الطباعة.")); }
+      catch (e) { reject(new Error("قيود أمان تمنع التصدير. جرّب زر الطباعة.")); }
     };
     img.onerror = () => { URL.revokeObjectURL(svgUrl); reject(new Error("تعذّر تحويل الجدول إلى صورة.")); };
     img.src = svgUrl;
+  });
+}
+
+async function nodeToPng(node, scale) {
+  const lib = await loadHtmlToImage();
+  // Inline images first (helps the lib avoid CORS issues).
+  const imgs = Array.from(node.querySelectorAll("img"));
+  await Promise.all(imgs.map(async (img) => {
+    const src = img.getAttribute("src") || "";
+    if (!src || src.startsWith("data:")) return;
+    try {
+      const res = await fetch(src, { mode: "cors" });
+      if (!res.ok) return;
+      const blob = await res.blob();
+      const dataUrl = await new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = () => reject(new Error("read fail"));
+        r.readAsDataURL(blob);
+      });
+      img.setAttribute("src", dataUrl);
+    } catch (e) { /* leave original src */ }
+  }));
+  return lib.toPng(node, {
+    pixelRatio: scale || 2,
+    backgroundColor: "#ffffff",
+    style: { transform: "none" },
+    cacheBust: true,
   });
 }
 
