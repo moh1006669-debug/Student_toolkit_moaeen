@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مستخرج الجدول الأسبوعي | منصة معين — SEU</title>
+<meta name="description" content="أداة من منصة معين لاستخراج جدول المحاضرات الأسبوعي من ملفات HTML / MHT الخاصة بنظام Banner. تعمل بالكامل في المتصفح بدون خادم.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ========================= Maeen Platform tokens ========================= */
+:root {
+  --maeen-bg-dark: #012727;
+  --maeen-bg-dark-2: #0a2c2c;
+  --maeen-bg-darker: #012020;
+  --maeen-gold: #d4af37;
+  --maeen-gold-dark: #b8941f;
+  --maeen-gold-light: #e5c158;
+  --maeen-white: #ffffff;
+  --maeen-wa-green: #25d366;
+  --maeen-radius: 30px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: 'Cairo', Tahoma, Arial, sans-serif; }
+body {
+  background-color: var(--maeen-bg-dark);
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%);
+  color: var(--maeen-white);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ========================= Page shell ========================= */
+.maeen-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ========================= Header ========================= */
+.maeen-header {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  padding: 20px 40px 0;
+  border-radius: var(--maeen-radius) var(--maeen-radius) 0 0;
+  overflow: visible;
+  z-index: 5;
+  background-image: linear-gradient(135deg, rgba(1,42,43,0.97) 0%, rgba(10,44,44,0.94) 100%);
+}
+.maeen-header-brand {
+  position: absolute; right: 40px; top: 20px; z-index: 6; width: 160px; height: 110px;
+}
+.maeen-header-brand img {
+  width: 160px; height: 110px; object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+}
+.maeen-header-seu {
+  position: absolute; left: 40px; top: 20px; z-index: 6;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.maeen-header-seu img {
+  width: 160px; height: 110px; object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+}
+.maeen-seu-pill {
+  position: relative; z-index: 7; margin-top: -14px; min-width: 64px;
+  padding: 5px 13px; color: var(--maeen-white);
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.34);
+  border-radius: 999px; backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+  font-size: 15px; font-weight: 800; letter-spacing: 1px; text-align: center;
+}
+.maeen-center-capsule {
+  position: absolute; top: 75px; left: 50%; transform: translate(-50%, -50%);
+  z-index: 7; display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 22px; border-radius: 999px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.18) 0%, rgba(229,193,88,0.10) 100%);
+  border: 1px solid rgba(212,175,55,0.55);
+  box-shadow: 0 4px 18px rgba(212,175,55,0.18), inset 0 1px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px); color: var(--maeen-white);
+  font-size: 15px; font-weight: 800; white-space: nowrap; letter-spacing: 0.3px;
+}
+.maeen-center-capsule .capsule-name { color: var(--maeen-gold-light); }
+.maeen-center-capsule .capsule-star { color: var(--maeen-gold); font-size: 16px; }
+.maeen-center-capsule .capsule-medal { font-size: 17px; }
+
+/* ========================= Hero ========================= */
+.maeen-hero {
+  width: 100%; margin: 0;
+  padding: 140px 40px 40px;
+  position: relative; display: flex; flex-direction: column; gap: 18px;
+}
+.maeen-gold-bar {
+  direction: ltr; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; min-height: 36px; padding: 5px 0 7px;
+  border-top: 1px solid var(--maeen-gold);
+  border-bottom: 1px solid rgba(212,175,55,0.18);
+  box-shadow: 0 -4px 12px rgba(212,175,55,0.08);
+}
+.maeen-hero-top {
+  display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
+}
+.maeen-hero-top h1 {
+  font-size: clamp(26px, 3.2vw, 40px); font-weight: 800; color: var(--maeen-white);
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+}
+.maeen-hero-top h1 svg { color: var(--maeen-gold); }
+.maeen-hero-sub {
+  color: rgba(255,255,255,0.82); font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 500; line-height: 1.6; max-width: 720px; margin-inline: auto;
+}
+
+/* Share dropdown */
+.maeen-share-dropdown { position: relative; display: inline-block; }
+.maeen-share-menu {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 100;
+  min-width: 210px; background: var(--maeen-bg-dark);
+  border: 1px solid rgba(212,175,55,0.25); border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5); overflow: hidden; padding: 8px 0;
+  animation: maeen-share-in 0.16s ease-out;
+}
+@keyframes maeen-share-in { from { opacity: 0; transform: translateY(-6px);} to { opacity: 1; transform: translateY(0);} }
+.maeen-share-option {
+  width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  color: var(--maeen-white); background: transparent; border: 0;
+  font-family: inherit; font-weight: 600; font-size: 14px; text-align: right;
+  cursor: pointer; transition: 0.2s ease;
+}
+.maeen-share-option:hover, .maeen-share-option:focus-visible { background: rgba(212,175,55,0.15); }
+.maeen-share-option svg { width: 20px; height: 20px; flex-shrink: 0; }
+.maeen-share-option .ico-wa { color: var(--maeen-wa-green); }
+.maeen-share-option .ico-tg { color: #0088cc; }
+.maeen-share-option .ico-copy { color: var(--maeen-gold-light); }
+
+/* Gold bar buttons */
+.gb-btn {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 28px;
+  padding: 5px 11px; border-radius: 8px; font-size: 11px; font-weight: 800;
+  white-space: nowrap; cursor: pointer; border: 1px solid transparent;
+}
+.gb-btn-share { background: var(--maeen-gold); color: var(--maeen-bg-dark); border-color: var(--maeen-gold-light); }
+.gb-btn-share:hover { background: var(--maeen-gold-light); }
+.gb-btn-back { background: rgba(255,255,255,0.12); color: var(--maeen-white); border-color: rgba(212,175,55,0.65); }
+.gb-btn-back:hover { background: rgba(212,175,55,0.22); }
+
+/* ========================= Main content ========================= */
+.maeen-main {
+  width: 100%; max-width: 1320px; flex: 1;
+  border-radius: 0 0 24px 24px; background: #f8fafc;
+  padding: 24px 24px 80px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+/* ========================= Upload card ========================= */
+.upload-card {
+  position: relative; overflow: hidden; border: 2px dashed #cbd5e1;
+  border-radius: 16px; background: #fff; transition: border-color 0.2s, background 0.2s;
+}
+.upload-card.dragging { border-color: var(--maeen-gold); background: rgba(212,175,55,0.06); }
+.upload-card-body {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 48px 24px; text-align: center;
+}
+.upload-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 16px;
+  background: rgba(212,175,55,0.15); color: var(--maeen-gold-dark);
+  transition: transform 0.2s;
+}
+.upload-card.dragging .upload-icon { transform: scale(1.1); background: var(--maeen-gold); color: var(--maeen-bg-dark); }
+.upload-card-body h2 { font-size: 20px; font-weight: 700; color: #1e293b; }
+.upload-card-body p { font-size: 14px; color: #64748b; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+  border-radius: 10px; border: 0; font-size: 15px; font-weight: 700;
+  background: var(--maeen-gold); color: var(--maeen-bg-dark); cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--maeen-gold-light); }
+.fmt-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.fmt-badge {
+  font-family: monospace; font-size: 12px; padding: 3px 9px;
+  border: 1px solid #cbd5e1; border-radius: 6px; color: #475569; background: #f8fafc;
+}
+
+/* ========================= Video card ========================= */
+.maeen-video-card {
+  position: relative; overflow: hidden; border-radius: 20px;
+  border: 1px solid rgba(212,175,55,0.45);
+  background: linear-gradient(135deg, rgba(1,42,43,0.03) 0%, rgba(212,175,55,0.04) 100%);
+  box-shadow: 0 4px 18px rgba(1,39,39,0.06); margin-top: 24px;
+}
+.maeen-video-card__head {
+  display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer;
+  background: linear-gradient(135deg, var(--maeen-bg-dark) 0%, var(--maeen-bg-dark-2) 100%);
+  color: var(--maeen-white); border-bottom: 1px solid rgba(212,175,55,0.25);
+  transition: filter 0.25s;
+}
+.maeen-video-card__head:hover { filter: brightness(1.08); }
+.maeen-video-card__icon {
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px;
+  background: rgba(212,175,55,0.18); border: 1px solid rgba(212,175,55,0.35);
+  display: flex; align-items: center; justify-content: center; color: var(--maeen-gold);
+}
+.maeen-video-card__titles { flex: 1; min-width: 0; }
+.maeen-video-card__titles h3 { font-size: 15px; font-weight: 800; line-height: 1.35; color: var(--maeen-white); }
+.maeen-video-card__titles p { font-size: 12px; font-weight: 500; line-height: 1.45; color: rgba(255,255,255,0.72); margin-top: 2px; }
+.maeen-video-card__chevron { flex-shrink: 0; color: var(--maeen-gold); transition: transform 0.3s ease; }
+.maeen-video-card[data-open="true"] .maeen-video-card__chevron { transform: rotate(180deg); }
+.maeen-video-card__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+.maeen-video-card[data-open="true"] .maeen-video-card__body { grid-template-rows: 1fr; }
+.maeen-video-card__body-inner { overflow: hidden; min-height: 0; }
+.maeen-video-card__media { padding: 16px; display: flex; justify-content: center; }
+.maeen-video-card__video-wrap {
+  width: 100%; max-width: 360px; aspect-ratio: 9 / 16; border-radius: 14px;
+  overflow: hidden; background: #000; border: 1px solid rgba(212,175,55,0.3);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.maeen-video-card__video-wrap video {
+  display: block; width: 100%; height: 100%; object-fit: contain; background: #000;
+}
+
+/* ========================= Notes card ========================= */
+.notes-card {
+  margin-top: 24px; border: 1px solid #fde68a; background: #fffbeb;
+  border-radius: 12px; padding: 16px 20px; display: flex; gap: 12px;
+}
+.notes-card .notes-icon { flex-shrink: 0; color: #d97706; margin-top: 2px; }
+.notes-card .notes-body { font-size: 14px; color: #78350f; }
+.notes-card .notes-body strong { font-weight: 700; }
+.notes-card ul { list-style: disc; padding-right: 20px; margin-top: 4px; }
+.notes-card li { margin-top: 2px; color: #92400e; }
+
+/* ========================= Results view ========================= */
+.results-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.results-badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+  border-radius: 999px; background: rgba(212,175,55,0.18);
+  color: var(--maeen-gold-dark); font-size: 12px; font-weight: 700;
+}
+.results-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-sm {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+  border-radius: 8px; border: 1px solid #cbd5e1; background: #fff;
+  font-size: 13px; font-weight: 600; color: #334155; cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-sm:hover { background: #f1f5f9; }
+.btn-sm-gold { background: var(--maeen-gold); color: var(--maeen-bg-dark); border-color: var(--maeen-gold-light); }
+.btn-sm-gold:hover { background: var(--maeen-gold-light); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.stat-card {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border-radius: 12px; border: 1px solid;
+}
+.stat-card .stat-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; }
+.stat-card .stat-val { font-size: 20px; font-weight: 800; line-height: 1; }
+.stat-card .stat-lbl { font-size: 11px; opacity: 0.8; margin-top: 4px; }
+.stat-gold { background: rgba(212,175,55,0.12); color: var(--maeen-gold-dark); border-color: rgba(212,175,55,0.35); }
+.stat-teal { background: rgba(1,39,39,0.06); color: var(--maeen-bg-dark); border-color: rgba(1,39,39,0.2); }
+.stat-green { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+.stat-sky { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
+
+.skip-note { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; background: #f1f5f9; border: 1px solid #e2e8f0; font-size: 12px; color: #64748b; margin-bottom: 16px; }
+
+/* ========================= Schedule table ========================= */
+.schedule-wrap {
+  overflow: hidden; border-radius: 16px;
+  border: 1px solid rgba(212,175,55,0.35); background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.schedule-header-img { display: block; width: 100%; border-bottom: 1px solid rgba(212,175,55,0.3); max-height: 200px; object-fit: cover; object-position: center; }
+.schedule-subtitle { background: rgba(212,175,55,0.10); padding: 10px 24px; text-align: center; font-size: 16px; font-weight: 700; color: var(--maeen-bg-dark); }
+.schedule-scroll { overflow-x: auto; }
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.schedule-table thead tr { background: var(--maeen-bg-dark); color: #fff; }
+.schedule-table th {
+  border: 1px solid rgba(212,175,55,0.25); padding: 12px; text-align: center;
+  font-weight: 700; white-space: nowrap;
+}
+.schedule-table td { border: 1px solid #e2e8f0; padding: 12px; }
+.schedule-table td.day-cell { background: rgba(212,175,55,0.14); text-align: center; vertical-align: middle; font-weight: 700; color: var(--maeen-bg-dark); white-space: nowrap; }
+.schedule-table td.time-cell { text-align: center; font-weight: 500; color: #475569; white-space: nowrap; }
+.schedule-table td.code-cell { text-align: center; font-weight: 700; color: #1e293b; white-space: nowrap; }
+.schedule-table td.course-cell { text-align: center; vertical-align: middle; }
+.schedule-table td.course-cell .en { font-weight: 700; color: #1e293b; line-height: 1.25; }
+.schedule-table td.course-cell .ar { font-size: 12px; color: #64748b; margin-top: 2px; }
+.schedule-table td.course-cell .ar-none { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+.schedule-table td.type-cell { text-align: center; }
+.type-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.type-inperson { background: #d1fae5; color: #047857; }
+.type-virtual { background: #e0f2fe; color: #0369a1; }
+.schedule-table td.loc-cell { text-align: center; vertical-align: middle; }
+.schedule-table tr.row-inperson { background: #dcfce7; }
+.schedule-table tr.row-inperson:hover { background: #bbf7d0; }
+.schedule-table tr.row-virtual { background: #fff; }
+.schedule-table tr.row-virtual:hover { background: #f8fafc; }
+.day-divider td { border-bottom: 3px solid var(--maeen-bg-dark) !important; }
+.schedule-footer-img { display: block; width: 100%; border-top: 1px solid rgba(212,175,55,0.3); max-height: 160px; object-fit: cover; object-position: center; }
+
+/* ========================= Error view ========================= */
+.error-card {
+  border: 1px solid #fecaca; background: #fef2f2; border-radius: 16px;
+  padding: 48px 24px; text-align: center;
+}
+.error-icon { width: 64px; height: 64px; border-radius: 16px; background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.error-card h2 { font-size: 20px; font-weight: 700; color: #991b1b; margin-bottom: 8px; }
+.error-card p { font-size: 14px; color: #b91c1c; max-width: 420px; margin: 0 auto; }
+.error-card .btn-retry { margin-top: 16px; background: #dc2626; color: #fff; }
+
+/* ========================= Footer ========================= */
+.maeen-footer {
+  width: 100%; max-width: 1320px; background: var(--maeen-bg-dark);
+  border-top: 1px solid rgba(212,175,55,0.15);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+  padding: 26px 40px; display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+}
+.maeen-footer-brand { display: flex; align-items: center; gap: 16px; }
+.maeen-footer-brand img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--maeen-gold); padding: 4px; background: var(--maeen-bg-dark); object-fit: contain; }
+.maeen-footer-brand h3 { color: var(--maeen-gold); font-size: 20px; font-weight: 800; line-height: 1.2; }
+.maeen-footer-brand span { color: var(--maeen-gold-light); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+.maeen-footer-contact { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.maeen-footer-phone { display: flex; align-items: center; gap: 10px; color: var(--maeen-white); font-size: 18px; font-weight: 700; direction: ltr; text-decoration: none; }
+.maeen-footer-phone svg { color: var(--maeen-gold); }
+.maeen-footer-social { display: flex; gap: 12px; }
+.maeen-footer-social a { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 2px solid rgba(212,175,55,0.3); color: var(--maeen-white); }
+.maeen-footer-social a:hover { transform: translateY(-3px) scale(1.1); border-color: var(--maeen-gold); background: rgba(212,175,55,0.1); }
+.maeen-footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Floating WhatsApp */
+.maeen-float-wa {
+  position: fixed; bottom: 26px; left: 26px; z-index: 1000;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--maeen-wa-green); color: var(--maeen-white);
+  padding: 13px 22px 13px 17px; border-radius: 50px;
+  font-size: 15px; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+  transition: 0.3s; animation: maeen-wa-pulse 2s infinite; text-decoration: none;
+}
+.maeen-float-wa:hover { transform: scale(1.05); background: #1da851; animation: none; }
+.maeen-float-wa svg { width: 26px; height: 26px; fill: var(--maeen-white); }
+@keyframes maeen-wa-pulse {
+  0%,100% { box-shadow: 0 8px 24px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 8px 24px rgba(37,211,102,0.5), 0 0 0 12px rgba(37,211,102,0); }
+}
+
+/* Toast */
+.toast-container { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast {
+  background: var(--maeen-bg-dark); color: #fff; padding: 12px 20px; border-radius: 12px;
+  border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  animation: toast-in 0.25s ease-out; max-width: 90vw;
+}
+.toast.success { border-color: rgba(34,197,94,0.5); }
+.toast.error { border-color: rgba(239,68,68,0.5); }
+.toast .toast-desc { font-size: 12px; font-weight: 400; opacity: 0.85; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(-12px);} to { opacity: 1; transform: translateY(0);} }
+
+/* Hidden helper */
+.hidden { display: none !important; }
+.spinner { width: 32px; height: 32px; border: 3px solid rgba(212,175,55,0.2); border-top-color: var(--maeen-gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ========================= Responsive ========================= */
+@media (max-width: 768px) {
+  .maeen-header { padding: 16px 0 0; border-radius: 22px 22px 0 0; }
+  .maeen-header-brand { right: 10px; top: 14px; }
+  .maeen-header-brand img { width: clamp(96px, 24vw, 132px); height: clamp(78px, 20vw, 96px); }
+  .maeen-header-seu { left: 10px; top: 14px; }
+  .maeen-header-seu img { width: clamp(96px, 24vw, 132px); height: clamp(78px, 20vw, 96px); }
+  .maeen-seu-pill { min-width: 46px; padding: 2px 8px; margin-top: -10px; font-size: 11px; }
+  .maeen-center-capsule {
+    top: calc(14px + clamp(39px, 10vw, 48px)); bottom: auto; left: 50%; transform: translate(-50%, -50%);
+    font-size: clamp(9px, 2.3vw, 12px); padding: 5px 10px; gap: 4px;
+    max-width: calc(100% - 2 * (clamp(96px, 24vw, 132px) + 24px)); white-space: nowrap;
+  }
+  .maeen-hero { padding: 115px 16px 36px; }
+  .maeen-main { padding: 16px 16px 64px; }
+  .maeen-footer { flex-direction: column; align-items: center; text-align: center; padding: 22px 18px; }
+  .maeen-float-wa { bottom: 16px; left: 16px; padding: 10px 18px 10px 13px; font-size: 13px; }
+  .maeen-float-wa svg { width: 22px; height: 22px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .maeen-video-card__head { padding: 12px 14px; }
+  .maeen-video-card__titles h3 { font-size: 14px; }
+  .maeen-video-card__titles p { font-size: 11px; }
+  .maeen-video-card__media { padding: 12px; }
+  .maeen-video-card__video-wrap { max-width: 300px; }
+}
+@media (max-width: 420px) {
+  .maeen-header-brand { right: 4px; }
+  .maeen-header-seu { left: 4px; }
+  .maeen-header-brand img, .maeen-header-seu img { width: 100px; height: 78px; }
+  .maeen-center-capsule { top: 53px; font-size: 9px; padding: 4px 8px; gap: 3px; max-width: calc(100% - 2 * (100px + 20px)); }
+  .maeen-hero { padding: 101px 16px 36px; }
+  .maeen-video-card__video-wrap { max-width: 260px; }
+}
+
+/* ========================= Two community cards ========================= */
+/* When placed inside the hero, give the grid bottom padding so the
+   absolutely-positioned help button doesn't overlap the cards. */
+.maeen-hero .maeen-community-grid { margin-bottom: 44px; }
+.maeen-community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+@media (max-width: 520px) {
+  .maeen-community-grid { grid-template-columns: 1fr; }
+  .maeen-hero .maeen-community-grid { margin-bottom: 36px; }
+}
+.maeen-community-card {
+  position: relative; overflow: hidden; border-radius: 16px;
+  border: 1px solid rgba(212,175,55,0.4); background: #fff;
+  box-shadow: 0 2px 12px rgba(1,39,39,0.05);
+}
+.maeen-community-card__head {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer;
+  background: linear-gradient(135deg, var(--maeen-bg-dark) 0%, var(--maeen-bg-dark-2) 100%);
+  color: var(--maeen-white); border-bottom: 1px solid rgba(212,175,55,0.25); transition: filter 0.25s ease;
+}
+.maeen-community-card__head:hover { filter: brightness(1.08); }
+.maeen-community-card__head:focus-visible { outline: 2px solid var(--maeen-gold); outline-offset: -2px; }
+.maeen-community-card__icon {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(212,175,55,0.18); border: 1px solid rgba(212,175,55,0.35);
+  display: flex; align-items: center; justify-content: center; color: var(--maeen-gold);
+}
+.maeen-community-card__title { flex: 1; min-width: 0; font-size: 14px; font-weight: 800; line-height: 1.35; color: var(--maeen-white); }
+.maeen-community-card__chevron { flex-shrink: 0; color: var(--maeen-gold); transition: transform 0.3s ease; }
+.maeen-community-card[data-open="true"] .maeen-community-card__chevron { transform: rotate(180deg); }
+.maeen-community-card__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+.maeen-community-card[data-open="true"] .maeen-community-card__body { grid-template-rows: 1fr; }
+.maeen-community-card__body-inner { overflow: hidden; min-height: 0; }
+.maeen-community-card__rows { padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+.maeen-community-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 12px; border-radius: 10px; background: rgba(212,175,55,0.06);
+  border: 1px solid rgba(212,175,55,0.18);
+}
+.maeen-community-row__label { flex: 1; min-width: 0; font-size: 13px; font-weight: 700; color: var(--maeen-bg-dark); line-height: 1.4; }
+.maeen-community-row__label .row-ico { color: var(--maeen-gold-dark); display: inline-flex; align-items: center; gap: 8px; }
+.maeen-community-row__btn {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+  border-radius: 999px; font-size: 12px; font-weight: 800; white-space: nowrap;
+  background: linear-gradient(135deg, var(--maeen-gold) 0%, var(--maeen-gold-dark) 100%);
+  color: var(--maeen-bg-dark); border: 0; text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.maeen-community-row__btn:hover { transform: scale(1.05); filter: brightness(1.05); }
+
+/* ========================= Student services help button (hero bottom-left) ========================= */
+.maeen-help-btn {
+  position: absolute; left: 0; bottom: 0; z-index: 8;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px 9px 12px;
+  background: var(--maeen-gold); color: var(--maeen-bg-dark);
+  border: 1px solid var(--maeen-gold-light);
+  border-radius: 0 14px 0 0;
+  box-shadow: 0 -2px 12px rgba(212,175,55,0.22);
+  font-size: 12px; font-weight: 800; line-height: 1.2; text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.maeen-help-btn:hover { background: var(--maeen-gold-light); transform: none; }
+.maeen-help-btn:active { transform: scale(0.98); }
+.maeen-help-btn .help-main { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.maeen-help-btn .help-title { font-size: 12px; font-weight: 800; }
+.maeen-help-btn .help-cta { font-size: 10px; font-weight: 700; opacity: 0.85; display: inline-flex; align-items: center; gap: 3px; }
+@media (max-width: 768px) {
+  .maeen-help-btn { padding: 7px 11px 7px 9px; }
+  .maeen-help-btn .help-title { font-size: 11px; }
+  .maeen-help-btn .help-cta { font-size: 9px; }
+}
+@media (max-width: 420px) {
+  .maeen-help-btn { padding: 6px 9px 6px 7px; border-radius: 0 12px 0 0; }
+  .maeen-help-btn .help-title { font-size: 10px; }
+  .maeen-help-btn .help-cta { font-size: 8px; }
+}
+
+/* ========================= Print ========================= */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  body * { visibility: hidden !important; }
+  #printable-schedule, #printable-schedule * { visibility: visible !important; }
+  #printable-schedule { position: absolute !important; inset: 0 !important; width: 100% !important; }
+  .no-print { display: none !important; }
+  .schedule-table { font-size: 11px !important; }
+}
+</style>
+</head>
+<body>
+<div class="maeen-shell">
+
+  <!-- ========================= HEADER ========================= -->
+  <header class="maeen-header no-print">
+    <div class="maeen-header-brand">
+      <img src="assets/header-logo-moaeen.webp" alt="شعار منصة معين التعليمية">
+    </div>
+    <div class="maeen-header-seu">
+      <img src="assets/seu-logo.webp" alt="شعار الجامعة السعودية الإلكترونية SEU">
+      <span class="maeen-seu-pill">SEU</span>
+    </div>
+    <div class="maeen-center-capsule" aria-label="شعار منصة معين">
+      <span class="capsule-name">معين</span>
+      <span class="capsule-star" aria-hidden>⭐️</span>
+      <span>رفيقك الأكاديمي نحو</span>
+      <span class="capsule-medal" aria-hidden>🥇</span>
+    </div>
+    <section class="maeen-hero">
+      <div class="maeen-gold-bar">
+        <div class="maeen-share-dropdown" id="shareDropdown">
+          <button class="gb-btn gb-btn-share" id="shareToggle" type="button" aria-haspopup="menu" aria-expanded="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            مشاركة الصفحة
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" id="shareChevron" style="transition:transform .3s"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="maeen-share-menu hidden" id="shareMenu" role="menu">
+            <button class="maeen-share-option" type="button" role="menuitem" data-share="whatsapp">
+              <svg class="ico-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              مشاركة عبر واتساب
+            </button>
+            <button class="maeen-share-option" type="button" role="menuitem" data-share="telegram">
+              <svg class="ico-tg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.329-.913.49-1.302.48-.428-.008-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.324-.437.89-.663 3.478-1.516 5.797-2.515 6.957-2.997 3.314-1.382 4.004-1.624 4.453-1.632z"/></svg>
+              مشاركة عبر تليجرام
+            </button>
+            <button class="maeen-share-option" type="button" role="menuitem" data-share="copy">
+              <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              نسخ الرابط
+            </button>
+          </div>
+        </div>
+        <button class="gb-btn gb-btn-back" type="button" id="backBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          العودة للأدوات
+        </button>
+      </div>
+      <div class="maeen-hero-top">
+        <h1>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>مستخرج الجدول الأسبوعي</span>
+        </h1>
+        <div class="maeen-hero-sub">استخراج جدول المحاضرات الأسبوعي من ملفات HTML / MHT الخاصة بنظام الـ Banner، مع عمود القاعات للمحاضرات الحضورية وإمكانية الطباعة وتحميل الصورة.</div>
+      </div>
+
+      <!-- Two community cards (preparatory + specialization) — inside the hero -->
+      <div class="maeen-community-grid">
+        <!-- Card 1: Preparatory students -->
+        <div class="maeen-community-card" data-open="false" data-card="prep">
+          <div class="maeen-community-card__head" role="button" tabindex="0" aria-expanded="false">
+            <div class="maeen-community-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="maeen-community-card__title">قناة / تجمع طلبة التحضيري</div>
+            <svg class="maeen-community-card__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="maeen-community-card__body">
+            <div class="maeen-community-card__body-inner">
+              <div class="maeen-community-card__rows">
+                <div class="maeen-community-row">
+                  <span class="maeen-community-row__label"><span class="row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span>قناة أخبار وإعلامات التحضيري</span></span></span>
+                  <a class="maeen-community-row__btn" href="#">متابعة القناة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                </div>
+                <div class="maeen-community-row">
+                  <span class="maeen-community-row__label"><span class="row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>قروب استفسارات التحضيري</span></span></span>
+                  <a class="maeen-community-row__btn" href="#">انضمام<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Specialization students -->
+        <div class="maeen-community-card" data-open="false" data-card="spec">
+          <div class="maeen-community-card__head" role="button" tabindex="0" aria-expanded="false">
+            <div class="maeen-community-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="maeen-community-card__title">قناة / تجمع طلبة التخصصات</div>
+            <svg class="maeen-community-card__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="maeen-community-card__body">
+            <div class="maeen-community-card__body-inner">
+              <div class="maeen-community-card__rows">
+                <div class="maeen-community-row">
+                  <span class="maeen-community-row__label"><span class="row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span>قناة أخبار وإعلامات التخصص</span></span></span>
+                  <a class="maeen-community-row__btn" href="#">متابعة القناة<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                </div>
+                <div class="maeen-community-row">
+                  <span class="maeen-community-row__label"><span class="row-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>قروب تجمع طلبة التخصصات</span></span></span>
+                  <a class="maeen-community-row__btn" href="#">انضمام<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student services help button — bottom-left corner of the hero -->
+      <a class="maeen-help-btn" id="helpBtn" href="https://api.whatsapp.com/send?phone=966536004199&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D9%81%D8%B1%D9%8A%D9%82%20%D9%85%D9%8F%D8%B9%D9%8A%D9%86%20%3A%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D8%A7%D9%84%D8%B7%D9%84%D8%A7%D8%A8%D9%8A%D9%87%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D9%82%D8%AF%D9%85%D9%88%D9%86%D9%87%D8%A7" target="_blank" rel="noopener noreferrer" aria-label="خدمات المساعدات الطلابية — اضغط للتواصل عبر واتساب" title="خدمات المساعدات الطلابية">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74"/><path d="M9 11.24a2.5 2.5 0 0 0-2.5 2.5V17a4 4 0 0 0 4 4h3a4 4 0 0 0 4-4v-3.26a2.5 2.5 0 0 0-2.5-2.5"/><path d="M14 11.24V7.5"/><path d="M9 11.24a2.5 2.5 0 0 1 5 0"/></svg>
+        <span class="help-main">
+          <span class="help-title">خدمات المساعدات الطلابية</span>
+          <span class="help-cta">انقر هنا</span>
+        </span>
+      </a>
+    </section>
+  </header>
+
+  <!-- ========================= MAIN ========================= -->
+  <main class="maeen-main no-print">
+    <!-- Upload view -->
+    <div id="uploadView">
+      <div class="upload-card" id="uploadCard">
+        <div class="upload-card-body">
+          <div class="upload-icon" id="uploadIcon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div>
+            <h2 id="uploadTitle">اسحب وأفلت ملف الجدول هنا</h2>
+            <p id="uploadSub">أو انقر لاختيار ملف من جهازك</p>
+          </div>
+          <button class="btn-primary" id="pickBtn" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            اختيار ملف
+          </button>
+          <input type="file" id="fileInput" accept=".html,.htm,.mht,.mhtml" class="hidden">
+          <div class="fmt-badges">
+            <span class="fmt-badge">.html</span>
+            <span class="fmt-badge">.htm</span>
+            <span class="fmt-badge">.mht</span>
+            <span class="fmt-badge">.mhtml</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video guide -->
+      <div class="maeen-video-card" id="videoCard" data-open="true">
+        <div class="maeen-video-card__head" id="videoHead" role="button" tabindex="0" aria-expanded="true">
+          <div class="maeen-video-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1z"/></svg>
+          </div>
+          <div class="maeen-video-card__titles">
+            <h3>🎥 شرح طريقة استخراج الجدول الأسبوعي</h3>
+            <p>شاهد الفيديو لمعرفة خطوات تنزيل ملف التسجيل ورفعه واستخراج جدولك الأسبوعي.</p>
+          </div>
+          <svg class="maeen-video-card__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="maeen-video-card__body">
+          <div class="maeen-video-card__body-inner">
+            <div class="maeen-video-card__media">
+              <div class="maeen-video-card__video-wrap">
+                <video id="guideVideo" src="assets/guide_website_trimmed.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="فيديو توضيحي لطريقة استخراج الجدول الأسبوعي">متصفحك لا يدعم تشغيل فيديو MP4. يمكنك استخدام متصفح حديث مثل Chrome أو Edge أو Safari.</video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="notes-card">
+        <svg class="notes-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <div class="notes-body">
+          <strong>ملاحظات مهمة قبل الرفع:</strong>
+          <ul>
+            <li>احفظ صفحة "View Registration Information" من نظام Banner بصيغة HTML أو MHT (الملفات المحفوظة بصيغة HTML من المتصفح تكون غالباً أرشيف MHT).</li>
+            <li>يتم استخراج المحاضرات الحضورية (Class) وعن بُعد (Virtual Class) فقط، مع تجاهل اختبارات منتصف ونهاية الفصل.</li>
+            <li>رموز المقررات (مثل IT233) مشتقّة من اسم المادة وفق اصطلاح الجامعة.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results view (hidden initially) -->
+    <div id="resultsView" class="hidden">
+      <div class="results-bar">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
+          <span class="results-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            تم الاستخراج
+          </span>
+          <span style="font-size:12px;color:#64748b;">الملف: <strong id="resFileName" style="color:#334155;"></strong></span>
+        </div>
+        <div class="results-actions">
+          <button class="btn-sm" id="printBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>طباعة</button>
+          <button class="btn-sm btn-sm-gold" id="imgBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>تحميل كصورة</button>
+          <button class="btn-sm" id="csvBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>CSV</button>
+          <button class="btn-sm" id="resetBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>ملف آخر</button>
+        </div>
+      </div>
+      <div class="stats-grid" id="statsGrid"></div>
+      <div id="skipNote" class="skip-note hidden"></div>
+      <div id="printable-schedule"></div>
+    </div>
+
+    <!-- Error view (hidden initially) -->
+    <div id="errorView" class="hidden">
+      <div class="error-card">
+        <div class="error-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h2>تعذّر استخراج الجدول</h2>
+        <p id="errorMsg"></p>
+        <button class="btn-primary btn-retry" id="retryBtn">المحاولة مرة أخرى</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="maeen-footer no-print">
+    <div class="maeen-footer-brand">
+      <img src="assets/footer_logo.webp" alt="شعار منصة معين">
+      <div>
+        <h3>منصة معين التعليمية</h3>
+        <span>MOAEEN PLATFORM</span>
+      </div>
+    </div>
+    <div class="maeen-footer-contact">
+      <a class="maeen-footer-phone" href="tel:+966536004199" dir="ltr">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+966 53 600 4199</span>
+      </a>
+      <div class="maeen-footer-social">
+        <a href="#" aria-label="X" title="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.329-.913.49-1.302.48-.428-.008-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.324-.437.89-.663 3.478-1.516 5.797-2.515 6.957-2.997 3.314-1.382 4.004-1.624 4.453-1.632z"/></svg></a>
+        <a href="#" aria-label="Snapchat" title="Snapchat"><svg viewBox="0 0 24 24"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.149-1.139.391-1.333.838-.09.225-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.135.553-.074.255-.27.391-.555.391h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427.675-3.279 1.288-.599.42-1.123.78-1.723.884-.314.045-.613.074-.913.074-.509 0-.914-.074-1.273-.135-.225-.044-.404-.074-.539-.074-.285 0-.481.136-.555.391-.061.192-.105.374-.135.553-.044.195-.105.479-.164.57-1.873.283-2.906.702-3.146 1.271-.03.075-.045.149-.045.225-.015.239.165.465.42.509 3.265.539 4.731 3.878 4.791 4.014l.015.015c.181.344.21.643.12.868-.194.447-.884.689-1.333.838-.135.044-.255.09-.344.119-.823.329-1.228.719-1.213 1.168 0 .359.284.689.734.838.15.061.327.09.509.09.12 0 .299-.016.464-.104.374-.181.733-.285 1.033-.301.198 0 .326.045.401.09.008.165.018.33.03.51l-.003.06c-.104 1.628-.23 3.654.299 4.847 1.583 3.545 4.94 3.821 5.93 3.821l.015-.001h.149z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="maeen-float-wa no-print" href="https://api.whatsapp.com/send?phone=966536004199" target="_blank" rel="noopener noreferrer" aria-label="تواصل معنا عبر واتساب">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <span>تواصل معنا</span>
+  </a>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ============================================================================
+ *  Schedule Parser — browser-native port (DOMParser + TextDecoder)
+ *  No external dependencies. Handles MHT and plain HTML, AR + EN pages.
+ * ========================================================================== */
+
+const SUBJECT_CODE_MAP = {
+  "Computing and Informatics": "IT",
+  "Mathematics": "MATH",
+  "Science": "SCI",
+  "Islam": "ISLM",
+  "Communication Skills": "COM",
+  "Law": "LAW",
+  "Anatomy & Physiology": "APH",
+  "Health Management": "HSM",
+  "Public Health Care": "PHC",
+  "English": "ENGL",
+  "Arabic": "ARAB",
+  "Educational Sciences": "EDU",
+  "Business Administration": "BUS",
+};
+
+/* Authoritative SEU course dictionary (282 entries) — code → {en, ar}.
+ * To add courses, append entries to COURSE_DICTIONARY below.
+ */
+const COURSE_DICTIONARY = {"CS003":{"en":"Computer Essentials","ar":"أساسيات الحاسب"},"CI003":{"en":"Academic Skills","ar":"مهارات أكاديمية"},"ENG003":{"en":"English Skills","ar":"مهارات اللغة الإنجليزية"},"COMM003":{"en":"Communication Skills","ar":"مهارات الاتصال"},"ISLM101":{"en":"Islamic Faith","ar":"العقيدة الإسلامية"},"LAW121":{"en":"Introduction to Law","ar":"المدخل لدراسة علم القانون"},"LAW122":{"en":"Constitutional Law","ar":"القانون الدستوري"},"LAW123":{"en":"Criminology and Punishment","ar":"علم الإجرام والعقاب"},"MATH003":{"en":"Fundamentals of Math","ar":"مقدمة في الرياضيات"},"ISLM102":{"en":"Professional Conduct & Ethics in Islam","ar":"الأخلاق وآداب المهنة في الإسلام"},"LAW211":{"en":"Introduction to Islamic Jurisprudence","ar":"المدخل لدراسة الفقه الإسلامي"},"LAW212":{"en":"History of Law","ar":"تاريخ القانون"},"LAW213":{"en":"Contract Provision","ar":"أحكام العقد"},"LAW214":{"en":"Administrative Law","ar":"القانون الإداري"},"LAW221":{"en":"Public Criminal Law","ar":"القانون الجزائي العام"},"LAW222":{"en":"Civil Responsibility","ar":"المسؤولية المدنية"},"LAW223":{"en":"Commercial Law","ar":"القانون التجاري"},"LAW224":{"en":"Judiciary and Evidence","ar":"القضاء والإثبات"},"LAW225":{"en":"Public International Law","ar":"القانون الدولي العام"},"ISLM103":{"en":"Islamic Economic System","ar":"النظام الاقتصادي الإسلامي"},"LAW311":{"en":"Labor & Social Security Law","ar":"قانون العمل والتأمينات الاجتماعية"},"LAW312":{"en":"Administrative Judiciary","ar":"القضاء الإداري"},"LAW313":{"en":"Civil Contracts","ar":"العقود المدنية"},"LAW314":{"en":"Inheritances, Wills & Endowment","ar":"المواريث والوصايا والوقف"},"LAW315":{"en":"Litigation Proceedings","ar":"إجراءات التقاضي"},"ISLM104":{"en":"Islamic Social System","ar":"النظام الاجتماعي الإسلامي"},"LAW321":{"en":"Debt Guarantees","ar":"ضمانات الديون"},"LAW322":{"en":"Property & Money","ar":"الملكية والأموال"},"LAW323":{"en":"Commercial Contracts & Operation of Banks","ar":"العقود التجارية وعمليات البنوك"},"LAW324":{"en":"Special Penal Code","ar":"القانون الجزائي الخاص"},"LAW325":{"en":"Family Law","ar":"قانون الأسرة"},"LAW411":{"en":"Commercial Papers","ar":"الأوراق التجارية"},"LAW412":{"en":"Zakat & Taxes","ar":"الزكاة والضرائب"},"LAW413":{"en":"Administrative Contracts","ar":"العقود الإدارية"},"LAW414":{"en":"Principles of Jurisprudence","ar":"أصول الفقه"},"LAW415":{"en":"Intellectual Property","ar":"الملكية الفكرية"},"LAW416":{"en":"International Trade Law","ar":"القانون التجاري الدولي"},"LAW417":{"en":"Legal Drafting","ar":"الصياغة القانونية"},"LAW421":{"en":"Penal Procedures","ar":"الإجراءات الجزائية"},"LAW422":{"en":"International Private Law","ar":"القانون الدولي الخاص"},"LAW423":{"en":"Law Enforcement","ar":"قانون التنفيذ"},"LAW424":{"en":"Maritime and Air Law","ar":"القانون البحري والجوي"},"LAW425":{"en":"Research Methods","ar":"مبادئ البحث العلمي"},"LAW426":{"en":"Insurance Law","ar":"قانون التأمين"},"LAW427":{"en":"Contemporary Law System","ar":"الأنظمة القانونية المعاصرة"},"DMED101":{"en":"Introduction to Digital Media","ar":"مقدمة في الإعلام الرقمي"},"DMED102":{"en":"Graphic Designing I","ar":"التصميم الجرافيكي 1"},"DMED103":{"en":"Theories of Mass Communication","ar":"نظريات الاتصال"},"ARB211":{"en":"Arabic Composition I","ar":"التحرير العربي 1"},"DMED201":{"en":"Digital Photography","ar":"فن التصوير الرقمي"},"DMED202":{"en":"News Editing","ar":"تحرير الأخبار"},"DMED203":{"en":"Intro to Communication Technology","ar":"المدخل إلى تقنيات الاتصال"},"DMED204":{"en":"Graphic Designing II","ar":"التصميم الجرافيكي 2"},"ARB260":{"en":"Applied Arabic Grammar","ar":"النحو والصرف التطبيقي"},"DMED205":{"en":"Digital Media Law & Ethics","ar":"قانون وأخلاقيات الإعلام الرقمي"},"DMED206":{"en":"Digital Public Relations","ar":"العلاقات العامة الرقمية"},"DMED207":{"en":"Feature & Narrative Journalism","ar":"الفنون الصحفية"},"DMPS101":{"en":"Intro to Political Science","ar":"المدخل إلى علم السياسة"},"DMED208":{"en":"Digital Publishing","ar":"النشر الرقمي"},"DMED301":{"en":"Writing & Blogging","ar":"الكتابة والتدوين"},"DMLO101":{"en":"Logical Thinking","ar":"التفكير المنطقي"},"DMED302":{"en":"Montage","ar":"المونتاج"},"DMED303":{"en":"Digital Organizational Communication","ar":"الاتصال المؤسسي الرقمي"},"DMIT202":{"en":"Human-Computer Interaction","ar":"التفاعل بين الإنسان والحاسب"},"DMED304":{"en":"TV Production","ar":"الإنتاج التلفزيوني"},"DMEM333":{"en":"Digital Marketing","ar":"التسويق الرقمي"},"DMED305":{"en":"Scriptwriting","ar":"كتابة النصوص"},"DMED306":{"en":"Media Creativity","ar":"الإبداع الإعلامي"},"DMSO101":{"en":"Social Psychology","ar":"علم النفس الاجتماعي"},"DMED402":{"en":"Smart Phones Journalism","ar":"صحافة الهواتف الذكية"},"DMED403":{"en":"Advertising Strategies","ar":"استراتيجيات الإعلان"},"DMED404":{"en":"Animation","ar":"الرسوم المتحركة"},"DMED405":{"en":"Media Research","ar":"البحوث الإعلامية"},"DMED406":{"en":"Digital Media Criticism & Analysis","ar":"تحليل ونقد الإعلام الرقمي"},"DMED408":{"en":"Digital Media Management","ar":"إدارة الإعلام الرقمي"},"DMED407":{"en":"Study Cases in Digital Media","ar":"حالات دراسية في الإعلام الرقمي"},"DMED401":{"en":"Practical Training","ar":"التدريب العملي"},"DMED409":{"en":"Graduation Project","ar":"مشروع التخرج"},"CS001":{"en":"Computer Essentials","ar":"أساسيات الحاسب"},"CI001":{"en":"Academic Skills","ar":"المهارات الأكاديمية"},"ENG001":{"en":"English Language Skills","ar":"مهارات اللغة الإنجليزية"},"COMM001":{"en":"Communication Skills","ar":"مهارات الاتصال"},"MATH001":{"en":"Fundamentals of Math","ar":"مقدمة في الرياضيات"},"ENG201":{"en":"Grammar I","ar":"القواعد 1"},"ENG202":{"en":"Reading Comprehension I","ar":"الاستيعاب القرائي 1"},"ENG210":{"en":"Writing I","ar":"الكتابة 1"},"ENG220":{"en":"Listening & Speaking I","ar":"الاستماع والمحادثة 1"},"ENG230":{"en":"Grammar II","ar":"القواعد 2"},"ENG231":{"en":"Reading Comprehension II","ar":"الاستيعاب القرائي 2"},"ENG240":{"en":"Writing II","ar":"الكتابة 2"},"ENG250":{"en":"Listening & Speaking II","ar":"الاستماع والمحادثة 2"},"ENG301":{"en":"Grammar III","ar":"القواعد 3"},"ENG310":{"en":"Reading Comprehension III","ar":"الاستيعاب القرائي 3"},"ENG320":{"en":"Writing III","ar":"الكتابة 3"},"TR330":{"en":"Introduction to Translation","ar":"مدخل إلى الترجمة"},"ENG340":{"en":"Listening & Speaking III","ar":"الاستماع والمحادثة 3"},"ENG350":{"en":"Grammar IV","ar":"القواعد 4"},"ENG360":{"en":"Reading Comprehension IV","ar":"الاستيعاب القرائي 4"},"TR370":{"en":"Translation I","ar":"الترجمة 1"},"ENG380":{"en":"Writing IV","ar":"الكتابة 4"},"ARB221":{"en":"Rhetoric","ar":"البلاغة"},"ENG401":{"en":"Linguistics","ar":"علم اللغة"},"TR410":{"en":"Translation II","ar":"الترجمة 2"},"TR420":{"en":"Specialized Translation I","ar":"الترجمة المتخصصة 1"},"TR430":{"en":"Interpretation I","ar":"الترجمة الفورية 1"},"TR440":{"en":"Literary Translation","ar":"الترجمة الأدبية"},"TR450":{"en":"Media Translation","ar":"الترجمة الإعلامية"},"TR460":{"en":"Specialized Translation II","ar":"الترجمة المتخصصة 2"},"TR470":{"en":"Interpretation II","ar":"الترجمة الفورية 2"},"TR480":{"en":"Legal Translation","ar":"الترجمة القانونية"},"TR490":{"en":"Scientific Translation","ar":"الترجمة العلمية"},"TR499":{"en":"Graduation Project","ar":"مشروع التخرج"},"STAT101":{"en":"Statistics","ar":"الإحصاء"},"LAW101":{"en":"Legal Environment of Business","ar":"البيئة القانونية للأعمال"},"ECON101":{"en":"Microeconomics","ar":"الاقتصاد الجزئي"},"MGT101":{"en":"Principles of Management","ar":"مبادئ الإدارة"},"ACCT101":{"en":"Principles of Accounting","ar":"مبادئ المحاسبة"},"STAT201":{"en":"Quantitative Methods","ar":"الأساليب الكمية"},"FIN101":{"en":"Principles of Finance","ar":"مبادئ التمويل"},"MGT201":{"en":"Marketing Management","ar":"إدارة التسويق"},"MGT211":{"en":"Human Resource Management","ar":"إدارة الموارد البشرية"},"ECOM101":{"en":"E-Commerce","ar":"التجارة الإلكترونية"},"ECON201":{"en":"Macroeconomics","ar":"الاقتصاد الكلي"},"MIS201":{"en":"Management Information Systems","ar":"نظم إدارة المعلومات"},"ECOM201":{"en":"Introduction to e-Management","ar":"مقدمة في الإدارة الإلكترونية"},"MGT301":{"en":"Organizational Behavior","ar":"السلوك التنظيمي"},"MGT311":{"en":"Operations Management","ar":"إدارة العمليات"},"MGT312":{"en":"Decision Making and Problem Solving","ar":"اتخاذ القرار وحل المشكلات"},"ACCT301":{"en":"Cost Accounting","ar":"محاسبة التكاليف"},"MGT321":{"en":"International Business","ar":"الأعمال الدولية"},"MGT322":{"en":"Logistics Management","ar":"إدارة اللوجستيات"},"MGT323":{"en":"Project Management","ar":"إدارة المشاريع"},"MGT401":{"en":"Strategic Management","ar":"الإدارة الاستراتيجية"},"MGT324":{"en":"Public Administration","ar":"الإدارة العامة"},"MGT402":{"en":"Entrepreneurship","ar":"ريادة الأعمال"},"MGT403":{"en":"Knowledge Management","ar":"إدارة المعرفة"},"MGT404":{"en":"Organizational Design and Development","ar":"تصميم وتطوير المنظمات"},"MGT421":{"en":"Communication Management","ar":"إدارة الاتصالات"},"MGT422":{"en":"Business Ethics and Social Responsibility","ar":"أخلاقيات الأعمال والمسؤولية الاجتماعية"},"MGT430":{"en":"Cooperative Training","ar":"التدريب التعاوني"},"ACCT201":{"en":"Financial Accounting","ar":"المحاسبة المالية"},"ACCT302":{"en":"Advanced Financial Accounting","ar":"المحاسبة المالية المتقدمة"},"ACCT405":{"en":"Financial Institution Accounting","ar":"محاسبة المنشآت المالية"},"ACCT401":{"en":"Auditing","ar":"المراجعة"},"ACCT403":{"en":"Accounting Research","ar":"بحوث محاسبية"},"ACCT402":{"en":"Accounting Information Systems","ar":"محاسبة نظم المعلومات"},"ACCT321":{"en":"Government Accounting","ar":"المحاسبة الحكومية"},"ACCT422":{"en":"Zakat and Tax Accounting","ar":"محاسبة الزكاة والضريبة"},"LAW401":{"en":"Company Law","ar":"قانون الشركات"},"ACCT322":{"en":"Managerial Accounting","ar":"المحاسبة الإدارية"},"ACCT424":{"en":"Insurance Accounting","ar":"محاسبة التأمين"},"ACCT430":{"en":"Practical Training","ar":"التدريب العملي"},"FIN201":{"en":"Financial Management","ar":"الإدارة المالية"},"FIN202":{"en":"Financial Markets","ar":"الأسواق المالية"},"FIN203":{"en":"Financial Analysis","ar":"التحليل المالي"},"FIN204":{"en":"Investment","ar":"الاستثمار"},"FIN205":{"en":"International Finance","ar":"التمويل الدولي"},"FIN301":{"en":"Portfolio Management","ar":"إدارة المحافظ الاستثمارية"},"FIN302":{"en":"Financial Risk Management","ar":"إدارة المخاطر المالية"},"FIN303":{"en":"Real Estate Finance","ar":"التمويل العقاري"},"FIN304":{"en":"Behavioral Finance","ar":"التمويل السلوكي"},"FIN401":{"en":"Advanced Finance","ar":"التمويل المتقدم"},"FIN402":{"en":"Islamic Finance","ar":"التمويل الإسلامي"},"FIN403":{"en":"Financial Institutions Management","ar":"إدارة المؤسسات المالية"},"FIN404":{"en":"Quantitative Financial Analysis","ar":"التحليل الكمي المالي"},"FIN430":{"en":"Practical Training","ar":"التدريب العملي"},"ECOM301":{"en":"Advanced E-Commerce","ar":"التجارة الإلكترونية المتقدمة"},"ECOM302":{"en":"E-Marketing","ar":"التسويق الإلكتروني"},"ECOM303":{"en":"Digital Content Management","ar":"إدارة المحتوى الرقمي"},"ECOM304":{"en":"E-Commerce Platforms","ar":"منصات التجارة الإلكترونية"},"ECOM305":{"en":"Information Security for E-Commerce","ar":"أمن المعلومات للتجارة الإلكترونية"},"ECOM401":{"en":"E-Project Management","ar":"إدارة المشاريع الإلكترونية"},"ECOM402":{"en":"Digital Transformation","ar":"التحول الرقمي"},"ECOM403":{"en":"E-Business Models","ar":"نماذج الأعمال الإلكترونية"},"ECOM404":{"en":"Digital Analytics","ar":"التحليلات الرقمية"},"ECOM405":{"en":"Mobile Commerce","ar":"التجارة عبر الهواتف الذكية"},"ECOM406":{"en":"Digital Innovation Management","ar":"إدارة الابتكار الرقمي"},"ECOM407":{"en":"Digital Entrepreneurship","ar":"ريادة الأعمال الرقمية"},"ECOM408":{"en":"Emerging Technologies in E-Commerce","ar":"التقنيات الناشئة في التجارة الإلكترونية"},"ECOM430":{"en":"Practical Training","ar":"التدريب العملي"},"HCM101":{"en":"Healthcare Management","ar":"إدارة الرعاية الصحية"},"HCM102":{"en":"Organizational Behavior","ar":"السلوك التنظيمي"},"PHC121":{"en":"Intro to Biostatistics","ar":"مقدمة في الإحصاء الحيوي"},"IT231":{"en":"Intro to IT & IS","ar":"مقدمة في تقنية ونظم المعلومات"},"IT232":{"en":"Object Programming","ar":"برمجة الأشياء"},"BIOL101":{"en":"Basic Medical Terminology","ar":"المصطلحات الطبية الأساسية"},"ISLAM101":{"en":"Islamic Faith","ar":"العقيدة الإسلامية"},"BIOL102":{"en":"Intro to Anatomy & Physiology","ar":"مقدمة في علم التشريح وعلم وظائف الأعضاء"},"HCM113":{"en":"Health Policies & Saudi Healthcare System","ar":"السياسات الصحية ونظام الرعاية الصحية السعودية"},"PHC131":{"en":"Intro to Epidemiology","ar":"مقدمة في علم الأوبئة"},"IT244":{"en":"Introduction to Databases","ar":"مقدمة في قواعد البيانات"},"IT245":{"en":"Data Structures","ar":"هيكلة البيانات"},"IT351":{"en":"Computer Networks","ar":"شبكات الحاسب الآلي"},"ISLAM102":{"en":"Islamic Ethics","ar":"الأخلاق وآداب المهنة"},"PHC212":{"en":"Health Education Concepts","ar":"مفاهيم التثقيف الصحي وتعزيزه"},"HCI111":{"en":"Intro to Health Informatics","ar":"مقدمة في المعلوماتية الصحية"},"IT352":{"en":"Human–Computer Interaction","ar":"تفاعل الإنسان مع الحاسوب"},"IT353":{"en":"Systems Analysis & Design","ar":"تحليل وتصميم النظم"},"HCM213":{"en":"Healthcare Financial Management","ar":"الإدارة المالية للرعاية الصحية"},"PHC216":{"en":"Healthcare Ethics & Regulations","ar":"الأخلاقيات والأنظمة في الرعاية الصحية"},"PHC215":{"en":"Research Methods","ar":"طرق البحث والتحليل"},"IT361":{"en":"Web Technologies","ar":"تقنيات الويب"},"IT362":{"en":"IT Project Management","ar":"إدارة مشاريع تقنية المعلومات"},"HCI112":{"en":"Electronic Health Records","ar":"السجلات الصحية الإلكترونية"},"PHC312":{"en":"Health Communication","ar":"الاتصال الصحي"},"ISLAM103":{"en":"Islamic Economic System","ar":"النظام الاقتصادي في الإسلام"},"IT475":{"en":"Decision Support Systems","ar":"نظم دعم القرارات"},"HCI214":{"en":"Consumer Health Informatics","ar":"معلوماتية المستخدمين"},"IT476":{"en":"IT Security & Policies","ar":"تقنية وسياسات أمن المعلومات"},"HCI213":{"en":"Medical Coding & Billing","ar":"الترميز والفواتير الطبية"},"ISLAM104":{"en":"Islamic Social System","ar":"النظام الاجتماعي وحقوق الإنسان"},"HCI314":{"en":"Public Health Informatics","ar":"معلوماتية الصحة العامة"},"HCI315":{"en":"Telemedicine","ar":"الرعاية الصحية عن بعد"},"HCI316":{"en":"e-Health","ar":"الصحة الإلكترونية"},"Elective1":{"en":"Elective Course 1","ar":"مقرر اختياري 1"},"Elective2":{"en":"Elective Course 2","ar":"مقرر اختياري 2"},"IT233":{"en":"Computer Organization","ar":"تنظيم الحاسوب"},"MATH150":{"en":"Discrete Mathematics","ar":"الرياضيات المتقطعة"},"SCI101":{"en":"General Physics 1","ar":"فيزياء عامة 1"},"IT241":{"en":"Operating Systems","ar":"أنظمة التشغيل"},"ENG103":{"en":"Technical Writing","ar":"الكتابة الفنية"},"MATH251":{"en":"Linear Algebra","ar":"الجبر الخطي"},"SCI201":{"en":"General Physics 2","ar":"فيزياء عامة 2"},"IT354":{"en":"Database Management Systems","ar":"إدارة قواعد البيانات"},"IT363":{"en":"Network Management","ar":"إدارة الشبكات"},"IT364":{"en":"IT Entrepreneurship and Innovation","ar":"ريادة الأعمال التقنية"},"IT365":{"en":"Enterprise Systems","ar":"الأنظمة المؤسسية"},"IT471":{"en":"Information Security","ar":"أمن المعلومات"},"IT472":{"en":"Cloud Computing","ar":"الحوسبة السحابية"},"IT473":{"en":"Mobile Application Development","ar":"تطوير تطبيقات الجوال"},"IT474":{"en":"Data Mining","ar":"تنقيب البيانات"},"IT481":{"en":"Cybersecurity Management","ar":"إدارة الأمن السيبراني"},"IT482":{"en":"Artificial Intelligence","ar":"الذكاء الاصطناعي"},"IT483":{"en":"Big Data Analytics","ar":"تحليل البيانات الضخمة"},"IT484":{"en":"Internet of Things","ar":"إنترنت الأشياء"},"IT485":{"en":"Capstone Project","ar":"مشروع التخرج"},"CS230":{"en":"Object Oriented Programming","ar":"البرمجة كائنية التوجه"},"CS231":{"en":"Digital Logic Design","ar":"تصميم المنطق الرقمي"},"CS240":{"en":"Data Structure","ar":"هياكل البيانات"},"CS241":{"en":"Computer Architecture and Organization","ar":"معمارية وتنظيم الحاسوب"},"CS242":{"en":"Theory of Computing","ar":"نظرية الحوسبة"},"CS243":{"en":"Discrete Mathematics for CS","ar":"الرياضيات المتقطعة لعلوم الحاسب"},"CS350":{"en":"Introduction to Database","ar":"مقدمة في قواعد البيانات"},"CS351":{"en":"Operating Systems","ar":"أنظمة التشغيل"},"CS352":{"en":"System Analysis and Design","ar":"تحليل وتصميم النظم"},"CS353":{"en":"Design and Analysis of Algorithms","ar":"تصميم وتحليل الخوارزميات"},"CS360":{"en":"Computer Networks","ar":"شبكات الحاسب"},"CS361":{"en":"Web Programming","ar":"برمجة الويب"},"CS362":{"en":"Artificial Intelligence","ar":"الذكاء الاصطناعي"},"CS363":{"en":"Principles of Programming Languages","ar":"مبادئ لغات البرمجة"},"CS364":{"en":"Computing Entrepreneurship and Innovation","ar":"ريادة الأعمال والابتكار في الحوسبة"},"CS470":{"en":"Human Computer Interaction","ar":"التفاعل بين الإنسان والحاسوب"},"CS471":{"en":"Computer Security","ar":"أمن الحاسوب"},"CS479":{"en":"Senior Project 1","ar":"مشروع التخرج 1"},"CS480":{"en":"Project Management in Computing","ar":"إدارة المشاريع الحاسوبية"},"CS481":{"en":"Professional Ethics in Computer Science","ar":"الأخلاقيات المهنية في علوم الحاسب"},"CS489":{"en":"Senior Project 2","ar":"مشروع التخرج 2"},"CS499":{"en":"Practical Training","ar":"التدريب العملي"},"DS230":{"en":"Object Oriented Programming","ar":"البرمجة كائنية التوجه"},"DS231":{"en":"Introduction to Data Science Programming","ar":"مقدمة في برمجة علوم البيانات"},"DS240":{"en":"Data Structure","ar":"هياكل البيانات"},"MATH241":{"en":"Advanced Mathematics","ar":"الرياضيات المتقدمة"},"DS242":{"en":"Advanced Data Science Programming","ar":"برمجة علوم البيانات المتقدمة"},"DS243":{"en":"Computer Architecture and Organization","ar":"معمارية وتنظيم الحاسوب"},"DS350":{"en":"Introduction to Database","ar":"مقدمة في قواعد البيانات"},"DS351":{"en":"Operating Systems","ar":"أنظمة التشغيل"},"STAT202":{"en":"Introduction to Statistics and Probabilities","ar":"مقدمة في الإحصاء والاحتمالات"},"DS352":{"en":"Design and Analysis of Algorithms","ar":"تصميم وتحليل الخوارزميات"},"DS353":{"en":"Project Management in Computing","ar":"إدارة المشاريع الحاسوبية"},"DS360":{"en":"Computer Networks","ar":"شبكات الحاسب"},"DS361":{"en":"System Analysis and Design","ar":"تحليل وتصميم النظم"},"DS362":{"en":"Web Programming","ar":"برمجة الويب"},"DS363":{"en":"Artificial Intelligence","ar":"الذكاء الاصطناعي"},"DS364":{"en":"Data Curation (Management and Organization)","ar":"تنظيم وإدارة البيانات"},"DS470":{"en":"Data Security and Privacy","ar":"أمن البيانات والخصوصية"},"DS471":{"en":"Machine Learning","ar":"تعلم الآلة"},"DS472":{"en":"Data Mining","ar":"تنقيب البيانات"},"DS479":{"en":"Senior Project 1","ar":"مشروع التخرج 1"},"DS480":{"en":"Data Visualization","ar":"تصوير البيانات"},"DS481":{"en":"Professional Ethics in Data Science","ar":"الأخلاقيات المهنية في علوم البيانات"},"DS489":{"en":"Senior Project 2","ar":"مشروع التخرج 2"},"DS499":{"en":"Practical Training","ar":"التدريب العملي"}};
+
+/* Normalisation helpers for forgiving lookups. */
+function _normEn(s){ return (s||'').toLowerCase().replace(/&amp;/g,'&').replace(/\s+/g,' ').trim(); }
+function _normAr(s){ return (s||'').replace(/[ً-ٰٟ]/g,'').replace(/أ|إ/g,'ا').replace(/ة/g,'ه').replace(/\s+/g,' ').trim(); }
+
+/* Reverse indexes (built once). */
+const _EN_TO_CODE = new Map();
+const _AR_TO_CODE = new Map();
+for (const _code in COURSE_DICTIONARY) {
+  const _e = COURSE_DICTIONARY[_code];
+  _EN_TO_CODE.set(_normEn(_e.en), _code);
+  _AR_TO_CODE.set(_normAr(_e.ar), _code);
+}
+
+/** Resolve Arabic name by code first, then by English name. Returns '' if unknown. */
+function resolveArabicName(code, englishName) {
+  if (code) {
+    const e = COURSE_DICTIONARY[code.toUpperCase()];
+    if (e && e.ar) return e.ar;
+  }
+  if (englishName) {
+    const c = _EN_TO_CODE.get(_normEn(englishName));
+    if (c) { const e2 = COURSE_DICTIONARY[c]; if (e2 && e2.ar) return e2.ar; }
+  }
+  return '';
+}
+
+const DAY_MAP = {
+  "sunday": { index: 0, ar: "الأحد" },
+  "monday": { index: 1, ar: "الاثنين" },
+  "tuesday": { index: 2, ar: "الثلاثاء" },
+  "wednesday": { index: 3, ar: "الأربعاء" },
+  "thursday": { index: 4, ar: "الخميس" },
+  "friday": { index: 5, ar: "الجمعة" },
+  "saturday": { index: 6, ar: "السبت" },
+  "الأحد": { index: 0, ar: "الأحد" },
+  "الإثنين": { index: 1, ar: "الاثنين" },
+  "الاثنين": { index: 1, ar: "الاثنين" },
+  "الثلاثاء": { index: 2, ar: "الثلاثاء" },
+  "الأربعاء": { index: 3, ar: "الأربعاء" },
+  "الخميس": { index: 4, ar: "الخميس" },
+  "الجمعة": { index: 5, ar: "الجمعة" },
+  "السبت": { index: 6, ar: "السبت" },
+};
+
+function normalizeDay(raw) {
+  return raw.trim()
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/\u0623|\u0625/g, "\u0627")
+    .replace(/\u0629/g, "\u0647");
+}
+function lookupDay(dataName) {
+  const key = normalizeDay(dataName).toLowerCase();
+  if (DAY_MAP[key]) return DAY_MAP[key];
+  if (DAY_MAP[dataName.trim()]) return DAY_MAP[dataName.trim()];
+  return null;
+}
+
+/* --- byte helpers (browser equivalents of Node Buffer latin1/utf8) --- */
+function bytesToLatin1(bytes) {
+  let s = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    s += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return s;
+}
+function latin1ToBytes(str) {
+  const bytes = new Uint8Array(str.length);
+  for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i) & 0xff;
+  return bytes;
+}
+function decodeUtf8(bytes) {
+  return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+}
+function decodeBase64ToBytes(b64) {
+  const bin = atob(b64.replace(/\s+/g, ""));
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+
+/* --- MHT detection & extraction --- */
+function isMht(bytes) {
+  const head = bytesToLatin1(bytes.slice(0, 512)).toLowerCase();
+  return head.startsWith("from:") ||
+    head.includes("mime-version") ||
+    head.includes("content-transfer-encoding") ||
+    head.includes("multipart/related");
+}
+
+function decodeQuotedPrintable(latin) {
+  let out = "";
+  for (let i = 0; i < latin.length; i++) {
+    const ch = latin[i];
+    if (ch === "=") {
+      const next = latin[i + 1];
+      if (next === "\n") { i++; continue; }
+      if (next === "\r") { i++; if (latin[i + 1] === "\n") i++; continue; }
+      const hex = latin.substr(i + 1, 2);
+      if (/^[0-9A-Fa-f]{2}$/.test(hex)) {
+        out += String.fromCharCode(parseInt(hex, 16));
+        i += 2;
+      } else {
+        out += ch;
+      }
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+function extractHtmlFromMht(bytes) {
+  const headStr = bytesToLatin1(bytes.slice(0, 1024));
+  const bMatch = headStr.match(/boundary="([^"]+)"/i);
+  if (!bMatch) return null;
+  const boundary = "--" + bMatch[1];
+  const latin = bytesToLatin1(bytes);
+  const parts = latin.split(boundary);
+  for (const part of parts) {
+    const headerEnd = part.indexOf("\r\n\r\n");
+    const headerEndAlt = part.indexOf("\n\n");
+    const hEnd = headerEnd !== -1 ? headerEnd : headerEndAlt;
+    if (hEnd === -1) continue;
+    const headers = part.slice(0, hEnd);
+    if (!/content-type:\s*text\/html/i.test(headers)) continue;
+    let body = part.slice(hEnd === headerEnd ? headerEnd + 4 : headerEndAlt + 2);
+    body = body.replace(/^\r?\n/, "").replace(/\r?\n$/, "");
+    const encMatch = headers.match(/content-transfer-encoding:\s*([^\r\n]+)/i);
+    const encoding = encMatch ? encMatch[1].trim().toLowerCase() : "binary";
+    let bodyBytes;
+    if (encoding === "base64") {
+      bodyBytes = decodeBase64ToBytes(body);
+    } else if (encoding === "quoted-printable") {
+      bodyBytes = latin1ToBytes(decodeQuotedPrintable(body));
+    } else {
+      bodyBytes = latin1ToBytes(body);
+    }
+    return decodeUtf8(bodyBytes);
+  }
+  return null;
+}
+
+/* --- text helpers --- */
+function squeeze(s) {
+  return s.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
+}
+function toMinutes(h, m, mer) {
+  let hour = h;
+  const mLow = mer.toLowerCase();
+  if (mLow === "pm" || mer.includes("مساء")) { if (hour !== 12) hour += 12; }
+  else if (mLow === "am" || mer.includes("صباح")) { if (hour === 12) hour = 0; }
+  return hour * 60 + m;
+}
+const MERIDIEM_AR = { pm: "مساءً", am: "صباحاً" };
+function normalizeMeridiem(mer) {
+  const m = mer.trim().toLowerCase();
+  if (m === "pm" || m === "مساءً" || m === "مساء") return "pm";
+  if (m === "am" || m === "صباحاً" || m === "صباح") return "am";
+  return m;
+}
+function deriveCodePrefix(subject) {
+  const key = subject.trim();
+  if (SUBJECT_CODE_MAP[key]) return SUBJECT_CODE_MAP[key];
+  const stop = new Set(["and", "&", "of", "to", "in", "the", "for", "or"]);
+  const initials = key.split(/\s+/).filter(w => w && !stop.has(w.toLowerCase()))
+    .map(w => w[0] ? w[0].toUpperCase() : "").join("").slice(0, 4);
+  return initials || "CRS";
+}
+function parseSubjectSection(raw) {
+  const text = squeeze(raw.replace(/&amp;/g, "&"));
+  const m = text.match(/^(.*?)\s+(\d+)\s+(?:Section|الشعبة)\s+(\d+)$/i);
+  if (m) return { subject: m[1].trim(), number: m[2], section: m[3] };
+  const m2 = text.match(/^(.*?)\s+(\d+)(?:\s+(?:Section|الشعبة)\s+(\d+))?$/i);
+  if (m2) return { subject: m2[1].trim(), number: m2[2], section: m2[3] || "0" };
+  return { subject: text, number: "", section: "0" };
+}
+
+/* --- main parse entry --- */
+function parseSchedule(arrayBuffer, fileName) {
+  const warnings = [];
+  const bytes = new Uint8Array(arrayBuffer);
+  let html;
+  if (isMht(bytes)) {
+    html = extractHtmlFromMht(bytes);
+    if (!html) throw new Error("تعذّر العثور على قسم HTML داخل ملف MHT. تأكد من صحة الملف.");
+  } else {
+    html = decodeUtf8(bytes);
+  }
+
+  const doc = new DOMParser().parseFromString(html, "text/html");
+
+  // language detection
+  function detectLanguage() {
+    const firstLi = doc.querySelector(".list-view-pillbox li");
+    const firstDay = firstLi ? (firstLi.getAttribute("data-name") || "") : "";
+    if (/[\u0600-\u06FF]/.test(firstDay)) return "ar";
+    const bold = doc.querySelector(".listViewMeetingInformation span.bold");
+    const boldText = bold ? bold.textContent.trim() : "";
+    if (/النوع|المبنى|الغرفة|الموقع/.test(boldText)) return "ar";
+    return "en";
+  }
+  const language = detectLanguage();
+
+  const termEl = doc.querySelector(".schedule-list-view-title-text");
+  const term = termEl ? squeeze(termEl.textContent) : "جدول المحاضرات الأسبوعي";
+
+  let blocks = doc.querySelectorAll("#scheduleListViewWrapper .listViewWrapper");
+  if (blocks.length === 0) blocks = doc.querySelectorAll(".listViewWrapper");
+
+  const rows = [];
+  let meetingCount = 0, skippedExams = 0, courseCount = 0;
+
+  blocks.forEach(block => {
+    const titleEl = block.querySelector(".list-view-course-title a.section-details-link");
+    let courseNameEn = titleEl ? squeeze(titleEl.textContent) : "";
+    if (titleEl) {
+      const stDetail = titleEl.querySelector("span.section-time-details");
+      if (stDetail) stDetail.remove();
+      courseNameEn = squeeze(titleEl.textContent) || courseNameEn;
+    }
+    const subjEl = block.querySelector(".list-view-subj-course-section");
+    const subjRaw = subjEl ? squeeze(subjEl.textContent) : "";
+    const { subject, number } = parseSubjectSection(subjRaw);
+    const codePrefix = deriveCodePrefix(subject);
+    const courseCode = number ? codePrefix + number : codePrefix;
+    // Arabic name lookup — prefer the authoritative course dictionary
+    // (keyed by code, 282 SEU courses), then fall back to English-name match.
+    const courseNameAr =
+      resolveArabicName(courseCode, courseNameEn) ||
+      "";
+    courseCount++;
+
+    const meetingInfo = block.querySelector(".listViewMeetingInformation");
+    if (!meetingInfo) { warnings.push("لا توجد مواعيد للمقرر: " + courseNameEn); return; }
+
+    const innerHtml = meetingInfo.innerHTML || "";
+    const chunks = innerHtml.split(/<br\s*\/?>/i).map(c => c.trim()).filter(c => c.length > 0);
+
+    for (const chunk of chunks) {
+      const chunkDoc = new DOMParser().parseFromString("<body>" + chunk + "</body>", "text/html");
+      const activeDays = [];
+      chunkDoc.querySelectorAll("li.ui-state-highlight").forEach(li => {
+        const dn = li.getAttribute("data-name") || "";
+        const day = lookupDay(dn);
+        if (day && !activeDays.some(d => d.index === day.index)) activeDays.push(day);
+      });
+      if (activeDays.length === 0) continue;
+
+      // remove pillbox + meetingTimes to clean the text
+      chunkDoc.querySelectorAll(".list-view-pillbox, .meetingTimes").forEach(e => e.remove());
+      const chunkText = squeeze(chunkDoc.body.textContent || "");
+
+      const typeMatch = chunkText.match(/(?:Type:|النوع:)\s*(.+?)\s*(?:Location:|الموقع:)/);
+      const typeRaw = typeMatch ? squeeze(typeMatch[1]) : "";
+      const typeLower = typeRaw.toLowerCase();
+      if (typeLower.includes("exam") || typeRaw.includes("اختبار") || typeRaw.includes("نهائي") || typeRaw.includes("نصفي")) {
+        skippedExams++; continue;
+      }
+      if (typeLower !== "class" && !typeLower.includes("virtual")) {
+        skippedExams++; continue;
+      }
+      const isVirtual = typeLower.includes("virtual");
+      const typeAr = isVirtual ? "عن بُعد" : "حضوري";
+      const typeEn = isVirtual ? "Virtual Class" : "Class";
+      meetingCount++;
+
+      const timeMatch = chunkText.match(/(\d{1,2}):(\d{2})\s*(AM|PM|مساءً?|صباحاً?)\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM|مساءً?|صباحاً?)/i);
+      let timeStr = "—", startMin = 0, endMin = 0;
+      if (timeMatch) {
+        const sh = parseInt(timeMatch[1], 10), sm = parseInt(timeMatch[2], 10);
+        const smer = normalizeMeridiem(timeMatch[3]);
+        const eh = parseInt(timeMatch[4], 10), em = parseInt(timeMatch[5], 10);
+        const emer = normalizeMeridiem(timeMatch[6]);
+        startMin = toMinutes(sh, sm, smer);
+        endMin = toMinutes(eh, em, emer);
+        const pad = n => String(n).padStart(2, "0");
+        if (smer === emer) {
+          timeStr = pad(sh) + ":" + pad(sm) + "–" + pad(eh) + ":" + pad(em) + " " + MERIDIEM_AR[smer];
+        } else {
+          timeStr = pad(sh) + ":" + pad(sm) + " " + MERIDIEM_AR[smer] + " – " + pad(eh) + ":" + pad(em) + " " + MERIDIEM_AR[emer];
+        }
+      } else {
+        warnings.push("تعذّر قراءة وقت المحاضرة للمقرر: " + courseNameEn);
+      }
+
+      const bMatch = chunkText.match(/(?:Building:|المبنى:)\s*(.+?)\s*(?:Room:|الغرفة:)/);
+      const rMatch = chunkText.match(/(?:Room:|الغرفة:)\s*(.+?)\s*$/);
+      let building = bMatch ? squeeze(bMatch[1]) : "";
+      let room = rMatch ? squeeze(rMatch[1]) : "";
+      const isNone = v => !v || v.toLowerCase() === "none" || v === "لا يوجد" || v === "—" || v === "-";
+      let locationDisplay;
+      if (isVirtual) { locationDisplay = "—"; building = ""; room = ""; }
+      else if (isNone(building) && isNone(room)) { locationDisplay = "لا يوجد"; building = ""; room = ""; }
+      else {
+        building = isNone(building) ? "" : building;
+        room = isNone(room) ? "" : room;
+        if (building && room) locationDisplay = "المبنى: " + building + "\nالقاعة: " + room;
+        else if (building) locationDisplay = "المبنى: " + building;
+        else if (room) locationDisplay = "القاعة: " + room;
+        else locationDisplay = "لا يوجد";
+      }
+
+      activeDays.forEach(day => {
+        rows.push({
+          dayIndex: day.index, dayName: day.ar, time: timeStr,
+          startTimeMin: startMin, endTimeMin: endMin,
+          courseCode, courseNameEn, courseNameAr,
+          type: typeAr, typeEn, building, room, locationDisplay,
+        });
+      });
+    }
+  });
+
+  rows.sort((a, b) => {
+    if (a.dayIndex !== b.dayIndex) return a.dayIndex - b.dayIndex;
+    if (a.startTimeMin !== b.startTimeMin) return a.startTimeMin - b.startTimeMin;
+    return a.courseCode.localeCompare(b.courseCode);
+  });
+
+  return { rows, meta: { term, courseCount, meetingCount, skippedExams, language, fileName }, warnings };
+}
+
+/* ============================================================================
+ *  UI logic
+ * ========================================================================== */
+const $ = id => document.getElementById(id);
+let currentResult = null;
+
+/* --- Toast --- */
+function toast(msg, type, desc) {
+  const t = document.createElement("div");
+  t.className = "toast " + (type || "");
+  t.innerHTML = "<span>" + msg + "</span>" + (desc ? "<span class='toast-desc'>" + desc + "</span>" : "");
+  $("toastContainer").appendChild(t);
+  setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .3s"; setTimeout(() => t.remove(), 300); }, 3500);
+}
+
+/* --- Upload --- */
+const fileInput = $("fileInput");
+const uploadCard = $("uploadCard");
+const uploadIcon = $("uploadIcon");
+const uploadTitle = $("uploadTitle");
+const uploadSub = $("uploadSub");
+
+$("pickBtn").addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", e => { const f = e.target.files[0]; if (f) handleFile(f); });
+
+["dragenter", "dragover"].forEach(ev => uploadCard.addEventListener(ev, e => {
+  e.preventDefault(); uploadCard.classList.add("dragging");
+  uploadTitle.textContent = "أفلت الملف هنا";
+}));
+["dragleave", "drop"].forEach(ev => uploadCard.addEventListener(ev, e => {
+  e.preventDefault(); uploadCard.classList.remove("dragging");
+  uploadTitle.textContent = "اسحب وأفلت ملف الجدول هنا";
+}));
+uploadCard.addEventListener("drop", e => {
+  const f = e.dataTransfer.files[0]; if (f) handleFile(f);
+});
+
+function handleFile(file) {
+  const lower = file.name.toLowerCase();
+  if (![".html", ".htm", ".mht", ".mhtml"].some(ext => lower.endsWith(ext))) {
+    toast("صيغة الملف غير مدعومة", "error", "يُسمح فقط بـ .html / .htm / .mht / .mhtml");
+    return;
+  }
+  setLoading(true);
+  file.arrayBuffer().then(buf => {
+    try {
+      const result = parseSchedule(buf, file.name);
+      if (result.rows.length === 0) {
+        throw new Error('لم يتم العثور على أي محاضرات (Class / Virtual Class) في الملف. تأكد من أن الملف هو صفحة "View Registration Information" من نظام Banner.');
+      }
+      currentResult = result;
+      renderResults(result, file.name);
+      showView("results");
+      toast("تم استخراج الجدول بنجاح", "success", result.rows.length + " محاضرة — " + result.meta.courseCount + " مقرر");
+    } catch (e) {
+      showError(e.message, file.name);
+      toast("تعذّر استخراج الجدول", "error", e.message);
+    } finally {
+      setLoading(false);
+    }
+  }).catch(e => {
+    setLoading(false);
+    showError("فشل قراءة الملف: " + e.message, file.name);
+  });
+}
+
+function setLoading(loading) {
+  if (loading) {
+    uploadIcon.innerHTML = '<div class="spinner"></div>';
+    uploadTitle.textContent = "جارٍ تحليل الملف...";
+    uploadSub.textContent = "يتم استخراج المحاضرات وترتيبها";
+  } else {
+    uploadIcon.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+    uploadTitle.textContent = "اسحب وأفلت ملف الجدول هنا";
+    uploadSub.textContent = "أو انقر لاختيار ملف من جهازك";
+  }
+}
+
+function showView(view) {
+  $("uploadView").classList.toggle("hidden", view !== "upload");
+  $("resultsView").classList.toggle("hidden", view !== "results");
+  $("errorView").classList.toggle("hidden", view !== "error");
+}
+
+function showError(msg, fileName) {
+  $("errorMsg").textContent = msg;
+  showView("error");
+}
+
+/* --- Render results table --- */
+function renderResults(result, fileName) {
+  $("resFileName").textContent = fileName;
+  const meta = result.meta;
+  const inPerson = result.rows.filter(r => r.typeEn === "Class").length;
+  const virtual = result.rows.filter(r => r.typeEn === "Virtual Class").length;
+
+  const statsHtml = [
+    { icon: gradIcon(), lbl: "المقررات", val: meta.courseCount, cls: "stat-gold" },
+    { icon: calIcon(), lbl: "المحاضرات", val: result.rows.length, cls: "stat-teal" },
+    { icon: gradIcon(), lbl: "حضوري", val: inPerson, cls: "stat-green" },
+    { icon: globeIcon(), lbl: "عن بُعد", val: virtual, cls: "stat-sky" },
+  ].map(s => '<div class="stat-card ' + s.cls + '"><div class="stat-icon">' + s.icon + '</div><div><div class="stat-val">' + s.val + '</div><div class="stat-lbl">' + s.lbl + '</div></div></div>').join("");
+  $("statsGrid").innerHTML = statsHtml;
+
+  const skipNote = $("skipNote");
+  if (meta.skippedExams > 0) {
+    skipNote.classList.remove("hidden");
+    skipNote.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>تم تجاهل ' + meta.skippedExams + ' موعد اختبار (Mid / Final Exam).';
+  } else {
+    skipNote.classList.add("hidden");
+  }
+
+  // group by day
+  const groups = [];
+  for (const row of result.rows) {
+    let g = groups.find(x => x.dayIndex === row.dayIndex);
+    if (!g) { g = { dayName: row.dayName, dayIndex: row.dayIndex, rows: [] }; groups.push(g); }
+    g.rows.push(row);
+  }
+  groups.sort((a, b) => a.dayIndex - b.dayIndex);
+
+  let tbody = "";
+  groups.forEach((group, gi) => {
+    group.rows.forEach((row, i) => {
+      const isInPerson = row.typeEn === "Class";
+      const isLastInGroup = i === group.rows.length - 1;
+      const isLastGroup = gi === groups.length - 1;
+      const divider = isLastInGroup && !isLastGroup ? " day-divider" : "";
+      const dayCell = i === 0 ? '<td class="day-cell" rowspan="' + group.rows.length + '">' + group.dayName + '</td>' : "";
+      const arCell = row.courseNameAr
+        ? '<div class="ar">' + escapeHtml(row.courseNameAr) + '</div>'
+        : '<div class="ar-none">—</div>';
+      const typePill = isInPerson
+        ? '<span class="type-pill type-inperson">' + gradIcon(14) + 'حضوري</span>'
+        : '<span class="type-pill type-virtual">' + globeIcon(14) + 'عن بُعد</span>';
+      let locCell;
+      if (row.locationDisplay === "—") locCell = '<span style="color:#94a3b8;">—</span>';
+      else if (row.locationDisplay === "لا يوجد") locCell = '<span style="font-size:12px;color:#64748b;">لا يوجد</span>';
+      else locCell = '<div style="white-space:pre-line;font-size:12px;font-weight:500;color:#475569;">' + escapeHtml(row.locationDisplay) + '</div>';
+      tbody += '<tr class="' + (isInPerson ? "row-inperson" : "row-virtual") + divider + '">' +
+        dayCell +
+        '<td class="time-cell">' + row.time + '</td>' +
+        '<td class="code-cell">' + row.courseCode + '</td>' +
+        '<td class="course-cell"><div class="en">' + escapeHtml(row.courseNameEn) + '</div>' + arCell + '</td>' +
+        '<td class="type-cell">' + typePill + '</td>' +
+        '<td class="loc-cell">' + locCell + '</td>' +
+        '</tr>';
+    });
+  });
+
+  $("printable-schedule").innerHTML =
+    '<div class="schedule-wrap">' +
+      '<img class="schedule-header-img" src="assets/table_header.webp" alt="جدول المحاضرات الأسبوعي — منصة معين">' +
+      '<div class="schedule-subtitle">جدول المحاضرات الأسبوعي</div>' +
+      '<div class="schedule-scroll"><table class="schedule-table"><thead><tr>' +
+        '<th>اليوم</th><th>التوقيت</th><th>رمز المقرر</th><th>المقرر</th><th>نوع المحاضرة</th><th>المبنى / القاعة</th>' +
+      '</tr></thead><tbody>' + tbody + '</tbody></table></div>' +
+      '<img class="schedule-footer-img" src="assets/table_footer.webp" alt="منصة معين — للدعم والمساعدة">' +
+    '</div>';
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function gradIcon(s) { const sz = s || 16; return '<svg width="' + sz + '" height="' + sz + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>'; }
+function globeIcon(s) { const sz = s || 16; return '<svg width="' + sz + '" height="' + sz + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'; }
+function calIcon(s) { const sz = s || 16; return '<svg width="' + sz + '" height="' + sz + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'; }
+
+/* --- Action buttons --- */
+$("printBtn").addEventListener("click", () => window.print());
+
+$("imgBtn").addEventListener("click", async () => {
+  const el = $("printable-schedule");
+  if (!el) return;
+  toast("جارٍ إنشاء الصورة...", "");
+  try {
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    // Use SVG foreignObject -> canvas approach (no external libs)
+    const dataUrl = await nodeToPng(el, 2);
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "جدول-المحاضرات-" + new Date().toISOString().slice(0, 10) + ".png";
+    a.click();
+    toast("تم تحميل الصورة", "success");
+  } catch (e) {
+    toast("فشل إنشاء الصورة", "error", e.message);
+  }
+});
+
+/* PNG export via SVG foreignObject + canvas (self-contained, no CDN). */
+async function nodeToPng(node, scale) {
+  scale = scale || 2;
+  const rect = node.getBoundingClientRect();
+  const w = Math.ceil(rect.width);
+  const h = Math.ceil(node.scrollHeight);
+  // Clone node, inline styles
+  const clone = node.cloneNode(true);
+  clone.style.transform = "none";
+  const wrapper = document.createElement("div");
+  wrapper.appendChild(clone);
+  const htmlStr = wrapper.innerHTML;
+  const svgStr =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w * scale) + '" height="' + (h * scale) + '">' +
+    '<foreignObject x="0" y="0" width="100%" height="100%" transform="scale(' + scale + ')">' +
+    '<div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="width:' + w + 'px;height:' + h + 'px;font-family:Cairo,Tahoma,sans-serif;">' +
+    htmlStr +
+    "</div></foreignObject></svg>";
+  const svgBlob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
+  const svgUrl = URL.createObjectURL(svgBlob);
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = w * scale;
+      canvas.height = h * scale;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(svgUrl);
+      try { resolve(canvas.toDataURL("image/png")); }
+      catch (e) { reject(new Error("تعذّر تصدير الصورة (قد يكون بسبب قيود الأمان على الصور المضمّنة). جرّب زر الطباعة.")); }
+    };
+    img.onerror = () => { URL.revokeObjectURL(svgUrl); reject(new Error("تعذّر تحويل الجدول إلى صورة.")); };
+    img.src = svgUrl;
+  });
+}
+
+$("csvBtn").addEventListener("click", () => {
+  if (!currentResult) return;
+  const esc = v => { const s = String(v == null ? "" : v); if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"'; return s; };
+  const header = ["اليوم", "الوقت", "رمز المقرر", "المقرر", "النوع", "المبنى/القاعة"];
+  const lines = [header.join(",")];
+  for (const r of currentResult.rows) {
+    const courseCell = r.courseNameEn + "\n" + (r.courseNameAr || "—");
+    const loc = r.locationDisplay.replace(/\n/g, " ");
+    lines.push([esc(r.dayName), esc(r.time), esc(r.courseCode), esc(courseCell), esc(r.type), esc(loc)].join(","));
+  }
+  const blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "table_" + new Date().toISOString().slice(0, 8).replace(/-/g, "") + ".csv";
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("تم تحميل ملف CSV", "success");
+});
+
+$("resetBtn").addEventListener("click", () => {
+  currentResult = null;
+  fileInput.value = "";
+  showView("upload");
+});
+$("retryBtn").addEventListener("click", () => {
+  currentResult = null;
+  fileInput.value = "";
+  showView("upload");
+});
+
+/* --- Share dropdown --- */
+const shareDropdown = $("shareDropdown");
+const shareToggle = $("shareToggle");
+const shareMenu = $("shareMenu");
+const shareChevron = $("shareChevron");
+
+shareToggle.addEventListener("click", e => {
+  e.stopPropagation();
+  const isOpen = !shareMenu.classList.contains("hidden");
+  shareMenu.classList.toggle("hidden");
+  shareToggle.setAttribute("aria-expanded", !isOpen);
+  shareChevron.style.transform = !isOpen ? "rotate(180deg)" : "rotate(0)";
+});
+document.addEventListener("click", e => {
+  if (!shareDropdown.contains(e.target)) {
+    shareMenu.classList.add("hidden");
+    shareToggle.setAttribute("aria-expanded", "false");
+    shareChevron.style.transform = "rotate(0)";
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    shareMenu.classList.add("hidden");
+    shareToggle.setAttribute("aria-expanded", "false");
+    shareChevron.style.transform = "rotate(0)";
+  }
+});
+
+shareMenu.querySelectorAll(".maeen-share-option").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const action = btn.getAttribute("data-share");
+    const url = window.location.href;
+    const text = "مستخرج الجدول الأسبوعي — منصة معين";
+    shareMenu.classList.add("hidden");
+    shareToggle.setAttribute("aria-expanded", "false");
+    shareChevron.style.transform = "rotate(0)";
+    if (action === "whatsapp") {
+      window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text) + "%20" + encodeURIComponent(url), "_blank", "noopener,noreferrer");
+    } else if (action === "telegram") {
+      window.open("https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
+    } else if (action === "copy") {
+      copyLink(url);
+    }
+  });
+});
+
+async function copyLink(url) {
+  let ok = false;
+  try { await navigator.clipboard.writeText(url); ok = true; }
+  catch {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy");
+      document.body.removeChild(ta); ok = true;
+    } catch { ok = false; }
+  }
+  if (ok) toast("تم نسخ رابط الصفحة", "success", "يمكنك الآن لصقه ومشاركته في أي مكان.");
+  else toast("تعذّر نسخ الرابط", "error");
+}
+
+/* --- Back button --- */
+$("backBtn").addEventListener("click", () => {
+  if (window.history.length > 1) window.history.back();
+  else window.location.href = "../";
+});
+
+/* --- Video card toggle --- */
+const videoCard = $("videoCard");
+const videoHead = $("videoHead");
+const guideVideo = $("guideVideo");
+function toggleVideo() {
+  const open = videoCard.getAttribute("data-open") === "true";
+  videoCard.setAttribute("data-open", !open);
+  videoHead.setAttribute("aria-expanded", !open);
+  if (!open && guideVideo) { const p = guideVideo.play(); if (p && p.catch) p.catch(() => {}); }
+}
+videoHead.addEventListener("click", toggleVideo);
+videoHead.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleVideo(); } });
+
+/* --- Autoplay video on mount --- */
+if (guideVideo) {
+  const p = guideVideo.play();
+  if (p && p.catch) p.catch(() => {});
+}
+
+/* --- Community cards toggle (two collapsible cards) --- */
+document.querySelectorAll(".maeen-community-card").forEach(card => {
+  const head = card.querySelector(".maeen-community-card__head");
+  if (!head) return;
+  const toggle = () => {
+    const open = card.getAttribute("data-open") === "true";
+    card.setAttribute("data-open", !open);
+    head.setAttribute("aria-expanded", !open);
+  };
+  head.addEventListener("click", e => {
+    // Don't toggle when clicking a button/link inside the header (none here, but safe)
+    if (e.target.closest("a,button")) return;
+    toggle();
+  });
+  head.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+  });
+});
+</script>
+</body>
+</html>
