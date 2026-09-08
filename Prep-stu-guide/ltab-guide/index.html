@@ -529,6 +529,53 @@
         .close-lightbox { position: absolute; top: 20px; right: 35px; color: #ffffff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 10000; }
         .close-lightbox:hover { color: var(--gold); }
 
+
+        /* ===== GUIDE VIDEO ===== */
+        .guide-video-section {
+            margin-top: 28px;
+            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+        .guide-video-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .guide-video-title i { color: var(--gold); }
+        .guide-video-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .guide-video {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            max-height: 75vh;
+            margin: 0 auto;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            background: #000;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            .guide-video-section { padding: 16px; margin-top: 20px; }
+            .guide-video-title { font-size: 1.05rem; }
+            .guide-video-description { font-size: 0.82rem; }
+            .guide-video { border-radius: 12px; max-height: 70vh; }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { padding: 0; }
@@ -824,6 +871,29 @@
                 <i class="fa-solid fa-lightbulb"></i>
                 <span>باتباع هذه الخطوات يمكنك الوصول إلى جدولك الدراسي بسهولة ومتابعة مقرراتك وأوقاتها.</span>
             </div>
+
+            <!-- ===== VIDEO: شرح الوصول إلى الجدول الدراسي ===== -->
+            <section class="guide-video-section" aria-labelledby="guide-video-title">
+                <h2 class="guide-video-title" id="guide-video-title">
+                    <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
+                    شرح طريقة الوصول إلى الجدول الدراسي
+                </h2>
+                <p class="guide-video-description">شاهد الفيديو التوضيحي لمعرفة الخطوات بالتفصيل.</p>
+                <video
+                    class="guide-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    controls
+                    preload="metadata"
+                    aria-label="فيديو توضيحي لطريقة الوصول إلى الجدول الدراسي"
+                >
+                    <source src="./ltab-guide-vedio.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو. يمكنك تحديث المتصفح إلى إصدار أحدث.
+                </video>
+            </section>
+
         </div>
 
         <!-- ===== TAB 2: شرح الجدول ===== -->
