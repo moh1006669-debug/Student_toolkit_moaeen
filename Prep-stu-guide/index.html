@@ -1060,7 +1060,7 @@
       height: 26px;
       background: var(--bg-dark);
       flex-shrink: 0;
-      z-index: 8;
+      z-index: 20;
     }
 
     .header-hero-divider::before {
@@ -1074,9 +1074,9 @@
       box-shadow: 0 0 6px rgba(212, 175, 55, .35);
     }
 
-    .share-btn {
+    .share-btn,
+    .back-home-btn {
       position: absolute;
-      left: 0;
       top: 50%;
       transform: translateY(-50%);
       display: inline-flex;
@@ -1086,14 +1086,114 @@
       color: var(--bg-dark);
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       border: 0;
-      border-radius: 0 10px 10px 0;
       font: 700 13px/1.2 inherit;
       white-space: nowrap;
       box-shadow: 0 3px 12px rgba(212, 175, 55, .38);
       z-index: 2;
+      cursor: pointer;
+      text-decoration: none;
     }
 
-    .share-btn i { font-size: 13px; }
+    .share-btn {
+      left: 0;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .back-home-btn {
+      right: 0;
+      border-radius: 10px 0 0 10px;
+    }
+
+    .share-btn i,
+    .back-home-btn i { font-size: 13px; }
+
+    .share-menu {
+      position: absolute;
+      left: 0;
+      top: calc(50% + 18px);
+      width: 260px;
+      padding: 10px;
+      background: var(--white);
+      border: 1px solid rgba(212, 175, 55, .35);
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 30;
+      direction: rtl;
+    }
+
+    .share-menu.is-open { display: flex; }
+
+    .share-option {
+      width: 100%;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: right;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .share-option i {
+      width: 24px;
+      text-align: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .share-option.whatsapp {
+      background: #effbf3;
+      color: #159447;
+    }
+
+    .share-option.telegram {
+      background: #eef6ff;
+      color: #2463d4;
+    }
+
+    .share-option.copy-link {
+      background: #f5f6f7;
+      color: var(--bg-dark);
+    }
+
+    .share-option:hover {
+      transform: translateY(-1px);
+      filter: brightness(.97);
+    }
+
+    .share-feedback {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(12px);
+      background: var(--bg-dark);
+      color: var(--white);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 2000;
+    }
+
+    .share-feedback.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     .hero {
       border-radius: 0 0 0 0;
@@ -1410,12 +1510,32 @@
       </div>
     </header>
 
-    <!-- ===== الخط الذهبي الفاصل + مشاركة الصفحة ===== -->
+    <!-- ===== الخط الذهبي الفاصل + أزرار الصفحة ===== -->
     <div class="header-hero-divider" aria-hidden="false">
-      <button class="share-btn" type="button" onclick="sharePage()" aria-label="مشاركة الصفحة">
+      <a class="back-home-btn" href="../" aria-label="العودة للرئيسية">
+        <span>العودة للرئيسية</span>
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+
+      <button class="share-btn" type="button" onclick="toggleShareMenu(event)" aria-label="مشاركة الصفحة" aria-expanded="false" aria-controls="shareMenu">
         <i class="fas fa-share-alt" aria-hidden="true"></i>
         <span>مشاركة الصفحة</span>
       </button>
+
+      <div id="shareMenu" class="share-menu" role="menu" aria-hidden="true">
+        <button class="share-option whatsapp" type="button" role="menuitem" onclick="shareViaWhatsApp()">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <span>مشاركة عبر واتساب</span>
+        </button>
+        <button class="share-option telegram" type="button" role="menuitem" onclick="shareViaTelegram()">
+          <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+          <span>مشاركة عبر تليجرام</span>
+        </button>
+        <button class="share-option copy-link" type="button" role="menuitem" onclick="copyPageLink()">
+          <i class="fas fa-link" aria-hidden="true"></i>
+          <span>نسخ الرابط</span>
+        </button>
+      </div>
     </div>
 
     <!-- ============================================================
@@ -1760,18 +1880,106 @@
       measureGuidanceTabs();
     })();
 
-    function sharePage() {
-      const shareData = {
-        title: document.title,
-        text: 'دليل وتعليمات الطالب المستجد - منصة معين',
-        url: window.location.href
-      };
-      if (navigator.share) {
-        navigator.share(shareData).catch(() => {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href).catch(() => {});
-      }
+    function getPageShareUrl() {
+      return window.location.href;
     }
+
+    function toggleShareMenu(event) {
+      if (event) event.stopPropagation();
+      const menu = document.getElementById('shareMenu');
+      const button = document.querySelector('.share-btn');
+      if (!menu || !button) return;
+
+      const willOpen = !menu.classList.contains('is-open');
+      menu.classList.toggle('is-open', willOpen);
+      menu.setAttribute('aria-hidden', String(!willOpen));
+      button.setAttribute('aria-expanded', String(willOpen));
+    }
+
+    function closeShareMenu() {
+      const menu = document.getElementById('shareMenu');
+      const button = document.querySelector('.share-btn');
+      if (!menu || !button) return;
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      button.setAttribute('aria-expanded', 'false');
+    }
+
+    function shareViaWhatsApp() {
+      const url = encodeURIComponent(getPageShareUrl());
+      const text = encodeURIComponent(document.title + '\n' + getPageShareUrl());
+      window.open('https://wa.me/?text=' + text, '_blank', 'noopener,noreferrer');
+      closeShareMenu();
+    }
+
+    function shareViaTelegram() {
+      const url = encodeURIComponent(getPageShareUrl());
+      const text = encodeURIComponent(document.title);
+      window.open('https://t.me/share/url?url=' + url + '&text=' + text, '_blank', 'noopener,noreferrer');
+      closeShareMenu();
+    }
+
+    function showCopyFeedback() {
+      let feedback = document.getElementById('shareFeedback');
+      if (!feedback) {
+        feedback = document.createElement('div');
+        feedback.id = 'shareFeedback';
+        feedback.className = 'share-feedback';
+        feedback.textContent = 'تم نسخ الرابط';
+        feedback.setAttribute('role', 'status');
+        feedback.setAttribute('aria-live', 'polite');
+        document.body.appendChild(feedback);
+      }
+      feedback.classList.add('show');
+      clearTimeout(window.__shareFeedbackTimer);
+      window.__shareFeedbackTimer = setTimeout(() => {
+        feedback.classList.remove('show');
+      }, 1800);
+    }
+
+    function copyWithFallback(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+
+      return new Promise((resolve, reject) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        let copied = false;
+        try { copied = document.execCommand('copy'); } catch (_) {}
+        textarea.remove();
+        copied ? resolve() : reject(new Error('Clipboard unavailable'));
+      });
+    }
+
+    function copyPageLink() {
+      copyWithFallback(getPageShareUrl())
+        .then(() => {
+          showCopyFeedback();
+          closeShareMenu();
+        })
+        .catch(() => {});
+    }
+
+    document.addEventListener('click', (event) => {
+      const menu = document.getElementById('shareMenu');
+      const button = document.querySelector('.share-btn');
+      if (menu && menu.classList.contains('is-open') && !menu.contains(event.target) && !button.contains(event.target)) {
+        closeShareMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeShareMenu();
+    });
   </script>
 </body>
 </html>
