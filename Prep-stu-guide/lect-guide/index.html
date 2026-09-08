@@ -280,6 +280,25 @@
         .step-image { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 12px; border: 1px solid #e2e8f0; cursor: pointer; transition: opacity 0.3s ease; background: #f1f5f9; }
         .step-image:hover { opacity: 0.85; }
 
+        /* ===== EMBEDDED GUIDE VIDEO ===== */
+        .guide-video-wrap {
+            width: 100%;
+            margin-top: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #071f1f;
+            border: 1px solid rgba(212,175,55,0.28);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+        }
+        .guide-video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 620px;
+            background: #000;
+            object-fit: contain;
+        }
+
         /* ===== BANNER BARS (Video & Redirect) ===== */
         .action-bar {
             width: 100%;
@@ -803,8 +822,8 @@
 
         </div>
 
-        <!-- ===== شريط الفيديو التوضيحي ===== -->
-        <div class="action-bar">
+        <!-- ===== الفيديو التوضيحي ===== -->
+        <div class="action-bar" style="display:flex; flex-direction:column; align-items:stretch; gap:16px;">
             <div class="bar-content">
                 <div class="bar-icon"><i class="fas fa-video"></i></div>
                 <div class="bar-text">
@@ -812,9 +831,12 @@
                     <p>شرح مرئي خطوة بخطوة لمساعدتك في الدخول بسهولة.</p>
                 </div>
             </div>
-            <a href="#" class="bar-btn">
-                <i class="fas fa-play"></i> مشاهدة
-            </a>
+            <div class="guide-video-wrap">
+                <video class="guide-video" controls playsinline preload="metadata" poster="../assets/images/step5.webp">
+                    <source src="./lect-guide-video.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
         </div>
 
         <!-- ===== شريط التوجيه للمحاضرات المسجلة ===== -->
