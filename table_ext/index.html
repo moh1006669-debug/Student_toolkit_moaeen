@@ -404,6 +404,35 @@ button { font-family: inherit; cursor: pointer; }
   .maeen-video-card__video-wrap { max-width: 260px; }
 }
 
+/* ========================= Video card tabs (mobile / laptop) ========================= */
+.maeen-video-tabs {
+  display: flex; gap: 4px; padding: 8px 16px 0;
+  background: rgba(1, 39, 39, 0.04);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+.maeen-video-tab {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 12px; border: 0; border-radius: 10px 10px 0 0;
+  font-family: inherit; font-size: 13px; font-weight: 700; white-space: nowrap;
+  cursor: pointer; background: transparent; color: #475569;
+  border-bottom: 3px solid transparent; transition: all 0.2s ease;
+}
+.maeen-video-tab:hover { background: rgba(212, 175, 55, 0.08); color: var(--maeen-bg-dark); }
+.maeen-video-tab[data-active="true"] {
+  background: #fff; color: var(--maeen-bg-dark);
+  border-bottom-color: var(--maeen-gold); font-weight: 800;
+}
+.maeen-video-tab svg { flex-shrink: 0; }
+.maeen-video-tab-panel { display: none; }
+.maeen-video-tab-panel[data-active="true"] { display: block; }
+@media (max-width: 768px) {
+  .maeen-video-tabs { padding: 6px 10px 0; }
+  .maeen-video-tab { font-size: 12px; padding: 8px 8px; gap: 4px; }
+}
+@media (max-width: 420px) {
+  .maeen-video-tab { font-size: 11px; padding: 7px 6px; }
+}
+
 /* ========================= Two community cards ========================= */
 /* When placed inside the hero, give the grid bottom padding so the
    absolutely-positioned help button doesn't overlap the cards. */
@@ -672,9 +701,33 @@ button { font-family: inherit; cursor: pointer; }
         </div>
         <div class="maeen-video-card__body">
           <div class="maeen-video-card__body-inner">
-            <div class="maeen-video-card__media">
-              <div class="maeen-video-card__video-wrap">
-                <video id="guideVideo" src="assets/guide_website_trimmed.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="فيديو توضيحي لطريقة استخراج الجدول الأسبوعي">متصفحك لا يدعم تشغيل فيديو MP4. يمكنك استخدام متصفح حديث مثل Chrome أو Edge أو Safari.</video>
+            <!-- Tab bar -->
+            <div class="maeen-video-tabs" role="tablist">
+              <button type="button" class="maeen-video-tab" role="tab" data-active="true" aria-selected="true" data-tab="mobile" id="tabMobile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                الخطوات بإستخدام الجوال
+              </button>
+              <button type="button" class="maeen-video-tab" role="tab" data-active="false" aria-selected="false" data-tab="laptop" id="tabLaptop">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                الخطوات بإستخدام اللابتوب
+              </button>
+            </div>
+
+            <!-- Mobile video panel -->
+            <div class="maeen-video-tab-panel" role="tabpanel" data-active="true" id="panelMobile">
+              <div class="maeen-video-card__media">
+                <div class="maeen-video-card__video-wrap">
+                  <video id="guideVideoMobile" src="assets/guide_website_trimmed.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="فيديو توضيحي — الخطوات باستخدام الجوال">متصفحك لا يدعم تشغيل فيديو MP4. يمكنك استخدام متصفح حديث مثل Chrome أو Edge أو Safari.</video>
+                </div>
+              </div>
+            </div>
+
+            <!-- Laptop video panel -->
+            <div class="maeen-video-tab-panel" role="tabpanel" data-active="false" id="panelLaptop">
+              <div class="maeen-video-card__media">
+                <div class="maeen-video-card__video-wrap">
+                  <video id="guideVideoLaptop" src="assets/table-extact-laptop_web.mp4" muted loop playsinline controls preload="metadata" aria-label="فيديو توضيحي — الخطوات باستخدام اللابتوب">متصفحك لا يدعم تشغيل فيديو MP4. يمكنك استخدام متصفح حديث مثل Chrome أو Edge أو Safari.</video>
+                </div>
               </div>
             </div>
           </div>
@@ -1529,19 +1582,63 @@ $("backBtn").addEventListener("click", () => {
 /* --- Video card toggle --- */
 const videoCard = $("videoCard");
 const videoHead = $("videoHead");
-const guideVideo = $("guideVideo");
+const guideVideoMobile = $("guideVideoMobile");
+const guideVideoLaptop = $("guideVideoLaptop");
+
+function getActiveVideo() {
+  const mobileActive = $("panelMobile").getAttribute("data-active") === "true";
+  return mobileActive ? guideVideoMobile : guideVideoLaptop;
+}
+
 function toggleVideo() {
   const open = videoCard.getAttribute("data-open") === "true";
   videoCard.setAttribute("data-open", !open);
   videoHead.setAttribute("aria-expanded", !open);
-  if (!open && guideVideo) { const p = guideVideo.play(); if (p && p.catch) p.catch(() => {}); }
+  if (!open) {
+    const v = getActiveVideo();
+    if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+  }
 }
 videoHead.addEventListener("click", toggleVideo);
 videoHead.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleVideo(); } });
 
-/* --- Autoplay video on mount --- */
-if (guideVideo) {
-  const p = guideVideo.play();
+/* --- Video tab switching (mobile / laptop) --- */
+function switchVideoTab(tab) {
+  const mobileBtn = $("tabMobile");
+  const laptopBtn = $("tabLaptop");
+  const mobilePanel = $("panelMobile");
+  const laptopPanel = $("panelLaptop");
+  const isMobile = tab === "mobile";
+
+  // Pause the outgoing video.
+  const oldVideo = isMobile ? guideVideoLaptop : guideVideoMobile;
+  if (oldVideo) oldVideo.pause();
+
+  // Toggle tab buttons.
+  mobileBtn.setAttribute("data-active", isMobile);
+  mobileBtn.setAttribute("aria-selected", isMobile);
+  laptopBtn.setAttribute("data-active", !isMobile);
+  laptopBtn.setAttribute("aria-selected", !isMobile);
+
+  // Toggle panels.
+  mobilePanel.setAttribute("data-active", isMobile);
+  laptopPanel.setAttribute("data-active", !isMobile);
+
+  // Play the incoming video if the card is open.
+  if (videoCard.getAttribute("data-open") === "true") {
+    const newVideo = isMobile ? guideVideoMobile : guideVideoLaptop;
+    if (newVideo) {
+      const p = newVideo.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+  }
+}
+$("tabMobile").addEventListener("click", e => { e.stopPropagation(); switchVideoTab("mobile"); });
+$("tabLaptop").addEventListener("click", e => { e.stopPropagation(); switchVideoTab("laptop"); });
+
+/* --- Autoplay mobile video on mount --- */
+if (guideVideoMobile) {
+  const p = guideVideoMobile.play();
   if (p && p.catch) p.catch(() => {});
 }
 
