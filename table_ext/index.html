@@ -216,13 +216,15 @@ button { font-family: inherit; cursor: pointer; }
 .maeen-video-card[data-open="true"] .maeen-video-card__body { grid-template-rows: 1fr; }
 .maeen-video-card__body-inner { overflow: hidden; min-height: 0; }
 .maeen-video-card__media { padding: 16px; display: flex; justify-content: center; }
+/* Video wrapper — responsive, adapts to the video's intrinsic aspect ratio.
+   No forced 9:16 or fixed max-width; the video itself drives the height. */
 .maeen-video-card__video-wrap {
-  width: 100%; max-width: 360px; aspect-ratio: 9 / 16; border-radius: 14px;
+  width: 100%; max-width: 640px; border-radius: 14px;
   overflow: hidden; background: #000; border: 1px solid rgba(212,175,55,0.3);
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 .maeen-video-card__video-wrap video {
-  display: block; width: 100%; height: 100%; object-fit: contain; background: #000;
+  display: block; width: 100%; height: auto; object-fit: contain; background: #000;
 }
 
 /* ========================= Notes card ========================= */
@@ -393,7 +395,6 @@ button { font-family: inherit; cursor: pointer; }
   .maeen-video-card__titles h3 { font-size: 14px; }
   .maeen-video-card__titles p { font-size: 11px; }
   .maeen-video-card__media { padding: 12px; }
-  .maeen-video-card__video-wrap { max-width: 300px; }
 }
 @media (max-width: 420px) {
   .maeen-header-brand { right: 4px; }
@@ -401,7 +402,7 @@ button { font-family: inherit; cursor: pointer; }
   .maeen-header-brand img, .maeen-header-seu img { width: 100px; height: 78px; }
   .maeen-center-capsule { top: 53px; font-size: 9px; padding: 4px 8px; gap: 3px; max-width: calc(100% - 2 * (100px + 20px)); }
   .maeen-hero { padding: 101px 16px 36px; }
-  .maeen-video-card__video-wrap { max-width: 260px; }
+  .maeen-video-card__media { padding: 10px; }
 }
 
 /* ========================= Video card tabs (mobile / laptop) ========================= */
