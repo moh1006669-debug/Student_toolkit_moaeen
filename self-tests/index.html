@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نافذة الإختبارات الذاتيه _ للمراجعه وإختبار معلوماتك وإستعدادك للإختبارات — منصة معين</title>
+  <meta
+    name="description"
+    content="نافذة الإختبارات الذاتيه لطلبة التحضيري — تجميعات أسئلة واختبارات سابقة للمراجعة وإختبار معلوماتك وإستعدادك للإختبارات — منصة معين التعليمية"
+  />
+  <meta
+    name="keywords"
+    content="منصة معين, الإختبارات الذاتيه, اختبارات سابقة, طلبة التحضيري, مراجعة, SEU"
+  />
+  <meta name="theme-color" content="#012727" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/quiz-window.css" />
+</head>
+<body>
+  <div class="mu-root">
+    <div class="page-wrapper">
+      <!-- ===== HEADER + HERO ===== -->
+      <header class="header">
+        <div class="header-brand" title="منصة معين التعليمية">
+          <i data-brand="mueenLogo"></i>
+        </div>
+        <div class="header-seu-box">
+          <i data-brand="seuLogo" data-class="header-seu-logo"></i>
+          <span class="header-seu-pill">SEU</span>
+        </div>
+
+        <section class="hero">
+          <div class="gold-line-bar">
+            <div class="share-dropdown" id="share-dropdown">
+              <button
+                type="button"
+                class="share-btn"
+                id="share-btn"
+                aria-haspopup="menu"
+                aria-expanded="false"
+              >
+                <i data-icon="share2" data-size="12"></i>
+                <span>مشاركة</span>
+                <i data-icon="chevronDown" data-size="10"></i>
+              </button>
+              <div class="share-dropdown-content" role="menu">
+                <button type="button" class="share-option" role="menuitem" data-share="whatsapp">
+                  <i data-brand="whatsapp" data-class="wa-icon"></i>
+                  <span>مشاركة عبر واتساب</span>
+                </button>
+                <button type="button" class="share-option" role="menuitem" data-share="telegram">
+                  <i data-brand="telegram" data-class="tg-icon"></i>
+                  <span>مشاركة عبر تليجرام</span>
+                </button>
+                <button type="button" class="share-option" role="menuitem" data-share="copy">
+                  <i data-icon="link2" data-size="20" data-class="link-icon"></i>
+                  <span>نسخ رابط الصفحة</span>
+                </button>
+              </div>
+            </div>
+            <a href="#" class="back-btn" id="back-to-tools" title="العودة لمكتبة أدوات معين">
+              <i data-icon="arrowRight" data-size="12"></i>
+              <span>العودة للأدوات</span>
+            </a>
+          </div>
+
+          <div class="hero-top">
+            <h1>
+              <i data-icon="listChecks" data-size="22"></i>
+              <span>نافذة الإختبارات الذاتيه</span>
+            </h1>
+            <div class="hero-title-sub">للمراجعه وإختبار معلوماتك وإستعدادك للإختبارات</div>
+          </div>
+
+          <div class="hero-tabs">
+            <div class="tab-item">
+              <div class="tab-info">
+                <div class="tab-icon"><i data-icon="users" data-size="15"></i></div>
+                <div class="tab-text">
+                  <h4>قروب تجمع طلبة التحضيري</h4>
+                  <p>انضم إلى زملائك</p>
+                </div>
+              </div>
+              <a href="#" class="tab-btn">
+                <i data-icon="arrowLeft" data-size="11"></i>
+                انضمام
+              </a>
+            </div>
+            <div class="tab-item">
+              <div class="tab-info">
+                <div class="tab-icon"><i data-icon="megaphone" data-size="15"></i></div>
+                <div class="tab-text">
+                  <h4>قناة الأخبار العامة</h4>
+                  <p>الترم الاستثنائي الصيفي</p>
+                </div>
+              </div>
+              <a href="#" class="tab-btn">
+                <i data-icon="arrowLeft" data-size="11"></i>
+                عرض القناة
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send?phone=966536004199"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="help-btn"
+          >
+            <span class="main-text">للمساعدة والإستفسار</span>
+            <span class="sub-text">تواصل مع فريق مُعين</span>
+          </a>
+        </section>
+      </header>
+
+      <!-- ===== تبويبات الخطة (يُولّدها app.js) ===== -->
+      <div id="plan-tabs-root"></div>
+
+      <!-- ===== بطاقات المقررات والإختبارات (يُولّدها app.js) ===== -->
+      <div id="quiz-hub-root"></div>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="footer">
+        <div class="footer-brand-compact">
+          <i data-brand="mueenLogo" data-class="footer-brand-logo"></i>
+          <div class="brand-name">
+            <h3>منصة معين التعليمية</h3>
+            <span>MOAEEN PLATFORM</span>
+          </div>
+        </div>
+
+        <div class="footer-contact-compact">
+          <div class="footer-phone">
+            <i data-icon="phone" data-size="20"></i>
+            <span>+966 53 600 4199</span>
+          </div>
+          <div class="footer-social-compact">
+            <a href="#" aria-label="حساب المنصة على منصة X">
+              <i data-brand="xIcon"></i>
+            </a>
+            <a href="#" aria-label="قناة المنصة على تليجرام">
+              <i data-brand="telegram"></i>
+            </a>
+            <a href="#" aria-label="حساب المنصة على سناب شات">
+              <i data-icon="ghost" data-size="18"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== زر واتساب العائم ===== -->
+    <a
+      href="https://api.whatsapp.com/send?phone=966536004199"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="float-wa"
+      aria-label="تواصل معنا عبر واتساب"
+    >
+      <i data-brand="whatsapp"></i>
+      <span>تواصل معنا</span>
+    </a>
+
+    <!-- ===== نافذة أداء الإختبار (يُولّدها app.js) ===== -->
+    <div id="quiz-runner-root"></div>
+  </div>
+
+  <noscript>
+    <div style="padding: 24px; text-align: center; font-family: Tahoma, Arial, sans-serif; color: #012727; background: #e5c158;">
+      هذه الصفحة تتطلب تفعيل JavaScript في المتصفح لعرض الإختبارات وتشغيلها.
+    </div>
+  </noscript>
+
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
