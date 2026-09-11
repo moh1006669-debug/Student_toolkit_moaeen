@@ -149,8 +149,10 @@
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       transition: var(--transition);
-      width: 100%;
+      /* التعديل هنا: العرض متناسب مع المحتوى وليس 100% */
+      width: fit-content;
       max-width: 100%;
+      justify-self: center; /* لضمان التمركز في المساحة المتاحة */
     }
 
     .header-pill:hover {
@@ -1017,6 +1019,8 @@
       .footer {
         width: 100%;
       }
+
+      /* تم إزالة الكود الذي كان يجبر الكبسولة على التمدد هنا */
 
       .tab-card {
         width: 100%;
