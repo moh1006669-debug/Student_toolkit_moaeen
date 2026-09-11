@@ -110,10 +110,10 @@
       border-radius: 30px;
       padding: 20px 30px;
       display: grid;
-      /* نظام الشبكة يضمن بقاء الكبسولة في المنتصف وعدم تأثرها بحجم الشعارات */
-      grid-template-columns: auto 1fr auto;
+      /* التعديل: توزيع متساوٍ للشعارات (1fr) ومساحة تلقائية للكبسولة (auto) لتتوسط تماماً */
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 24px;
+      gap: 16px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
                   inset 0 1px 0 rgba(255, 255, 255, 0.05);
       position: relative;
@@ -124,6 +124,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      justify-self: start; /* تثبيت الشعار في أقصى اليمين */
     }
 
     .header-logo-moaeen img {
@@ -141,32 +142,32 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
       background: rgba(1, 32, 32, 0.6);
       border: 2px solid var(--gold);
       border-radius: 50px;
-      padding: 16px 36px;
+      /* التعديل: تقليل الحشو الجانبي ليتناسب مع المحتوى فقط */
+      padding: 14px 28px;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       transition: var(--transition);
-      /* التعديل هنا: العرض متناسب مع المحتوى وليس 100% */
+      /* التعديل: العرض يتناسب مع المحتوى فقط دون امتداد */
       width: fit-content;
       max-width: 100%;
-      justify-self: center; /* لضمان التمركز في المساحة المتاحة */
+      justify-self: center; /* توسيط الكبسولة في المنتصف تماماً */
     }
 
     .header-pill:hover {
       box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* تعديل: جعل الخطوط مرنة لتتقلص وتتمدد حسب المساحة المتاحة */
     .pill-line {
-      flex: 1 1 auto;
-      max-width: 60px;
-      min-width: 0;
+      /* التعديل: عرض ثابت متناسق للخطوط الجانبية بدلاً من تمددها */
+      width: 40px;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       border-radius: 2px;
+      flex-shrink: 0;
       box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
     }
 
@@ -190,6 +191,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      justify-self: end; /* تثبيت الشعار في أقصى اليسار */
     }
 
     .seu-rect {
@@ -863,32 +865,41 @@
       }
     }
 
-    /* تعديل: إزالة تصغير الشعارات والاعتماد على ضغط الخطوط الداخلية */
+    /* تعديل: ضغط الفراغ الداخلي للكبسولة مع تصغير الشاشة */
     @media (max-width: 992px) {
       .header {
         padding: 14px 20px;
         gap: 12px;
       }
-      .header-pill { padding: 10px 16px; gap: 10px; }
+      .header-pill { padding: 10px 16px; gap: 8px; }
       .pill-text { font-size: 16px; }
-      .pill-line { max-width: 30px; } /* تقليص العرض الأقصى فقط */
+      .pill-line { width: 25px; } /* تقليص عرض الخطوط الجانبية */
       .pill-star { font-size: 18px; }
       
       .hero { padding: 40px 30px; gap: 30px; }
       .guidance-tabs { grid-template-columns: 1fr; }
     }
 
-    /* تعديل: الحفاظ على الشعارات وضغط الفراغ الداخلي للكبسولة */
     @media (max-width: 768px) {
       body { padding: 12px; }
       .header {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; /* الحفاظ على الشبكة لتوسيط الكبسولة */
         padding: 12px 14px;
         gap: 8px;
         border-radius: 24px;
       }
-      .header-pill { padding: 8px 10px; gap: 6px; }
+      .header-logo-moaeen { justify-self: start; }
+      .header-seu-box { justify-self: end; }
+      .header-pill {
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 8px 12px;
+        gap: 6px;
+      }
+      .pill-line { width: 15px; }
       .pill-text { font-size: 13px; white-space: nowrap; }
-      .pill-line { max-width: 15px; } /* تقليص أكبر للفراغ الجانبي */
       .pill-star { font-size: 14px; }
 
       .hero { grid-template-columns: 1fr; padding: 30px 20px; gap: 30px; border-radius: 24px; }
@@ -908,10 +919,13 @@
     }
 
     @media (max-width: 480px) {
-      .header { padding: 10px; gap: 6px; }
+      .header {
+        padding: 10px;
+        gap: 6px;
+      }
       .header-pill { padding: 6px 8px; gap: 4px; }
+      .pill-line { width: 0px; } /* إخفاء الخطوط تماماً عند أقصى ضيق لتوفير المساحة */
       .pill-text { font-size: 11px; }
-      .pill-line { max-width: 0; } /* إخفاء الخطوط تماماً عند أقصى ضيق */
       .pill-star { font-size: 12px; }
       
       .tab-card { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
@@ -1020,7 +1034,11 @@
         width: 100%;
       }
 
-      /* تم إزالة الكود الذي كان يجبر الكبسولة على التمدد هنا */
+      /* تم تعديل هذا الجزء لضمان عدم تمدد الكبسولة */
+      .header-pill {
+        width: fit-content;
+        max-width: 95%;
+      }
 
       .tab-card {
         width: 100%;
@@ -1047,7 +1065,6 @@
       z-index: 3;
     }
 
-    /* تم إزالة قاعدة الـ clamp التي كانت تصغر الشعارات تلقائياً */
     .header-logo-moaeen img {
       width: 130px;
       height: auto;
@@ -1281,7 +1298,6 @@
       height: 82px;
     }
 
-    /* ===== تعديل: إزالة قواعد الالتفاف القديمة ===== */
     @media (max-width: 768px) {
       .page-wrapper > .header,
       .page-wrapper > .header-hero-divider {
