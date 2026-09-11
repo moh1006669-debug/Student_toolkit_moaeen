@@ -110,7 +110,8 @@
       border-radius: 30px;
       padding: 20px 30px;
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
+      /* تعديل: استخدام auto للشعارات و 1fr للكبسولة لضمان بقائها في المنتصف دائماً */
+      grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 24px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
@@ -148,6 +149,8 @@
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       transition: var(--transition);
+      width: 100%;
+      max-width: 100%;
     }
 
     .header-pill:hover {
@@ -856,30 +859,38 @@
       }
     }
 
+    /* ===== تعديل: الحفاظ على الكبسولة في المنتصف للشاشات المتوسطة ===== */
     @media (max-width: 992px) {
       .header {
-        grid-template-columns: 1fr 1fr;
-        padding: 18px 24px;
-        gap: 16px;
+        padding: 14px 20px;
+        gap: 12px;
       }
-      .header-seu-box { order: -1; grid-column: 1 / -1; justify-content: center; }
-      .header-pill { grid-column: 1 / -1; order: 0; }
-      .header-logo-moaeen { grid-column: 1 / -1; order: 1; justify-content: center; }
-      .pill-text { font-size: 18px; }
-      .pill-line { width: 40px; }
+      .header-logo-moaeen img { width: 100px; }
+      .seu-rect img { width: 40px; height: 40px; }
+      .header-pill { padding: 10px 16px; gap: 10px; }
+      .pill-text { font-size: 16px; }
+      .pill-line { width: 30px; }
+      .pill-star { font-size: 18px; }
+      
       .hero { padding: 40px 30px; gap: 30px; }
       .guidance-tabs { grid-template-columns: 1fr; }
     }
 
+    /* ===== تعديل: الحفاظ على الكبسولة في المنتصف للشاشات الصغيرة ===== */
     @media (max-width: 768px) {
       body { padding: 12px; }
-      .header { display: flex; flex-wrap: wrap; justify-content: space-between; padding: 16px; gap: 12px; border-radius: 24px; }
-      .header-logo-moaeen { order: 1; flex: 0 0 auto; }
-      .header-logo-moaeen img { width: 110px; }
-      .header-seu-box { order: 2; flex: 0 0 auto; }
-      .header-pill { order: 3; flex-basis: 100%; width: fit-content; max-width: 90%; margin: 12px auto 0; padding: 8px 16px; flex-wrap: wrap; gap: 6px; }
-      .pill-text { font-size: 15px; white-space: normal; }
-      .seu-rect img { width: 40px; height: 40px; }
+      .header {
+        padding: 12px 14px;
+        gap: 8px;
+        border-radius: 24px;
+      }
+      .header-logo-moaeen img { width: 75px; }
+      .seu-rect img { width: 34px; height: 34px; }
+      .header-pill { padding: 8px 10px; gap: 6px; }
+      .pill-text { font-size: 13px; white-space: nowrap; }
+      .pill-line { width: 12px; }
+      .pill-star { font-size: 14px; }
+
       .hero { grid-template-columns: 1fr; padding: 30px 20px; gap: 30px; border-radius: 24px; }
       .hero-image { order: 1; }
       .hero-image img { max-width: 70%; margin: 0 auto; }
@@ -897,8 +908,14 @@
     }
 
     @media (max-width: 480px) {
-      .header-logo-moaeen img { width: 90px; }
-      .pill-text { font-size: 13px; }
+      .header { padding: 10px; gap: 6px; }
+      .header-logo-moaeen img { width: 65px; }
+      .seu-rect img { width: 30px; height: 30px; }
+      .header-pill { padding: 6px 8px; gap: 4px; }
+      .pill-text { font-size: 11px; }
+      .pill-line { width: 8px; }
+      .pill-star { font-size: 12px; }
+      
       .tab-card { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
       .tab-info { justify-content: center; }
       .tab-btn { justify-content: center; }
@@ -914,7 +931,6 @@
 
     /* ==========================================================
        RESPONSIVE FLOW ARCHITECTURE - FINAL
-       معالجة الـ centered fixed canvas دون تغيير التصميم الداخلي
        ========================================================== */
     html {
       width: 100%;
@@ -1004,10 +1020,6 @@
       .trust-badges-container,
       .footer {
         width: 100%;
-      }
-
-      .header-pill {
-        width: min(100%, 90%);
       }
 
       .tab-card {
@@ -1263,6 +1275,7 @@
       height: 82px;
     }
 
+    /* ===== تعديل: إزالة قواعد الالتفاف القديمة للحفاظ على التصميم الأصلي ===== */
     @media (max-width: 768px) {
       .page-wrapper > .header,
       .page-wrapper > .header-hero-divider {
@@ -1270,48 +1283,8 @@
       }
 
       .header {
-        display: grid;
-        grid-template-columns: minmax(78px, 1fr) minmax(0, 2fr) minmax(78px, 1fr);
-        padding: 16px;
-        gap: 10px;
-      }
-
-      .header-logo-moaeen {
-        grid-column: 1;
-        grid-row: 1;
-        justify-content: flex-start;
-        order: initial;
-      }
-
-      .header-pill {
-        grid-column: 2;
-        grid-row: 1;
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 8px 10px;
-        gap: 6px;
-        overflow: hidden;
-      }
-
-      .header-seu-box {
-        grid-column: 3;
-        grid-row: 1;
-        justify-content: flex-end;
-        margin-left: -16px;
-        padding-left: 16px;
-        order: initial;
-      }
-
-      .header-logo-moaeen img,
-      .seu-rect img {
-        width: clamp(90px, 22vw, 120px);
-      }
-
-      .pill-text {
-        white-space: normal;
-        overflow-wrap: anywhere;
-        text-align: center;
+        padding: 12px 14px;
+        gap: 8px;
       }
 
       .hero {
@@ -1333,15 +1306,6 @@
     }
 
     @media (max-width: 480px) {
-      .header-logo-moaeen img,
-      .seu-rect img {
-        width: 90px;
-      }
-
-      .header-pill { padding-inline: 7px; }
-      .pill-line { width: 20px; }
-      .pill-text { font-size: 13px; }
-      .pill-star { font-size: 18px; }
       .footer-brand-compact img { width: 76px; height: 76px; }
     }
 
