@@ -110,7 +110,7 @@
       border-radius: 30px;
       padding: 20px 30px;
       display: grid;
-      /* تعديل: استخدام auto للشعارات و 1fr للكبسولة لضمان بقائها في المنتصف دائماً */
+      /* نظام الشبكة يضمن بقاء الكبسولة في المنتصف وعدم تأثرها بحجم الشعارات */
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 24px;
@@ -157,12 +157,14 @@
       box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
     }
 
+    /* تعديل: جعل الخطوط مرنة لتتقلص وتتمدد حسب المساحة المتاحة */
     .pill-line {
-      width: 60px;
+      flex: 1 1 auto;
+      max-width: 60px;
+      min-width: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       border-radius: 2px;
-      flex-shrink: 0;
       box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
     }
 
@@ -859,24 +861,22 @@
       }
     }
 
-    /* ===== تعديل: الحفاظ على الكبسولة في المنتصف للشاشات المتوسطة ===== */
+    /* تعديل: إزالة تصغير الشعارات والاعتماد على ضغط الخطوط الداخلية */
     @media (max-width: 992px) {
       .header {
         padding: 14px 20px;
         gap: 12px;
       }
-      .header-logo-moaeen img { width: 100px; }
-      .seu-rect img { width: 40px; height: 40px; }
       .header-pill { padding: 10px 16px; gap: 10px; }
       .pill-text { font-size: 16px; }
-      .pill-line { width: 30px; }
+      .pill-line { max-width: 30px; } /* تقليص العرض الأقصى فقط */
       .pill-star { font-size: 18px; }
       
       .hero { padding: 40px 30px; gap: 30px; }
       .guidance-tabs { grid-template-columns: 1fr; }
     }
 
-    /* ===== تعديل: الحفاظ على الكبسولة في المنتصف للشاشات الصغيرة ===== */
+    /* تعديل: الحفاظ على الشعارات وضغط الفراغ الداخلي للكبسولة */
     @media (max-width: 768px) {
       body { padding: 12px; }
       .header {
@@ -884,11 +884,9 @@
         gap: 8px;
         border-radius: 24px;
       }
-      .header-logo-moaeen img { width: 75px; }
-      .seu-rect img { width: 34px; height: 34px; }
       .header-pill { padding: 8px 10px; gap: 6px; }
       .pill-text { font-size: 13px; white-space: nowrap; }
-      .pill-line { width: 12px; }
+      .pill-line { max-width: 15px; } /* تقليص أكبر للفراغ الجانبي */
       .pill-star { font-size: 14px; }
 
       .hero { grid-template-columns: 1fr; padding: 30px 20px; gap: 30px; border-radius: 24px; }
@@ -909,11 +907,9 @@
 
     @media (max-width: 480px) {
       .header { padding: 10px; gap: 6px; }
-      .header-logo-moaeen img { width: 65px; }
-      .seu-rect img { width: 30px; height: 30px; }
       .header-pill { padding: 6px 8px; gap: 4px; }
       .pill-text { font-size: 11px; }
-      .pill-line { width: 8px; }
+      .pill-line { max-width: 0; } /* إخفاء الخطوط تماماً عند أقصى ضيق */
       .pill-star { font-size: 12px; }
       
       .tab-card { flex-direction: column; gap: 16px; align-items: stretch; text-align: center; }
@@ -1047,9 +1043,15 @@
       z-index: 3;
     }
 
-    .header-logo-moaeen img,
+    /* تم إزالة قاعدة الـ clamp التي كانت تصغر الشعارات تلقائياً */
+    .header-logo-moaeen img {
+      width: 130px;
+      height: auto;
+      max-width: 100%;
+    }
+    
     .seu-rect img {
-      width: clamp(90px, 12vw, 180px);
+      width: 50px;
       height: auto;
       max-width: 100%;
     }
@@ -1275,7 +1277,7 @@
       height: 82px;
     }
 
-    /* ===== تعديل: إزالة قواعد الالتفاف القديمة للحفاظ على التصميم الأصلي ===== */
+    /* ===== تعديل: إزالة قواعد الالتفاف القديمة ===== */
     @media (max-width: 768px) {
       .page-wrapper > .header,
       .page-wrapper > .header-hero-divider {
